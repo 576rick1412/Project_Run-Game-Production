@@ -24,7 +24,7 @@ public class Proto_move_Scene : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Space))
+        if(Input.GetKeyUp(KeyCode.Mouse0))
         {
             Loading_Manager.LoadScene("Scene_2", Stage_Num, Stage_Des);
         }
