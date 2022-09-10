@@ -265,7 +265,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD14C\uC774\uC9C0 \uCE78"
+  m_text: 'DM - 1
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ccd58e53ab49b5f41a2cbf807440c726, type: 2}
   m_sharedMaterial: {fileID: -2251066448972568068, guid: ccd58e53ab49b5f41a2cbf807440c726, type: 2}
@@ -296,9 +298,9 @@ MonoBehaviour:
   m_fontSizeBase: 120
   m_fontWeight: 400
   m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontSizeMin: 120
+  m_fontSizeMax: 120
+  m_fontStyle: 16
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -307,7 +309,7 @@ MonoBehaviour:
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
+  m_charWidthMaxAdj: 20
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
@@ -754,7 +756,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -150}
+  m_AnchoredPosition: {x: 8, y: -150}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1837741248
@@ -777,7 +779,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD14C\uC2A4\uD2B8\uC911"
+  m_text: "\uC2A4\uD14C\uC774\uC9C0 1\uBC88\uC785\uB2C8\uB2E4\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ccd58e53ab49b5f41a2cbf807440c726, type: 2}
   m_sharedMaterial: {fileID: -2251066448972568068, guid: ccd58e53ab49b5f41a2cbf807440c726, type: 2}
