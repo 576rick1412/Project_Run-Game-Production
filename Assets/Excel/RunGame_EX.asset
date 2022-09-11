@@ -12,6 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142168b702346e9479ffed06e3576744, type: 3}
   m_Name: RunGame_EX
   m_EditorClassIdentifier: 
+  StartSheet:
+  - STR_branch: 1
+    STR_description: "\uC5C4\uCCAD\uB09C \uAC8C\uC784\uD301 1"
+  - STR_branch: 2
+    STR_description: "\uC5C4\uCCAD\uB09C \uAC8C\uC784\uD301 2"
+  - STR_branch: 3
+    STR_description: "\uC5C4\uCCAD\uB09C \uAC8C\uC784\uD301 3"
+  - STR_branch: 4
+    STR_description: "\uC5C4\uCCAD\uB09C \uAC8C\uC784\uD301 4"
+  - STR_branch: 5
+    STR_description: "\uC5C4\uCCAD\uB09C \uAC8C\uC784\uD301 5"
   STSheet:
   - ST_branch: 1
     ST_name: DM - 1

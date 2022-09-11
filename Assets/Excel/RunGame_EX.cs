@@ -6,5 +6,6 @@ using UnityEngine;
 [ExcelAsset]
 public class RunGame_EX : ScriptableObject
 {
-	public List<RunGame_EX_Entity> STSheet;
+	public List<STR_EX_Entity> StartSheet;
+	public List<STG_EX_Entity> STSheet;
 }
