@@ -1,29 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
 public class Start_Move_CS : MonoBehaviour
 {
-    public TextMeshProUGUI Description;
-    public GameObject Play_Button;
-    [SerializeField] RunGame_EX RunGame_EX;
+    public static Singleton instance;
 
     public float Move_Time;
 
     private float DTime = 0;
     private int BGI_Num = 0;
 
+    AsyncOperation op;
     public GameObject[] BGI;
     void Start()
     {
+        op = SceneManager.LoadSceneAsync("Title_Scene");
+        op.allowSceneActivation = false;
+
         for (int i = 0; i < BGI.Length; i++) BGI[i].SetActive(false);
 
-        Active_BGI();
-        STG_Excel();
+        BGI[0].SetActive(true);
     }
-    void Update()
+    void FixedUpdate()
     {
         Time_BGI();
     }
@@ -39,30 +41,14 @@ public class Start_Move_CS : MonoBehaviour
     }
     void Active_BGI()
     {
+        Fade_effect oc = GameObject.Find("Hephaestus_Canvas").GetComponent<Fade_effect>();
         if (BGI_Num < (BGI.Length -1)){
-            ++BGI_Num;      
-            BGI[BGI_Num].SetActive(true);
-            BGI[BGI_Num - 1].SetActive(false); 
+            ++BGI_Num;
+
+            oc.Fade(BGI[BGI_Num - 1], BGI[BGI_Num]);
         }
         else{
-            BGI_Num = 0;    
-            BGI[BGI_Num].SetActive(true); 
-            BGI[BGI.Length - 1].SetActive(false); 
+            oc.Fade(op);
         }
-    }
-    void STG_Excel()
-    {
-        int branch = Random.Range(1, 6);
-        for (int i = 0; i < RunGame_EX.StartSheet.Count; ++i)
-        {
-            if (RunGame_EX.StartSheet[i].STR_branch == branch)
-            {
-                Description.text = RunGame_EX.StartSheet[i].STR_description;
-            }
-        }
-    }
-    public void Play_B()
-    {
-        SceneManager.LoadSceneAsync("Title_Scene");
     }
 }
