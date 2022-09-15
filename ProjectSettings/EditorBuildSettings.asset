@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/1. Loby_Scene/Title_Scene.unity
     guid: 3912070ecc5e6954eb4fffd3bc4d2450
   - enabled: 1
+    path: Assets/Scenes/1. Loby_Scene/Mian_Loby_Scene.unity
+    guid: bf282b342be21434f93dddc42a5490dc
+  - enabled: 1
     path: Assets/Scenes/3. etc/Stage_LoadingScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/3. etc/Scene_2.unity
-    guid: cbf72aee7f35a1f42b12f308d25a7a97
+    path: Assets/Scenes/3. etc/Main_LoadingScene.unity
+    guid: cb285bf88775e7e4abf2d52f84bcc909
   m_configObjects: {}

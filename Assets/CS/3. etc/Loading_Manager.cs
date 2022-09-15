@@ -17,20 +17,41 @@ public class Loading_Manager : MonoBehaviour
 
     public static void LoadScene(string SceneName, string ST_Name, string ST_Description)
     {
+        Fade_effect oc = GameObject.Find("Hephaestus_Canvas").GetComponent<Fade_effect>();
+        AsyncOperation op = SceneManager.LoadSceneAsync("Main_LoadingScene");
+
         nextScene = SceneName;
         Stage_Name = ST_Name;
+
         Stage_Description = ST_Description;
-        SceneManager.LoadScene("LoadingScene");
+
+        oc.Fade(op);
+    }
+    public static void LoadScene(string SceneName, string ST_Description)
+    {
+        Fade_effect oc = GameObject.Find("Hephaestus_Canvas").GetComponent<Fade_effect>();
+        AsyncOperation op = SceneManager.LoadSceneAsync("Main_LoadingScene");
+        op.allowSceneActivation = false;
+
+        nextScene = SceneName;
+        Stage_Name = "";
+
+        Stage_Description = ST_Description;
+
+        oc.Fade(op);
     }
     void Start()
     {
         Name.text = Stage_Name;
         Description.text = Stage_Description;
+
         StartCoroutine(LoadSceneProcess());
     }
 
     IEnumerator LoadSceneProcess()
     {
+        Fade_effect oc = GameObject.Find("Hephaestus_Canvas").GetComponent<Fade_effect>();
+
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
 
@@ -49,7 +70,7 @@ public class Loading_Manager : MonoBehaviour
                 ProgressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
                 if (ProgressBar.fillAmount >= 1f)
                 {
-                    op.allowSceneActivation = true;
+                    oc.Fade(op);
                     yield break;
                 }
             }

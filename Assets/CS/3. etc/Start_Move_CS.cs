@@ -18,6 +18,7 @@ public class Start_Move_CS : MonoBehaviour
     public GameObject[] BGI;
     void Start()
     {
+
         op = SceneManager.LoadSceneAsync("Title_Scene");
         op.allowSceneActivation = false;
 
