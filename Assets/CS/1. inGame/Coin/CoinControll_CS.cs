@@ -11,28 +11,28 @@ public class CoinControll_CS : MonoBehaviour
     void Start()
     {
         //Pool = new ObjectPool<Coin_CS>(CreatCoin, onGetCoin, onReleaseCoin, OnDestroyCoin, maxSize: 4);
-
-        for(int i = 0; i < CoinPos.Length; i++)
+        for (int i = 0; i < CoinPos.Length; i++)
         {
             Singleton oc = GameObject.Find("Hephaestus_Canvas").GetComponent<Singleton>();
-            oc.InCoinPos = CoinPos[i].GetComponent<Transform>();
             oc.Get_CoinOBJ(gameObject);
-            make_Coin();
+            make_Coin(CoinPos[i]);
+
+            Debug.Log("»ý¼º");
             Destroy(CoinPos[i]);
         }
-        
+
     }
 
     void Update()
     {
 
     }
-    private void make_Coin()
+
+    private void make_Coin(GameObject OBJ)
     {
         Singleton oc = GameObject.Find("Hephaestus_Canvas").GetComponent<Singleton>();
         var coin = oc.Pool.Get();
-        coin.DesCoin();
+        coin.transform.position = OBJ.transform.position;
     }
-
 
 }

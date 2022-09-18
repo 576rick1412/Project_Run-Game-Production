@@ -20,11 +20,8 @@ public class Coin_CS : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            Debug.Log("ÄÚÀÎ È¹µæ!!");
             DestroyCoin();
         }
-    }
-    public void DesCoin()
-    {
-        Invoke("DestroyCoin", 5f);
     }
 }
