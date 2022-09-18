@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 
 public class CoinControll_CS : MonoBehaviour
 {
-    [SerializeField] private Transform[] CoinPos;
+    [SerializeField] private GameObject[] CoinPos;
 
     //private IObjectPool<Coin_CS> Pool;
     void Start()
@@ -15,8 +15,10 @@ public class CoinControll_CS : MonoBehaviour
         for(int i = 0; i < CoinPos.Length; i++)
         {
             Singleton oc = GameObject.Find("Hephaestus_Canvas").GetComponent<Singleton>();
-            oc.InCoinPos = CoinPos[i];
+            oc.InCoinPos = CoinPos[i].GetComponent<Transform>();
+            oc.Get_CoinOBJ(gameObject);
             make_Coin();
+            Destroy(CoinPos[i]);
         }
         
     }
