@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: 3912070ecc5e6954eb4fffd3bc4d2450
   - enabled: 1
     path: Assets/Scenes/1. Loby_Scene/Mian_Loby_Scene.unity
-    guid: bf282b342be21434f93dddc42a5490dc
+    guid: 904ca6efb9701c84abdc2a6a70102134
   - enabled: 1
     path: Assets/Scenes/3. etc/Stage_LoadingScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
