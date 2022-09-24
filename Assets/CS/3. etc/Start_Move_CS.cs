@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class Start_Move_CS : MonoBehaviour
 {
-    public static Singleton instance;
-
     public float Move_Time;
 
     private float DTime = 0;
@@ -42,14 +40,12 @@ public class Start_Move_CS : MonoBehaviour
     }
     void Active_BGI()
     {
-        Fade_effect oc = GameObject.Find("Hephaestus_Canvas").GetComponent<Fade_effect>();
         if (BGI_Num < (BGI.Length -1)){
             ++BGI_Num;
-
-            oc.Fade(BGI[BGI_Num - 1], BGI[BGI_Num]);
+            Fade_effect.Fade_.Fade(BGI[BGI_Num - 1], BGI[BGI_Num]);
         }
         else{
-            oc.Fade(op);
+            Fade_effect.Fade_.Fade(op);
         }
     }
 }

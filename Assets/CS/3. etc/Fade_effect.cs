@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Fade_effect : MonoBehaviour
 {
+    public static Fade_effect Fade_;
+
     public Image Panel;
     [Header("페이드 시간 관리")]public float F_time = 0.5f;
 
