@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Player_CS : MonoBehaviour
 {
-    public bool isJump = false;
-    public bool isDoubleJump = false;
-    [SerializeField]    float jumpHeight;
+    [SerializeField] bool isJump = false;
+    [SerializeField] bool isDoubleJump = false;
+    [SerializeField] float jumpHeight;
 
     Rigidbody2D rigid;
     void Start()
     {
         rigid = gameObject.GetComponent<Rigidbody2D>();
+        jumpHeight = GameManager.GM.PlayerJumpValue;
     }
 
     void Update()
