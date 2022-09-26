@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_CS : MonoBehaviour
 {
     [SerializeField] bool isJump = false;
     [SerializeField] bool isDoubleJump = false;
     [SerializeField] float jumpHeight;
-
+    [SerializeField] Image HP_Bar;
     Rigidbody2D rigid;
     void Start()
     {
@@ -17,7 +18,11 @@ public class Player_CS : MonoBehaviour
 
     void Update()
     {
-
+        HP_Bar.fillAmount = (GameManager.GM.LifeScore / GameManager.GM.MAX_LifeScore);
+        if (GameManager.GM.LifeScore <= 0)
+        {
+            Debug.Log("게임 오버");
+        }
     }
     public void Jump()
     {
@@ -35,7 +40,6 @@ public class Player_CS : MonoBehaviour
             return;
         }
     }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Floor"))

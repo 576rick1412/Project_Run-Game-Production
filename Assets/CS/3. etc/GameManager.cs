@@ -21,7 +21,10 @@ public class GameManager : MonoBehaviour
 
     // 인게임 설정
     [Header("인게임 설정")]
-    public float MapSpeedValue;
+    public float Floor_SpeedValue;
+    public float BGI_SpeedValue;
+    public float LifeScore;
+    public float MAX_LifeScore;
     void Awake(){GM = this;}
 
     void Start()
@@ -29,5 +32,10 @@ public class GameManager : MonoBehaviour
         var obj = FindObjectsOfType<GameManager>();
         if (obj.Length == 1) DontDestroyOnLoad(gameObject);
         else Destroy(gameObject);
+    }
+
+    void Update()
+    {
+        LifeScore -= Time.deltaTime * 2;
     }
 }
