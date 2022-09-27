@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     public float Floor_SpeedValue;
     public float BGI_SpeedValue;
     public float LifeScore;
-    public float MAX_LifeScore;
     void Awake(){GM = this;}
 
     void Start()

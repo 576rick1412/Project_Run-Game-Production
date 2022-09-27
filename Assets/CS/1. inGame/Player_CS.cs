@@ -8,17 +8,19 @@ public class Player_CS : MonoBehaviour
     [SerializeField] bool isJump = false;
     [SerializeField] bool isDoubleJump = false;
     [SerializeField] float jumpHeight;
+    static float MAX_LifeScore;
     [SerializeField] Image HP_Bar;
     Rigidbody2D rigid;
     void Start()
     {
+        MAX_LifeScore = GameManager.GM.LifeScore;
         rigid = gameObject.GetComponent<Rigidbody2D>();
         jumpHeight = GameManager.GM.PlayerJumpValue;
     }
 
     void Update()
     {
-        HP_Bar.fillAmount = (GameManager.GM.LifeScore / GameManager.GM.MAX_LifeScore);
+        HP_Bar.fillAmount = (GameManager.GM.LifeScore / MAX_LifeScore);
         if (GameManager.GM.LifeScore <= 0)
         {
             Debug.Log("게임 오버");
