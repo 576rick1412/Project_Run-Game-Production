@@ -198,15 +198,15 @@ MonoBehaviour:
   GM_Goods: 3650
   GM_EXE: 350
   GM_MAX_EXE: 4000
-  PlayerJumpValue: 0
-  Invincibility_Time: 0
-  Get_Coin_1: 0
-  Get_Coin_2: 0
-  Get_Coin_3: 0
-  Get_Damage_1: 0
-  Get_Damage_2: 0
-  Get_Damage_3: 0
-  Floor_SpeedValue: 0
-  BGI_SpeedValue: 0
-  LifeScore: 0
+  PlayerJumpValue: 10
+  Invincibility_Time: 3
+  Get_Coin_1: 20
+  Get_Coin_2: 30
+  Get_Coin_3: 40
+  Get_Damage_1: 20
+  Get_Damage_2: 30
+  Get_Damage_3: 40
+  Floor_SpeedValue: 6
+  BGI_SpeedValue: 3
+  LifeScore: 100
   CoinScore: 0

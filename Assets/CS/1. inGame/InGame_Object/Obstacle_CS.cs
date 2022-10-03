@@ -27,7 +27,7 @@ public class Obstacle_CS : MonoBehaviour
             GameManager.GM.LifeScore -= GameManager.GM.Get_Damage_1;
             Player_CS.On_HIT = true;
             Invoke("HIT_off", GameManager.GM.Invincibility_Time);
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
     void HIT_off()
