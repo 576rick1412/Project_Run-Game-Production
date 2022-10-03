@@ -42,10 +42,12 @@ public class Start_Move_CS : MonoBehaviour
     {
         if (BGI_Num < (BGI.Length -1)){
             ++BGI_Num;
-            Fade_effect.Fade_.Fade(BGI[BGI_Num - 1], BGI[BGI_Num]);
+            GameManager.GM.Fade(BGI[BGI_Num - 1], BGI[BGI_Num]);
+            //Fade_effect.Fade_.Fade(BGI[BGI_Num - 1], BGI[BGI_Num]);
         }
         else{
-            Fade_effect.Fade_.Fade(op);
+            GameManager.GM.Fade(op);
+            //Fade_effect.Fade_.Fade(op);
         }
     }
 }
