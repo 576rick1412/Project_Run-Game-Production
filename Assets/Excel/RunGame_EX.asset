@@ -70,3 +70,38 @@ MonoBehaviour:
       \uC5C6\uC9C0\uB9CC, \uC5B4\uB5A4\n\uC0AC\uB78C\uB4E4\uC758 \uB208\uC5D4 \uBD84\uC7C1\uC744
       \uB73B\uD558\uB294 \uC774 \uCC9C \uC870\uAC01\uC774 \uD55C\n\uBC88\uB3C4 \uC138\uC6CC\uC9C4
       \uC801\uC774 \uC5C6\uB294 \uAC83\uCC98\uB7FC \uBCF4\uC77C \uAC83\uC774\uB2E4."
+  DialogSheet:
+  - DIA_branch: 1
+    DIA_name: "\uAE40\uC18C\uB4DC"
+    DIA_dialog: "\uC9C0\uAE08\uBD80\uD130 \uD68C\uC758\uB97C \uC2DC\uC791\uD558\uACA0\uB2E4\n\uBAA8\uB450
+      \uC8FC\uBAA9!!"
+    DIA_cutscene: 0
+    DIA_End: 0
+  - DIA_branch: 1
+    DIA_name: "\uAE40\uC18C\uB4DC"
+    DIA_dialog: "( \uCEF7\uC52C1 )"
+    DIA_cutscene: 1
+    DIA_End: 0
+  - DIA_branch: 1
+    DIA_name: "\uAE40\uC18C\uB4DC"
+    DIA_dialog: "\uC74C\u2026.\uC624\uB298 \uD68C\uC758\uD560 \uC548\uAC74\uC740\u2026.\uC6B0\uB9AC
+      \uD504\uB85C\uC81D\uD2B8 \uB808\uBCA8 \uB514\uC790\uC778\uC774\uB2E4."
+    DIA_cutscene: 0
+    DIA_End: 0
+  - DIA_branch: 1
+    DIA_name: "\uAE40\uC18C\uB4DC"
+    DIA_dialog: "\uAC01\uC790 \uC758\uACAC \uD558\uB098\uC529 \uB0B4\uBCF4\uB3C4\uB85D"
+    DIA_cutscene: 0
+    DIA_End: 0
+  - DIA_branch: 1
+    DIA_name: "\uAE40\uC18C\uB4DC"
+    DIA_dialog: "\uC74C\u2026\uD655\uC2E4\uD788 \uC774\uAC74 \uC0DD\uAC01\uD574\uBCFC\uB9CC\uD558\uAD70
+      \uC54C\uACA0\uB2E4\n\uBAA8\uB450 \uC218\uACE0\uD588\uACE0 \uC26C\uB7EC\uAC00\uB3C4\uB85D
+      \uC774\uC0C1"
+    DIA_cutscene: 0
+    DIA_End: 0
+  - DIA_branch: 1
+    DIA_name: "\uC5D4\uB4DC\uB77C\uC778"
+    DIA_dialog: "\uC5D4\uB4DC\uB77C\uC778"
+    DIA_cutscene: 0
+    DIA_End: 1
