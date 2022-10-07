@@ -621,8 +621,7 @@ MonoBehaviour:
   - name: 
     dialog: 
   branch: 1
-  DialogIndex: 0
-  DialogEnd: 0
+  typingSpeed: 0.05
   TMP_Name: {fileID: 318193100}
   TMP_Dialog: {fileID: 311740186}
 --- !u!1 &1467232981

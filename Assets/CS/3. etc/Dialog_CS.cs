@@ -13,7 +13,8 @@ public class Dialog_CS : MonoBehaviour
     int cutscene_num;
 
     int DialogIndex = 0;
-    private bool isTypingEffect = false;                // 텍스트 타이핑 중인지
+    private bool isTypingEffect = false;    // 텍스트 타이핑 중인지
+    private bool isTypingEnd = false;    // 텍스트 타이핑 중인지
 
 
     [SerializeField] TextMeshProUGUI TMP_Name;
@@ -43,28 +44,33 @@ public class Dialog_CS : MonoBehaviour
         for (int i = 0; i < dialogue.Length; i++)
         {
             if (isTypingEffect == false) StartCoroutine("OnTypingText");
-            
-            //TMP_Name.text = RunGame_EX.DialogSheet[i].DIA_name;
-            //dialogue = RunGame_EX.DialogSheet[i].DIA_dialog;
+          
         }
     }
 
     private IEnumerator OnTypingText()
     {
-        int index = 0;
-        string text = dialogue[DialogIndex].dialog;
-        isTypingEffect = true;
-        // 텍스트를 한글자씩 타이핑치듯 재생
-        TMP_Name.text = dialogue[DialogIndex].name;
-        while (index < text.Length + 1)
+        if (isTypingEnd == false)
         {
-            TMP_Dialog.text = text.Substring(0, index);
-            index++;
-            yield return new WaitForSeconds(typingSpeed);
+            int index = 0;
+            string text = dialogue[DialogIndex].dialog;
+            isTypingEffect = true;
+            // 텍스트를 한글자씩 타이핑치듯 재생
+            TMP_Name.text = dialogue[DialogIndex].name;
+            while (index < text.Length + 1)
+            {
+                TMP_Dialog.text = text.Substring(0, index);
+                index++;
+                yield return new WaitForSeconds(typingSpeed);
+            }
+            isTypingEffect = false;
+            DialogIndex++;
+
+            isTypingEnd = true;
+            
+            yield return null;
         }
-        isTypingEffect = false;
-        DialogIndex++;
-        yield return null;
+        StartCoroutine("Input_Text");
         /*while (index < dialogue.Length)
         {
             TMP_Dialog.text = dialogue[DialogIndex].dialog.Substring(0, index);
@@ -72,11 +78,19 @@ public class Dialog_CS : MonoBehaviour
             yield return new WaitForSeconds(typingSpeed);
         }*/
     }
+    private IEnumerator Input_Text()
+    {
+        if(isTypingEnd == true && Input.anyKey)
+        {
+            isTypingEnd = false;
+            yield return null;
+        }
+    }
 
     [System.Serializable]
     public struct DialogData
     {
-        public string name;         // 캐릭터 이름
-        [TextArea(3, 5)] public string dialog;     // 대사
+        public string name;                         // 캐릭터 이름
+        [TextArea(3, 5)] public string dialog;      // 대사
     }
 }
