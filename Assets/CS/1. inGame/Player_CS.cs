@@ -15,7 +15,7 @@ public class Player_CS : MonoBehaviour
     static float MAX_LifeScore;
     [SerializeField] Image HP_Bar;
     public TextMeshProUGUI Score;
-
+    
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
 
@@ -41,7 +41,6 @@ public class Player_CS : MonoBehaviour
 
         HP_Bar.fillAmount = (GameManager.GM.LifeScore / MAX_LifeScore);
         Score.text = "점수 : " + (GameManager.GM.CoinScore == 0 ? 0 : CommaText(GameManager.GM.CoinScore).ToString());
-        //Score.text = "점수 : " + GameManager.GM.CoinScore;
         if (GameManager.GM.LifeScore <= 0 && GameOvercheck == false)
         {
             Debug.Log("게임 오버");

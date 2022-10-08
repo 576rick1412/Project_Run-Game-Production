@@ -43,12 +43,14 @@ public class GameManager : MonoBehaviour
     [Header("인게임 설정")]
     public float Floor_SpeedValue;
     public float BGI_SpeedValue;
+    public float Set_LifeScore;
     public float LifeScore;
     public long CoinScore = 0;
     void Awake(){GM = this;}
 
     void Start()
     {
+        LifeScore = Set_LifeScore;
         Panel.gameObject.SetActive(false);
 
         var obj = FindObjectsOfType<GameManager>();

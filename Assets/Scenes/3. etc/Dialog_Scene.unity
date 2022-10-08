@@ -603,7 +603,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1295593030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2d7cdd500f79334da8baf6316298652, type: 3}
+  m_Script: {fileID: 11500000, guid: 6625a7a3e6f7c4843bb92e0e05353455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   RunGame_EX: {fileID: 11400000, guid: e6fe9ecea16e54746a9efd13223f79f3, type: 2}
@@ -621,7 +621,10 @@ MonoBehaviour:
   - name: 
     dialog: 
   branch: 1
-  typingSpeed: 0.05
+  typingSpeed: 0.3
+  DialogIndex: 0
+  isTypingEffect: 0
+  isTypingEnd: 0
   TMP_Name: {fileID: 318193100}
   TMP_Dialog: {fileID: 311740186}
 --- !u!1 &1467232981

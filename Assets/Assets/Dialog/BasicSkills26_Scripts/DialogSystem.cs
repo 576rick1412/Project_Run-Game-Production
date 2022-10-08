@@ -143,7 +143,6 @@ public class DialogSystem : MonoBehaviour
 		speakers[currentSpeakerIndex].objectArrow.SetActive(true);
 	}
 }
-
 [System.Serializable]
 public struct Speaker
 {
