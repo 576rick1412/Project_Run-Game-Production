@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Obstacle_CS : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]private int SetDamageNum;
+    private int ObstacleDamage;
     void Start()
     {
 
@@ -13,7 +14,12 @@ public class Obstacle_CS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        switch(SetDamageNum)
+        {
+            case 1: ObstacleDamage = GameManager.GM.Get_Damage_1; break;
+            case 2: ObstacleDamage = GameManager.GM.Get_Damage_2; break;
+            case 3: ObstacleDamage = GameManager.GM.Get_Damage_3; break;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -24,7 +30,7 @@ public class Obstacle_CS : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Player") && Player_CS.On_HIT == false)
         {
-            GameManager.GM.LifeScore -= GameManager.GM.Get_Damage_1;
+            GameManager.GM.LifeScore -= ObstacleDamage;
             Player_CS.On_HIT = true;
             Invoke("HIT_off", GameManager.GM.Invincibility_Time);
             //gameObject.SetActive(false);

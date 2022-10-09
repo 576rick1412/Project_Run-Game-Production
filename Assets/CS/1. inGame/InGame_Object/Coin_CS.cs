@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class Coin_CS : MonoBehaviour
 {
-    //[SerializeField] string NameTag = "";
+    [SerializeField] private int SetPoint;
+    private int CoinPoint;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        switch (SetPoint)
+        {
+            case 1: CoinPoint = GameManager.GM.Get_Coin_1; break;
+            case 2: CoinPoint = GameManager.GM.Get_Coin_2; break;
+            case 3: CoinPoint = GameManager.GM.Get_Coin_3; break;
+        }
     }
     
     void OnTriggerEnter2D(Collider2D collision)
@@ -26,7 +31,7 @@ public class Coin_CS : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.GM.CoinScore += GameManager.GM.Get_Coin_1;
+            GameManager.GM.CoinScore += CoinPoint;
             gameObject.SetActive(false);
         }
 

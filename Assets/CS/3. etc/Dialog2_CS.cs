@@ -14,6 +14,7 @@ public class Dialog2_CS : MonoBehaviour
     [SerializeField] private bool isTypingEffect;    // 텍스트 타이핑 중인지
     [SerializeField] private bool isTypingEnd;    // 다음줄 대기
     [SerializeField] private bool AutoTyping;    // 다음줄 대기
+    [SerializeField] private bool ButtonInput;    // 다음줄 대기
 
 
     [SerializeField] TextMeshProUGUI TMP_Name;
@@ -44,23 +45,27 @@ public class Dialog2_CS : MonoBehaviour
     {
         if (RunGame_EX.DialogSheet[DialogIndex].DIA_End == false)
         {
-            if (Input.anyKeyDown && isTypingEnd == false)
-            { StartCoroutine("OnSkipText"); }
+            // 타이핑 스킵
+            if (ButtonInput == true && isTypingEnd == false)
+                StartCoroutine("OnSkipText");
 
-            if (isTypingEnd == false && isTypingEffect == false) 
+            // 타이핑 효과
+            if (isTypingEnd == false && isTypingEffect == false)
                 StartCoroutine("OnTypingText");
 
-            if (isTypingEnd == true)
-            {
-                StartCoroutine("Input_Text");
-            }
+            // 다음 대사로 이동
+            if (ButtonInput == true && isTypingEnd == true)
+                StartCoroutine("OnInputText");
         }
     }
+
     private IEnumerator OnSkipText()
     {
         if (isTypingEnd == false)
         {
-            Debug.Log("작동");
+            ButtonInput = false;
+            Debug.Log("타이핑 스킵");
+
             StopCoroutine("OnTypingText");
             TMP_Dialog.text = dialogue[DialogIndex].dialog;
             isTypingEnd = true;
@@ -68,7 +73,22 @@ public class Dialog2_CS : MonoBehaviour
         }
         yield return null;
     }
+    private IEnumerator OnInputText()
+    {
+        yield return null;
 
+        // 대사 타이핑이 끝났을 때 화면을 터치하여 다음 대사로 이동
+        if (ButtonInput == true)
+        {
+            ButtonInput = false;
+            Debug.Log("다음 대사로 이동");
+
+            DialogIndex++;          // -> 다음 대사로 넘어감
+            isTypingEnd = false;
+            isTypingEffect = false;
+        }
+
+    }
     private IEnumerator OnTypingText()
     {
         // 대사 타이핑 효과
@@ -86,27 +106,16 @@ public class Dialog2_CS : MonoBehaviour
                 index++;
                 yield return new WaitForSeconds(typingSpeed);
             }
-            DialogIndex++;          // -> 다음 대사로 넘어감
-            if (AutoTyping == true) isTypingEffect = false;
             isTypingEffect = false; // 타이핑 종료
-
             // 참으로 바꿔 Input_Text가 실행될 수 있도록 함
-            if (AutoTyping == false) isTypingEnd = true;
+
+            switch(AutoTyping)
+            {case  true: DialogIndex++;         break;
+             case false: isTypingEnd = true;    break;}
+
             yield return new WaitForSeconds(typingSpeed);
         }
         yield return null;
-    }
-    private IEnumerator Input_Text()
-    {
-        yield return null;
-
-        // 대사 타이핑이 끝났을 때 화면을 터치하여 다음 대사로 이동
-        if (Input.anyKeyDown)
-        {
-            Debug.Log("작동222222");
-            isTypingEnd = false;
-            isTypingEffect = false;
-        }
     }
 
     public void AutoTyping_F()
@@ -117,6 +126,8 @@ public class Dialog2_CS : MonoBehaviour
             case false:AutoTyping = true;break;
         }
     }
+    public void GamaInput() { ButtonInput = true; }
+
     [System.Serializable]
     public struct DialogData
     {
