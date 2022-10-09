@@ -13,7 +13,7 @@ public class MasicMainUI_CS : MonoBehaviour
     public TextMeshProUGUI Goods;
     public Image EXE;
     
-    void FixedUpdate()
+    void Start()
     {
         StartCoroutine(UI_Renew_COR());
     }
@@ -21,12 +21,15 @@ public class MasicMainUI_CS : MonoBehaviour
 
     IEnumerator UI_Renew_COR()
     {
-        NickName.text = GameManager.GM.GM_NickName;
-        Level.text = "Lv. " + GameManager.GM.GM_Level;
-        Money.text = GameManager.GM.GM_Money;
-        Goods.text = GameManager.GM.GM_Goods;
-        EXE.fillAmount = (GameManager.GM.GM_EXE / GameManager.GM.GM_MAX_EXE);
+        while (true)
+        {
+            NickName.text = GameManager.GM.GM_NickName;
+            Level.text = "Lv. " + GameManager.GM.GM_Level;
+            Money.text = GameManager.GM.GM_Money;
+            Goods.text = GameManager.GM.GM_Goods;
+            EXE.fillAmount = (GameManager.GM.GM_EXE / GameManager.GM.GM_MAX_EXE);
 
-        yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(5);
+        }
     }
 }
