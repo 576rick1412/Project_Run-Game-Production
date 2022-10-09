@@ -12,7 +12,8 @@ public class Dialog2_CS : MonoBehaviour
 
     [SerializeField] int DialogIndex = 0;
     [SerializeField] private bool isTypingEffect;    // 텍스트 타이핑 중인지
-    [SerializeField] private bool isTypingEnd;    // 텍스트 타이핑 중인지
+    [SerializeField] private bool isTypingEnd;    // 다음줄 대기
+    [SerializeField] private bool AutoTyping;    // 다음줄 대기
 
 
     [SerializeField] TextMeshProUGUI TMP_Name;
@@ -35,6 +36,7 @@ public class Dialog2_CS : MonoBehaviour
 
     void Update()
     {
+        typingSpeed = GameManager.GM.GM_typingSpeed;
         GameLoop();
     }
 
@@ -84,9 +86,13 @@ public class Dialog2_CS : MonoBehaviour
                 index++;
                 yield return new WaitForSeconds(typingSpeed);
             }
-
+            DialogIndex++;          // -> 다음 대사로 넘어감
+            if (AutoTyping == true) isTypingEffect = false;
             isTypingEffect = false; // 타이핑 종료
-            isTypingEnd = true;     // 참으로 바꿔 Input_Text가 실행될 수 있도록 함
+
+            // 참으로 바꿔 Input_Text가 실행될 수 있도록 함
+            if (AutoTyping == false) isTypingEnd = true;
+            yield return new WaitForSeconds(typingSpeed);
         }
         yield return null;
     }
@@ -98,13 +104,19 @@ public class Dialog2_CS : MonoBehaviour
         if (Input.anyKeyDown)
         {
             Debug.Log("작동222222");
-            DialogIndex++;          // -> 다음 대사로 넘어감
             isTypingEnd = false;
             isTypingEffect = false;
         }
     }
 
-
+    public void AutoTyping_F()
+    {
+        switch(AutoTyping)
+        {
+            case true:AutoTyping = false;break;
+            case false:AutoTyping = true;break;
+        }
+    }
     [System.Serializable]
     public struct DialogData
     {
