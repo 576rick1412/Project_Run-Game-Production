@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     // 텍스트 설정
     [Header("텍스트 설정")]
+    public int GM_branch;
     public float GM_typingSpeed;
     void Awake(){GM = this;}
 

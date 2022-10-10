@@ -75,33 +75,116 @@ MonoBehaviour:
     DIA_name: "\uAE40\uC18C\uB4DC"
     DIA_dialog: "\uC9C0\uAE08\uBD80\uD130 \uD68C\uC758\uB97C \uC2DC\uC791\uD558\uACA0\uB2E4\n\uBAA8\uB450
       \uC8FC\uBAA9!!"
-    DIA_cutscene: 0
+    DIA_BGI: BGI_ground
     DIA_End: 0
+    DIA_cutscene: 
+    Left_Character: skt
+    Mid_Character: lg
+    Right_Character: kt
   - DIA_branch: 1
     DIA_name: "\uAE40\uC18C\uB4DC"
     DIA_dialog: "( \uCEF7\uC52C1 )"
-    DIA_cutscene: 1
+    DIA_BGI: BGI_city
     DIA_End: 0
+    DIA_cutscene: event_000
+    Left_Character: lg
+    Mid_Character: kt
+    Right_Character: 
   - DIA_branch: 1
     DIA_name: "\uAE40\uC18C\uB4DC"
     DIA_dialog: "\uC74C\u2026.\uC624\uB298 \uD68C\uC758\uD560 \uC548\uAC74\uC740\u2026.\uC6B0\uB9AC
       \uD504\uB85C\uC81D\uD2B8 \uB808\uBCA8 \uB514\uC790\uC778\uC774\uB2E4."
-    DIA_cutscene: 0
+    DIA_BGI: BGI_ground
     DIA_End: 0
+    DIA_cutscene: 
+    Left_Character: kt
+    Mid_Character: 
+    Right_Character: lg
   - DIA_branch: 1
     DIA_name: "\uAE40\uC18C\uB4DC"
     DIA_dialog: "\uAC01\uC790 \uC758\uACAC \uD558\uB098\uC529 \uB0B4\uBCF4\uB3C4\uB85D"
-    DIA_cutscene: 0
+    DIA_BGI: BGI_city
     DIA_End: 0
+    DIA_cutscene: 
+    Left_Character: skt
+    Mid_Character: lg
+    Right_Character: kt
   - DIA_branch: 1
     DIA_name: "\uAE40\uC18C\uB4DC"
     DIA_dialog: "\uC74C\u2026\uD655\uC2E4\uD788 \uC774\uAC74 \uC0DD\uAC01\uD574\uBCFC\uB9CC\uD558\uAD70
       \uC54C\uACA0\uB2E4\n\uBAA8\uB450 \uC218\uACE0\uD588\uACE0 \uC26C\uB7EC\uAC00\uB3C4\uB85D
       \uC774\uC0C1"
-    DIA_cutscene: 0
+    DIA_BGI: BGI_ground
     DIA_End: 0
+    DIA_cutscene: 
+    Left_Character: 
+    Mid_Character: kt
+    Right_Character: skt
   - DIA_branch: 1
-    DIA_name: "\uC5D4\uB4DC\uB77C\uC778"
-    DIA_dialog: "\uC5D4\uB4DC\uB77C\uC778"
-    DIA_cutscene: 0
+    DIA_name: =======
+    DIA_dialog: =====================================
+    DIA_BGI: =======
     DIA_End: 1
+    DIA_cutscene: =======
+    Left_Character: =======
+    Mid_Character: =======
+    Right_Character: =======
+  - DIA_branch: 2
+    DIA_name: "\uC774\uC18C\uB4DC"
+    DIA_dialog: "\uB300\uCDA9 \uC5C4\uCCAD\uB09C \uC591\uC758 \uBC29\uB300\uD55C
+      \uD14D\uC2A4\uD2B8 \uB369\uC5B4\uB9AC!!!!!\n\uC774\uC18C\uB4DC\uC758 \uCC44\uD305\uACF5\uACA9\uC744
+      \uBC1B\uC544\uB78F!!"
+    DIA_BGI: BGI_ground
+    DIA_End: 0
+    DIA_cutscene: 
+    Left_Character: skt
+    Mid_Character: lg
+    Right_Character: kt
+  - DIA_branch: 2
+    DIA_name: "\uAE40\uC18C\uB4DC"
+    DIA_dialog: "\uC544\uBB34\uC77C\uB3C4 \uC5C6\uC5C8\uC5B4\u2026.\uC544\uB9C8\uB3C4
+      \uB9D0\uC774\uC9C0..\uCF18\uCF18\uCF18"
+    DIA_BGI: BGI_city
+    DIA_End: 0
+    DIA_cutscene: 
+    Left_Character: lg
+    Mid_Character: kt
+    Right_Character: 
+  - DIA_branch: 2
+    DIA_name: "\uBC15\uC18C\uB4DC"
+    DIA_dialog: "\uC74C\u2026..\uD765\uBBF8\uB85C\uC6B4 \uC774\uC57C\uAE30\uAD70\uC694\u2026.\uADF8\uB798\uC11C
+      \uC5B4\uCA4C\uB77C\uB294\uAC70\uC694?!"
+    DIA_BGI: BGI_ground
+    DIA_End: 0
+    DIA_cutscene: event_000
+    Left_Character: kt
+    Mid_Character: 
+    Right_Character: lg
+  - DIA_branch: 2
+    DIA_name: "\uD64D\uC18C\uB4DC"
+    DIA_dialog: "\uD558\uD558\uD559 \uC804\uC7C1 \uC88B\uC544 \uC804\uC7C1 \uCD5C\uACE0"
+    DIA_BGI: BGI_city
+    DIA_End: 0
+    DIA_cutscene: 
+    Left_Character: skt
+    Mid_Character: lg
+    Right_Character: kt
+  - DIA_branch: 2
+    DIA_name: "\uC720\uC18C\uB4DC"
+    DIA_dialog: "\uC74C.....\uB2E4\uB4E4 \uC9C4\uC815\uD558\uC2DC\uACE0 \uC800\uD76C
+      \uB3C8\uAE4C\uC2A4\uB098 \uAC19\uC774 \uBA39\uC73C\uBA74\uC11C \uD654\uD574\uD574\uC694!!"
+    DIA_BGI: BGI_ground
+    DIA_End: 0
+    DIA_cutscene: 
+    Left_Character: 
+    Mid_Character: kt
+    Right_Character: skt
+  - DIA_branch: 2
+    DIA_name: =======
+    DIA_dialog: =====================================
+    DIA_BGI: =======
+    DIA_End: 1
+    DIA_cutscene: =======
+    Left_Character: =======
+    Mid_Character: =======
+    Right_Character: =======
