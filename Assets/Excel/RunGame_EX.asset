@@ -78,18 +78,26 @@ MonoBehaviour:
     DIA_BGI: BGI_ground
     DIA_End: 0
     DIA_cutscene: 
-    Left_Character: skt
-    Mid_Character: lg
-    Right_Character: kt
+    Left_Character: W
+    Mid_Character: F
+    Right_Character: P
+    Left_Blackout: 1
+    Mid_Blackout: 0
+    Right_Blackout: 1
+    BGI_Blackout: 0
   - DIA_branch: 1
     DIA_name: "\uAE40\uC18C\uB4DC"
     DIA_dialog: "( \uCEF7\uC52C1 )"
     DIA_BGI: BGI_city
     DIA_End: 0
     DIA_cutscene: event_000
-    Left_Character: lg
-    Mid_Character: kt
-    Right_Character: 
+    Left_Character: F
+    Mid_Character: 
+    Right_Character: P
+    Left_Blackout: 1
+    Mid_Blackout: 0
+    Right_Blackout: 0
+    BGI_Blackout: 0
   - DIA_branch: 1
     DIA_name: "\uAE40\uC18C\uB4DC"
     DIA_dialog: "\uC74C\u2026.\uC624\uB298 \uD68C\uC758\uD560 \uC548\uAC74\uC740\u2026.\uC6B0\uB9AC
@@ -97,18 +105,26 @@ MonoBehaviour:
     DIA_BGI: BGI_ground
     DIA_End: 0
     DIA_cutscene: 
-    Left_Character: kt
-    Mid_Character: 
-    Right_Character: lg
+    Left_Character: 
+    Mid_Character: W
+    Right_Character: 
+    Left_Blackout: 0
+    Mid_Blackout: 0
+    Right_Blackout: 0
+    BGI_Blackout: 0
   - DIA_branch: 1
     DIA_name: "\uAE40\uC18C\uB4DC"
     DIA_dialog: "\uAC01\uC790 \uC758\uACAC \uD558\uB098\uC529 \uB0B4\uBCF4\uB3C4\uB85D"
     DIA_BGI: BGI_city
     DIA_End: 0
     DIA_cutscene: 
-    Left_Character: skt
-    Mid_Character: lg
-    Right_Character: kt
+    Left_Character: W
+    Mid_Character: 
+    Right_Character: F
+    Left_Blackout: 0
+    Mid_Blackout: 0
+    Right_Blackout: 1
+    BGI_Blackout: 0
   - DIA_branch: 1
     DIA_name: "\uAE40\uC18C\uB4DC"
     DIA_dialog: "\uC74C\u2026\uD655\uC2E4\uD788 \uC774\uAC74 \uC0DD\uAC01\uD574\uBCFC\uB9CC\uD558\uAD70
@@ -117,9 +133,13 @@ MonoBehaviour:
     DIA_BGI: BGI_ground
     DIA_End: 0
     DIA_cutscene: 
-    Left_Character: 
-    Mid_Character: kt
-    Right_Character: skt
+    Left_Character: W
+    Mid_Character: F
+    Right_Character: P
+    Left_Blackout: 1
+    Mid_Blackout: 0
+    Right_Blackout: 0
+    BGI_Blackout: 0
   - DIA_branch: 1
     DIA_name: =======
     DIA_dialog: =====================================
@@ -129,6 +149,10 @@ MonoBehaviour:
     Left_Character: =======
     Mid_Character: =======
     Right_Character: =======
+    Left_Blackout: 0
+    Mid_Blackout: 0
+    Right_Blackout: 0
+    BGI_Blackout: 0
   - DIA_branch: 2
     DIA_name: "\uC774\uC18C\uB4DC"
     DIA_dialog: "\uB300\uCDA9 \uC5C4\uCCAD\uB09C \uC591\uC758 \uBC29\uB300\uD55C
@@ -137,9 +161,13 @@ MonoBehaviour:
     DIA_BGI: BGI_ground
     DIA_End: 0
     DIA_cutscene: 
-    Left_Character: skt
-    Mid_Character: lg
-    Right_Character: kt
+    Left_Character: 
+    Mid_Character: F
+    Right_Character: 
+    Left_Blackout: 0
+    Mid_Blackout: 0
+    Right_Blackout: 0
+    BGI_Blackout: 0
   - DIA_branch: 2
     DIA_name: "\uAE40\uC18C\uB4DC"
     DIA_dialog: "\uC544\uBB34\uC77C\uB3C4 \uC5C6\uC5C8\uC5B4\u2026.\uC544\uB9C8\uB3C4
@@ -147,9 +175,13 @@ MonoBehaviour:
     DIA_BGI: BGI_city
     DIA_End: 0
     DIA_cutscene: 
-    Left_Character: lg
-    Mid_Character: kt
-    Right_Character: 
+    Left_Character: F
+    Mid_Character: 
+    Right_Character: W
+    Left_Blackout: 1
+    Mid_Blackout: 0
+    Right_Blackout: 0
+    BGI_Blackout: 0
   - DIA_branch: 2
     DIA_name: "\uBC15\uC18C\uB4DC"
     DIA_dialog: "\uC74C\u2026..\uD765\uBBF8\uB85C\uC6B4 \uC774\uC57C\uAE30\uAD70\uC694\u2026.\uADF8\uB798\uC11C
@@ -157,18 +189,27 @@ MonoBehaviour:
     DIA_BGI: BGI_ground
     DIA_End: 0
     DIA_cutscene: event_000
-    Left_Character: kt
-    Mid_Character: 
-    Right_Character: lg
+    Left_Character: P
+    Mid_Character: F
+    Right_Character: W
+    Left_Blackout: 0
+    Mid_Blackout: 0
+    Right_Blackout: 1
+    BGI_Blackout: 0
   - DIA_branch: 2
     DIA_name: "\uD64D\uC18C\uB4DC"
-    DIA_dialog: "\uD558\uD558\uD559 \uC804\uC7C1 \uC88B\uC544 \uC804\uC7C1 \uCD5C\uACE0"
+    DIA_dialog: "\uC2F8\uC6B0\uC790\uB294 \uAC74\uAC00\uC694? \uC88B\uC9C0!\n\uC640\uB77C!!!
+      \uB09C \uB450\uB835\uC9C0 \uC54A\uB2E4 \uD558\uD558\uD558"
     DIA_BGI: BGI_city
     DIA_End: 0
     DIA_cutscene: 
-    Left_Character: skt
-    Mid_Character: lg
-    Right_Character: kt
+    Left_Character: 
+    Mid_Character: W
+    Right_Character: 
+    Left_Blackout: 0
+    Mid_Blackout: 0
+    Right_Blackout: 0
+    BGI_Blackout: 0
   - DIA_branch: 2
     DIA_name: "\uC720\uC18C\uB4DC"
     DIA_dialog: "\uC74C.....\uB2E4\uB4E4 \uC9C4\uC815\uD558\uC2DC\uACE0 \uC800\uD76C
@@ -176,9 +217,13 @@ MonoBehaviour:
     DIA_BGI: BGI_ground
     DIA_End: 0
     DIA_cutscene: 
-    Left_Character: 
-    Mid_Character: kt
-    Right_Character: skt
+    Left_Character: W
+    Mid_Character: 
+    Right_Character: P
+    Left_Blackout: 0
+    Mid_Blackout: 0
+    Right_Blackout: 1
+    BGI_Blackout: 0
   - DIA_branch: 2
     DIA_name: =======
     DIA_dialog: =====================================
@@ -188,3 +233,7 @@ MonoBehaviour:
     Left_Character: =======
     Mid_Character: =======
     Right_Character: =======
+    Left_Blackout: 0
+    Mid_Blackout: 0
+    Right_Blackout: 0
+    BGI_Blackout: 0

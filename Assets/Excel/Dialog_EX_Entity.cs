@@ -14,4 +14,9 @@ public class Dialog_EX_Entity
     public string Left_Character;
     public string Mid_Character;
     public string Right_Character;
+
+    public bool Left_Blackout;
+    public bool Mid_Blackout;
+    public bool Right_Blackout;
+    public bool BGI_Blackout;
 }

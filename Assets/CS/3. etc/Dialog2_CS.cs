@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using TMPro;
 public class Dialog2_CS : MonoBehaviour
@@ -33,6 +34,9 @@ public class Dialog2_CS : MonoBehaviour
     void Start()
     {
         branch = GameManager.GM.GM_branch;
+
+
+
         int index = 0;
         // 구조체에 대사 넣어주기
         for (int i = 0; i < RunGame_EX.DialogSheet.Count; ++i)
@@ -46,9 +50,7 @@ public class Dialog2_CS : MonoBehaviour
             }
         }
 
-        eventSceneDestroy();
-        BGIDestroy();
-        CharacterDestroy();
+        Destroy();
     }
 
     void Update()
@@ -82,6 +84,13 @@ public class Dialog2_CS : MonoBehaviour
         BGILoad();
         CharacterLoad();
     }
+    
+    void Destroy()
+    {
+        eventSceneDestroy();
+        BGIDestroy();
+        CharacterDestroy();
+    }   //  파괴자 모음집
 
     void eventSceneLoad()
     {
@@ -107,12 +116,13 @@ public class Dialog2_CS : MonoBehaviour
     }   // 컷씬 초기화
     void BGILoad()
     {
+        bool BGI = RunGame_EX.DialogSheet[DialogIndex].BGI_Blackout == true;
         if (BGICheck == false)
         {
             switch (RunGame_EX.DialogSheet[DialogIndex].DIA_BGI)
             {
-                case "BGI_city": BGIScene[0].SetActive(true); break;
-                case "BGI_ground": BGIScene[1].SetActive(true); break;
+                case "BGI_city":    Blackout(BGIScene[0], BGI); break;
+                case "BGI_ground":  Blackout(BGIScene[1], BGI); break;
             }
             BGICheck = true;
         }
@@ -122,40 +132,45 @@ public class Dialog2_CS : MonoBehaviour
         for (int i = 0; i < BGIScene.Length; i++)
         {
             BGIScene[i].SetActive(false);
+            BGIScene[i].GetComponent<Image>().color 
+                = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
         }
     }   // 배경화면 초기화
     void CharacterLoad()
     {
+        bool Left = RunGame_EX.DialogSheet[DialogIndex].Left_Blackout;
+        bool Mid = RunGame_EX.DialogSheet[DialogIndex].Mid_Blackout;
+        bool Right = RunGame_EX.DialogSheet[DialogIndex].Right_Blackout;
         if (CharacterCheck == false)
         {
             switch (RunGame_EX.DialogSheet[DialogIndex].Left_Character)
             {
-                case "skt": LeftCharacter[0].SetActive(true); break;
-                case "lg": LeftCharacter[1].SetActive(true); break;
-                case "kt": LeftCharacter[2].SetActive(true); break;
+                case "W": Blackout(LeftCharacter[0], Left); break;
+                case "F": Blackout(LeftCharacter[1], Left); break;
+                case "P": Blackout(LeftCharacter[2], Left); break;
             }
             switch (RunGame_EX.DialogSheet[DialogIndex].Mid_Character)
             {
-                case "skt": MidCharacter[0].SetActive(true); break;
-                case "lg": MidCharacter[1].SetActive(true); break;
-                case "kt": MidCharacter[2].SetActive(true); break;
+                case "W": Blackout(MidCharacter[0], Mid); break;
+                case "F": Blackout(MidCharacter[1], Mid); break;
+                case "P": Blackout(MidCharacter[2], Mid); break;
             }
             switch (RunGame_EX.DialogSheet[DialogIndex].Right_Character)
             {
-                case "skt": RightCharacter[0].SetActive(true); break;
-                case "lg": RightCharacter[1].SetActive(true); break;
-                case "kt": RightCharacter[2].SetActive(true); break;
+                case "W": Blackout(RightCharacter[0], Right); break;
+                case "F": Blackout(RightCharacter[1], Right); break;
+                case "P": Blackout(RightCharacter[2], Right); break;
             }
             CharacterCheck = true;
         }
-    }   // 컷씬 로딩
+    }   // 캐릭터 로딩
     void CharacterDestroy()
     {
-        for (int i = 0; i < LeftCharacter.Length; i++)  LeftCharacter[i].SetActive(false);
-        for (int i = 0; i < MidCharacter.Length; i++)   MidCharacter[i].SetActive(false);
-        for (int i = 0; i < RightCharacter.Length; i++) RightCharacter[i].SetActive(false);
-       
-    }   // 컷씬 초기화
+        CharacterDestroyLoop(LeftCharacter);
+        CharacterDestroyLoop(MidCharacter);
+        CharacterDestroyLoop(RightCharacter);
+
+    }   // 캐릭터 초기화
     private IEnumerator OnSkipText()
     {
         if (isTypingEnd == false)
@@ -216,7 +231,10 @@ public class Dialog2_CS : MonoBehaviour
             // 참으로 바꿔 Input_Text가 실행될 수 있도록 함
 
             switch(AutoTyping)
-            {case  true: DialogIndex++;         break;
+            {case  true: if (RunGame_EX.DialogSheet[DialogIndex + 1].
+                        DIA_End == false) Destroy();
+                    DialogIndex++; break;
+
              case false: isTypingEnd = true;    break;}
 
             yield return new WaitForSeconds(typingSpeed);
@@ -231,8 +249,22 @@ public class Dialog2_CS : MonoBehaviour
             case false:AutoTyping = true;break;
         }
     }   // 오토 타이핑
-
     public void GamaInput() { ButtonInput = true; } // 버튼 누름
+    void CharacterDestroyLoop(GameObject[] Character)
+    {
+        for (int i = 0; i < Character.Length; i++)
+        {
+            Character[i].SetActive(false);
+            Character[i].GetComponent<Image>().color
+                = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
+        }
+    }   // 캐릭터 초기화 보조
+    void Blackout(GameObject Blackout, bool oc)
+    {
+        Blackout.SetActive(true);
+        if (oc == true) Blackout.GetComponent<Image>().color
+                = new Color32(80, 80, 80, byte.MaxValue);
+    }   //  활성화 + 암전효과
     [System.Serializable] public struct DialogData
     {
         public string name;                         // 캐릭터 이름
