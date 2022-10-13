@@ -15,8 +15,16 @@ public class Map_CS : MonoBehaviour
                 transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0);
                 if (transform.position.x <= endPos) transform.Translate(-1 * (endPos - startPos), 0, 0);
                 break;
-            case "BGI":
+            case "BGI_1":
                 transform.Translate(-1 * GameManager.GM.BGI_SpeedValue * Time.deltaTime, 0, 0);
+                if (transform.position.x <= endPos) transform.Translate(-1 * (endPos - startPos), 0, 0);
+                break;
+            case "BGI_2":
+                transform.Translate(-1 * GameManager.GM.BGI_SpeedValue * Time.deltaTime * 0.5f, 0, 0);
+                if (transform.position.x <= endPos) transform.Translate(-1 * (endPos - startPos), 0, 0);
+                break;
+            case "BGI_3":
+                transform.Translate(-1 * GameManager.GM.BGI_SpeedValue * Time.deltaTime * 0.2f, 0, 0);
                 if (transform.position.x <= endPos) transform.Translate(-1 * (endPos - startPos), 0, 0);
                 break;
             case "Obstacle":

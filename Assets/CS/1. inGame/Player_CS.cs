@@ -6,53 +6,63 @@ using TMPro;
 
 public class Player_CS : MonoBehaviour
 {
-    bool GameOvercheck = false;
     bool HIT_check = false;
+    bool Foor_check = false;
     [SerializeField] bool isJump = false;
     [SerializeField] bool isDoubleJump = false;
+    [SerializeField] bool isSlide = false; // 슬라이드 콜라이더 조정
+    bool OnSlide = false;   // 바닥에 붙어있는지 확인
     [SerializeField] public static bool On_HIT = false;
     [SerializeField] float jumpHeight;
-    static float MAX_LifeScore;
-    [SerializeField] Image HP_Bar;
-    public TextMeshProUGUI Score;
+
     
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
+    [SerializeField] private BoxCollider2D[] colliders;
+    Animator anime;
 
     void Start()
     {
-        GameManager.GM.CoinScore = 0;
-        MAX_LifeScore = GameManager.GM.LifeScore;
         rigid = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        this.colliders = GetComponents<BoxCollider2D>();
+        anime = GetComponent<Animator>();
         jumpHeight = GameManager.GM.PlayerJumpValue;
     }
 
     void Update()
     {
-        if(HIT_check == false)
-        {
-            if (On_HIT == true) 
-            {
-                HIT_check = true;
-                StartCoroutine("HIT_Coroutine");
-            }
-        }
+        SetCollider();
 
-        HP_Bar.fillAmount = (GameManager.GM.LifeScore / MAX_LifeScore);
-        Score.text = "점수 : " + (GameManager.GM.CoinScore == 0 ? 0 : CommaText(GameManager.GM.CoinScore).ToString());
-        if (GameManager.GM.LifeScore <= 0 && GameOvercheck == false)
+        if (HIT_check == false && On_HIT == true)
         {
-            Debug.Log("게임 오버");
-            GameOvercheck = true;
+            HIT_check = true;
+            StartCoroutine("HIT_Coroutine");
+        }
+    }
+    
+    void SetCollider()
+    {
+        switch(isSlide)
+        {
+            case true: // 슬라이드 중
+                colliders[0].enabled = false;
+                colliders[1].enabled = true;
+                break;
+            case false: // 슬라이드 끝
+                colliders[0].enabled = true;
+                colliders[1].enabled = false; break;
         }
     }
     public void Jump()
     {
+        OnSlide = false;
+        Foor_check = true;
         if (isJump == true)
         {
             rigid.velocity = Vector2.up * jumpHeight;
             isJump = false;
+            anime.SetInteger("Player_Value", 2);
             return;
         }
 
@@ -60,20 +70,36 @@ public class Player_CS : MonoBehaviour
         {
             rigid.velocity = Vector2.up * jumpHeight;
             isDoubleJump = false;
+            anime.SetInteger("Player_Value", 3);
             return;
         }
     }
+
+    public void Slide_DAWN()
+    {
+        if (OnSlide == false) return;
+        isSlide = true;
+        anime.SetInteger("Player_Value", 1);
+    }
+    public void Slide_UP()
+    {
+        if (OnSlide == false) return;
+        isSlide = false;
+        anime.SetInteger("Player_Value", 0);
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Floor"))
+        if (collision.gameObject.CompareTag("Floor"))
         {
+            if (Foor_check == true)
+            {
+                anime.SetInteger("Player_Value", 0);
+                Foor_check = false;
+            }
             isJump = true;
             isDoubleJump = true;
+            OnSlide = true;
         }
-    }
-    public string CommaText(long Sccore) 
-    { 
-        return string.Format("{0:#,###}", Sccore);
     }
     IEnumerator HIT_Coroutine()
     {
@@ -84,8 +110,8 @@ public class Player_CS : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f);
         }
-
         spriteRenderer.color = new Color32(255, 255, 255, 255);
+        HIT_check = false;
         yield return null;
     }
 }

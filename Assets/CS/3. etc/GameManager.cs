@@ -22,11 +22,6 @@ public class GameManager : MonoBehaviour
     public float    GM_EXE = 0f;
     public float    GM_MAX_EXE = 0f;
 
-    // 플레이어
-    [Header("플레이어")]
-    public float PlayerJumpValue;
-    public float Invincibility_Time;
-
     // 코인 설정
     [Header("코인 설정")]
     public int  Get_Coin_1;
@@ -47,6 +42,11 @@ public class GameManager : MonoBehaviour
     public float    LifeScore;
     public long     CoinScore = 0;
 
+    // 플레이어
+    [Header("플레이어")]
+    public float PlayerJumpValue;
+    public float Invincibility_Time;
+
     // 텍스트 설정
     [Header("텍스트 설정")]
     public int GM_branch;
@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        LifeScore = Set_LifeScore;
         Panel.gameObject.SetActive(false);
 
         var obj = FindObjectsOfType<GameManager>();
@@ -65,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        LifeScore -= Time.deltaTime * 2;
+
     }
 
     public void Fade()
