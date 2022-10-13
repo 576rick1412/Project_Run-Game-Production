@@ -199,10 +199,7 @@ public class Dialog2_CS : MonoBehaviour
                 DialogIndex++;          // -> 다음 대사로 넘어감
                 isTypingEnd = false;
                 isTypingEffect = false;
-
-                eventSceneDestroy();
-                BGIDestroy();
-                CharacterDestroy();
+                Destroy();
             }
         }
 
@@ -271,4 +268,3 @@ public class Dialog2_CS : MonoBehaviour
         [TextArea(3, 5)] public string dialog;      // 대사
     }
 }
-

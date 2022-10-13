@@ -577,7 +577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
       propertyPath: Get_Coin_1
-      value: 5628971
+      value: 259
       objectReference: {fileID: 0}
     - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
       propertyPath: Get_Coin_2
@@ -15876,6 +15876,7 @@ Transform:
   - {fileID: 1902261462}
   - {fileID: 359870932}
   - {fileID: 1911084967}
+  - {fileID: 2763641949065454548}
   - {fileID: 468500435}
   - {fileID: 1499968075}
   - {fileID: 1862365152}
@@ -15887,7 +15888,6 @@ Transform:
   - {fileID: 237954763}
   - {fileID: 1121863962}
   - {fileID: 353712055}
-  - {fileID: 2763641949065454548}
   - {fileID: 382986788}
   - {fileID: 1814299412}
   - {fileID: 736073854}
@@ -18493,7 +18493,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1801037026}
-  m_RootOrder: 206
+  m_RootOrder: 195
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2994725309896515141
 SpriteRenderer:
