@@ -11,6 +11,7 @@ public class Item_CS : MonoBehaviour
 
     void Update()
     {
+        transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0);
     }
 
     void OnTriggerEnter2D(Collider2D collision)

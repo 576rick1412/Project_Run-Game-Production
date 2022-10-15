@@ -13,6 +13,8 @@ public class Coin_CS : MonoBehaviour
 
     void Update()
     {
+        transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0);
+
         switch (SetPoint)
         {
             case 1: CoinPoint = GameManager.GM.Get_Coin_1; break;

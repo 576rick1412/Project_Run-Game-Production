@@ -14,7 +14,9 @@ public class Obstacle_CS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch(SetDamageNum)
+        transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0);
+
+        switch (SetDamageNum)
         {
             case 1: ObstacleDamage = GameManager.GM.Get_Damage_1; break;
             case 2: ObstacleDamage = GameManager.GM.Get_Damage_2; break;

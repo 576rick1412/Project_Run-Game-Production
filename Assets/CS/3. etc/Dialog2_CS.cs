@@ -12,10 +12,10 @@ public class Dialog2_CS : MonoBehaviour
     private float typingSpeed;  // 텍스트 타이핑 속도
 
     int DialogIndex = 0;
-    private bool isTypingEffect;    // 텍스트 타이핑 중인지
+    private bool isTypingEffect; // 텍스트 타이핑 중인지
     private bool isTypingEnd;    // 다음줄 대기
-    private bool AutoTyping;    // 다음줄 대기
-    private bool ButtonInput;    // 다음줄 대기
+    private bool AutoTyping;     // 오토 타이핑
+    private bool ButtonInput;    // 버튼 눌림
 
     bool CutsceneCheck;
     public GameObject[] eventScene;
@@ -34,9 +34,6 @@ public class Dialog2_CS : MonoBehaviour
     void Start()
     {
         branch = GameManager.GM.GM_branch;
-
-
-
         int index = 0;
         // 구조체에 대사 넣어주기
         for (int i = 0; i < RunGame_EX.DialogSheet.Count; ++i)
