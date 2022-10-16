@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Obstacle_CS : MonoBehaviour
 {
     [SerializeField]private int SetDamageNum;
     private int ObstacleDamage;
+
+    private IObjectPool<Obstacle_CS> _ObstaclePool;
+    public void Set_ObstaclePool(IObjectPool<Obstacle_CS> pool) {_ObstaclePool = pool;}
+    public void DestroyObstacle() { _ObstaclePool.Release(this); }
+
     void Start()
     {
 
@@ -27,7 +33,7 @@ public class Obstacle_CS : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("End_Border"))
         {
-            gameObject.SetActive(false);
+            DestroyObstacle();
             //Destroy(gameObject);
         }
         if (collision.gameObject.CompareTag("Player") && Player_CS.On_HIT == false)

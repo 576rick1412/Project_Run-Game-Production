@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: Chapter_1
   m_EditorClassIdentifier: 
   Stage_1:
+  - CoinType: coin_1
+    CoinPos: 1
+    CoinAmount: 20
+    Obstacle: None
+    END: 0
   - CoinType: coin_2
     CoinPos: 1
-    CoinAmount: 2
+    CoinAmount: 20
     Obstacle: None
     END: 0
-  - CoinType: coin_1
-    CoinPos: 1
-    CoinAmount: 2
-    Obstacle: None
-    END: 0
-  - CoinType: coin_1
+  - CoinType: coin_3
     CoinPos: 2
-    CoinAmount: 4
+    CoinAmount: 20
     Obstacle: None
     END: 0
   - CoinType: coin_1
@@ -35,7 +35,7 @@ MonoBehaviour:
     END: 0
   - CoinType: coin_1
     CoinPos: 3
-    CoinAmount: 1
+    CoinAmount: 20
     Obstacle: None
     END: 0
   - CoinType: coin_1
@@ -44,18 +44,18 @@ MonoBehaviour:
     Obstacle: None
     END: 0
   - CoinType: coin_1
-    CoinPos: 4
-    CoinAmount: 1
-    Obstacle: None
-    END: 0
-  - CoinType: coin_1
     CoinPos: 1
-    CoinAmount: 2
+    CoinAmount: 10
     Obstacle: None
     END: 0
-  - CoinType: coin_1
-    CoinPos: 0
-    CoinAmount: 2
+  - CoinType: coin_2
+    CoinPos: 1
+    CoinAmount: 10
+    Obstacle: None
+    END: 0
+  - CoinType: coin_3
+    CoinPos: 1
+    CoinAmount: 10
     Obstacle: None
     END: 0
   - CoinType: coin_1

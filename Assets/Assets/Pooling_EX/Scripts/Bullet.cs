@@ -20,7 +20,6 @@ public class Bullet : MonoBehaviour
     {
         _ManagedPool.Release(this);
     }
-
     // Update is called once per frame
     void Update()
     {
