@@ -13,6 +13,12 @@ public class GameManager : MonoBehaviour
     public float F_time = 0.5f;
     float FM_time = 0f;
 
+    //게임 설정
+    [Header("게임 설정")]
+    //public float All_Value;
+    public float BGM_Value;
+    public float SFX_Value;
+
     // 메인UI
     [Header("메인 UI")]
     public string   GM_NickName = "";

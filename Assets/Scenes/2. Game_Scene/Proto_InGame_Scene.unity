@@ -597,11 +597,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823bb075d14d01a4db7f5d239fb9d40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isJump: 0
-  isDoubleJump: 0
-  isSlide: 0
   jumpHeight: 15
-  colliders: []
+  colliders:
+  - {fileID: 120574652}
+  - {fileID: 120574653}
 --- !u!50 &120574650
 Rigidbody2D:
   serializedVersion: 4

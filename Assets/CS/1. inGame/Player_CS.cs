@@ -8,11 +8,11 @@ public class Player_CS : MonoBehaviour
 {
     bool HIT_check = false;
     bool Foor_check = false;
-    [SerializeField] bool isJump = false;
-    [SerializeField] bool isDoubleJump = false;
-    [SerializeField] bool isSlide = false; // 슬라이드 콜라이더 조정
+    bool isJump = false;
+    bool isDoubleJump = false;
+    bool isSlide = false; // 슬라이드 콜라이더 조정
     bool OnSlide = false;   // 바닥에 붙어있는지 확인
-    [SerializeField] public static bool On_HIT = false;
+    public static bool On_HIT = false;
     [SerializeField] float jumpHeight;
 
     
