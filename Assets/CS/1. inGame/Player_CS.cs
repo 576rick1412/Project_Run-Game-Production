@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+using UnityEngine.Pool;
 
 public class Player_CS : MonoBehaviour
 {
@@ -13,13 +12,37 @@ public class Player_CS : MonoBehaviour
     bool isSlide = false; // 슬라이드 콜라이더 조정
     bool OnSlide = false;   // 바닥에 붙어있는지 확인
     public static bool On_HIT = false;
-    [SerializeField] float jumpHeight;
+    float jumpHeight;
+    [SerializeField] GameObject AttackObject;
 
-    
+
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     [SerializeField] private BoxCollider2D[] colliders;
     Animator anime;
+
+    private IObjectPool<Attack_CS> AttackPool;
+    void Awake() { AttackPool = new ObjectPool<Attack_CS>(Attack_Creat, Attack_Get, Attack_Releas, Attack_Destroy, maxSize: 20); }
+
+    private Attack_CS Attack_Creat()
+    {
+        Attack_CS Attack = Instantiate(AttackObject).GetComponent<Attack_CS>();
+        Attack.Set_AttackPool(AttackPool);
+        return Attack;
+    }                       // (풀링) 장애물 생성
+    private void Attack_Get(Attack_CS Attack)
+    {
+        Attack.gameObject.SetActive(true);
+    }           // (풀링) 장애물 활성화
+    private void Attack_Releas(Attack_CS Attack)
+    {
+        Attack.gameObject.SetActive(false);
+    }        // (풀링) 장애물 비활성화
+    private void Attack_Destroy(Attack_CS Attack)
+    {
+        Destroy(Attack.gameObject);
+    }       // (풀링) 장애물 삭제
+
 
     void Start()
     {
@@ -40,10 +63,10 @@ public class Player_CS : MonoBehaviour
             StartCoroutine("HIT_Coroutine");
         }
     }
-    
+
     void SetCollider()
     {
-        switch(isSlide)
+        switch (isSlide)
         {
             case true: // 슬라이드 중
                 colliders[0].enabled = false;
@@ -66,7 +89,7 @@ public class Player_CS : MonoBehaviour
             return;
         }
 
-        if(isJump == false && isDoubleJump == true)
+        if (isJump == false && isDoubleJump == true)
         {
             rigid.velocity = Vector2.up * jumpHeight;
             isDoubleJump = false;
@@ -86,6 +109,11 @@ public class Player_CS : MonoBehaviour
         if (OnSlide == false) return;
         isSlide = false;
         anime.SetInteger("Player_Value", 0);
+    }
+    public void Attack()
+    {
+        var Attack = AttackPool.Get();
+        Attack.transform.position = this.gameObject.transform.position;
     }
     void OnTriggerEnter2D(Collider2D collision)
     {

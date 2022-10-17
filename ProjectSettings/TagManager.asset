@@ -8,6 +8,7 @@ TagManager:
   - End_Border
   - Start_Border
   - Platform
+  - Boss
   layers:
   - Default
   - TransparentFX

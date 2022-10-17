@@ -25,8 +25,7 @@ public class Option_CS : MonoBehaviour
     private void Awake() 
     { 
         anime = GetComponent<Animator>(); SettingCheck = true;
-
-        SoundWindow.SetActive(false); SoundGraphic.SetActive(false);
+        SoundGraphic.SetActive(false);
     }
 
     // Update is called once per frame

@@ -34,11 +34,22 @@ public class GameManager : MonoBehaviour
     public int  Get_Coin_2;
     public int  Get_Coin_3;
 
-    // 데미지 설정
-    [Header("데미지 설정")]
-    public int  Get_Damage_1;
-    public int  Get_Damage_2;
-    public int  Get_Damage_3;
+    // 장애물 데미지 설정
+    [Header("장애물 데미지 설정")]
+    public int Get_Obstacle_Damage_1;
+    public int Get_Obstacle_Damage_2;
+    public int Get_Obstacle_Damage_3;
+
+    // 공격 데미지 설정
+    [Header("장애물 데미지 설정")]
+    public int Get_Player_Damage_1;
+    public float Get_Attack_Speed_1;
+
+    public int Get_Player_Damage_2;
+    public float Get_Attack_Speed_2;
+
+    public int Get_Player_Damage_3;
+    public float Get_Attack_Speed_3;
 
     // 인게임 설정
     [Header("인게임 설정")]
@@ -47,6 +58,7 @@ public class GameManager : MonoBehaviour
     public float    Set_LifeScore;
     public float    LifeScore;
     public long     CoinScore = 0;
+    public int      Boss_HP = 0;
 
     // 플레이어
     [Header("플레이어")]

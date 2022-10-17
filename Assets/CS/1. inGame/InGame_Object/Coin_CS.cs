@@ -5,7 +5,7 @@ public class Coin_CS : MonoBehaviour
 {
     [SerializeField] private int SetPoint;
     private int CoinPoint;
-    [SerializeField] private bool OnRelease;
+    [SerializeField] private bool OnRelease; // 무적시간 때문에 들어있는거임 - 지우지마!
 
 
     void Awake() { OnRelease = false; }

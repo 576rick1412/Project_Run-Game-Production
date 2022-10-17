@@ -24,9 +24,9 @@ public class Obstacle_CS : MonoBehaviour
 
         switch (SetDamageNum)
         {
-            case 1: ObstacleDamage = GameManager.GM.Get_Damage_1; break;
-            case 2: ObstacleDamage = GameManager.GM.Get_Damage_2; break;
-            case 3: ObstacleDamage = GameManager.GM.Get_Damage_3; break;
+            case 1: ObstacleDamage = GameManager.GM.Get_Obstacle_Damage_1; break;
+            case 2: ObstacleDamage = GameManager.GM.Get_Obstacle_Damage_2; break;
+            case 3: ObstacleDamage = GameManager.GM.Get_Obstacle_Damage_3; break;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
