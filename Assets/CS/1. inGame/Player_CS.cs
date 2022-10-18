@@ -77,9 +77,12 @@ public class Player_CS : MonoBehaviour
                 break;
             case false: // 슬라이드 끝
                 colliders[0].enabled = true;
-                colliders[1].enabled = false; break;
+                colliders[1].enabled = false; 
+                break;
         }
     }
+    void OnCollider() { colliders[0].isTrigger = true; colliders[1].isTrigger = true; }
+    void OffCollider() { colliders[0].isTrigger = false; colliders[1].isTrigger = false; }
     public void Jump()
     {
         OnSlide = false;
@@ -89,6 +92,9 @@ public class Player_CS : MonoBehaviour
             rigid.velocity = Vector2.up * jumpHeight;
             isJump = false;
             anime.SetInteger("Player_Value", 2);
+
+            OnCollider();
+            Invoke("OffCollider",0.5f);
             return;
         }
 
@@ -131,6 +137,12 @@ public class Player_CS : MonoBehaviour
             isDoubleJump = true;
             OnSlide = true;
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        
+        //Invoke("OffCollider", 0.5f);
     }
     IEnumerator HIT_Coroutine()
     {

@@ -15,7 +15,7 @@ public class Game_Control : MonoBehaviour
     bool IsPause; // 일시정지
     void Awake()
     {
-        Type();
+        PlayerType();
 
         //GameManager.GM.Player = GameObject.FindWithTag("Player");
         Pause_Image.SetActive(false);
@@ -25,7 +25,7 @@ public class Game_Control : MonoBehaviour
         GameManager.GM.Boss_HP = 0;
     }
 
-    void Type()
+    void PlayerType()
     {
         switch (GameManager.GM.PlayerType)
         {
