@@ -34,7 +34,6 @@ public class Obstacle_CS : MonoBehaviour
         if (collision.gameObject.CompareTag("End_Border"))
         {
             DestroyObstacle();
-            //Destroy(gameObject);
         }
         if (collision.gameObject.CompareTag("Player") && Player_CS.On_HIT == false)
         {

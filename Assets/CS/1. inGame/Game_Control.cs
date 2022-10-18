@@ -5,19 +5,32 @@ using UnityEngine.UI;
 using TMPro;
 public class Game_Control : MonoBehaviour
 {
+    [SerializeField] Transform Spawn_Pos;
+    [SerializeField] GameObject[] Player;
+
     [SerializeField] Image HP_Bar;
     [SerializeField] GameObject Pause_Image;
     public TextMeshProUGUI Score;
     bool GameOvercheck = false;
     bool IsPause; // 일시정지
-    void Start()
+    void Awake()
     {
+        Type();
+
         //GameManager.GM.Player = GameObject.FindWithTag("Player");
         Pause_Image.SetActive(false);
         IsPause = false;
         GameManager.GM.LifeScore = GameManager.GM.Set_LifeScore;
         GameManager.GM.CoinScore = 0;
         GameManager.GM.Boss_HP = 0;
+    }
+
+    void Type()
+    {
+        switch (GameManager.GM.PlayerType)
+        {
+            case "Player_1": Instantiate(Player[0], Spawn_Pos.position, Quaternion.identity); break;
+        }
     }
 
     void Update()

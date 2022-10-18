@@ -40,8 +40,12 @@ public class GameManager : MonoBehaviour
     public int Get_Obstacle_Damage_2;
     public int Get_Obstacle_Damage_3;
 
+    // 장애물 데미지 설정
+    [Header("보스 패턴 데미지 설정")]
+    public int Boss_Lazer_Pattern;
+
     // 공격 데미지 설정
-    [Header("장애물 데미지 설정")]
+    [Header("공격 데미지 설정")]
     public int Get_Player_Damage_1;
     public float Get_Attack_Speed_1;
 
@@ -62,6 +66,7 @@ public class GameManager : MonoBehaviour
 
     // 플레이어
     [Header("플레이어")]
+    public string PlayerType;
     public float PlayerJumpValue;
     public float Invincibility_Time;
 

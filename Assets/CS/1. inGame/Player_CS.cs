@@ -5,6 +5,8 @@ using UnityEngine.Pool;
 
 public class Player_CS : MonoBehaviour
 {
+    public static Player_CS PL;
+
     bool HIT_check = false;
     bool Foor_check = false;
     bool isJump = false;
@@ -22,7 +24,8 @@ public class Player_CS : MonoBehaviour
     Animator anime;
 
     private IObjectPool<Attack_CS> AttackPool;
-    void Awake() { AttackPool = new ObjectPool<Attack_CS>(Attack_Creat, Attack_Get, Attack_Releas, Attack_Destroy, maxSize: 20); }
+    void Awake() { PL = this; 
+        AttackPool = new ObjectPool<Attack_CS>(Attack_Creat, Attack_Get, Attack_Releas, Attack_Destroy, maxSize: 20); }
 
     private Attack_CS Attack_Creat()
     {
