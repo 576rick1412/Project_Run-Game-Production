@@ -10,12 +10,7 @@ public class BossPattern_CS : MonoBehaviour
 
     void Start()
     {
-        switch (Type)
-        {
-            case "Lazer": PatternDamage = GameManager.GM.Boss_Lazer_Pattern; break;
-            case "Vertical": PatternDamage = GameManager.GM.Get_Obstacle_Damage_2; break;
-            case "Bounce": PatternDamage = GameManager.GM.Get_Obstacle_Damage_3; Invoke("Bounce", 2f); break;
-        }
+        PatternDamage = GameManager.GM.Boss_Damage;
         Destroy(this.gameObject, 10f);
     }
 
@@ -34,8 +29,8 @@ public class BossPattern_CS : MonoBehaviour
             if (Type == "Bounce") Destroy(this.gameObject);
         }
 
-        // 수직공격 물체에 닿으면 지워지도록
-        if (Type == "Vertical") Destroy(this.gameObject);
+        // 수직공격 : 물체에 닿으면 지워지도록
+        if (Type == "Vertical" ) Destroy(this.gameObject);
     }
 
     void Bounce()

@@ -5,18 +5,26 @@ using UnityEngine.UI;
 using TMPro;
 public class Game_Control : MonoBehaviour
 {
+    public static Game_Control GC;
+
     [SerializeField] Transform Spawn_Pos;
     [SerializeField] GameObject[] Player;
 
     [SerializeField] Image HP_Bar;
     [SerializeField] GameObject Pause_Image;
     public TextMeshProUGUI Score;
+
+    public bool BossAttack;
+    [SerializeField] GameObject A_button;
+
     bool GameOvercheck = false;
     bool IsPause; // 일시정지
     void Awake()
     {
+        GC = this;
         PlayerType();
 
+        A_button.SetActive(false);
         //GameManager.GM.Player = GameObject.FindWithTag("Player");
         Pause_Image.SetActive(false);
         IsPause = false;
@@ -35,6 +43,13 @@ public class Game_Control : MonoBehaviour
 
     void Update()
     {
+        switch(BossAttack)
+        {
+            case true: A_button.SetActive(true); break;
+            case false: A_button.SetActive(false); break;  
+
+        }
+
         GameManager.GM.LifeScore -= Time.deltaTime * 2;
 
         HP_Bar.fillAmount = (GameManager.GM.LifeScore / GameManager.GM.Set_LifeScore);

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2627350654871509535}
   m_Layer: 0
   m_Name: Attack_1
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794e18fa7cb8f214f9d0434f31adc0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnRelease: 0
 --- !u!50 &7311271527563916367
 Rigidbody2D:
   serializedVersion: 4

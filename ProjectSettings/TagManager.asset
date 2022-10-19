@@ -9,6 +9,7 @@ TagManager:
   - Start_Border
   - Platform
   - Boss
+  - Bullet
   layers:
   - Default
   - TransparentFX

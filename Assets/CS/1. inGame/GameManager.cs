@@ -40,9 +40,11 @@ public class GameManager : MonoBehaviour
     public int Get_Obstacle_Damage_2;
     public int Get_Obstacle_Damage_3;
 
-    // 장애물 데미지 설정
-    [Header("보스 패턴 데미지 설정")]
-    public int Boss_Lazer_Pattern;
+    // 보스 설정
+    [Header("보스 설정")]
+    public float Set_Boss_HP;
+    public float Boss_HP;
+    public int Boss_Damage;
 
     // 공격 데미지 설정
     [Header("공격 데미지 설정")]
@@ -62,10 +64,9 @@ public class GameManager : MonoBehaviour
     public float    Set_LifeScore;
     public float    LifeScore;
     public long     CoinScore = 0;
-    public int      Boss_HP = 0;
 
-    // 플레이어
-    [Header("플레이어")]
+    // 플레이어 설정
+    [Header("플레이어 설정")]
     public string PlayerType;
     public float PlayerJumpValue;
     public float Invincibility_Time;
