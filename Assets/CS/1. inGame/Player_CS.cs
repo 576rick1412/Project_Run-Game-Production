@@ -134,7 +134,7 @@ public class Player_CS : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Floor"))
         {
-            if (Foor_check == true)
+            if (Foor_check == true && isSlide == false)
             {
                 anime.SetInteger("Player_Value", 0);
             }
@@ -144,7 +144,7 @@ public class Player_CS : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Platform"))
         {
-            if (Foor_check == true && Platform_check == true)
+            if (Foor_check == true && Platform_check == true && isSlide == false)
             {
                 anime.SetInteger("Player_Value", 0);
                 Platform_check = false;
