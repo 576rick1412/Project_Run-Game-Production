@@ -8,10 +8,10 @@ public class Player_CS : MonoBehaviour
     public static Player_CS PL;
 
     bool HIT_check = false;
-    bool Foor_check = false;
-    bool isJump = false;
-    bool isDoubleJump = false;
-    bool isSlide = false; // 슬라이드 콜라이더 조정
+    [SerializeField] bool Foor_check = false;
+    [SerializeField] bool isJump = false;
+    [SerializeField] bool isDoubleJump = false;
+    [SerializeField] bool isSlide = false; // 슬라이드 콜라이더 조정
     bool OnSlide = false;   // 바닥에 붙어있는지 확인
     public static bool On_HIT = false;
     float jumpHeight;
@@ -81,8 +81,6 @@ public class Player_CS : MonoBehaviour
                 break;
         }
     }
-    void OnCollider() { colliders[0].isTrigger = true; colliders[1].isTrigger = true; }
-    void OffCollider() { colliders[0].isTrigger = false; colliders[1].isTrigger = false; }
     public void Jump()
     {
         OnSlide = false;
@@ -92,14 +90,12 @@ public class Player_CS : MonoBehaviour
             rigid.velocity = Vector2.up * jumpHeight;
             isJump = false;
             anime.SetInteger("Player_Value", 2);
-
-            OnCollider();
-            Invoke("OffCollider",0.5f);
             return;
         }
 
         if (isJump == false && isDoubleJump == true)
         {
+            Foor_check = true;
             rigid.velocity = Vector2.up * jumpHeight;
             isDoubleJump = false;
             anime.SetInteger("Player_Value", 3);
@@ -137,12 +133,36 @@ public class Player_CS : MonoBehaviour
             isDoubleJump = true;
             OnSlide = true;
         }
-    }
 
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            if (Foor_check == true)
+            {
+                anime.SetInteger("Player_Value", 0);
+                Foor_check = false;
+            }
+            isJump = true;
+            isDoubleJump = true;
+            OnSlide = true;
+        }
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            if (Foor_check == true)
+            {
+                //anime.SetInteger("Player_Value", 0);
+                Foor_check = false;
+            }
+            isJump = true;
+            isDoubleJump = true;
+            OnSlide = true;
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
-        //Invoke("OffCollider", 0.5f);
+
     }
     IEnumerator HIT_Coroutine()
     {
