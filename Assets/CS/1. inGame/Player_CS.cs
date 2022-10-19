@@ -8,10 +8,12 @@ public class Player_CS : MonoBehaviour
     public static Player_CS PL;
 
     bool HIT_check = false;
-    [SerializeField] bool Foor_check = false;
+    [SerializeField] bool Foor_check = false; // 바닥 확인
+    [SerializeField] bool Platform_check = false; // 플랫폼 확인
     [SerializeField] bool isJump = false;
     [SerializeField] bool isDoubleJump = false;
     [SerializeField] bool isSlide = false; // 슬라이드 콜라이더 조정
+
     bool OnSlide = false;   // 바닥에 붙어있는지 확인
     public static bool On_HIT = false;
     float jumpHeight;
@@ -24,8 +26,11 @@ public class Player_CS : MonoBehaviour
     Animator anime;
 
     private IObjectPool<Attack_CS> AttackPool;
-    void Awake() { PL = this; 
-        AttackPool = new ObjectPool<Attack_CS>(Attack_Creat, Attack_Get, Attack_Releas, Attack_Destroy, maxSize: 20); }
+    void Awake()
+    {
+        PL = this;
+        AttackPool = new ObjectPool<Attack_CS>(Attack_Creat, Attack_Get, Attack_Releas, Attack_Destroy, maxSize: 20);
+    }
 
     private Attack_CS Attack_Creat()
     {
@@ -60,6 +65,11 @@ public class Player_CS : MonoBehaviour
     {
         SetCollider();
 
+        if(Input.GetKeyDown(KeyCode.Space)) Jump();
+        if (Input.GetKeyDown(KeyCode.LeftShift)) Slide_DAWN();
+        if (Input.GetKeyUp(KeyCode.LeftShift)) Slide_UP();
+
+
         if (HIT_check == false && On_HIT == true)
         {
             HIT_check = true;
@@ -77,14 +87,13 @@ public class Player_CS : MonoBehaviour
                 break;
             case false: // 슬라이드 끝
                 colliders[0].enabled = true;
-                colliders[1].enabled = false; 
+                colliders[1].enabled = false;
                 break;
         }
     }
     public void Jump()
     {
         OnSlide = false;
-        Foor_check = true;
         if (isJump == true)
         {
             rigid.velocity = Vector2.up * jumpHeight;
@@ -95,7 +104,6 @@ public class Player_CS : MonoBehaviour
 
         if (isJump == false && isDoubleJump == true)
         {
-            Foor_check = true;
             rigid.velocity = Vector2.up * jumpHeight;
             isDoubleJump = false;
             anime.SetInteger("Player_Value", 3);
@@ -122,27 +130,13 @@ public class Player_CS : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Floor"))
-        {
-            if (Foor_check == true)
-            {
-                anime.SetInteger("Player_Value", 0);
-                Foor_check = false;
-            }
-            isJump = true;
-            isDoubleJump = true;
-            OnSlide = true;
-        }
+        if (collision.gameObject.CompareTag("Floor")) Foor_check = true;
 
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
         if (collision.gameObject.CompareTag("Floor"))
         {
             if (Foor_check == true)
             {
                 anime.SetInteger("Player_Value", 0);
-                Foor_check = false;
             }
             isJump = true;
             isDoubleJump = true;
@@ -150,10 +144,10 @@ public class Player_CS : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Platform"))
         {
-            if (Foor_check == true)
+            if (Foor_check == true && Platform_check == true)
             {
-                //anime.SetInteger("Player_Value", 0);
-                Foor_check = false;
+                anime.SetInteger("Player_Value", 0);
+                Platform_check = false;
             }
             isJump = true;
             isDoubleJump = true;
@@ -162,7 +156,9 @@ public class Player_CS : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Floor")) Foor_check = false;
 
+        if (collision.gameObject.CompareTag("Platform")) { Platform_check = true; Foor_check = true; }
     }
     IEnumerator HIT_Coroutine()
     {
