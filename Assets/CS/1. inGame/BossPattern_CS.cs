@@ -16,7 +16,7 @@ public class BossPattern_CS : MonoBehaviour
 
     void Update()
     {
-
+        if (GameManager.GM.Boss_HP <= 0) Destroy(this.gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

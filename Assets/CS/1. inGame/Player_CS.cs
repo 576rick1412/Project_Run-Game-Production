@@ -66,6 +66,7 @@ public class Player_CS : MonoBehaviour
         SetCollider();
 
         if(Input.GetKeyDown(KeyCode.Space)) Jump();
+        if(Input.GetKeyDown(KeyCode.A)) Attack();
         if (Input.GetKeyDown(KeyCode.LeftShift)) Slide_DAWN();
         if (Input.GetKeyUp(KeyCode.LeftShift)) Slide_UP();
 

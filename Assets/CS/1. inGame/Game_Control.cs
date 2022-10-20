@@ -14,6 +14,11 @@ public class Game_Control : MonoBehaviour
     [SerializeField] GameObject Pause_Image;
     public TextMeshProUGUI Score;
 
+
+    public GameObject BossEntry;
+    public Transform BossEntryPos;
+    public GameObject Boss;
+
     public bool BossAttack;
     [SerializeField] GameObject A_button;
 
@@ -31,6 +36,8 @@ public class Game_Control : MonoBehaviour
         GameManager.GM.LifeScore = GameManager.GM.Set_LifeScore;
         GameManager.GM.CoinScore = 0;
         GameManager.GM.Boss_HP = 0;
+
+        BossAttack = false;
     }
 
     void PlayerType()
@@ -43,7 +50,9 @@ public class Game_Control : MonoBehaviour
 
     void Update()
     {
-        switch(BossAttack)
+        if (Input.GetKeyDown(KeyCode.F)) { BossHub(); BossAttack = true; }
+
+        switch (BossAttack)
         {
             case true: A_button.SetActive(true); break;
             case false: A_button.SetActive(false); break;  
@@ -83,5 +92,40 @@ public class Game_Control : MonoBehaviour
             Time.timeScale = 1;
             IsPause = false; return;
         }
+    }
+
+    void BossHub()
+    {
+        Invoke("BossEnyryF", 0.1f);
+        Invoke("BossEnyryF", 0.15f);
+        Invoke("BossEnyryF", 0.2f);
+        Invoke("BossEnyryF", 0.25f);
+        Invoke("BossEnyryF", 0.3f);
+        Invoke("BossEnyryF", 0.35f);
+        Invoke("BossEnyryF", 0.4f);
+        Invoke("BossEnyryF", 0.45f);
+        Invoke("BossEnyryF", 0.5f);
+        Invoke("BossEnyryF", 0.55f);
+        Invoke("BossEnyryF", 0.6f);
+        Invoke("BossEnyryF", 0.65f);
+        Invoke("BossEnyryF", 0.7f);
+        Invoke("BossEnyryF", 0.75f);
+        Invoke("BossEnyryF", 0.8f);
+        Invoke("BossEnyryF", 0.85f);
+        Invoke("BossEnyryF", 0.9f);
+        Invoke("BossEnyryF", 0.95f);
+        Invoke("BossEnyryF", 1.0f);
+
+        Invoke("SpawnBoss", 4f);
+    }
+    void BossEnyryF()
+    {
+        GameObject Entry = Instantiate(BossEntry, BossEntryPos.position, Quaternion.identity);
+        Entry.transform.SetParent(BossEntryPos.transform);
+    }
+
+    void SpawnBoss()
+    {
+        Instantiate(Boss);
     }
 }
