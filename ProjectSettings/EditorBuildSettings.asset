@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/3. etc/ETC.unity
     guid: 5becffbb92b08fc4492cd9e26cb66604
+  - enabled: 1
+    path: Assets/Scenes/1. Loby_Scene/Inventory_Scene.unity
+    guid: ad8768e150e63ae4f838c60d1b9dc68a
   m_configObjects: {}
