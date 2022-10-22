@@ -6,6 +6,7 @@ using TMPro;
 
 public class Inven_Information : MonoBehaviour
 {
+    public GameObject NoneInformation;
     public TextMeshProUGUI Item_Name;
     public TextMeshProUGUI Item_Amount;
     public TextMeshProUGUI Item_Information;

@@ -64,8 +64,9 @@ public class Player_CS : MonoBehaviour
     void Update()
     {
         SetCollider();
+        if (On_HIT == true) Invoke("HIT_off", GameManager.GM.Invincibility_Time);
 
-        if(Input.GetKeyDown(KeyCode.Space)) Jump();
+        if (Input.GetKeyDown(KeyCode.Space)) Jump();
         if(Input.GetKeyDown(KeyCode.A)) Attack();
         if (Input.GetKeyDown(KeyCode.LeftShift)) Slide_DAWN();
         if (Input.GetKeyUp(KeyCode.LeftShift)) Slide_UP();
@@ -76,6 +77,11 @@ public class Player_CS : MonoBehaviour
             HIT_check = true;
             StartCoroutine("HIT_Coroutine");
         }
+    }
+    void HIT_off()
+    {
+        On_HIT = false;
+        Debug.Log("무적 종료");
     }
 
     void SetCollider()

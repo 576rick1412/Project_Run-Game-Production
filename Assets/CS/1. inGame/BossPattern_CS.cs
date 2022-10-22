@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossPattern_CS : MonoBehaviour
 {
     [SerializeField] private string Type;
+    [SerializeField] private GameObject DesObj;
     private int PatternDamage;
     Rigidbody2D rb;
 
@@ -16,7 +17,7 @@ public class BossPattern_CS : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.GM.Boss_HP <= 0) Destroy(this.gameObject);
+        if (GameManager.GM.Boss_HP <= 0) Destroy(DesObj.gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -24,8 +25,6 @@ public class BossPattern_CS : MonoBehaviour
         {
             GameManager.GM.LifeScore -= PatternDamage;
             Player_CS.On_HIT = true;
-            Invoke("HIT_off", GameManager.GM.Invincibility_Time);
-
             if (Type == "Bounce") Destroy(this.gameObject);
         }
 

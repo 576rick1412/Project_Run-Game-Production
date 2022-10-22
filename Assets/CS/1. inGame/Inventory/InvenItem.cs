@@ -25,5 +25,6 @@ public class InvenItem : MonoBehaviour
         II.Item_Amount.text = InventoryDB.IV.아이템[SetItem].ItemAmount.ToString() + " 개";
         II.Item_Information.text = "sadsadasdasdasd"; // 나중에 엑셀에서 불러오도록 수정할 예정
         II.Icon.sprite = Icon.sprite;
+        II.NoneInformation.SetActive(false);
     }
 }

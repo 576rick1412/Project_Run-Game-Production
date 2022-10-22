@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: Lazer
+  DesObj: {fileID: 8781137690822415258}
 --- !u!1 &8781137692167897582
 GameObject:
   m_ObjectHideFlags: 0
