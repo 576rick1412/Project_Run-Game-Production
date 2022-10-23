@@ -193,29 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Panel: {fileID: 1913493801980879620}
   F_time: 0.5
-  BGM_Value: 0
-  SFX_Value: 0
-  GM_NickName: "\uC18C\uB4DC\uB9AC\uC6B0\uC2A4"
-  GM_Level: 65
-  GM_Money: 1520000
-  GM_Goods: 3650
-  GM_EXE: 350
-  GM_MAX_EXE: 4000
-  Get_Coin_1: 259
-  Get_Coin_2: 200
-  Get_Coin_3: 250
-  Get_Obstacle_Damage_1: 30
-  Get_Obstacle_Damage_2: 30
-  Get_Obstacle_Damage_3: 30
-  Set_Boss_HP: 1000
-  Boss_HP: 1000
-  Boss_Damage: 30
-  Get_Player_Damage_1: 30
-  Get_Attack_Speed_1: 1.4
-  Get_Player_Damage_2: 40
-  Get_Attack_Speed_2: 1.4
-  Get_Player_Damage_3: 50
-  Get_Attack_Speed_3: 1.4
+  FM_time: 0
   Floor_SpeedValue: 8
   BGI_SpeedValue: 4
   Set_LifeScore: 100
@@ -224,8 +202,24 @@ MonoBehaviour:
   PlayerType: Player_1
   PlayerJumpValue: 15
   Invincibility_Time: 3
-  GM_branch: 0
-  GM_typingSpeed: 0
+  Coin_Point: 100
+  Obstacle_Damage: 30
+  Set_Boss_HP: 1000
+  Boss_HP: 1000
+  Boss_Damage: 30
+  Player_Damage: 50
+  Attack_Speed: 1
+  GM_branch: 1
+  GM_typingSpeed: 0.1
+  Data:
+    GM_NickName: 
+    GM_Level: 1
+    GM_Money: 0
+    GM_Goods: 0
+    GM_EXE: 0
+    GM_MAX_EXE: 0
+    BGM_Value: 1
+    SFX_Value: 1
 --- !u!114 &5804421593627872385
 MonoBehaviour:
   m_ObjectHideFlags: 0

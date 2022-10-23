@@ -3,12 +3,12 @@ using UnityEngine.Pool;
 
 public class Coin_CS : MonoBehaviour
 {
-    [SerializeField] private int SetPoint;
+    [SerializeField] int SetPoint;
     private int CoinPoint;
     [SerializeField] private bool OnRelease; // 무적시간 때문에 들어있는거임 - 지우지마!
 
 
-    void Awake() { OnRelease = false; }
+    void Awake() { OnRelease = false; CoinPoint = GameManager.GM.Coin_Point; }
 
     private IObjectPool<Coin_CS> _CoinPool_1;
     private IObjectPool<Coin_CS> _CoinPool_2;
@@ -17,17 +17,8 @@ public class Coin_CS : MonoBehaviour
     public void Set_CoinPool_2(IObjectPool<Coin_CS> pool_2) { _CoinPool_2 = pool_2; }
     public void Set_CoinPool_3(IObjectPool<Coin_CS> pool_3) { _CoinPool_3 = pool_3; }
 
-    void Update()
-    {
-        transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0);
+    void Update() { transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0); }
 
-        switch (SetPoint)
-        {
-            case 1: CoinPoint = GameManager.GM.Get_Coin_1; break;
-            case 2: CoinPoint = GameManager.GM.Get_Coin_2; break;
-            case 3: CoinPoint = GameManager.GM.Get_Coin_3; break;
-        }
-    }
     public void DestroyCoin_1() { if (OnRelease == false) { _CoinPool_1.Release(this); OnRelease = true; } }
     public void DestroyCoin_2() { if (OnRelease == false) { _CoinPool_2.Release(this); OnRelease = true; } }
     public void DestroyCoin_3() { if (OnRelease == false) { _CoinPool_3.Release(this); OnRelease = true; } }

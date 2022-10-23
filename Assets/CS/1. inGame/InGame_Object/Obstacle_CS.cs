@@ -5,30 +5,17 @@ using UnityEngine.Pool;
 
 public class Obstacle_CS : MonoBehaviour
 {
-    [SerializeField]private int SetDamageNum;
     private int ObstacleDamage;
 
     private IObjectPool<Obstacle_CS> _ObstaclePool;
     public void Set_ObstaclePool(IObjectPool<Obstacle_CS> pool) {_ObstaclePool = pool;}
     public void DestroyObstacle() { _ObstaclePool.Release(this); }
 
-    void Start()
-    {
-
-    }
+    void Start() {  ObstacleDamage = GameManager.GM.Obstacle_Damage; }
 
     // Update is called once per frame
-    void Update()
-    {
-        transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0);
+    void Update() { transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0); }
 
-        switch (SetDamageNum)
-        {
-            case 1: ObstacleDamage = GameManager.GM.Get_Obstacle_Damage_1; break;
-            case 2: ObstacleDamage = GameManager.GM.Get_Obstacle_Damage_2; break;
-            case 3: ObstacleDamage = GameManager.GM.Get_Obstacle_Damage_3; break;
-        }
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("End_Border"))

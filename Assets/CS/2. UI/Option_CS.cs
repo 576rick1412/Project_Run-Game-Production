@@ -49,15 +49,15 @@ public class Option_CS : MonoBehaviour
 
 
     //public void ALLSlider(float value) { GameManager.GM.All_Value = value; }
-    public void BGMSlider(float value) { GameManager.GM.BGM_Value = value; }
-    public void SFXSlider(float value) { GameManager.GM.SFX_Value = value; }
+    public void BGMSlider(float value) { GameManager.GM.Data.BGM_Value = value; }
+    public void SFXSlider(float value) { GameManager.GM.Data.SFX_Value = value; }
 
     //public void ALLbutton() { GameManager.GM.All_Value = 0; }
-    public void BGMbutton() { GameManager.GM.BGM_Value = 0; }
-    public void SFXbutton() { GameManager.GM.SFX_Value = 0; }
+    public void BGMbutton() { GameManager.GM.Data.BGM_Value = 0; }
+    public void SFXbutton() { GameManager.GM.Data.SFX_Value = 0; }
 
-    public void defaultSoundbutton() { GameManager.GM.SFX_Value = 1;
-                                       GameManager.GM.BGM_Value = 1;}
+    public void defaultSoundbutton() { GameManager.GM.Data.SFX_Value = 1;
+                                       GameManager.GM.Data.BGM_Value = 1;}
 
 
     public void FPS60() { Application.targetFrameRate = 60; }
@@ -83,8 +83,8 @@ public class Option_CS : MonoBehaviour
         }
     }
 
-    void ReSetValue() { BGM.value = GameManager.GM.BGM_Value; 
-                        SFX.value = GameManager.GM.SFX_Value; }
+    void ReSetValue() { BGM.value = GameManager.GM.Data.BGM_Value; 
+                        SFX.value = GameManager.GM.Data.SFX_Value; }
 
     /*
     void ReSetValue()

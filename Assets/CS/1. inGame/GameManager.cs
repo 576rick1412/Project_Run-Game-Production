@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 using UnityEngine.UI;
-using UnityEngine.Pool;
 public class GameManager : MonoBehaviour
 {
     public static GameManager GM;
@@ -11,34 +11,30 @@ public class GameManager : MonoBehaviour
     [Header("페이드 인 아웃")]
     public Image Panel;
     public float F_time = 0.5f;
-    float FM_time = 0f;
+    [HideInInspector] public float FM_time = 0f;
 
-    //게임 설정
-    [Header("게임 설정")]
-    //public float All_Value;
-    public float BGM_Value;
-    public float SFX_Value;
+    // 인게임 설정
+    [Header("인게임 설정")]
+    public float Floor_SpeedValue = 6;
+    public float BGI_SpeedValue = 3;
 
-    // 메인UI
-    [Header("메인 UI")]
-    public string   GM_NickName = "";
-    public string   GM_Level = "";
-    public string   GM_Money = "";
-    public string   GM_Goods = "";
-    public float    GM_EXE = 0f;
-    public float    GM_MAX_EXE = 0f;
+    public float Set_LifeScore = 0;
+    public float LifeScore = 0;
+    public long CoinScore = 0;
+
+    // 플레이어 설정
+    [Header("플레이어 설정")]
+    public string PlayerType = "Player_1";
+    public float PlayerJumpValue = 6;
+    public float Invincibility_Time = 3f;
 
     // 코인 설정
     [Header("코인 설정")]
-    public int  Get_Coin_1;
-    public int  Get_Coin_2;
-    public int  Get_Coin_3;
+    public int Coin_Point = 100;
 
     // 장애물 데미지 설정
     [Header("장애물 데미지 설정")]
-    public int Get_Obstacle_Damage_1;
-    public int Get_Obstacle_Damage_2;
-    public int Get_Obstacle_Damage_3;
+    public int Obstacle_Damage;
 
     // 보스 설정
     [Header("보스 설정")]
@@ -48,48 +44,37 @@ public class GameManager : MonoBehaviour
 
     // 공격 데미지 설정
     [Header("공격 데미지 설정")]
-    public int Get_Player_Damage_1;
-    public float Get_Attack_Speed_1;
-
-    public int Get_Player_Damage_2;
-    public float Get_Attack_Speed_2;
-
-    public int Get_Player_Damage_3;
-    public float Get_Attack_Speed_3;
-
-    // 인게임 설정
-    [Header("인게임 설정")]
-    public float    Floor_SpeedValue;
-    public float    BGI_SpeedValue;
-    public float    Set_LifeScore;
-    public float    LifeScore;
-    public long     CoinScore = 0;
-
-    // 플레이어 설정
-    [Header("플레이어 설정")]
-    public string PlayerType;
-    public float PlayerJumpValue;
-    public float Invincibility_Time;
+    public int   Player_Damage;
+    public float Attack_Speed;
 
     // 텍스트 설정
     [Header("텍스트 설정")]
     public int GM_branch;
-    public float GM_typingSpeed;
+    public float GM_typingSpeed = 0.1f;
+
     void Awake(){GM = this;}
 
+    public MainDB Data = new MainDB();
     void Start()
     {
-        Panel.gameObject.SetActive(false);
+        LoadData();
 
+        Panel.gameObject.SetActive(false);
         var obj = FindObjectsOfType<GameManager>();
         if (obj.Length == 1) DontDestroyOnLoad(gameObject);
         else Destroy(gameObject);
     }
 
-    void Update()
+    public void SavaData()
     {
-
-    }
+        var save = JsonUtility.ToJson(Data);
+        File.WriteAllText(Path.Combine(Application.streamingAssetsPath, "/MainDB.json"), save);
+    }   // Json 저장
+    public void LoadData()
+    {
+        var load = File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "/MainDB.json"));
+        Data = JsonUtility.FromJson<MainDB>(load);
+    }   // Json 로딩
 
     public void Fade()
     {
@@ -135,7 +120,6 @@ public class GameManager : MonoBehaviour
         Panel.gameObject.SetActive(false);
         yield return null;
     }
-
     IEnumerator FadeEffect(GameObject CurObj, GameObject NextObj)
     {
         Panel.gameObject.SetActive(true);
@@ -196,4 +180,23 @@ public class GameManager : MonoBehaviour
         Panel.gameObject.SetActive(false);
         yield return null;
     }
+}
+[System.Serializable]
+public class MainDB
+{
+    // 메인UI
+    [Header("메인 UI")]
+    public string GM_NickName = "";
+    public int GM_Level;
+    public int GM_Money;
+    public int GM_Goods;
+    public float GM_EXE;
+    public float GM_MAX_EXE;
+
+    //게임 설정
+    [Header("게임 설정")]
+    //public float All_Value;
+    public float BGM_Value = 1;
+    public float SFX_Value = 1;
+
 }
