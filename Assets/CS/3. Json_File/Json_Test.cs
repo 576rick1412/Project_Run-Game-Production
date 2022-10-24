@@ -14,7 +14,7 @@ public class Json_Test : MonoBehaviour
         data3.m_vecPositon = new Vector3(8.1f, 9.2f, 7.2f);
 
         var save = JsonUtility.ToJson(data3);
-        File.WriteAllText(Path.Combine(Application.streamingAssetsPath, "/TestJson.json"), save); // 기본
+        File.WriteAllText(Path.Combine(Application.dataPath, "/TestJson.json"), save); // 기본
 
         //File.WriteAllText(Path.Combine("jar:file://" + Application.dataPath + "!/assets"), save); 안드용 22
         /*
