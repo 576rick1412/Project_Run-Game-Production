@@ -11,6 +11,8 @@ public class Option_CS : MonoBehaviour
     [SerializeField] GameObject SoundWindow;
     [SerializeField] GameObject SoundGraphic;
 
+    [SerializeField] GameObject ALL_Button;
+
     public Slider All;
     public Slider BGM;
     public Slider SFX;
@@ -26,6 +28,7 @@ public class Option_CS : MonoBehaviour
     { 
         anime = GetComponent<Animator>(); SettingCheck = true;
         SoundGraphic.SetActive(false);
+        ALL_Button.SetActive(false);
     }
 
     // Update is called once per frame
@@ -39,8 +42,8 @@ public class Option_CS : MonoBehaviour
     {
         switch(SettingCheck)
         {
-            case true: anime.SetInteger("SettingNum", 2); SettingCheck = true; SettingCheck = false; break;
-            case false: anime.SetInteger("SettingNum", 1); SettingCheck = true; SettingCheck = true; break;
+            case true: anime.SetInteger("SettingNum", 2); SettingCheck = true; SettingCheck = false; ALL_Button.SetActive(true); break;
+            case false: anime.SetInteger("SettingNum", 1); SettingCheck = true; SettingCheck = true; ALL_Button.SetActive(false);break;
         }
     }
 
