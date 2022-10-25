@@ -366,13 +366,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1339913169}
     m_Modifications:
+    - target: {fileID: 6355281875202837105, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d46988d4ee03a14eb28736ac920de27, type: 2}
+    - target: {fileID: 6355281875202837105, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
+      propertyPath: m_overflowMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355281875202837105, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
+      propertyPath: m_isRightToLeft
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355281875202837105, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -705147990838516386, guid: 1d46988d4ee03a14eb28736ac920de27, type: 2}
+    - target: {fileID: 6355281875202837105, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355281875202837106, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355281875282315470, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6355281875283985789, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
       propertyPath: m_Name
       value: TabUI_Hub
       objectReference: {fileID: 0}
     - target: {fileID: 6355281875283985789, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6355281875283985790, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
       propertyPath: m_Pivot.x
@@ -461,6 +489,10 @@ PrefabInstance:
     - target: {fileID: 6355281876211979629, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355281876865651876, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c26a4211f3650824e984775241bfe3fc, type: 3}

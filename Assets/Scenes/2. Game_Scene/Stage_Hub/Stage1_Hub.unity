@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 563928779}
     m_Modifications:
+    - target: {fileID: 6355281875202837105, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
+      propertyPath: m_margin.z
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6355281875283985789, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
       propertyPath: m_Name
       value: TabUI_Hub
@@ -338,7 +342,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 2800, y: 0}
+  m_AnchoredPosition: {x: 2676.087, y: 0}
   m_SizeDelta: {x: 8000, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &245342243

@@ -58,12 +58,17 @@ public class GameManager : MonoBehaviour
     public int GM_branch;
     public float GM_typingSpeed = 0.1f;
 
-    void Awake(){GM = this;}
+    //소리 설정
+    [Header("소리 설정")]
+    //public float All_Value;
+    public float BGM_Value = 1;
+    public float SFX_Value = 1;
 
+    void Awake(){GM = this;}
     public MainDB Data = new MainDB();
     void Start()
     {
-        /*
+       /*
         Data.GM_NickName = "소드리우스";
         Data.GM_Level = 80;
         Data.GM_Money = 152000;
@@ -214,12 +219,6 @@ public class MainDB
     public int GM_Goods;
     public float GM_EXE;
     public float GM_MAX_EXE;
-
-    //게임 설정
-    [Header("게임 설정")]
-    //public float All_Value;
-    public float BGM_Value = 1;
-    public float SFX_Value = 1;
 }
 
 namespace AESWithJava.Con
@@ -231,11 +230,11 @@ namespace AESWithJava.Con
             RijndaelManaged rijndaelCipher = new RijndaelManaged();
             rijndaelCipher.Mode = CipherMode.CBC;
             rijndaelCipher.Padding = PaddingMode.PKCS7;
-            rijndaelCipher.KeySize = 128;
-            rijndaelCipher.BlockSize = 128;
+            rijndaelCipher.KeySize = 256;
+            rijndaelCipher.BlockSize = 256;
             byte[] encryptedData = Convert.FromBase64String(textToDecrypt);
             byte[] pwdBytes = Encoding.UTF8.GetBytes(key);
-            byte[] keyBytes = new byte[16];
+            byte[] keyBytes = new byte[32];
             int len = pwdBytes.Length;
             if (len > keyBytes.Length) { len = keyBytes.Length; }
             Array.Copy(pwdBytes, keyBytes, len);
@@ -250,10 +249,10 @@ namespace AESWithJava.Con
             RijndaelManaged rijndaelCipher = new RijndaelManaged();
             rijndaelCipher.Mode = CipherMode.CBC;
             rijndaelCipher.Padding = PaddingMode.PKCS7;
-            rijndaelCipher.KeySize = 128;
-            rijndaelCipher.BlockSize = 128;
+            rijndaelCipher.KeySize = 256;
+            rijndaelCipher.BlockSize = 256;
             byte[] pwdBytes = Encoding.UTF8.GetBytes(key);
-            byte[] keyBytes = new byte[16];
+            byte[] keyBytes = new byte[32];
             int len = pwdBytes.Length;
             if (len > keyBytes.Length) { len = keyBytes.Length; }
             Array.Copy(pwdBytes, keyBytes, len);
