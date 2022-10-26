@@ -9,11 +9,11 @@ public class Game_Control : MonoBehaviour
 
     [SerializeField] Transform Spawn_Pos;
     [SerializeField] GameObject[] Player;
+    [SerializeField] GameObject SpanwPlayer;
 
     [SerializeField] Image HP_Bar;
     [SerializeField] GameObject Pause_Image;
     public TextMeshProUGUI Score;
-
 
     public GameObject BossEntry;
     public Transform BossEntryPos;
@@ -44,8 +44,10 @@ public class Game_Control : MonoBehaviour
     {
         switch (GameManager.GM.PlayerType)
         {
-            case "Player_1": Instantiate(Player[0], Spawn_Pos.position, Quaternion.identity); break;
+            case "Player_1": SpanwPlayer = Player[0]; break;
         }
+
+        Instantiate(SpanwPlayer, Spawn_Pos.position, Quaternion.identity);
     }
 
     void Update()

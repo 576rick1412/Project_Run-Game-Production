@@ -17,6 +17,7 @@ public class Player_CS : MonoBehaviour
     bool OnSlide = false;   // 바닥에 붙어있는지 확인
     public static bool On_HIT = false;
     float jumpHeight;
+    public static bool Onalive;
     [SerializeField] GameObject AttackObject;
 
 
@@ -28,7 +29,7 @@ public class Player_CS : MonoBehaviour
     private IObjectPool<Attack_CS> AttackPool;
     void Awake()
     {
-        PL = this;
+        PL = this; Onalive = false;
         AttackPool = new ObjectPool<Attack_CS>(Attack_Creat, Attack_Get, Attack_Releas, Attack_Destroy, maxSize: 20);
     }
 
@@ -71,6 +72,13 @@ public class Player_CS : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift)) Slide_DAWN();
         if (Input.GetKeyUp(KeyCode.LeftShift)) Slide_UP();
 
+        if (GameManager.GM.LifeScore <= 0 && Onalive == false)
+        {
+            anime.SetInteger("Player_Value", 4);
+            GameManager.GM.Floor_SpeedValue = 0;
+            GameManager.GM.BGI_SpeedValue = 0;
+            Onalive = true;
+        }
 
         if (HIT_check == false && On_HIT == true)
         {
@@ -86,99 +94,123 @@ public class Player_CS : MonoBehaviour
 
     void SetCollider()
     {
-        switch (isSlide)
+        if (Onalive == false)
         {
-            case true: // 슬라이드 중
-                colliders[0].enabled = false;
-                colliders[1].enabled = true;
-                break;
-            case false: // 슬라이드 끝
-                colliders[0].enabled = true;
-                colliders[1].enabled = false;
-                break;
+            switch (isSlide)
+            {
+                case true: // 슬라이드 중
+                    colliders[0].enabled = false;
+                    colliders[1].enabled = true;
+                    break;
+                case false: // 슬라이드 끝
+                    colliders[0].enabled = true;
+                    colliders[1].enabled = false;
+                    break;
+            }
         }
     }
     public void Jump()
     {
-        OnSlide = false;
-        if (isJump == true)
+        if (Onalive == false)
         {
-            rigid.velocity = Vector2.up * jumpHeight;
-            isJump = false;
-            anime.SetInteger("Player_Value", 2);
-            return;
-        }
+            OnSlide = false;
+            if (isJump == true)
+            {
+                rigid.velocity = Vector2.up * jumpHeight;
+                isJump = false;
+                anime.SetInteger("Player_Value", 2);
+                return;
+            }
 
-        if (isJump == false && isDoubleJump == true)
-        {
-            rigid.velocity = Vector2.up * jumpHeight;
-            isDoubleJump = false;
-            anime.SetInteger("Player_Value", 3);
-            return;
+            if (isJump == false && isDoubleJump == true)
+            {
+                rigid.velocity = Vector2.up * jumpHeight;
+                isDoubleJump = false;
+                anime.SetInteger("Player_Value", 3);
+                return;
+            }
         }
     }
 
     public void Slide_DAWN()
     {
-        if (OnSlide == false) return;
-        isSlide = true;
-        anime.SetInteger("Player_Value", 1);
+        if (Onalive == false)
+        {
+            if (OnSlide == false) return;
+            isSlide = true;
+            anime.SetInteger("Player_Value", 1);
+        }
     }
     public void Slide_UP()
     {
-        if (OnSlide == false) return;
-        isSlide = false;
-        anime.SetInteger("Player_Value", 0);
+        if (Onalive == false)
+        {
+            if (OnSlide == false) return;
+            isSlide = false;
+            anime.SetInteger("Player_Value", 0);
+        }
     }
     public void Attack()
     {
-        var Attack = AttackPool.Get();
-        Attack.transform.position = this.gameObject.transform.position;
+        if (Onalive == false)
+        {
+            var Attack = AttackPool.Get();
+            Attack.transform.position = this.gameObject.transform.position;
+        }
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Floor")) Foor_check = true;
+        if (Onalive == false)
+        {
+            if (collision.gameObject.CompareTag("Floor")) Foor_check = true;
 
-        if (collision.gameObject.CompareTag("Floor"))
-        {
-            if (Foor_check == true && isSlide == false)
+            if (collision.gameObject.CompareTag("Floor"))
             {
-                anime.SetInteger("Player_Value", 0);
-                Platform_check = false;
+                if (Foor_check == true && isSlide == false)
+                {
+                    anime.SetInteger("Player_Value", 0);
+                    Platform_check = false;
+                }
+                isJump = true;
+                isDoubleJump = true;
+                OnSlide = true;
             }
-            isJump = true;
-            isDoubleJump = true;
-            OnSlide = true;
-        }
-        if (collision.gameObject.CompareTag("Platform"))
-        {
-            if (Foor_check == true && Platform_check == true && isSlide == false)
+            if (collision.gameObject.CompareTag("Platform"))
             {
-                anime.SetInteger("Player_Value", 0); Debug.Log("충돌");
-                Platform_check = false;
+                if (Foor_check == true && Platform_check == true && isSlide == false)
+                {
+                    anime.SetInteger("Player_Value", 0); Debug.Log("충돌");
+                    Platform_check = false;
+                }
+                isJump = true;
+                isDoubleJump = true;
+                OnSlide = true;
             }
-            isJump = true;
-            isDoubleJump = true;
-            OnSlide = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Floor")) Foor_check = false;
+        if (Onalive == false)
+        {
+            if (collision.gameObject.CompareTag("Floor")) Foor_check = false;
 
-        if (collision.gameObject.CompareTag("Platform")) { Platform_check = true; Foor_check = true; Debug.Log("탈출"); }
+            if (collision.gameObject.CompareTag("Platform")) { Platform_check = true; Foor_check = true; Debug.Log("탈출"); }
+        }
     }
     IEnumerator HIT_Coroutine()
     {
-        for (int i = 0; i < GameManager.GM.Invincibility_Time * 10; i++)
+        if (Onalive == false)
         {
-            if (i % 2 == 0) spriteRenderer.color = new Color32(255, 255, 255, 90);
-            else spriteRenderer.color = new Color32(255, 255, 255, 180);
+            for (int i = 0; i < GameManager.GM.Invincibility_Time * 10; i++)
+            {
+                if (i % 2 == 0) spriteRenderer.color = new Color32(255, 255, 255, 90);
+                else spriteRenderer.color = new Color32(255, 255, 255, 180);
 
-            yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.1f);
+            }
+            spriteRenderer.color = new Color32(255, 255, 255, 255);
+            HIT_check = false;
+            yield return null;
         }
-        spriteRenderer.color = new Color32(255, 255, 255, 255);
-        HIT_check = false;
-        yield return null;
     }
 }
