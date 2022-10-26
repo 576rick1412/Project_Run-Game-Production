@@ -5,7 +5,7 @@ public class Coin_CS : MonoBehaviour
 {
     [SerializeField] int SetPoint;
     private int CoinPoint;
-    [SerializeField] private bool OnRelease; // 무적시간 때문에 들어있는거임 - 지우지마!
+    [SerializeField] private bool OnRelease; // 스폰 시 릴리즈 초기화 / 스타트 보더 지나가야함 - 지우지마!
 
 
     void Awake() { OnRelease = false; CoinPoint = GameManager.GM.Coin_Point; }

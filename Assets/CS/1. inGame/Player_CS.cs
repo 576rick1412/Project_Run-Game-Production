@@ -144,6 +144,7 @@ public class Player_CS : MonoBehaviour
             if (Foor_check == true && isSlide == false)
             {
                 anime.SetInteger("Player_Value", 0);
+                Platform_check = false;
             }
             isJump = true;
             isDoubleJump = true;
@@ -153,7 +154,7 @@ public class Player_CS : MonoBehaviour
         {
             if (Foor_check == true && Platform_check == true && isSlide == false)
             {
-                anime.SetInteger("Player_Value", 0);
+                anime.SetInteger("Player_Value", 0); Debug.Log("√Êµπ");
                 Platform_check = false;
             }
             isJump = true;
@@ -165,7 +166,7 @@ public class Player_CS : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor")) Foor_check = false;
 
-        if (collision.gameObject.CompareTag("Platform")) { Platform_check = true; Foor_check = true; }
+        if (collision.gameObject.CompareTag("Platform")) { Platform_check = true; Foor_check = true; Debug.Log("≈ª√‚"); }
     }
     IEnumerator HIT_Coroutine()
     {

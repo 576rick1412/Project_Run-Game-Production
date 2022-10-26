@@ -83,7 +83,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 2.79, y: 2.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -101,6 +101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823bb075d14d01a4db7f5d239fb9d40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Foor_check: 0
+  Platform_check: 0
+  isJump: 0
+  isDoubleJump: 0
+  isSlide: 0
   AttackObject: {fileID: 1062449043626448143, guid: c5f969c8b2e49c340bee3d6e297d6b4e, type: 3}
   colliders:
   - {fileID: 1794331761426619400}
@@ -143,8 +148,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5, y: 2.5}
-    newSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 2.79, y: 2.5}
+    newSize: {x: 2.79, y: 2.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -169,8 +174,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5, y: 2.5}
-    newSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 2.79, y: 2.5}
+    newSize: {x: 2.79, y: 2.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
