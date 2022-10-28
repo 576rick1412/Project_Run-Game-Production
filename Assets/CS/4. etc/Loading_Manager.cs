@@ -17,15 +17,14 @@ public class Loading_Manager : MonoBehaviour
 
     public static void LoadScene(string SceneName, string ST_Name, string ST_Description)
     {
-        Fade_effect oc = GameObject.Find("Hephaestus_Canvas").GetComponent<Fade_effect>();
-        AsyncOperation op = SceneManager.LoadSceneAsync("Main_LoadingScene");
+        AsyncOperation op = SceneManager.LoadSceneAsync("Stage_LoadingScene");
 
         nextScene = SceneName;
         Stage_Name = ST_Name;
 
         Stage_Description = ST_Description;
 
-        oc.Fade(op);
+        GameManager.GM.Fade(op);
     }
     public static void LoadScene(string SceneName, string ST_Description)
     {

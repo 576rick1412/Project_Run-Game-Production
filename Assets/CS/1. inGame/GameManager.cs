@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour
     public MainDB Data = new MainDB();
     void Start()
     {
-        
         Data.GM_NickName = "소드리우스";
         Data.GM_Level = 1;
         Data.GM_Money = 0;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -15,6 +16,7 @@ public class MasicMainUI_CS : MonoBehaviour
 
     [Header("UI ¶ç¿ì±â")]
     public GameObject Inventory_pref;
+    public GameObject Shop_pref;
     public GameObject Gamestart_pref;
 
     private void Awake()
@@ -27,6 +29,7 @@ public class MasicMainUI_CS : MonoBehaviour
     }
 
     public void OnInventory() { Instantiate(Inventory_pref); }
+    public void OnShop() { Instantiate(Shop_pref); }
     public void OnGamestart() { Instantiate(Gamestart_pref); }
 
     IEnumerator UI_Renew_COR()

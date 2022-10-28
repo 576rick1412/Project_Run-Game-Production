@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ChapterHub_CS : MonoBehaviour
 {
+    public GameObject Stage1_Hub;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +18,5 @@ public class ChapterHub_CS : MonoBehaviour
         
     }
 
-    public void Chapter1()
-    {
-        SceneManager.LoadScene("Stage1_Hub");
-    }
+    public void Chapter1() { Instantiate(Stage1_Hub); }
 }

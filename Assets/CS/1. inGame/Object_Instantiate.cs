@@ -129,9 +129,15 @@ public class Object_Instantiate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker");
+        switch(GameManager.GM.GM_branch)
+        {
+            case 1: Debug.Log("1"); if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_1"); break;
+            case 2: Debug.Log("2"); if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_1"); break;
+            case 3: Debug.Log("3"); if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_1"); break;
+            case 4: Debug.Log("4"); if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_1"); break;
+        }
     }
-    IEnumerator Coin_Maker()
+    IEnumerator Coin_Maker_1()
     {
         if (Player_CS.Onalive == false)
         {

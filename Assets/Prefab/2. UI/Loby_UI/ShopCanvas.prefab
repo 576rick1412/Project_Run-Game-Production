@@ -3072,7 +3072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ALLb: {fileID: 8060900961609548918}
-  GameWindow: {fileID: 0}
+  GameWindow: {fileID: 3028931360021232077}
 --- !u!1 &8231052037065842552
 GameObject:
   m_ObjectHideFlags: 0
@@ -5116,7 +5116,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8231052037055856647}
         m_TargetAssemblyTypeName: TabUI, Assembly-CSharp
-        m_MethodName: GoLoby
+        m_MethodName: DesThis
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -2475,7 +2475,8 @@ MonoBehaviour:
   Money: {fileID: 1074946375}
   Goods: {fileID: 2081011666}
   EXE: {fileID: 725896982}
-  Inventory_pref: {fileID: 6683875283931311057, guid: d0d0a227d85a6da4e8d9c00a57bd6f73, type: 3}
+  Inventory_pref: {fileID: 8700651975340934504, guid: cdcdc566c4b54fb48a298b79fa4f3a37, type: 3}
+  Shop_pref: {fileID: 3028931360021232077, guid: 3621d85a167bccb4482888ca5f2fc775, type: 3}
   Gamestart_pref: {fileID: 2304670757839274370, guid: d64417c8348b1c84ea482f3a0ee68bc1, type: 3}
 --- !u!1 &1407958253
 GameObject:
