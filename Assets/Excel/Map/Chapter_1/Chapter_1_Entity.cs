@@ -9,6 +9,7 @@ public class Chapter_1_Entity
     public int CoinAmount;
     public string Obstacle;
     public string Platform;
+    public int PlatformPos;
     public bool END;
 }
 // =======================================1111
@@ -20,6 +21,7 @@ public class Chapter_2_Entity
     public int CoinAmount;
     public string Obstacle;
     public string Platform;
+    public int PlatformPos;
     public bool END;
 }
 // =======================================2222
@@ -31,6 +33,7 @@ public class Chapter_3_Entity
     public int CoinAmount;
     public string Obstacle;
     public string Platform;
+    public int PlatformPos;
     public bool END;
 }
 // =======================================3333
@@ -42,6 +45,7 @@ public class Chapter_4_Entity
     public int CoinAmount;
     public string Obstacle;
     public string Platform;
+    public int PlatformPos;
     public bool END;
 }
 // =======================================4444
@@ -53,6 +57,7 @@ public class Chapter_5_Entity
     public int CoinAmount;
     public string Obstacle;
     public string Platform;
+    public int PlatformPos;
     public bool END;
 }
 // =======================================5555
@@ -64,6 +69,7 @@ public class Chapter_6_Entity
     public int CoinAmount;
     public string Obstacle;
     public string Platform;
+    public int PlatformPos;
     public bool END;
 }
 // =======================================6666
@@ -75,6 +81,7 @@ public class Chapter_7_Entity
     public int CoinAmount;
     public string Obstacle;
     public string Platform;
+    public int PlatformPos;
     public bool END;
 }
 // =======================================7777
@@ -86,6 +93,7 @@ public class Chapter_8_Entity
     public int CoinAmount;
     public string Obstacle;
     public string Platform;
+    public int PlatformPos;
     public bool END;
 }
 // =======================================8888
@@ -97,6 +105,7 @@ public class Chapter_9_Entity
     public int CoinAmount;
     public string Obstacle;
     public string Platform;
+    public int PlatformPos;
     public bool END;
 }
 // =======================================9999
@@ -108,5 +117,6 @@ public class Chapter_10_Entity
     public int CoinAmount;
     public string Obstacle;
     public string Platform;
+    public int PlatformPos;
     public bool END;
 }

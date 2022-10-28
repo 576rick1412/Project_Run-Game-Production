@@ -29,4 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/1. Loby_Scene/Inventory_Scene.unity
     guid: ad8768e150e63ae4f838c60d1b9dc68a
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Chapter_Hub.unity
+    guid: ad41e2cf3576da14183c3c7d7b26857a
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Stage_Hub/Stage1_Hub.unity
+    guid: e38d5394e32bfc54d806fe9b74592920
+  - enabled: 1
+    path: Assets/Scenes/1. Loby_Scene/Shop_Scene.unity
+    guid: 6c4bb7760e4d2fd45ae5cd3ba78f44b5
   m_configObjects: {}

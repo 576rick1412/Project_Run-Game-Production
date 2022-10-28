@@ -162,8 +162,8 @@ public class Object_Instantiate : MonoBehaviour
                 case "Platform_4": Instan_Platform = Platform_Object[3]; break;
             }
 
-            if (Chapter_EX.Stage_1[Index].Platform != "None")
-                Instantiate(Instan_Platform, Instan_Pos[2].position, Quaternion.identity);
+            /*if (Chapter_EX.Stage_1[Index].Platform != "None")
+                Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_1[Index].PlatformPos].position, Quaternion.identity);*/
 
             PosNum = Chapter_EX.Stage_1[Index].CoinPos; // 코인 높이값 지정
             Amount = Chapter_EX.Stage_1[Index].CoinAmount;
@@ -193,20 +193,21 @@ public class Object_Instantiate : MonoBehaviour
                 switch (Chapter_EX.Stage_1[Index].Obstacle)
                 {
                     case "Obstacle_1": Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity); break;
-                        //default : Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity); break;
                 }  // 장애물 생성
 
-                if (Chapter_EX.Stage_1[Index].Platform == "Platform_1")
+
+                switch (Chapter_EX.Stage_1[Index].Platform)
                 {
-                    int OnPlatform = 0;
-                    if (OnPlatform > 10) Instantiate(Instan_Platform, Instan_Pos[2].position, Quaternion.identity);
-                    else OnPlatform++;
+                    case "Platform_1":
+                        Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_1[Index].PlatformPos].position, Quaternion.identity);/*
+                        int OnPlatform = 0;
+                        if (OnPlatform > 11) { Instantiate(Instan_Platform, Instan_Pos[2].position, Quaternion.identity); OnPlatform = 0; }
+                        else OnPlatform++;*/ break;
                 }  // 발판 생성
 
 
                 yield return new WaitForSeconds(Late_Time);
             }
-
             Index++;
             isMaker = false;
             yield return null;

@@ -12,12 +12,22 @@ public class MasicMainUI_CS : MonoBehaviour
     public TextMeshProUGUI Money;
     public TextMeshProUGUI Goods;
     public Image EXE;
-    
+
+    [Header("UI ¶ç¿ì±â")]
+    public GameObject Inventory_pref;
+    public GameObject Gamestart_pref;
+
+    private void Awake()
+    {
+
+    }
     void Start()
     {
         StartCoroutine(UI_Renew_COR());
     }
 
+    public void OnInventory() { Instantiate(Inventory_pref); }
+    public void OnGamestart() { Instantiate(Gamestart_pref); }
 
     IEnumerator UI_Renew_COR()
     {

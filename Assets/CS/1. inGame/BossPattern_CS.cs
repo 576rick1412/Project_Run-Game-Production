@@ -13,11 +13,12 @@ public class BossPattern_CS : MonoBehaviour
     {
         PatternDamage = GameManager.GM.Boss_Damage;
         Destroy(this.gameObject, 10f);
+        
     }
 
     void Update()
     {
-        if (GameManager.GM.Boss_HP <= 0) Destroy(DesObj.gameObject);
+        if (GameManager.GM.Boss_HP <= 0 || (Player_CS.Onalive == true && Player_CS.On_HIT == false)) Destroy(DesObj.gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

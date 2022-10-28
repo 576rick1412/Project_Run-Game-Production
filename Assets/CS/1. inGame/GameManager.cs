@@ -68,16 +68,16 @@ public class GameManager : MonoBehaviour
     public MainDB Data = new MainDB();
     void Start()
     {
-       /*
+        
         Data.GM_NickName = "소드리우스";
-        Data.GM_Level = 80;
-        Data.GM_Money = 152000;
-        Data.GM_Goods = 1890;
-        Data.GM_EXE = 100;
+        Data.GM_Level = 1;
+        Data.GM_Money = 0;
+        Data.GM_Goods = 0;
+        Data.GM_EXE = 0;
         Data.GM_MAX_EXE = 1000;
-
-        SavaData();*/
-        LoadData();
+        
+        //SavaData();
+        //LoadData();
 
         Panel.gameObject.SetActive(false);
         var obj = FindObjectsOfType<GameManager>();
@@ -90,14 +90,24 @@ public class GameManager : MonoBehaviour
         string key = Data.key;
         var save = JsonUtility.ToJson(Data);
         save = Program.Encrypt(save, key);
-        File.WriteAllText(Path.Combine(Application.streamingAssetsPath, "/MainDB.json"), save);
+        
+        if (Application.platform == RuntimePlatform.Android)    // AOS 용
+            File.WriteAllText(Path.Combine("jar:file://" + Application.streamingAssetsPath, "/MainDB.json"), save);
+        else File.WriteAllText(Path.Combine(Application.streamingAssetsPath, "/MainDB.json"), save); // 에디터 용
+
     }   // Json 저장
     public void LoadData()
     {
         string key = Data.key;
-        var load = File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "/MainDB.json"));
-        load = Program.Decrypt(load, key);
-        Data = JsonUtility.FromJson<MainDB>(load);
+        var Onload = "";
+
+        if (Application.platform == RuntimePlatform.Android)    // AOS 용
+        { var load = File.ReadAllText(Path.Combine("jar:file://" + Application.streamingAssetsPath, "/MainDB.json")); Onload = load; }
+
+        else { var load = File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "/MainDB.json")); Onload = load; } // 에디터 용
+
+        Onload = Program.Decrypt(Onload, key);
+        Data = JsonUtility.FromJson<MainDB>(Onload);
     }   // Json 로딩
 
     public void Fade()
@@ -213,12 +223,12 @@ public class MainDB
 
     // 메인UI
     [Header("메인 UI")]
-    public string GM_NickName = "";
-    public int GM_Level;
-    public int GM_Money;
-    public int GM_Goods;
-    public float GM_EXE;
-    public float GM_MAX_EXE;
+    public string GM_NickName = "소드리우스";
+    public int GM_Level = 1;
+    public int GM_Money = 0;
+    public int GM_Goods = 0;
+    public float GM_EXE = 0;
+    public float GM_MAX_EXE = 1000;
 }
 
 namespace AESWithJava.Con

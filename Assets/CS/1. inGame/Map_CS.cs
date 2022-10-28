@@ -30,10 +30,20 @@ public class Map_CS : MonoBehaviour
             case "Obstacle":
                 transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0);
                 break;
+            case "Platform":
+                transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0);
+                break;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.CompareTag("End_Border") && Map_str == "Obstacle")
+        {
+            Destroy(this.gameObject);
+        }
+        if (collision.gameObject.CompareTag("End_Border") &&  Map_str == "Platform")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

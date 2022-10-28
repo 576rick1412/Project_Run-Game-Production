@@ -38,7 +38,7 @@ public class Player_CS : MonoBehaviour
         Attack_CS Attack = Instantiate(AttackObject).GetComponent<Attack_CS>();
         Attack.Set_AttackPool(AttackPool);
         return Attack;
-    }                       // (풀링) 장애물 생성
+    }                    // (풀링) 장애물 생성
     private void Attack_Get(Attack_CS Attack)
     {
         Attack.gameObject.SetActive(true);
@@ -79,6 +79,8 @@ public class Player_CS : MonoBehaviour
             GameManager.GM.BGI_SpeedValue = 0;
             Onalive = true;
         }
+
+        if(Onalive == false) GameManager.GM.LifeScore -= Time.deltaTime * 2;
 
         if (HIT_check == false && On_HIT == true)
         {
@@ -136,7 +138,7 @@ public class Player_CS : MonoBehaviour
     {
         if (Onalive == false)
         {
-            if (OnSlide == false) return;
+            if (OnSlide == false) { isSlide = true; return; }
             isSlide = true;
             anime.SetInteger("Player_Value", 1);
         }
@@ -145,7 +147,7 @@ public class Player_CS : MonoBehaviour
     {
         if (Onalive == false)
         {
-            if (OnSlide == false) return;
+            if (OnSlide == false) { isSlide = false; return; }
             isSlide = false;
             anime.SetInteger("Player_Value", 0);
         }
@@ -166,10 +168,10 @@ public class Player_CS : MonoBehaviour
 
             if (collision.gameObject.CompareTag("Floor"))
             {
-                if (Foor_check == true && isSlide == false)
+                if (Foor_check == true)
                 {
-                    anime.SetInteger("Player_Value", 0);
-                    Platform_check = false;
+                    if (isSlide == false) { anime.SetInteger("Player_Value", 0); Platform_check = false; }
+                    if (isSlide == true) { anime.SetInteger("Player_Value", 1); Platform_check = false; }
                 }
                 isJump = true;
                 isDoubleJump = true;
@@ -177,10 +179,13 @@ public class Player_CS : MonoBehaviour
             }
             if (collision.gameObject.CompareTag("Platform"))
             {
-                if (Foor_check == true && Platform_check == true && isSlide == false)
+                if (Platform_check == true)
                 {
-                    anime.SetInteger("Player_Value", 0); Debug.Log("충돌");
-                    Platform_check = false;
+                    if (Foor_check == true)
+                    {
+                        if (isSlide == false) { anime.SetInteger("Player_Value", 0); Platform_check = false; }
+                        if (isSlide == true) { anime.SetInteger("Player_Value", 1); Platform_check = false; }
+                    }
                 }
                 isJump = true;
                 isDoubleJump = true;

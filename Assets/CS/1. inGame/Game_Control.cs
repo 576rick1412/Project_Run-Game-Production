@@ -22,6 +22,10 @@ public class Game_Control : MonoBehaviour
     public bool BossAttack;
     [SerializeField] GameObject A_button;
 
+    [Header("UI")]
+    public GameObject ClearUI;
+    [SerializeField] GameObject OverUI;
+
     bool GameOvercheck = false;
     bool IsPause; // 일시정지
     void Awake()
@@ -29,8 +33,10 @@ public class Game_Control : MonoBehaviour
         GC = this;
         PlayerType();
 
+        ClearUI.SetActive(false);
+        OverUI.SetActive(false);
+
         A_button.SetActive(false);
-        //GameManager.GM.Player = GameObject.FindWithTag("Player");
         Pause_Image.SetActive(false);
         IsPause = false;
         GameManager.GM.LifeScore = GameManager.GM.Set_LifeScore;
@@ -58,19 +64,12 @@ public class Game_Control : MonoBehaviour
         {
             case true: A_button.SetActive(true); break;
             case false: A_button.SetActive(false); break;  
-
         }
-
-        GameManager.GM.LifeScore -= Time.deltaTime * 2;
 
         HP_Bar.fillAmount = (GameManager.GM.LifeScore / GameManager.GM.Set_LifeScore);
         Score.text = "점수 : " + (GameManager.GM.CoinScore == 0 ? 0 : CommaText(GameManager.GM.CoinScore).ToString());
 
-        if (GameManager.GM.LifeScore <= 0 && GameOvercheck == false)
-        {
-            Debug.Log("게임 오버");
-            GameOvercheck = true;
-        }
+        if (GameManager.GM.LifeScore <= 0 && GameOvercheck == false) { OverUI.SetActive(true); }
     }
     public string CommaText(long Sccore)
     {
@@ -96,29 +95,17 @@ public class Game_Control : MonoBehaviour
         }
     }
 
-    void BossHub()
+    public void BossHub() { StartCoroutine(BossEnyryCoroutine()); }
+    IEnumerator BossEnyryCoroutine()
     {
-        Invoke("BossEnyryF", 0.1f);
-        Invoke("BossEnyryF", 0.15f);
-        Invoke("BossEnyryF", 0.2f);
-        Invoke("BossEnyryF", 0.25f);
-        Invoke("BossEnyryF", 0.3f);
-        Invoke("BossEnyryF", 0.35f);
-        Invoke("BossEnyryF", 0.4f);
-        Invoke("BossEnyryF", 0.45f);
-        Invoke("BossEnyryF", 0.5f);
-        Invoke("BossEnyryF", 0.55f);
-        Invoke("BossEnyryF", 0.6f);
-        Invoke("BossEnyryF", 0.65f);
-        Invoke("BossEnyryF", 0.7f);
-        Invoke("BossEnyryF", 0.75f);
-        Invoke("BossEnyryF", 0.8f);
-        Invoke("BossEnyryF", 0.85f);
-        Invoke("BossEnyryF", 0.9f);
-        Invoke("BossEnyryF", 0.95f);
-        Invoke("BossEnyryF", 1.0f);
-
-        Invoke("SpawnBoss", 4f);
+        for(int i = 0; i < 20; i++)
+        {
+            BossEnyryF();
+            yield return new WaitForSeconds(0.05f);
+        }
+        yield return new WaitForSeconds(3f);
+        SpawnBoss();
+        yield return null;
     }
     void BossEnyryF()
     {

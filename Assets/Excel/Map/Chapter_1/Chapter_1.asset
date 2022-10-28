@@ -15,69 +15,80 @@ MonoBehaviour:
   Stage_1:
   - CoinType: coin_1
     CoinPos: 1
-    CoinAmount: 20
+    CoinAmount: 10
     Obstacle: None
     Platform: Platform_1
+    PlatformPos: 1
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 20
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_3
     CoinPos: 2
     CoinAmount: 20
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_1
     CoinPos: 1
     CoinAmount: 2
-    Obstacle: None
+    Obstacle: Obstacle_1
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_1
     CoinPos: 3
     CoinAmount: 20
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_1
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
-    Platform: Platform_1
+    Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_1
     CoinPos: 1
     CoinAmount: 10
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 10
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_3
     CoinPos: 1
     CoinAmount: 10
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_1
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
-    Platform: Platform_1
+    Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: ======
     CoinPos: 0
     CoinAmount: 0
     Obstacle: 
     Platform: 
+    PlatformPos: 0
     END: 1
   Stage_2:
   - CoinType: coin_2
@@ -85,66 +96,77 @@ MonoBehaviour:
     CoinAmount: 2
     Obstacle: None
     Platform: Platform_1
+    PlatformPos: 1
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 2
     CoinAmount: 4
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 3
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 4
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 0
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: ======
     CoinPos: 0
     CoinAmount: 0
     Obstacle: 
     Platform: 
+    PlatformPos: 0
     END: 1
   Stage_3:
   - CoinType: coin_2
@@ -152,66 +174,77 @@ MonoBehaviour:
     CoinAmount: 2
     Obstacle: None
     Platform: Platform_1
+    PlatformPos: 1
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 2
     CoinAmount: 4
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 3
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 4
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 0
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: ======
     CoinPos: 0
     CoinAmount: 0
     Obstacle: 
     Platform: 
+    PlatformPos: 0
     END: 1
   Stage_4:
   - CoinType: coin_2
@@ -219,66 +252,77 @@ MonoBehaviour:
     CoinAmount: 2
     Obstacle: None
     Platform: Platform_1
+    PlatformPos: 1
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 2
     CoinAmount: 4
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 3
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 4
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 0
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: ======
     CoinPos: 0
     CoinAmount: 0
     Obstacle: 
     Platform: 
+    PlatformPos: 0
     END: 1
   Stage_5:
   - CoinType: coin_2
@@ -286,66 +330,77 @@ MonoBehaviour:
     CoinAmount: 2
     Obstacle: None
     Platform: Platform_1
+    PlatformPos: 1
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 2
     CoinAmount: 4
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 3
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 4
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 0
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: ======
     CoinPos: 0
     CoinAmount: 0
     Obstacle: 
     Platform: 
+    PlatformPos: 0
     END: 1
   Stage_6:
   - CoinType: coin_2
@@ -353,66 +408,77 @@ MonoBehaviour:
     CoinAmount: 2
     Obstacle: None
     Platform: Platform_1
+    PlatformPos: 1
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 2
     CoinAmount: 4
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 3
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 4
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 0
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: ======
     CoinPos: 0
     CoinAmount: 0
     Obstacle: 
     Platform: 
+    PlatformPos: 0
     END: 1
   Stage_7:
   - CoinType: coin_2
@@ -420,66 +486,77 @@ MonoBehaviour:
     CoinAmount: 2
     Obstacle: None
     Platform: Platform_1
+    PlatformPos: 1
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 2
     CoinAmount: 4
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 3
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 4
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 0
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: ======
     CoinPos: 0
     CoinAmount: 0
     Obstacle: 
     Platform: 
+    PlatformPos: 0
     END: 1
   Stage_8:
   - CoinType: coin_2
@@ -487,66 +564,77 @@ MonoBehaviour:
     CoinAmount: 2
     Obstacle: None
     Platform: Platform_1
+    PlatformPos: 1
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 2
     CoinAmount: 4
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 3
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 4
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 0
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: ======
     CoinPos: 0
     CoinAmount: 0
     Obstacle: 
     Platform: 
+    PlatformPos: 0
     END: 1
   Stage_9:
   - CoinType: coin_2
@@ -554,66 +642,77 @@ MonoBehaviour:
     CoinAmount: 2
     Obstacle: None
     Platform: Platform_1
+    PlatformPos: 1
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 2
     CoinAmount: 4
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 3
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 4
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 0
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: ======
     CoinPos: 0
     CoinAmount: 0
     Obstacle: 
     Platform: 
+    PlatformPos: 0
     END: 1
   Stage_10:
   - CoinType: coin_2
@@ -621,64 +720,75 @@ MonoBehaviour:
     CoinAmount: 2
     Obstacle: None
     Platform: Platform_1
+    PlatformPos: 1
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 2
     CoinAmount: 4
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 3
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 4
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 0
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: coin_2
     CoinPos: 1
     CoinAmount: 2
     Obstacle: None
     Platform: None
+    PlatformPos: 0
     END: 0
   - CoinType: ======
     CoinPos: 0
     CoinAmount: 0
     Obstacle: 
     Platform: 
+    PlatformPos: 0
     END: 1

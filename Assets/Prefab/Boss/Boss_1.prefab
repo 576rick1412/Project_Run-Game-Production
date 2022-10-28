@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 410271903204824176}
   - component: {fileID: 410271903204824177}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: BossCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8071d6be09378b449195db92cbcc696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Boss: {fileID: 410271903264219625}
+  Boss: {fileID: 410271903204824179}
   BossPattern: {fileID: 8781137690822415258, guid: 1e0da5d6312cc524ab53d8fe0a426a77, type: 3}
   BossPatternPos: {fileID: 410271902169646118}
   Boss_HP_Bar: {fileID: 410271902880648216}

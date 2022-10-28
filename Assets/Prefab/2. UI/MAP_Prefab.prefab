@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3105320254664885680}
   - component: {fileID: 3105320254664885695}
   m_Layer: 5
-  m_Name: InventoryCanvas
+  m_Name: MAP_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
