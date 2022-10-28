@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 988328085588476243}
   - component: {fileID: 988328085588476240}
   m_Layer: 0
-  m_Name: Obstacle_Square
+  m_Name: Obstacle_Jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

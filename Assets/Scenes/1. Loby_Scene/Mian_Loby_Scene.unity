@@ -2100,6 +2100,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hephaestus_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
+      propertyPath: F_time
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1913493802388220349, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
       propertyPath: m_Pivot.x
       value: 0

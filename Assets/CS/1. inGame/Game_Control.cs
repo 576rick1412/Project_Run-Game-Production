@@ -7,6 +7,8 @@ public class Game_Control : MonoBehaviour
 {
     public static Game_Control GC;
 
+    [HideInInspector] public bool Boss_On;
+
     [SerializeField] Transform Spawn_Pos;
     [SerializeField] GameObject[] Player;
     [SerializeField] GameObject SpanwPlayer;
@@ -43,6 +45,7 @@ public class Game_Control : MonoBehaviour
         GameManager.GM.CoinScore = 0;
         GameManager.GM.Boss_HP = 0;
 
+        Boss_On = false;
         BossAttack = false;
     }
 
@@ -59,6 +62,7 @@ public class Game_Control : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F)) { BossHub(); BossAttack = true; }
+        if (Boss_On == true) { BossHub(); BossAttack = true; Boss_On = false; }
 
         switch (BossAttack)
         {

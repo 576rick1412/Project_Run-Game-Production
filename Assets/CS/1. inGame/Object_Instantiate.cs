@@ -23,6 +23,7 @@ public class Object_Instantiate : MonoBehaviour
     [SerializeField] int Index = 0;
     [SerializeField] int PosNum = 0;
     [SerializeField] int Amount = 0;
+    bool BossOn;
 
     bool CoinSkip = false; // 코인 스킵 \ true -> 스킵
     [SerializeField] bool isMaker = false; // 코루틴 돌아가고 있는지 확인
@@ -123,18 +124,20 @@ public class Object_Instantiate : MonoBehaviour
 
     void Start()
     {
-
+        BossOn = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch(GameManager.GM.GM_branch)
+        if (Chapter_EX.Stage_1[Index].END == true && BossOn == false) { Game_Control.GC.Boss_On = true; BossOn = true; }
+
+        switch (GameManager.GM.GM_branch)
         {
-            case 1: Debug.Log("1"); if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_1"); break;
-            case 2: Debug.Log("2"); if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_1"); break;
-            case 3: Debug.Log("3"); if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_1"); break;
-            case 4: Debug.Log("4"); if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_1"); break;
+            case 1: if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_1"); break;
+            case 2: if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_1"); break;
+            case 3: if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_1"); break;
+            case 4: if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_1"); break;
         }
     }
     IEnumerator Coin_Maker_1()
@@ -145,27 +148,26 @@ public class Object_Instantiate : MonoBehaviour
 
             switch (Chapter_EX.Stage_1[Index].CoinType) // 코인 지정
             {
-                case "None": CoinSkip = true; break;
-                case "coin_1": Instan_Coin = Coin_Object[0]; break;
-                case "coin_2": Instan_Coin = Coin_Object[1]; break;
-                case "coin_3": Instan_Coin = Coin_Object[2]; break;
-                case "coin_4": Instan_Coin = Coin_Object[3]; break;
+                case "None": CoinSkip = true; break;                // 코인 생성 없음
+                case "coin_1": Instan_Coin = Coin_Object[0]; break; // 코인 1
+                case "coin_2": Instan_Coin = Coin_Object[1]; break; // 코인 2
+                case "coin_3": Instan_Coin = Coin_Object[2]; break; // 코인 3
+                case "HP+": Instan_Coin = Coin_Object[3]; break;    // HP 회복
             }
 
             switch (Chapter_EX.Stage_1[Index].Obstacle) // 장애물 지정
             {
-                case "Obstacle_1": Instan_Obstacle = Obstacle_Object[0]; break;
-                case "Obstacle_2": Instan_Obstacle = Obstacle_Object[1]; break;
-                case "Obstacle_3": Instan_Obstacle = Obstacle_Object[2]; break;
-                case "Obstacle_4": Instan_Obstacle = Obstacle_Object[3]; break;
+                case "Obstacle_1": Instan_Obstacle = Obstacle_Object[0]; break; // 점프 장애물
+                case "Obstacle_2": Instan_Obstacle = Obstacle_Object[1]; break; // 더블점프 장애물
+                case "Obstacle_3": Instan_Obstacle = Obstacle_Object[2]; break; // 슬라이드 장애물
             }
 
             switch (Chapter_EX.Stage_1[Index].Platform) // 발판 지정
             {
-                case "Platform_1": Instan_Platform = Platform_Object[0]; break;
-                case "Platform_2": Instan_Platform = Platform_Object[1]; break;
-                case "Platform_3": Instan_Platform = Platform_Object[2]; break;
-                case "Platform_4": Instan_Platform = Platform_Object[3]; break;
+                case "Platform_1": Instan_Platform = Platform_Object[0]; break; // 발판
+                case "Platform_2": Instan_Platform = Platform_Object[1]; break; // 발판
+                case "Platform_3": Instan_Platform = Platform_Object[2]; break; // 발판
+                case "Platform_4": Instan_Platform = Platform_Object[3]; break; // 발판
             }
 
             /*if (Chapter_EX.Stage_1[Index].Platform != "None")
