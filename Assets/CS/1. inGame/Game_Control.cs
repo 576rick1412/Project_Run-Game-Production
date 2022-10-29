@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 public class Game_Control : MonoBehaviour
@@ -23,6 +24,7 @@ public class Game_Control : MonoBehaviour
 
     public bool BossAttack;
     [SerializeField] GameObject A_button;
+    [SerializeField] GameObject S_button;
     public GameObject start_Icon;
     public GameObject pause_Icon;
 
@@ -70,8 +72,8 @@ public class Game_Control : MonoBehaviour
 
         switch (BossAttack)
         {
-            case true: A_button.SetActive(true); break;
-            case false: A_button.SetActive(false); break;  
+            case true: A_button.SetActive(true); S_button.SetActive(false); break;
+            case false: A_button.SetActive(false); S_button.SetActive(true); break;
         }
 
         HP_Bar.fillAmount = (GameManager.GM.LifeScore / GameManager.GM.Set_LifeScore);
@@ -108,14 +110,15 @@ public class Game_Control : MonoBehaviour
     public void BossHub() { StartCoroutine(BossEnyryCoroutine()); }
     IEnumerator BossEnyryCoroutine()
     {
-        for(int i = 0; i < 20; i++)
+        for (int i = 0; i < 20; i++)
         {
             BossEnyryF();
             yield return new WaitForSeconds(0.05f);
         }
         yield return new WaitForSeconds(3f);
-        SpawnBoss();
+        Instantiate(Boss);
         BossAttack = true;
+        Player_CS.PL.Slide_UP();
         yield return null;
     }
     void BossEnyryF()
@@ -124,8 +127,8 @@ public class Game_Control : MonoBehaviour
         Entry.transform.SetParent(BossEntryPos.transform);
     }
 
-    void SpawnBoss()
+    public void Stage1_Hub()
     {
-        Instantiate(Boss);
+
     }
 }

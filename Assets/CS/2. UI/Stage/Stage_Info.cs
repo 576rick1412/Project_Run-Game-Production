@@ -12,7 +12,6 @@ public class Stage_Info : MonoBehaviour
     [Header("≈ÿΩ∫∆Æ")]
     public string Name;
     [TextArea(3, 5)] public string Information;
-
     [HideInInspector] public int Stage_Num;
 
     public GameObject Stage_Window;

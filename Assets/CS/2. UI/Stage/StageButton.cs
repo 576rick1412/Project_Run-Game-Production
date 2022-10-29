@@ -6,12 +6,9 @@ using TMPro;
 
 public class StageButton : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI Stage_Name;
-    [TextArea(3,5)][SerializeField] string Stage_Information;
-
     [Header("≈ÿΩ∫∆Æ")]
-    public string Name;
-    [TextArea(3, 5)] public string Information;
+    public string Stage_Name;
+    [TextArea(3, 5)] public string Stage_Information;
 
     [SerializeField] int Stage_Num;
     Stage_Info SI;
@@ -22,12 +19,13 @@ public class StageButton : MonoBehaviour
 
     public void OnWindow()
     {
-        SI.Stage_Name.text = Stage_Name.text;
+        SI.Stage_Name.text = Stage_Name;
         SI.Stage_Information.text = Stage_Information;
+
         SI.Stage_Num = Stage_Num;
 
-        SI.Name = Name;
-        SI.Information = Information;
+        SI.Name = Stage_Name;
+        SI.Information = Stage_Information;
 
         SI.OnStage_Info();
     }
