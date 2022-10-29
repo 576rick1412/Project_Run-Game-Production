@@ -26,6 +26,8 @@ public class BossPattern_CS : MonoBehaviour
         {
             GameManager.GM.LifeScore -= PatternDamage;
             Player_CS.On_HIT = true;
+            Player_CS.PL.OnCoroutine();
+            Invoke("HIT_off", GameManager.GM.Invincibility_Time);
             if (Type == "Bounce") Destroy(this.gameObject);
         }
 

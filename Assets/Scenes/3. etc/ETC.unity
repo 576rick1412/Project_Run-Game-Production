@@ -4869,6 +4869,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossEntry_Hub
       objectReference: {fileID: 0}
+    - target: {fileID: 257998287067183540, guid: 991dedd48639d2d49aba2f98e5abf68e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 257998287067183541, guid: 991dedd48639d2d49aba2f98e5abf68e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5192,7 +5196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4360651679565576799, guid: d0c0a15b579d9294384ff520624c78da, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0c0a15b579d9294384ff520624c78da, type: 3}

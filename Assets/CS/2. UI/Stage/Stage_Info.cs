@@ -39,6 +39,8 @@ public class Stage_Info : MonoBehaviour
 
     public void GameStart()
     {
+        GameManager.GM.Floor_SpeedValue = 8f;
+        GameManager.GM.BGM_Value = 4f;
         switch (Stage_Num)
         {
             case 1: GameManager.GM.GM_branch = 1; break;

@@ -29,8 +29,15 @@ public class Game_Control : MonoBehaviour
     public GameObject pause_Icon;
 
     [Header("UI")]
+    public bool Game_End;
+    [SerializeField] GameObject Result;
     public GameObject ClearUI;
     [SerializeField] GameObject OverUI;
+
+    // 엑셀용
+    int branch;
+    [SerializeField] RunGame_EX RunGame_EX;
+    [SerializeField] string Stage_Des;
 
     bool GameOvercheck = false;
     bool IsPause; // 일시정지
@@ -40,9 +47,7 @@ public class Game_Control : MonoBehaviour
         PlayerType();
 
         start_Icon.SetActive(false); pause_Icon.SetActive(true);
-
-        ClearUI.SetActive(false);
-        OverUI.SetActive(false);
+        branch = Random.Range(1, RunGame_EX.StartSheet.Count + 1); STG_Excel();
 
         A_button.SetActive(false);
         Pause_Image.SetActive(false);
@@ -51,6 +56,7 @@ public class Game_Control : MonoBehaviour
         GameManager.GM.CoinScore = 0;
         GameManager.GM.Boss_HP = 0;
 
+        Game_End = false;
         Boss_On = false;
         BossAttack = false;
     }
@@ -79,16 +85,13 @@ public class Game_Control : MonoBehaviour
         HP_Bar.fillAmount = (GameManager.GM.LifeScore / GameManager.GM.Set_LifeScore);
         Score.text = "점수 : " + (GameManager.GM.CoinScore == 0 ? 0 : CommaText(GameManager.GM.CoinScore).ToString());
 
-        if (GameManager.GM.LifeScore <= 0 && GameOvercheck == false) { OverUI.SetActive(true); }
+        if (GameManager.GM.LifeScore <= 0 && GameOvercheck == false && Game_End == false) { GameManager.GM.Game_Fail = true; Game_OverUI(); Result_Spawn(); Game_End = true; }
     }
-    public string CommaText(long Sccore)
-    {
-        return string.Format("{0:#,###}", Sccore);
-    }
+    public string CommaText(long Sccore) { return string.Format("{0:#,###}", Sccore); }
 
     public void Pause_B()
     {
-        /*일시정지?활성화*/
+        /*일시정지?비활성화*/
         if (IsPause == false)
         {
             Time.timeScale = 0;
@@ -97,7 +100,7 @@ public class Game_Control : MonoBehaviour
             IsPause = true; return;
         }
 
-        /*일시정지?비활성화*/
+        /*일시정지?활성화*/
         if (IsPause == true)
         {
             Time.timeScale = 1;
@@ -127,8 +130,38 @@ public class Game_Control : MonoBehaviour
         Entry.transform.SetParent(BossEntryPos.transform);
     }
 
-    public void Stage1_Hub()
+    public void Result_Spawn() { Invoke("Game_Result", 3f); }
+    public void Game_Result() { Instantiate(Result); }
+    public void Game_ClearUI() 
     {
-
+        GameObject Over = Instantiate(ClearUI, BossEntryPos.position, Quaternion.identity);
+        Over.transform.SetParent(BossEntryPos);
+    }
+    public void Game_OverUI() 
+    {
+        GameObject Over = Instantiate(OverUI, BossEntryPos.position, Quaternion.identity);
+        Over.transform.SetParent(BossEntryPos);
+    }
+    public void ReStage()
+    {
+        switch (GameManager.GM.GM_branch)
+        {
+            case <= 10: Time.timeScale = 1; Loading_Manager.LoadScene("Stage1_Hub", Stage_Des); break;
+            case <= 20: Time.timeScale = 1; Loading_Manager.LoadScene("Stage2_Hub", Stage_Des); break;
+            case <= 30: Time.timeScale = 1; Loading_Manager.LoadScene("Stage3_Hub", Stage_Des); break;
+            case <= 40: Time.timeScale = 1; Loading_Manager.LoadScene("Stage4_Hub", Stage_Des); break;
+            case <= 50: Time.timeScale = 1; Loading_Manager.LoadScene("Stage5_Hub", Stage_Des); break;
+            case <= 60: Time.timeScale = 1;  Loading_Manager.LoadScene("Stage6_Hub", Stage_Des);break;
+        }
+    }
+    void STG_Excel()
+    {
+        for (int i = 0; i < RunGame_EX.StartSheet.Count; ++i)
+        {
+            if (RunGame_EX.StartSheet[i].STR_branch == branch)
+            {
+                Stage_Des = RunGame_EX.StartSheet[i].STR_description;
+            }
+        }
     }
 }

@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public float FM_time = 0f;
 
     // 스테이지 정보
+    [Header("스테이지 정보")]
+    public bool Game_Fail;
     public int[] stage_Max_Score;
 
     // 인게임 설정
@@ -29,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     public float Set_LifeScore = 0;
     public float LifeScore = 0;
-    public long CoinScore = 0;
+    public int CoinScore = 0;
 
     // 플레이어 설정
     [Header("플레이어 설정")]

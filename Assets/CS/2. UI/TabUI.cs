@@ -22,6 +22,6 @@ public class TabUI : MonoBehaviour
     }
     
     public void DesThis() { Destroy(GameWindow); }
-
     public void LoadLoby() { SceneManager.LoadScene("Mian_Loby_Scene"); }
+    public void LoadChapter() { SceneManager.LoadScene("Chapter_Hub"); }
 }

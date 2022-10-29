@@ -6,7 +6,7 @@ public class Button_CS : MonoBehaviour
     int branch;
     [SerializeField] RunGame_EX RunGame_EX;
 
-    [SerializeField] public string Stage_Des;
+    [SerializeField] string Stage_Des;
 
     void Start()
     {

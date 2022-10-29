@@ -1712,7 +1712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6355281875248042936, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DesThis
+      value: LoadChapter
       objectReference: {fileID: 0}
     - target: {fileID: 6355281875248042936, guid: c26a4211f3650824e984775241bfe3fc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
