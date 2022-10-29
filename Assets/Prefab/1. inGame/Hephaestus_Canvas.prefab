@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 1913493801980879620}
-  F_time: 0.5
+  F_time: 0.2
   FM_time: 0
   Floor_SpeedValue: 8
   BGI_SpeedValue: 4
@@ -207,19 +207,21 @@ MonoBehaviour:
   Set_Boss_HP: 1000
   Boss_HP: 1000
   Boss_Damage: 30
+  Boss_DIE: 0
   Player_Damage: 50
   Attack_Speed: 1
   GM_branch: 1
   GM_typingSpeed: 0.1
+  BGM_Value: 1
+  SFX_Value: 1
   Data:
+    key: g6hk83da6f2f183fkhj3p5b5n13gh
     GM_NickName: 
     GM_Level: 1
     GM_Money: 0
     GM_Goods: 0
     GM_EXE: 0
     GM_MAX_EXE: 0
-    BGM_Value: 1
-    SFX_Value: 1
 --- !u!114 &5804421593627872385
 MonoBehaviour:
   m_ObjectHideFlags: 0

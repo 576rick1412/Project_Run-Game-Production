@@ -164,27 +164,28 @@ public class Player_CS : MonoBehaviour
     {
         if (Onalive == false)
         {
-            if (collision.gameObject.CompareTag("Floor")) Foor_check = true;
-
             if (collision.gameObject.CompareTag("Floor"))
             {
+                Foor_check = true;
                 if (Foor_check == true)
                 {
-                    if (isSlide == false) { anime.SetInteger("Player_Value", 0); Platform_check = false; }
-                    if (isSlide == true) { anime.SetInteger("Player_Value", 1); Platform_check = false; }
+                    if (isSlide == false) { anime.SetInteger("Player_Value", 0); }
+                    if (isSlide == true) { anime.SetInteger("Player_Value", 1); }
                 }
+                Platform_check = false;
                 isJump = true;
                 isDoubleJump = true;
                 OnSlide = true;
             }
+
             if (collision.gameObject.CompareTag("Platform"))
             {
                 if (Platform_check == true)
                 {
-                    Debug.Log("슬라이드");
-                    if (isSlide == false) { anime.SetInteger("Player_Value", 0); Platform_check = false; }
-                    if (isSlide == true) { anime.SetInteger("Player_Value", 1); Platform_check = false; }
+                    if (isSlide == false) { anime.SetInteger("Player_Value", 0); }
+                    if (isSlide == true) { anime.SetInteger("Player_Value", 1);  }
                 }
+                Platform_check = false;
                 isJump = true;
                 isDoubleJump = true;
                 OnSlide = true;

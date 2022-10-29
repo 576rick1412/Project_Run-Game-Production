@@ -637,6 +637,10 @@ PrefabInstance:
       value: Hephaestus_Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
+      propertyPath: Panel
+      value: 
+      objectReference: {fileID: 1561697254}
+    - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
       propertyPath: F_time
       value: 0.2
       objectReference: {fileID: 0}
@@ -726,6 +730,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
+--- !u!114 &1561697254 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1913493801980879620, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
+  m_PrefabInstance: {fileID: 1561697253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1744196000
 GameObject:
   m_ObjectHideFlags: 0
