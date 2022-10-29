@@ -20,15 +20,15 @@ public class Obstacle_CS : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("End_Border"))
         {
-            //DestroyObstacle(); 풀링 / 제거
             Destroy(gameObject);
         }
         if (collision.gameObject.CompareTag("Player") && Player_CS.On_HIT == false)
         {
             GameManager.GM.LifeScore -= ObstacleDamage;
+            Debug.Log("adfsgd");
             Player_CS.On_HIT = true;
+            Player_CS.PL.OnCoroutine();
             Invoke("HIT_off", GameManager.GM.Invincibility_Time);
-            //gameObject.SetActive(false);
         }
     }
     void HIT_off()

@@ -24,6 +24,7 @@ public class Item_CS : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             GameManager.GM.LifeScore += 50;
+            if (GameManager.GM.LifeScore >= 100) GameManager.GM.LifeScore = 100;
             Destroy(gameObject);
         }
     }

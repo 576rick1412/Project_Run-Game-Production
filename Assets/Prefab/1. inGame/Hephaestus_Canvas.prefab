@@ -194,6 +194,7 @@ MonoBehaviour:
   Panel: {fileID: 1913493801980879620}
   F_time: 0.2
   FM_time: 0
+  stage_Max_Score: e0fd1c00e0fd1c00e0fd1c00e0fd1c00e0fd1c00e0fd1c00e0fd1c00e0fd1c00e0fd1c00e0fd1c00
   Floor_SpeedValue: 8
   BGI_SpeedValue: 4
   Set_LifeScore: 100
