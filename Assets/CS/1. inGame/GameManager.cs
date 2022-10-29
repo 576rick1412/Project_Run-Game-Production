@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     public float F_time = 0.5f;
     [HideInInspector] public float FM_time = 0f;
 
+    // 스테이지 정보
+    public int[] stage_Max_Score;
+
     // 인게임 설정
     [Header("인게임 설정")]
     public float Floor_SpeedValue = 6;

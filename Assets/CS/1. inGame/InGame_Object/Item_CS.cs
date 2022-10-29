@@ -18,14 +18,13 @@ public class Item_CS : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("End_Border"))
         {
-            gameObject.SetActive(false);
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
 
         if (collision.gameObject.CompareTag("Player"))
         {
             GameManager.GM.LifeScore += 50;
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

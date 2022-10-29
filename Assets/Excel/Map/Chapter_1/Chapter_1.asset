@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chapter_1
   m_EditorClassIdentifier: 
   Stage_1:
-  - CoinType: coin_1
+  - CoinType: HP
     CoinPos: 1
     CoinAmount: 10
     Obstacle: None
