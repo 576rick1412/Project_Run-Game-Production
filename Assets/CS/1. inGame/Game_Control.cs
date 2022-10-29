@@ -37,7 +37,7 @@ public class Game_Control : MonoBehaviour
     // ¿¢¼¿¿ë
     int branch;
     [SerializeField] RunGame_EX RunGame_EX;
-    [SerializeField] string Stage_Des;
+    string Stage_Des;
 
     bool GameOvercheck = false;
     bool IsPause; // ÀÏ½ÃÁ¤Áö
