@@ -22,10 +22,17 @@ public class Option_CS : MonoBehaviour
     [SerializeField, Range(1, 100)]
     private int size;
     [SerializeField] private Color color;
-    public bool OnLabal; 
+    public bool OnLabal;
+
+    [Header("음소거 아이콘")]
+    [SerializeField] GameObject BGM_On;
+    [SerializeField] GameObject BGM_Off;
+
+    [SerializeField] GameObject SFX_On;
+    [SerializeField] GameObject SFX_Off;
 
     private void Awake() 
-    { 
+    {
         anime = GetComponent<Animator>(); SettingCheck = true;
         SoundGraphic.SetActive(false);
         ALL_Button.SetActive(false);
@@ -34,6 +41,12 @@ public class Option_CS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.GM.BGM_Value <= 0) { BGM_On.SetActive(false); BGM_Off.SetActive(true); }
+        else { BGM_On.SetActive(true); BGM_Off.SetActive(false); }
+
+        if (GameManager.GM.SFX_Value <= 0) { SFX_On.SetActive(false); SFX_Off.SetActive(true); }
+        else { SFX_On.SetActive(true); SFX_Off.SetActive(false); }
+
         ReSetValue();
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
     }
@@ -56,8 +69,8 @@ public class Option_CS : MonoBehaviour
     public void SFXSlider(float value) { GameManager.GM.SFX_Value = value; }
 
     //public void ALLbutton() { GameManager.GM.All_Value = 0; }
-    public void BGMbutton() { GameManager.GM.BGM_Value = 0; }
-    public void SFXbutton() { GameManager.GM.SFX_Value = 0; }
+    public void BGMbutton() { GameManager.GM.BGM_Value = 0;  }
+    public void SFXbutton() { GameManager.GM.SFX_Value = 0;  }
 
     public void defaultSoundbutton() { GameManager.GM.SFX_Value = 1;
                                        GameManager.GM.BGM_Value = 1;}

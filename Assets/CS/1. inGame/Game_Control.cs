@@ -23,6 +23,8 @@ public class Game_Control : MonoBehaviour
 
     public bool BossAttack;
     [SerializeField] GameObject A_button;
+    public GameObject start_Icon;
+    public GameObject pause_Icon;
 
     [Header("UI")]
     public GameObject ClearUI;
@@ -34,6 +36,8 @@ public class Game_Control : MonoBehaviour
     {
         GC = this;
         PlayerType();
+
+        start_Icon.SetActive(false); pause_Icon.SetActive(true);
 
         ClearUI.SetActive(false);
         OverUI.SetActive(false);
@@ -61,8 +65,8 @@ public class Game_Control : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) { BossHub(); BossAttack = true; }
-        if (Boss_On == true) { BossHub(); BossAttack = true; Boss_On = false; }
+        if (Input.GetKeyDown(KeyCode.F)) { BossHub(); }
+        if (Boss_On == true) { Invoke("BossHub", 5f); Boss_On = false; }
 
         switch (BossAttack)
         {
@@ -87,14 +91,16 @@ public class Game_Control : MonoBehaviour
         {
             Time.timeScale = 0;
             Pause_Image.SetActive(true);
+            start_Icon.SetActive(true); pause_Icon.SetActive(false);
             IsPause = true; return;
         }
 
         /*일시정지?비활성화*/
         if (IsPause == true)
         {
-            Pause_Image.SetActive(false);
             Time.timeScale = 1;
+            Pause_Image.SetActive(false);
+            start_Icon.SetActive(false); pause_Icon.SetActive(true);
             IsPause = false; return;
         }
     }
@@ -109,6 +115,7 @@ public class Game_Control : MonoBehaviour
         }
         yield return new WaitForSeconds(3f);
         SpawnBoss();
+        BossAttack = true;
         yield return null;
     }
     void BossEnyryF()

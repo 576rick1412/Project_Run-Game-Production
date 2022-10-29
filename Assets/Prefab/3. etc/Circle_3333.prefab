@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4735797937802327822}
   - component: {fileID: 5651424185815583391}
   - component: {fileID: -4333545222144138846}
-  - component: {fileID: 2208632529607647724}
   - component: {fileID: -1233021278374380044}
+  - component: {fileID: 1811368476786801435}
   m_Layer: 0
   m_Name: Circle_3333
   m_TagString: Untagged
@@ -101,22 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetPoint: 3
   OnRelease: 0
---- !u!70 &2208632529607647724
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 372431934391721140}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.2, y: 1.2}
-  m_Direction: 0
 --- !u!50 &-1233021278374380044
 Rigidbody2D:
   serializedVersion: 4
@@ -138,3 +122,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &1811368476786801435
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372431934391721140}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1

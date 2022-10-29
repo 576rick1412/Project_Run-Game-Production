@@ -80,7 +80,7 @@ public class Player_CS : MonoBehaviour
             Onalive = true;
         }
 
-        if(Onalive == false) GameManager.GM.LifeScore -= Time.deltaTime * 2;
+        if(GameManager.GM.Boss_DIE == false && Onalive == false) GameManager.GM.LifeScore -= Time.deltaTime * 2;
 
         if (HIT_check == false && On_HIT == true)
         {
@@ -181,11 +181,9 @@ public class Player_CS : MonoBehaviour
             {
                 if (Platform_check == true)
                 {
-                    if (Foor_check == true)
-                    {
-                        if (isSlide == false) { anime.SetInteger("Player_Value", 0); Platform_check = false; }
-                        if (isSlide == true) { anime.SetInteger("Player_Value", 1); Platform_check = false; }
-                    }
+                    Debug.Log("ΩΩ∂Û¿ÃµÂ");
+                    if (isSlide == false) { anime.SetInteger("Player_Value", 0); Platform_check = false; }
+                    if (isSlide == true) { anime.SetInteger("Player_Value", 1); Platform_check = false; }
                 }
                 isJump = true;
                 isDoubleJump = true;
@@ -193,13 +191,18 @@ public class Player_CS : MonoBehaviour
             }
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Floor")) OnSlide = true;
+        if (collision.gameObject.CompareTag("Platform")) OnSlide = true;
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (Onalive == false)
         {
-            if (collision.gameObject.CompareTag("Floor")) Foor_check = false;
+            if (collision.gameObject.CompareTag("Floor")) { Foor_check = false; OnSlide = false; }
 
-            if (collision.gameObject.CompareTag("Platform")) { Platform_check = true; Foor_check = true; Debug.Log("≈ª√‚"); }
+            if (collision.gameObject.CompareTag("Platform")) { Platform_check = true; Foor_check = true; OnSlide = false; Debug.Log("≈ª√‚"); }
         }
     }
     IEnumerator HIT_Coroutine()

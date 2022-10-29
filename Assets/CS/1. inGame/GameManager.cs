@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     public float Set_Boss_HP;
     public float Boss_HP;
     public int Boss_Damage;
+    public bool Boss_DIE;
 
     // 공격 데미지 설정
     [Header("공격 데미지 설정")]

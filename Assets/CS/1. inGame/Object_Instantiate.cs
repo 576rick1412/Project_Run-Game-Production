@@ -197,22 +197,8 @@ public class Object_Instantiate : MonoBehaviour
                             // ====================================================================
                     }  // 内牢 积己
                 }
-
-                switch (Chapter_EX.Stage_1[Index].Obstacle)
-                {
-                    case "Obstacle_1": Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity); break;
-                }  // 厘局拱 积己
-
-
-                switch (Chapter_EX.Stage_1[Index].Platform)
-                {
-                    case "Platform_1":
-                        Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_1[Index].PlatformPos].position, Quaternion.identity);/*
-                        int OnPlatform = 0;
-                        if (OnPlatform > 11) { Instantiate(Instan_Platform, Instan_Pos[2].position, Quaternion.identity); OnPlatform = 0; }
-                        else OnPlatform++;*/ break;
-                }  // 惯魄 积己
-
+                if(Chapter_EX.Stage_1[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
+                if(Chapter_EX.Stage_1[Index].Platform != "None") Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_1[Index].PlatformPos].position, Quaternion.identity);
 
                 yield return new WaitForSeconds(Late_Time);
             }
