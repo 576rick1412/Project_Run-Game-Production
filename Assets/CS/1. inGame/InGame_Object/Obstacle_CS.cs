@@ -25,6 +25,7 @@ public class Obstacle_CS : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Player") && Player_CS.On_HIT == false)
         {
+            Debug.Log("¤±¤¤");
             GameManager.GM.LifeScore -= ObstacleDamage;
             Player_CS.On_HIT = true;
             Invoke("HIT_off", GameManager.GM.Invincibility_Time);

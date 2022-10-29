@@ -205,6 +205,7 @@ public class Object_Instantiate : MonoBehaviour
                 yield return new WaitForSeconds(Late_Time);
             }
             Index++;
+            CoinSkip = false;
             isMaker = false;
             yield return null;
         }
