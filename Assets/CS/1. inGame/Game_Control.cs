@@ -52,9 +52,9 @@ public class Game_Control : MonoBehaviour
         A_button.SetActive(false);
         Pause_Image.SetActive(false);
         IsPause = false;
-        GameManager.GM.LifeScore = GameManager.GM.Set_LifeScore;
-        GameManager.GM.CoinScore = 0;
-        GameManager.GM.Boss_HP = 0;
+        GameManager.GM.Data.LifeScore = GameManager.GM.Data.Set_LifeScore;
+        GameManager.GM.Data.CoinScore = 0;
+        GameManager.GM.Data.Boss_HP = 0;
 
         Game_End = false;
         Boss_On = false;
@@ -63,7 +63,7 @@ public class Game_Control : MonoBehaviour
 
     void PlayerType()
     {
-        switch (GameManager.GM.PlayerType)
+        switch (GameManager.GM.Data.PlayerType)
         {
             case "Player_1": SpanwPlayer = Player[0]; break;
         }
@@ -82,10 +82,11 @@ public class Game_Control : MonoBehaviour
             case false: A_button.SetActive(false); S_button.SetActive(true); break;
         }
 
-        HP_Bar.fillAmount = (GameManager.GM.LifeScore / GameManager.GM.Set_LifeScore);
-        Score.text = "점수 : " + (GameManager.GM.CoinScore == 0 ? 0 : CommaText(GameManager.GM.CoinScore).ToString());
+        HP_Bar.fillAmount = (GameManager.GM.Data.LifeScore / GameManager.GM.Data.Set_LifeScore);
+        Score.text = "점수 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
 
-        if (GameManager.GM.LifeScore <= 0 && GameOvercheck == false && Game_End == false) { GameManager.GM.Game_Fail = true; Game_OverUI(); Result_Spawn(); Game_End = true; }
+        if (GameManager.GM.Data.LifeScore <= 0 && GameOvercheck == false && Game_End == false) 
+        { GameManager.GM.Data.Game_Fail = false; Game_OverUI(); GameManager.GM.SavaData(); Result_Spawn(); Game_End = true;   }
     }
     public string CommaText(long Sccore) { return string.Format("{0:#,###}", Sccore); }
 
@@ -144,14 +145,28 @@ public class Game_Control : MonoBehaviour
     }
     public void ReStage()
     {
-        switch (GameManager.GM.GM_branch)
+        Time.timeScale = 1;
+        switch (GameManager.GM.Data.GM_branch)
         {
             case <= 10: Time.timeScale = 1; Loading_Manager.LoadScene("Stage1_Hub", Stage_Des); break;
             case <= 20: Time.timeScale = 1; Loading_Manager.LoadScene("Stage2_Hub", Stage_Des); break;
             case <= 30: Time.timeScale = 1; Loading_Manager.LoadScene("Stage3_Hub", Stage_Des); break;
             case <= 40: Time.timeScale = 1; Loading_Manager.LoadScene("Stage4_Hub", Stage_Des); break;
             case <= 50: Time.timeScale = 1; Loading_Manager.LoadScene("Stage5_Hub", Stage_Des); break;
-            case <= 60: Time.timeScale = 1;  Loading_Manager.LoadScene("Stage6_Hub", Stage_Des);break;
+            case <= 60: Time.timeScale = 1; Loading_Manager.LoadScene("Stage6_Hub", Stage_Des); break;
+        }
+    }
+    public void GoRetry()
+    {
+        Time.timeScale = 1;
+        switch (GameManager.GM.Data.GM_branch)
+        {
+            case <= 10: Loading_Manager.LoadScene("Proto_InGame_Scene", Stage_Des); break;
+            case <= 20: Loading_Manager.LoadScene("Stage2_Hub", Stage_Des); break;
+            case <= 30: Loading_Manager.LoadScene("Stage3_Hub", Stage_Des); break;
+            case <= 40: Loading_Manager.LoadScene("Stage4_Hub", Stage_Des); break;
+            case <= 50: Loading_Manager.LoadScene("Stage5_Hub", Stage_Des); break;
+            case <= 60: Loading_Manager.LoadScene("Stage6_Hub", Stage_Des); break;
         }
     }
     void STG_Excel()

@@ -12,26 +12,26 @@ public class Map_CS : MonoBehaviour
         switch(Map_str)
         {
             case "Floor":
-                transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0);
+                transform.Translate(-1 * GameManager.GM.Data.Floor_SpeedValue * Time.deltaTime, 0, 0);
                 if (transform.position.x <= endPos) transform.Translate(-1 * (endPos - startPos), 0, 0);
                 break;
             case "BGI_1":
-                transform.Translate(-1 * GameManager.GM.BGI_SpeedValue * Time.deltaTime, 0, 0);
+                transform.Translate(-1 * GameManager.GM.Data.BGI_SpeedValue * Time.deltaTime, 0, 0);
                 if (transform.position.x <= endPos) transform.Translate(-1 * (endPos - startPos), 0, 0);
                 break;
             case "BGI_2":
-                transform.Translate(-1 * GameManager.GM.BGI_SpeedValue * Time.deltaTime * 0.5f, 0, 0);
+                transform.Translate(-1 * GameManager.GM.Data.BGI_SpeedValue * Time.deltaTime * 0.5f, 0, 0);
                 if (transform.position.x <= endPos) transform.Translate(-1 * (endPos - startPos), 0, 0);
                 break;
             case "BGI_3":
-                transform.Translate(-1 * GameManager.GM.BGI_SpeedValue * Time.deltaTime * 0.2f, 0, 0);
+                transform.Translate(-1 * GameManager.GM.Data.BGI_SpeedValue * Time.deltaTime * 0.2f, 0, 0);
                 if (transform.position.x <= endPos) transform.Translate(-1 * (endPos - startPos), 0, 0);
                 break;
             case "Obstacle":
-                transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0);
+                transform.Translate(-1 * GameManager.GM.Data.Floor_SpeedValue * Time.deltaTime, 0, 0);
                 break;
             case "Platform":
-                transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0);
+                transform.Translate(-1 * GameManager.GM.Data.Floor_SpeedValue * Time.deltaTime, 0, 0);
                 break;
         }
     }

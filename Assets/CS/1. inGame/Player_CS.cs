@@ -59,7 +59,7 @@ public class Player_CS : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         this.colliders = GetComponents<BoxCollider2D>();
         anime = GetComponent<Animator>();
-        jumpHeight = GameManager.GM.PlayerJumpValue;
+        jumpHeight = GameManager.GM.Data.PlayerJumpValue;
     }
 
     void Update()
@@ -70,15 +70,15 @@ public class Player_CS : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift)) Slide_DAWN();
         if (Input.GetKeyUp(KeyCode.LeftShift)) Slide_UP();
 
-        if (GameManager.GM.LifeScore <= 0 && Onalive == false)
+        if (GameManager.GM.Data.LifeScore <= 0 && Onalive == false)
         {
             anime.SetInteger("Player_Value", 4);
-            GameManager.GM.Floor_SpeedValue = 0;
-            GameManager.GM.BGI_SpeedValue = 0;
+            GameManager.GM.Data.Floor_SpeedValue = 0;
+            GameManager.GM.Data.BGI_SpeedValue = 0;
             Onalive = true;
         }
 
-        if(GameManager.GM.Boss_DIE == false && Onalive == false) GameManager.GM.LifeScore -= Time.deltaTime * 2;
+        if(GameManager.GM.Data.Boss_DIE == false && Onalive == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
 
         
     }
@@ -201,7 +201,7 @@ public class Player_CS : MonoBehaviour
     {
         if (Onalive == false)
         {
-            for (int i = 0; i < GameManager.GM.Invincibility_Time * 10; i++)
+            for (int i = 0; i < GameManager.GM.Data.Invincibility_Time * 10; i++)
             {
                 if (i % 2 == 0) spriteRenderer.color = new Color32(255, 255, 255, 90);
                 else spriteRenderer.color = new Color32(255, 255, 255, 180);

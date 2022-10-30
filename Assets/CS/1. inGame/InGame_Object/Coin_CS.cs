@@ -8,7 +8,7 @@ public class Coin_CS : MonoBehaviour
     [SerializeField] private bool OnRelease; // 스폰 시 릴리즈 초기화 / 스타트 보더 지나가야함 - 지우지마!
 
 
-    void Awake() { OnRelease = false; CoinPoint = GameManager.GM.Coin_Point; }
+    void Awake() { OnRelease = false; CoinPoint = GameManager.GM.Data.Coin_Point; }
 
     private IObjectPool<Coin_CS> _CoinPool_1;
     private IObjectPool<Coin_CS> _CoinPool_2;
@@ -17,7 +17,7 @@ public class Coin_CS : MonoBehaviour
     public void Set_CoinPool_2(IObjectPool<Coin_CS> pool_2) { _CoinPool_2 = pool_2; }
     public void Set_CoinPool_3(IObjectPool<Coin_CS> pool_3) { _CoinPool_3 = pool_3; }
 
-    void Update() { transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0); }
+    void FixedUpdate() { transform.Translate(-1 * GameManager.GM.Data.Floor_SpeedValue * Time.smoothDeltaTime, 0, 0); }
 
     public void DestroyCoin_1() { if (OnRelease == false) { _CoinPool_1.Release(this); OnRelease = true; } }
     public void DestroyCoin_2() { if (OnRelease == false) { _CoinPool_2.Release(this); OnRelease = true; } }
@@ -43,7 +43,7 @@ public class Coin_CS : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.GM.CoinScore += CoinPoint;
+            GameManager.GM.Data.CoinScore += CoinPoint;
             Destroy();
         }
 

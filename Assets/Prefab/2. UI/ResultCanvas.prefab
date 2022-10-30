@@ -1398,7 +1398,7 @@ GameObject:
   - component: {fileID: 8925110402321795043}
   - component: {fileID: 8925110402321795068}
   m_Layer: 5
-  m_Name: Stage_Button
+  m_Name: Retry_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1509,7 +1509,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8925110402508120411}
         m_TargetAssemblyTypeName: Result_CS, Assembly-CSharp
-        m_MethodName: GoStage
+        m_MethodName: GoRetry
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1891,7 +1891,7 @@ GameObject:
   - component: {fileID: 8925110402867545106}
   - component: {fileID: 8925110402867545107}
   m_Layer: 5
-  m_Name: Go_Button
+  m_Name: Stage_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2002,7 +2002,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8925110402508120411}
         m_TargetAssemblyTypeName: Result_CS, Assembly-CSharp
-        m_MethodName: GoLoby
+        m_MethodName: GoStage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2794,7 +2794,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB85C\uBE44\uB85C \uB098\uAC00\uAE30"
+  m_text: "\uC2A4\uD14C\uC774\uC9C0 \uC120\uD0DD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: df8215759ab217c4f99dea58ae1048cc, type: 2}
   m_sharedMaterial: {fileID: -705147990838516386, guid: df8215759ab217c4f99dea58ae1048cc, type: 2}
@@ -3692,7 +3692,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD14C\uC774\uC9C0 \uC120\uD0DD"
+  m_text: "\uB2E4\uC2DC\uD558\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: df8215759ab217c4f99dea58ae1048cc, type: 2}
   m_sharedMaterial: {fileID: -705147990838516386, guid: df8215759ab217c4f99dea58ae1048cc, type: 2}

@@ -9,9 +9,9 @@ public class Item_CS : MonoBehaviour
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0);
+        transform.Translate(-1 * GameManager.GM.Data.Floor_SpeedValue * Time.smoothDeltaTime, 0, 0);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -23,8 +23,8 @@ public class Item_CS : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.GM.LifeScore += 50;
-            if (GameManager.GM.LifeScore >= 100) GameManager.GM.LifeScore = 100;
+            GameManager.GM.Data.LifeScore += 50;
+            if (GameManager.GM.Data.LifeScore >= 100) GameManager.GM.Data.LifeScore = 100;
             Destroy(gameObject);
         }
     }
