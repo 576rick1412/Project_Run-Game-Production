@@ -4286,6 +4286,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hephaestus_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
+      propertyPath: GM_branch
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
+      propertyPath: Obstacle_Damage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1913493802388220349, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4439,6 +4447,7 @@ MonoBehaviour:
   - {fileID: 372431934391721140, guid: 00ffb5518a8db5440934191f639fe545, type: 3}
   - {fileID: 372431934391721140, guid: 758690447bbe0a64cbfba2ebc00cfe4c, type: 3}
   - {fileID: 2885146297144334084, guid: 7666f8a2dc1d70742b9c5cf83f32379a, type: 3}
+  - {fileID: 428447929381322400, guid: 29b1824eead88624fb21b05effeaaf57, type: 3}
   Obstacle_Object:
   - {fileID: 988328085588476271, guid: 48b45c7ec1823364aac22ef4fc83e088, type: 3}
   - {fileID: 2921605665004880833, guid: aae42f0ef9acd5e4c946eaa94343d23d, type: 3}

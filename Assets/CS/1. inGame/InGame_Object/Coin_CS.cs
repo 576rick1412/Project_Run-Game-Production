@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -17,7 +18,11 @@ public class Coin_CS : MonoBehaviour
     public void Set_CoinPool_2(IObjectPool<Coin_CS> pool_2) { _CoinPool_2 = pool_2; }
     public void Set_CoinPool_3(IObjectPool<Coin_CS> pool_3) { _CoinPool_3 = pool_3; }
 
-    void Update() { transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0); }
+    void Update() 
+    {
+        if (SetPoint == 5) return;
+        transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0);
+    }
 
     public void DestroyCoin_1() { if (OnRelease == false) { _CoinPool_1.Release(this); OnRelease = true; } }
     public void DestroyCoin_2() { if (OnRelease == false) { _CoinPool_2.Release(this); OnRelease = true; } }
@@ -30,6 +35,8 @@ public class Coin_CS : MonoBehaviour
             case 1: DestroyCoin_1(); break;
             case 2: DestroyCoin_2(); break;
             case 3: DestroyCoin_3(); break;
+            case 4: Destroy(this.gameObject); break; // ÇÁ¸®ÆÕ Çãºê
+            case 5: Destroy(this.gameObject); break; 
         }
     }
     void OnTriggerEnter2D(Collider2D collision)

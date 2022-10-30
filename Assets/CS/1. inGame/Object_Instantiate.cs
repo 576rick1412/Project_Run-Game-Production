@@ -160,6 +160,7 @@ public class Object_Instantiate : MonoBehaviour
                 case "coin_2": Instan_Coin = Coin_Object[1]; break; // 코인 2
                 case "coin_3": Instan_Coin = Coin_Object[2]; break; // 코인 3
                 case "HP": Instan_Coin = Coin_Object[3]; break;    // HP 회복
+                case "Double": Instan_Coin = Coin_Object[4]; break;    // 더블코인 
             }
 
             switch (Chapter_EX.Stage_1[Index].Obstacle) // 장애물 지정
@@ -204,6 +205,8 @@ public class Object_Instantiate : MonoBehaviour
                         // ====================================================================
                         case "HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
                         // ====================================================================
+                        case "Double": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
                     }  // 코인 생성
                 }
                 if(Chapter_EX.Stage_1[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
@@ -230,6 +233,8 @@ public class Object_Instantiate : MonoBehaviour
                 case "coin_2": Instan_Coin = Coin_Object[1]; break; // 코인 2
                 case "coin_3": Instan_Coin = Coin_Object[2]; break; // 코인 3
                 case "HP": Instan_Coin = Coin_Object[3]; break;    // HP 회복
+                case "Double": Instan_Coin = Coin_Object[4]; break;    // 더블코인 
+
             }
 
             switch (Chapter_EX.Stage_2[Index].Obstacle) // 장애물 지정
@@ -273,7 +278,9 @@ public class Object_Instantiate : MonoBehaviour
                             Coin_3.transform.position = Instan_Pos[PosNum].position; break;
                         // ====================================================================
                         case "HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
-                            // ====================================================================
+                        // ====================================================================
+                        case "Double": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
                     }  // 코인 생성
                 }
                 if (Chapter_EX.Stage_2[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
