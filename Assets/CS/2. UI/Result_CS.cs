@@ -20,15 +20,16 @@ public class Result_CS : MonoBehaviour
     [SerializeField] string Stage_Des;
     void Awake()
     {
+        Time.timeScale = 1;
         branch = Random.Range(1, RunGame_EX.StartSheet.Count + 1); STG_Excel();
 
-        if (GameManager.GM.Game_Fail == false) Lose.SetActive(false);
-        else { Win.SetActive(false); }
+        if (GameManager.GM.Data.Game_Fail == false) Win.SetActive(false);
+        else { Lose.SetActive(false); }
 
-        Max_Score.text = "최대 점수 : " + (GameManager.GM.stage_Max_Score[GameManager.GM.GM_branch] == 0 ? 0 : 
-            CommaText(GameManager.GM.stage_Max_Score[GameManager.GM.GM_branch]).ToString());
+        Max_Score.text = "최대 점수 : " + (GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch] == 0 ? 0 : 
+            CommaText(GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch]).ToString());
 
-        Cur_Score.text = "현재 점수 : " + (GameManager.GM.CoinScore == 0 ? 0 : CommaText(GameManager.GM.CoinScore).ToString());
+        Cur_Score.text = "현재 점수 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
 
         Change_Score();
     }
@@ -43,10 +44,13 @@ public class Result_CS : MonoBehaviour
 
     void Change_Score()
     {
-        if(GameManager.GM.stage_Max_Score[GameManager.GM.GM_branch] < GameManager.GM.CoinScore)
+        if(GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch] < GameManager.GM.Data.CoinScore)
         {
+            GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch] = GameManager.GM.Data.CoinScore;
+            GameManager.GM.SavaData(); Debug.Log("신속저장!");
+
             Debug.Log("신기록 달성!!!!");
-            Invoke("NewRecord", 2f);
+            Invoke("NewRecord", 1f);
         }
     }
     void NewRecord()
@@ -54,16 +58,31 @@ public class Result_CS : MonoBehaviour
         Destroy(Max_Score);
         TextMeshProUGUI GoUp =  Instantiate(Cur_Window_GoUp, Cur_Score.transform.position,Quaternion.identity);
         GoUp.transform.SetParent(Score_Window.transform);
-        GoUp.text = "최대 점수 : " + (GameManager.GM.CoinScore == 0 ? 0 : CommaText(GameManager.GM.CoinScore).ToString());
-        GameManager.GM.stage_Max_Score[GameManager.GM.GM_branch] = GameManager.GM.CoinScore;
+        GoUp.text = "최대 점수 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
+        GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch] = GameManager.GM.Data.CoinScore;
     }
 
     public void GoLoby() { Loading_Manager.LoadScene("Mian_Loby_Scene", Stage_Des); }
     public void GoStage() 
-    { 
-        switch (GameManager.GM.GM_branch)
+    {
+        switch (GameManager.GM.Data.GM_branch)
         {
             case <= 10: Loading_Manager.LoadScene("Stage1_Hub", Stage_Des); break;
+            case <= 20: Loading_Manager.LoadScene("Stage2_Hub", Stage_Des); break;
+            case <= 30: Loading_Manager.LoadScene("Stage3_Hub", Stage_Des); break;
+            case <= 40: Loading_Manager.LoadScene("Stage4_Hub", Stage_Des); break;
+            case <= 50: Loading_Manager.LoadScene("Stage5_Hub", Stage_Des); break;
+            case <= 60: Loading_Manager.LoadScene("Stage6_Hub", Stage_Des); break;
+        }
+    }
+    public void GoRetry()
+    {
+        GameManager.GM.Data.Floor_SpeedValue = 6f;
+        GameManager.GM.Data.BGI_SpeedValue = 3f;
+        Time.timeScale = 1;
+        switch (GameManager.GM.Data.GM_branch)
+        {
+            case <= 10: Loading_Manager.LoadScene("Proto_InGame_Scene", Stage_Des); break;
             case <= 20: Loading_Manager.LoadScene("Stage2_Hub", Stage_Des); break;
             case <= 30: Loading_Manager.LoadScene("Stage3_Hub", Stage_Des); break;
             case <= 40: Loading_Manager.LoadScene("Stage4_Hub", Stage_Des); break;

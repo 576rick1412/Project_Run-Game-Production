@@ -41,10 +41,10 @@ public class Option_CS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.GM.BGM_Value <= 0) { BGM_On.SetActive(false); BGM_Off.SetActive(true); }
+        if (GameManager.GM.Data.BGM_Value <= 0) { BGM_On.SetActive(false); BGM_Off.SetActive(true); }
         else { BGM_On.SetActive(true); BGM_Off.SetActive(false); }
 
-        if (GameManager.GM.SFX_Value <= 0) { SFX_On.SetActive(false); SFX_Off.SetActive(true); }
+        if (GameManager.GM.Data.SFX_Value <= 0) { SFX_On.SetActive(false); SFX_Off.SetActive(true); }
         else { SFX_On.SetActive(true); SFX_Off.SetActive(false); }
 
         ReSetValue();
@@ -53,7 +53,7 @@ public class Option_CS : MonoBehaviour
 
     public void SettingUI_ON_OFF()
     {
-        switch(SettingCheck)
+        switch (SettingCheck)
         {
             case true: anime.SetInteger("SettingNum", 2); SettingCheck = true; SettingCheck = false; ALL_Button.SetActive(true); break;
             case false: anime.SetInteger("SettingNum", 1); SettingCheck = true; SettingCheck = true; ALL_Button.SetActive(false);break;
@@ -65,22 +65,21 @@ public class Option_CS : MonoBehaviour
 
 
     //public void ALLSlider(float value) { GameManager.GM.All_Value = value; }
-    public void BGMSlider(float value) { GameManager.GM.BGM_Value = value; }
-    public void SFXSlider(float value) { GameManager.GM.SFX_Value = value; }
+    public void BGMSlider(float value) { GameManager.GM.Data.BGM_Value = value; }
+    public void SFXSlider(float value) { GameManager.GM.Data.SFX_Value = value; }
 
     //public void ALLbutton() { GameManager.GM.All_Value = 0; }
-    public void BGMbutton() { GameManager.GM.BGM_Value = 0;  }
-    public void SFXbutton() { GameManager.GM.SFX_Value = 0;  }
+    public void BGMbutton() { GameManager.GM.Data.BGM_Value = 0;  }
+    public void SFXbutton() { GameManager.GM.Data.SFX_Value = 0;  }
 
-    public void defaultSoundbutton() { GameManager.GM.SFX_Value = 1;
-                                       GameManager.GM.BGM_Value = 1;}
+    public void defaultSoundbutton() { GameManager.GM.Data.SFX_Value = 1;
+                                       GameManager.GM.Data.BGM_Value = 1;}
 
 
+    public void FPS30() { Application.targetFrameRate = 30; }
     public void FPS60() { Application.targetFrameRate = 60; }
-    public void FPS120() { Application.targetFrameRate = 120; }
-    public void FPSFree() { Application.targetFrameRate = -1; }
     public void FPSLabal() { OnLabal = !OnLabal; }
-    public void defaultGraphicbutton() { FPSFree(); OnLabal = false; }
+    public void defaultGraphicbutton() { FPS30(); OnLabal = false; }
 
     private void OnGUI()
     {
@@ -99,8 +98,8 @@ public class Option_CS : MonoBehaviour
         }
     }
 
-    void ReSetValue() { BGM.value = GameManager.GM.BGM_Value; 
-                        SFX.value = GameManager.GM.SFX_Value; }
+    void ReSetValue() { BGM.value = GameManager.GM.Data.BGM_Value; 
+                        SFX.value = GameManager.GM.Data.SFX_Value; }
 
     /*
     void ReSetValue()

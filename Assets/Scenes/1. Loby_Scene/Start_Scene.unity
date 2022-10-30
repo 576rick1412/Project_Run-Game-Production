@@ -645,6 +645,34 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
+      propertyPath: Data.Boss_HP
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
+      propertyPath: Data.GM_branch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
+      propertyPath: Data.Boss_Damage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
+      propertyPath: Data.Set_Boss_HP
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
+      propertyPath: Data.Attack_Speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
+      propertyPath: Data.Player_Damage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
+      propertyPath: Data.Obstacle_Damage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
       propertyPath: stage_Max_Score.Array.size
       value: 10
       objectReference: {fileID: 0}
@@ -687,6 +715,10 @@ PrefabInstance:
     - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
       propertyPath: stage_Max_Score.Array.data[9]
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
+      propertyPath: Data.stage_Max_Score.Array.size
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1913493802388220349, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
       propertyPath: m_Pivot.x

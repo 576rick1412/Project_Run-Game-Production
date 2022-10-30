@@ -11,23 +11,23 @@ public class BossPattern_CS : MonoBehaviour
 
     void Start()
     {
-        PatternDamage = GameManager.GM.Boss_Damage;
+        PatternDamage = GameManager.GM.Data.Boss_Damage;
         Destroy(this.gameObject, 10f);
         
     }
 
     void Update()
     {
-        if (GameManager.GM.Boss_HP <= 0 || (Player_CS.Onalive == true && Player_CS.On_HIT == false)) Destroy(DesObj.gameObject);
+        if (GameManager.GM.Data.Boss_HP <= 0 || (Player_CS.Onalive == true && Player_CS.On_HIT == false)) Destroy(DesObj.gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && Player_CS.On_HIT == false)
         {
-            GameManager.GM.LifeScore -= PatternDamage;
+            GameManager.GM.Data.LifeScore -= PatternDamage;
             Player_CS.On_HIT = true;
             Player_CS.PL.OnCoroutine();
-            Invoke("HIT_off", GameManager.GM.Invincibility_Time);
+            Invoke("HIT_off", GameManager.GM.Data.Invincibility_Time);
             if (Type == "Bounce") Destroy(this.gameObject);
         }
 

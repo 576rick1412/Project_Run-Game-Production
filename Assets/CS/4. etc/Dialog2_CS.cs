@@ -33,7 +33,7 @@ public class Dialog2_CS : MonoBehaviour
 
     void Start()
     {
-        branch = GameManager.GM.GM_branch;
+        branch = GameManager.GM.Data.GM_branch;
         int index = 0;
         // 구조체에 대사 넣어주기
         for (int i = 0; i < RunGame_EX.DialogSheet.Count; ++i)
@@ -58,7 +58,7 @@ public class Dialog2_CS : MonoBehaviour
 
     void GameLoop()
     {
-        typingSpeed = GameManager.GM.GM_typingSpeed;
+        typingSpeed = GameManager.GM.Data.GM_typingSpeed;
 
         if (RunGame_EX.DialogSheet[DialogIndex].DIA_End == false)
         {

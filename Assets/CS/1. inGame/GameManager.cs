@@ -16,104 +16,102 @@ public class GameManager : MonoBehaviour
     //페이드 인 아웃
     [Header("페이드 인 아웃")]
     public Image Panel;
-    public float F_time = 0.5f;
+    public float F_time = 0.2f;
     [HideInInspector] public float FM_time = 0f;
 
-    // 스테이지 정보
-    [Header("스테이지 정보")]
-    public bool Game_Fail;
-    public int[] stage_Max_Score;
+    string FilePath;
+    void Awake(){GM = this; FilePath = Application.persistentDataPath + "/MainDB.txt"; }
+    public MainDB Data;
 
-    // 인게임 설정
-    [Header("인게임 설정")]
-    public float Floor_SpeedValue = 6;
-    public float BGI_SpeedValue = 3;
 
-    public float Set_LifeScore = 0;
-    public float LifeScore = 0;
-    public int CoinScore = 0;
-
-    // 플레이어 설정
-    [Header("플레이어 설정")]
-    public string PlayerType = "Player_1";
-    public float PlayerJumpValue = 6;
-    public float Invincibility_Time = 3f;
-
-    // 코인 설정
-    [Header("코인 설정")]
-    public int Coin_Point = 100;
-
-    // 장애물 데미지 설정
-    [Header("장애물 데미지 설정")]
-    public int Obstacle_Damage;
-
-    // 보스 설정
-    [Header("보스 설정")]
-    public float Set_Boss_HP;
-    public float Boss_HP;
-    public int Boss_Damage;
-    public bool Boss_DIE;
-
-    // 공격 데미지 설정
-    [Header("공격 데미지 설정")]
-    public int   Player_Damage;
-    public float Attack_Speed;
-
-    // 텍스트 설정
-    [Header("텍스트 설정")]
-    public int GM_branch;
-    public float GM_typingSpeed = 0.1f;
-
-    //소리 설정
-    [Header("소리 설정")]
-    //public float All_Value;
-    public float BGM_Value = 1;
-    public float SFX_Value = 1;
-
-    void Awake(){GM = this;}
-    public MainDB Data = new MainDB();
     void Start()
     {
-        Data.GM_NickName = "소드리우스";
-        Data.GM_Level = 1;
-        Data.GM_Money = 0;
-        Data.GM_Goods = 0;
-        Data.GM_EXE = 0;
-        Data.GM_MAX_EXE = 1000;
-        
-        //SavaData();
-        //LoadData();
+        Debug.Log(FilePath);
+        LoadData();
 
+    StartCoroutine(AutoSave()); // 5초마다 자동저장
+        
         Panel.gameObject.SetActive(false);
         var obj = FindObjectsOfType<GameManager>();
         if (obj.Length == 1) DontDestroyOnLoad(gameObject);
         else Destroy(gameObject);
     }
-
+    IEnumerator AutoSave()
+    {   for (; ; ) { 
+            SavaData(); Debug.Log("자동저장!");
+            yield return new WaitForSeconds(5);
+        }
+    }
     public void SavaData()
     {
         string key = Data.key;
         var save = JsonUtility.ToJson(Data);
-        save = Program.Encrypt(save, key);
-        
-        if (Application.platform == RuntimePlatform.Android)    // AOS 용
-            File.WriteAllText(Path.Combine("jar:file://" + Application.streamingAssetsPath, "/MainDB.json"), save);
-        else File.WriteAllText(Path.Combine(Application.streamingAssetsPath, "/MainDB.json"), save); // 에디터 용
 
+        save = Program.Encrypt(save, key);
+        File.WriteAllText(FilePath, save);
     }   // Json 저장
     public void LoadData()
     {
+        if(!File.Exists(FilePath)) { ResetMainDB();  return; }
+
         string key = Data.key;
-        var Onload = "";
+        var load = File.ReadAllText(FilePath);
 
-        if (Application.platform == RuntimePlatform.Android)    // AOS 용
-        { var load = File.ReadAllText(Path.Combine("jar:file://" + Application.streamingAssetsPath, "/MainDB.json")); Onload = load; }
-
-        else { var load = File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "/MainDB.json")); Onload = load; } // 에디터 용
-
-        Onload = Program.Decrypt(Onload, key);
-        Data = JsonUtility.FromJson<MainDB>(Onload);
+        load = Program.Decrypt(load, key);
+        Data = JsonUtility.FromJson<MainDB>(load);
     }   // Json 로딩
+    public void ResetMainDB()
+    {
+        Data = new MainDB();
+
+        Data.GM_NickName = "지스타2022";
+        Data.GM_Level = 1;
+        Data.GM_Money = 0;
+        Data.GM_Goods = 0;
+        Data.GM_EXE = 0;
+        Data.GM_MAX_EXE = 1000;
+
+        // 스테이지 정보
+        Data.Game_Fail = false;
+        for (int i = 0; i < Data.stage_Max_Score.Length; i++) Data.stage_Max_Score[i] = 0;
+        Data.Floor_SpeedValue = 6f;
+        Data.BGI_SpeedValue = 3f;
+
+        Data.Set_LifeScore = 100;
+        Data.CoinScore = 0;
+
+        // 플레이어 설정
+        Data.PlayerType = "Player_1";
+        Data.PlayerJumpValue = 15f;
+        Data.Invincibility_Time = 3f;
+
+        // 코인 설정
+        Data.Coin_Point = 100;
+
+        // 장애물 데미지 설정
+        Data.Obstacle_Damage = 30;
+
+        // 보스 설정
+        Data.Set_Boss_HP = 3000;
+        Data.Boss_Damage = 30;
+        Data.Boss_DIE = false;
+
+        // 공격 데미지 설정
+        Data.Player_Damage = 30;
+        Data.Attack_Speed = 1;
+
+        // 텍스트 설정
+        Data.GM_branch = 1;
+        Data.GM_typingSpeed = 0.1f;
+
+        //소리 설정
+        Data.BGM_Value = 1f;
+        Data.SFX_Value = 1f;
+
+
+        SavaData();
+        LoadData();
+    }
 
     public void Fade()
     {
@@ -234,6 +232,58 @@ public class MainDB
     public int GM_Goods = 0;
     public float GM_EXE = 0;
     public float GM_MAX_EXE = 1000;
+
+    // 스테이지 정보
+    [Header("스테이지 정보")]
+    public bool Game_Fail;
+    public int[] stage_Max_Score = new int[60 + 1];
+
+    // 인게임 설정
+    [Header("인게임 설정")]
+    public float Floor_SpeedValue = 6;
+    public float BGI_SpeedValue = 3;
+
+    public float Set_LifeScore = 0;
+    public float LifeScore = 0;
+    public int CoinScore = 0;
+
+    // 플레이어 설정
+    [Header("플레이어 설정")]
+    public string PlayerType = "Player_1";
+    public float PlayerJumpValue = 6;
+    public float Invincibility_Time = 3f;
+
+    // 코인 설정
+    [Header("코인 설정")]
+    public int Coin_Point = 100;
+
+    // 장애물 데미지 설정
+    [Header("장애물 데미지 설정")]
+    public int Obstacle_Damage;
+
+    // 보스 설정
+    [Header("보스 설정")]
+    public float Set_Boss_HP;
+    public float Boss_HP;
+    public int Boss_Damage;
+    public bool Boss_DIE;
+
+    // 공격 데미지 설정
+    [Header("공격 데미지 설정")]
+    public int Player_Damage;
+    public float Attack_Speed;
+
+    // 텍스트 설정
+    [Header("텍스트 설정")]
+    public int GM_branch;
+    public float GM_typingSpeed = 0.1f;
+
+    //소리 설정
+    [Header("소리 설정")]
+    //public float All_Value;
+    public float BGM_Value = 1;
+    public float SFX_Value = 1;
+
 }
 
 namespace AESWithJava.Con

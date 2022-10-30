@@ -130,7 +130,7 @@ public class Object_Instantiate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (GameManager.GM.GM_branch)
+        switch (GameManager.GM.Data.GM_branch)
         {
             case 1: if (Chapter_EX.Stage_1[Index].END == true && BossOn == false) { Game_Control.GC.Boss_On = true; BossOn = true; } break;
             case 2: if (Chapter_EX.Stage_2[Index].END == true && BossOn == false) { Game_Control.GC.Boss_On = true; BossOn = true; } break;
@@ -139,7 +139,7 @@ public class Object_Instantiate : MonoBehaviour
         }
       
     
-        switch (GameManager.GM.GM_branch)
+        switch (GameManager.GM.Data.GM_branch)
         {
             case 1: if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_1"); break;
             case 2: if (Chapter_EX.Stage_2[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_2"); break;

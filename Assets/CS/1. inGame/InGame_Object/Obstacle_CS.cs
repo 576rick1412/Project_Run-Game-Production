@@ -11,10 +11,10 @@ public class Obstacle_CS : MonoBehaviour
     public void Set_ObstaclePool(IObjectPool<Obstacle_CS> pool) {_ObstaclePool = pool;}
     public void DestroyObstacle() { _ObstaclePool.Release(this); }
 
-    void Start() {  ObstacleDamage = GameManager.GM.Obstacle_Damage; }
+    void Start() {  ObstacleDamage = GameManager.GM.Data.Obstacle_Damage; }
 
     // Update is called once per frame
-    void Update() { transform.Translate(-1 * GameManager.GM.Floor_SpeedValue * Time.deltaTime, 0, 0); }
+    void FixedUpdate() { transform.Translate(-1 * GameManager.GM.Data.Floor_SpeedValue * Time.smoothDeltaTime, 0, 0); }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,10 +25,10 @@ public class Obstacle_CS : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && Player_CS.On_HIT == false)
         {
             Debug.Log("Ãæµ¹");
-            GameManager.GM.LifeScore -= ObstacleDamage;
+            GameManager.GM.Data.LifeScore -= ObstacleDamage;
             Player_CS.On_HIT = true;
             Player_CS.PL.OnCoroutine();
-            Invoke("HIT_off", GameManager.GM.Invincibility_Time);
+            Invoke("HIT_off", GameManager.GM.Data.Invincibility_Time);
         }
     }
     void HIT_off()
