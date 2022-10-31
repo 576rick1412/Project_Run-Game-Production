@@ -7,17 +7,13 @@ public class Player_CS : MonoBehaviour
 {
     public static Player_CS PL;
 
-    bool HIT_check = false;
-    [SerializeField] bool Foor_check = false; // 바닥 확인
-    [SerializeField] bool Platform_check = false; // 플랫폼 확인
-    [SerializeField] bool isJump = false;
-    [SerializeField] bool isDoubleJump = false;
-    [SerializeField] bool isSlide = false; // 슬라이드 콜라이더 조정
+    [SerializeField] bool Jumping;
+    [SerializeField] bool DoubleJumping;
+    [SerializeField] bool Sliding;
 
-    bool OnSlide = false;   // 바닥에 붙어있는지 확인
-    public static bool On_HIT = false;
-    float jumpHeight;
-    public static bool Onalive;
+    [SerializeField] bool 바닥붙어있음 = false; // 바닥 확인
+    [SerializeField] bool 발판붙어있음 = false; // 플랫폼 확인
+
     [SerializeField] GameObject AttackObject;
 
 
@@ -25,11 +21,29 @@ public class Player_CS : MonoBehaviour
     SpriteRenderer spriteRenderer;
     [SerializeField] private BoxCollider2D[] colliders;
     Animator anime;
+    /*
+    [SerializeField] bool Foor_check = false; // 바닥 확인
+    [SerializeField] bool Platform_check = false; // 플랫폼 확인
+    */
+    public static bool Player_alive;
+    bool HIT_check = false;
+
+    float jumpHeight;
+
+    // ========= 다 갈아버릴 거 ===================
+    [SerializeField] bool isJump = false;
+    [SerializeField] bool isDoubleJump = false;
+    [SerializeField] bool isSlide = false; // 슬라이드 콜라이더 조정
+
+    bool OnSlide = false;   // 바닥에 붙어있는지 확인
+    public static bool On_HIT = false;
+    
+    //public static bool Onalive;
 
     private IObjectPool<Attack_CS> AttackPool;
     void Awake()
     {
-        PL = this; Onalive = false;
+        PL = this; Player_alive = false;
         AttackPool = new ObjectPool<Attack_CS>(Attack_Creat, Attack_Get, Attack_Releas, Attack_Destroy, maxSize: 20);
     }
 
@@ -55,6 +69,10 @@ public class Player_CS : MonoBehaviour
 
     void Start()
     {
+        Jumping = false;
+        DoubleJumping = false;
+        Sliding = false;
+
         rigid = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         this.colliders = GetComponents<BoxCollider2D>();
@@ -70,24 +88,20 @@ public class Player_CS : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift)) Slide_DAWN();
         if (Input.GetKeyUp(KeyCode.LeftShift)) Slide_UP();
 
-        if (GameManager.GM.Data.LifeScore <= 0 && Onalive == false)
+        if (GameManager.GM.Data.LifeScore <= 0 && Player_alive == false)
         {
-            anime.SetInteger("Player_Value", 4);
             GameManager.GM.Data.Floor_SpeedValue = 0;
             GameManager.GM.Data.BGI_SpeedValue = 0;
-            Onalive = true;
+            Player_alive = true;
         }
-
-        if(GameManager.GM.Data.Boss_DIE == false && Onalive == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
-
-        
+        if(GameManager.GM.Data.Boss_DIE == false && Player_alive == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
     }
 
     public void OnCoroutine() { if (HIT_check == false && On_HIT == true) { HIT_check = true; StartCoroutine("HIT_Coroutine"); } }
 
     void SetCollider()
     {
-        if (Onalive == false)
+        if (Player_alive == false)
         {
             switch (isSlide)
             {
@@ -104,7 +118,7 @@ public class Player_CS : MonoBehaviour
     }
     public void Jump()
     {
-        if (Onalive == false)
+        if (Player_alive == false)
         {
             OnSlide = false;
             if (isJump == true)
@@ -127,7 +141,7 @@ public class Player_CS : MonoBehaviour
 
     public void Slide_DAWN()
     {
-        if (Onalive == false)
+        if (Player_alive == false)
         {
             if (OnSlide == false) { isSlide = true; return; }
             isSlide = true;
@@ -136,7 +150,7 @@ public class Player_CS : MonoBehaviour
     }
     public void Slide_UP()
     {
-        if (Onalive == false)
+        if (Player_alive == false)
         {
             if (OnSlide == false) { isSlide = false; return; }
             isSlide = false;
@@ -145,7 +159,7 @@ public class Player_CS : MonoBehaviour
     }
     public void Attack()
     {
-        if (Onalive == false)
+        if (Player_alive == false)
         {
             var Attack = AttackPool.Get();
             Attack.transform.position = this.gameObject.transform.position;
@@ -153,53 +167,37 @@ public class Player_CS : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Onalive == false)
+        if (Player_alive == false)
         {
             if (collision.gameObject.CompareTag("Floor"))
             {
-                Foor_check = true;
-                if (Foor_check == true)
-                {
-                    if (isSlide == false) { anime.SetInteger("Player_Value", 0); }
-                    if (isSlide == true) { anime.SetInteger("Player_Value", 1); }
-                }
-                Platform_check = false;
-                isJump = true;
-                isDoubleJump = true;
-                OnSlide = true;
+
             }
 
             if (collision.gameObject.CompareTag("Platform"))
             {
-                if (Platform_check == true)
-                {
-                    if (isSlide == false) { anime.SetInteger("Player_Value", 0); }
-                    if (isSlide == true) { anime.SetInteger("Player_Value", 1);  }
-                }
-                Platform_check = false;
-                isJump = true;
-                isDoubleJump = true;
-                OnSlide = true;
+
             }
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Floor")) OnSlide = true;
-        if (collision.gameObject.CompareTag("Platform")) OnSlide = true;
-    }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (Onalive == false)
+        if (Player_alive == false)
         {
-            if (collision.gameObject.CompareTag("Floor")) { Foor_check = false; OnSlide = false; }
+            if (collision.gameObject.CompareTag("Floor")) 
+            { 
+                
+            }
 
-            if (collision.gameObject.CompareTag("Platform")) { Platform_check = true; Foor_check = true; OnSlide = false; Debug.Log("탈출"); }
+            if (collision.gameObject.CompareTag("Platform")) 
+            { 
+
+            }
         }
     }
     IEnumerator HIT_Coroutine()
     {
-        if (Onalive == false)
+        if (Player_alive == false)
         {
             for (int i = 0; i < GameManager.GM.Data.Invincibility_Time * 10; i++)
             {
