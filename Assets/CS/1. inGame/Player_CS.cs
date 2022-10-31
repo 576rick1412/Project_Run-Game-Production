@@ -7,38 +7,26 @@ public class Player_CS : MonoBehaviour
 {
     public static Player_CS PL;
 
-    [SerializeField] bool Jumping;
-    [SerializeField] bool DoubleJumping;
-    [SerializeField] bool Sliding;
+        public static bool Player_alive;
+    float jumpHeight;
+     bool Jumping;
+     bool DoubleJumping;
+     bool Sliding;
+     bool OnSlide; // 공중에서 슬라이드 버튼 눌렀을 때
 
-    [SerializeField] bool 바닥붙어있음 = false; // 바닥 확인
-    [SerializeField] bool 발판붙어있음 = false; // 플랫폼 확인
+     bool IsFloor = false; // 바닥 확인
+     bool IsPlatform = false; // 플랫폼 확인
 
     [SerializeField] GameObject AttackObject;
-
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     [SerializeField] private BoxCollider2D[] colliders;
     Animator anime;
-    /*
-    [SerializeField] bool Foor_check = false; // 바닥 확인
-    [SerializeField] bool Platform_check = false; // 플랫폼 확인
-    */
-    public static bool Player_alive;
-    bool HIT_check = false;
 
-    float jumpHeight;
 
-    // ========= 다 갈아버릴 거 ===================
-    [SerializeField] bool isJump = false;
-    [SerializeField] bool isDoubleJump = false;
-    [SerializeField] bool isSlide = false; // 슬라이드 콜라이더 조정
-
-    bool OnSlide = false;   // 바닥에 붙어있는지 확인
-    public static bool On_HIT = false;
-    
-    //public static bool Onalive;
+    bool HIT_check = false; // 코루틴 반복 방지용
+    public static bool On_HIT = false; // 피격 확인용
 
     private IObjectPool<Attack_CS> AttackPool;
     void Awake()
@@ -82,7 +70,7 @@ public class Player_CS : MonoBehaviour
 
     void Update()
     {
-        SetCollider();
+        AnimeControl();
         if (Input.GetKeyDown(KeyCode.Space)) Jump();
         if(Input.GetKeyDown(KeyCode.A)) Attack();
         if (Input.GetKeyDown(KeyCode.LeftShift)) Slide_DAWN();
@@ -103,7 +91,7 @@ public class Player_CS : MonoBehaviour
     {
         if (Player_alive == false)
         {
-            switch (isSlide)
+            switch (Sliding)
             {
                 case true: // 슬라이드 중
                     colliders[0].enabled = false;
@@ -116,47 +104,47 @@ public class Player_CS : MonoBehaviour
             }
         }
     }
+    void AnimeControl()
+    {
+        if ((IsFloor && !Sliding) || (IsPlatform && !Sliding))
+            anime.SetInteger                  ("Player_Value", 0);
+        if (Sliding) anime.SetInteger         ("Player_Value", 1); SetCollider();
+        if (Jumping) anime.SetInteger         ("Player_Value", 2);
+        if (DoubleJumping) anime.SetInteger   ("Player_Value", 3);
+        if (Player_alive) anime.SetInteger    ("Player_Value", 4);
+    }
     public void Jump()
     {
         if (Player_alive == false)
         {
-            OnSlide = false;
-            if (isJump == true)
-            {
-                rigid.velocity = Vector2.up * jumpHeight;
-                isJump = false;
-                anime.SetInteger("Player_Value", 2);
-                return;
-            }
-
-            if (isJump == false && isDoubleJump == true)
-            {
-                rigid.velocity = Vector2.up * jumpHeight;
-                isDoubleJump = false;
-                anime.SetInteger("Player_Value", 3);
-                return;
-            }
+            IsFloor = false; IsPlatform = false;
+            if (Jumping == false && DoubleJumping == false) { rigid.velocity = Vector2.up * jumpHeight; Jumping = true; return; }
+            if (Jumping == true && DoubleJumping == false) { rigid.velocity = Vector2.up * jumpHeight; DoubleJumping = true; return; }
         }
     }
-
-    public void Slide_DAWN()
+    public void Slide_DAWN() 
     {
         if (Player_alive == false)
         {
-            if (OnSlide == false) { isSlide = true; return; }
-            isSlide = true;
-            anime.SetInteger("Player_Value", 1);
+            // 바닥이나 발판에 붙을 째로 슬라이드 버튼을 누를 시 슬라이니 애니메이션이 나오도록
+            if ((Sliding == false && IsFloor) || (Sliding == false && IsPlatform)) Sliding = true;
+
+            // 점프상태일 때 버튼이 눌리면 바닥에 닿자마자 슬라이드 하도록
+            if ((Sliding == false && !IsFloor) || (Sliding == false && IsPlatform)) OnSlide = true;
         }
     }
     public void Slide_UP()
     {
         if (Player_alive == false)
         {
-            if (OnSlide == false) { isSlide = false; return; }
-            isSlide = false;
-            anime.SetInteger("Player_Value", 0);
+            IsFloor = true; IsPlatform = true;
+
+            // 슬라이드 중 해제 // 공중에서 슬라이드 버튼 누름 해제
+            Sliding = false; OnSlide = false;
+            
         }
     }
+
     public void Attack()
     {
         if (Player_alive == false)
@@ -171,29 +159,17 @@ public class Player_CS : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Floor"))
             {
+                if (OnSlide) { Sliding = true; OnSlide = false; }
+                else { IsFloor = true; IsPlatform = true; }
 
-            }
-
-            if (collision.gameObject.CompareTag("Platform"))
-            {
-
+                Jumping = false;
+                DoubleJumping = false;
             }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (Player_alive == false)
-        {
-            if (collision.gameObject.CompareTag("Floor")) 
-            { 
-                
-            }
 
-            if (collision.gameObject.CompareTag("Platform")) 
-            { 
-
-            }
-        }
     }
     IEnumerator HIT_Coroutine()
     {
