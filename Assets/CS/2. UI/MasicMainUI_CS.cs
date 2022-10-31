@@ -18,19 +18,32 @@ public class MasicMainUI_CS : MonoBehaviour
     public GameObject Inventory_pref;
     public GameObject Shop_pref;
     public GameObject Gamestart_pref;
+    public GameObject QuitScene_pref;
 
     private void Awake()
     {
-
+        QuitScene_pref.SetActive(false);
     }
     void Start()
     {
         StartCoroutine(UI_Renew_COR());
     }
 
+    private void Update()
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape)) OnQuit();
+        }
+    }
     public void OnInventory() { Instantiate(Inventory_pref); }
     public void OnShop() { Instantiate(Shop_pref); }
     public void OnGamestart() { Instantiate(Gamestart_pref); }
+
+    // 게임 종료
+    public void OnQuit() { QuitScene_pref.SetActive(true); }
+    public void QuitGame() { Application.Quit(); Debug.Log("게임 종료!"); }
+    public void QuitBack() { QuitScene_pref.SetActive(false); }
 
     IEnumerator UI_Renew_COR()
     {
