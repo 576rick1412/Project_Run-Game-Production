@@ -1550,6 +1550,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4953362299880890889, guid: 4cda11bae96120d489fa4318b40e747a, type: 3}
+      propertyPath: Stage_Name
+      value: 9 - 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4953362299880890894, guid: 4cda11bae96120d489fa4318b40e747a, type: 3}
       propertyPath: m_Name
       value: Stage_Button
@@ -1659,6 +1663,10 @@ PrefabInstance:
     - target: {fileID: 4953362299880890889, guid: 4cda11bae96120d489fa4318b40e747a, type: 3}
       propertyPath: Stage_Num
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953362299880890889, guid: 4cda11bae96120d489fa4318b40e747a, type: 3}
+      propertyPath: Stage_Name
+      value: 9 - 3
       objectReference: {fileID: 0}
     - target: {fileID: 4953362299880890889, guid: 4cda11bae96120d489fa4318b40e747a, type: 3}
       propertyPath: Information
@@ -1930,6 +1938,10 @@ PrefabInstance:
     - target: {fileID: 4953362299880890889, guid: 4cda11bae96120d489fa4318b40e747a, type: 3}
       propertyPath: Stage_Num
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953362299880890889, guid: 4cda11bae96120d489fa4318b40e747a, type: 3}
+      propertyPath: Stage_Name
+      value: 9 - 2
       objectReference: {fileID: 0}
     - target: {fileID: 4953362299880890889, guid: 4cda11bae96120d489fa4318b40e747a, type: 3}
       propertyPath: Information
