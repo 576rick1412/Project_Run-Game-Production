@@ -18,7 +18,7 @@ public class BossPattern_CS : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.GM.Data.Boss_HP <= 0 || (Player_CS.Player_alive == true && Player_CS.On_HIT == false)) Destroy(DesObj.gameObject);
+        if (GameManager.GM.Data.Boss_HP <= 0 || (Player_CS.Onalive == true && Player_CS.On_HIT == false)) Destroy(DesObj.gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

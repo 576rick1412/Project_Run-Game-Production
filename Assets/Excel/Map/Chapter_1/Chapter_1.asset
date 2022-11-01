@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 8
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3389,9 +3389,23 @@ MonoBehaviour:
     Platform: None
     PlatformPos: 0
     END: 0
-  - CoinType: coin_1
+  - CoinType: Double
     CoinPos: 1
-    CoinAmount: 2
+    CoinAmount: 5
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 2
+    CoinAmount: 4
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: HP
+    CoinPos: 1
+    CoinAmount: 1
     Obstacle: None
     Platform: None
     PlatformPos: 0
@@ -3592,7 +3606,140 @@ MonoBehaviour:
     Platform: None
     PlatformPos: 0
     END: 0
-  - CoinType: =======
+  - CoinType: coin_1
+    CoinPos: 3
+    CoinAmount: 2
+    Obstacle: Obstacle_2
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 1
+    CoinAmount: 4
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 2
+    CoinAmount: 2
+    Obstacle: Obstacle_1
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: Double
+    CoinPos: 1
+    CoinAmount: 4
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 4
+    CoinAmount: 2
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 2
+    CoinAmount: 5
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 1
+    CoinAmount: 3
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: Double_HP
+    CoinPos: 1
+    CoinAmount: 1
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 1
+    CoinAmount: 5
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 2
+    CoinAmount: 1
+    Obstacle: Obstacle_1
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 1
+    CoinAmount: 3
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 3
+    CoinAmount: 2
+    Obstacle: Obstacle_2
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 1
+    CoinAmount: 4
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 2
+    CoinAmount: 1
+    Obstacle: Obstacle_1
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 3
+    CoinAmount: 1
+    Obstacle: Obstacle_1
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 4
+    CoinAmount: 1
+    Obstacle: Obstacle_1
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 3
+    CoinAmount: 1
+    Obstacle: Obstacle_1
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 2
+    CoinAmount: 1
+    Obstacle: Obstacle_1
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 1
+    CoinAmount: 1
+    Obstacle: Obstacle_1
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: ====
     CoinPos: 0
     CoinAmount: 0
     Obstacle: 
