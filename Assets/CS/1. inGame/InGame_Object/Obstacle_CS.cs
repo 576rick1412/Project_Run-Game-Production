@@ -14,7 +14,7 @@ public class Obstacle_CS : MonoBehaviour
     void Start() {  ObstacleDamage = GameManager.GM.Data.Obstacle_Damage; }
 
     // Update is called once per frame
-    void FixedUpdate() { transform.Translate(-1 * GameManager.GM.Data.Floor_SpeedValue * Time.smoothDeltaTime, 0, 0); }
+    void Update() { transform.Translate(-1 * GameManager.GM.Data.Floor_SpeedValue * Time.deltaTime, 0, 0); }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

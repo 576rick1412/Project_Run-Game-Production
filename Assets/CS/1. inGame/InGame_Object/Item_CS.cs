@@ -9,7 +9,7 @@ public class Item_CS : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    void Update()
     {
         transform.Translate(-1 * GameManager.GM.Data.Floor_SpeedValue * Time.smoothDeltaTime, 0, 0);
     }

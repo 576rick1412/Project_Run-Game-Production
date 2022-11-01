@@ -7,7 +7,7 @@ public class Map_CS : MonoBehaviour
     [SerializeField]private string Map_str;
     [SerializeField]private float startPos;
     [SerializeField]private float endPos;
-    void FixedUpdate()
+    void Update()
     {
         switch(Map_str)
         {
