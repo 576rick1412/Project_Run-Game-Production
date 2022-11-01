@@ -42,7 +42,14 @@ public class MasicMainUI_CS : MonoBehaviour
 
     // 게임 종료
     public void OnQuit() { QuitScene_pref.SetActive(true); }
-    public void QuitGame() { Application.Quit(); Debug.Log("게임 종료!"); }
+    public void QuitGame() {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+        Debug.Log("게임 종료!"); 
+    }
     public void QuitBack() { QuitScene_pref.SetActive(false); }
 
     IEnumerator UI_Renew_COR()

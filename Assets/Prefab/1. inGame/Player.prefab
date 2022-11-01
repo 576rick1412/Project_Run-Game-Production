@@ -101,15 +101,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823bb075d14d01a4db7f5d239fb9d40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Foor_check: 0
-  Platform_check: 0
-  isJump: 0
-  isDoubleJump: 0
-  isSlide: 0
+  Player_alive: 0
   AttackObject: {fileID: 1062449043626448143, guid: c5f969c8b2e49c340bee3d6e297d6b4e, type: 3}
   colliders:
   - {fileID: 1794331761426619400}
   - {fileID: 1794331761426619401}
+  On_HIT: 0
 --- !u!50 &1794331761426619406
 Rigidbody2D:
   serializedVersion: 4
@@ -125,7 +122,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5.6
+  m_GravityScale: 5.4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
