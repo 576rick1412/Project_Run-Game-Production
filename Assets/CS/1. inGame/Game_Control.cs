@@ -86,7 +86,7 @@ public class Game_Control : MonoBehaviour
         Score.text = "Á¡¼ö : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
 
         if (GameManager.GM.Data.LifeScore <= 0 && GameOvercheck == false && Game_End == false) 
-        { GameManager.GM.Data.Game_Fail = false; Game_OverUI(); GameManager.GM.SavaData(); Result_Spawn(); Game_End = true;   }
+        { GameManager.GM.Data.Game_Fail = false; Game_OverUI(); GameManager.GM.SavaData(); Result_Spawn(); Game_End = true; }
     }
     public string CommaText(long Sccore) { return string.Format("{0:#,###}", Sccore); }
 

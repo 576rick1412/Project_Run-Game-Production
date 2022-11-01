@@ -74,8 +74,12 @@ public class GameManager : MonoBehaviour
         // 스테이지 정보
         Data.Game_Fail = false;
         for (int i = 0; i < Data.stage_Max_Score.Length; i++) Data.stage_Max_Score[i] = 0;
-        Data.Floor_SpeedValue = 10f;
-        Data.BGI_SpeedValue = 3f;
+
+        Data.Set_Floor_SpeedValue = 10f;
+        Data.Set_BGI_SpeedValue = 3f;
+
+        Data.Floor_SpeedValue = Data.Set_Floor_SpeedValue;
+        Data.BGI_SpeedValue = Data.Set_BGI_SpeedValue;
 
         Data.Set_LifeScore = 100;
         Data.LifeScore = 100;
@@ -241,6 +245,9 @@ public class MainDB
 
     // 인게임 설정
     [Header("인게임 설정")]
+    public float Set_Floor_SpeedValue = 6;
+    public float Set_BGI_SpeedValue = 3;
+
     public float Floor_SpeedValue = 6;
     public float BGI_SpeedValue = 3;
 

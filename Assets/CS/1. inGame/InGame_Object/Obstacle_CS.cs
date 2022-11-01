@@ -22,18 +22,18 @@ public class Obstacle_CS : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (collision.gameObject.CompareTag("Player") && Player_CS.On_HIT == false)
+        if (collision.gameObject.CompareTag("Player") && Player_CS.PL.On_HIT == false)
         {
             Debug.Log("충돌");
             GameManager.GM.Data.LifeScore -= ObstacleDamage;
-            Player_CS.On_HIT = true;
+            Player_CS.PL.On_HIT = true;
             Player_CS.PL.OnCoroutine();
             Invoke("HIT_off", GameManager.GM.Data.Invincibility_Time);
         }
     }
     void HIT_off()
     {
-        Player_CS.On_HIT = false;
+        Player_CS.PL.On_HIT = false;
         Debug.Log("무적 종료");
     }
 }

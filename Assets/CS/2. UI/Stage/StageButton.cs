@@ -23,11 +23,10 @@ public class StageButton : MonoBehaviour
         SI.Stage_Information.text = Stage_Information;
 
         SI.Stage_Num = Stage_Num;
-
         SI.Name = Stage_Name;
 
         SI.Stage_MaxScore.text = "최대 점수 : " + (GameManager.GM.Data.stage_Max_Score[Stage_Num] == 0 ? 0 :
-            CommaText(GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch]).ToString()); ;
+            CommaText(GameManager.GM.Data.stage_Max_Score[Stage_Num]).ToString()); ;
 
         SI.Information = Stage_Information;
 

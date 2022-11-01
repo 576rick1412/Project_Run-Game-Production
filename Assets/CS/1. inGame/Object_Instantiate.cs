@@ -149,7 +149,7 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_1()
     {
-        if (Player_CS.Player_alive == false)
+        if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
 
@@ -222,7 +222,7 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_2()
     {
-        if (Player_CS.Player_alive == false)
+        if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
 
@@ -297,7 +297,7 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_3()
     {
-        if (Player_CS.Player_alive == false)
+        if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
 

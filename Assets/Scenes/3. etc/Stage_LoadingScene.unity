@@ -265,9 +265,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'DM - 1
-
-'
+  m_text: DM - 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ccd58e53ab49b5f41a2cbf807440c726, type: 2}
   m_sharedMaterial: {fileID: -2251066448972568068, guid: ccd58e53ab49b5f41a2cbf807440c726, type: 2}
@@ -330,7 +328,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -21.248413, z: -655.0503, w: -97.81317}
+  m_margin: {x: 0.31329346, y: -21.248413, z: -388.59058, w: -97.81317}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -756,7 +754,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8, y: -150}
+  m_AnchoredPosition: {x: 8, y: -170}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1837741248
@@ -779,7 +777,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD14C\uC774\uC9C0 1\uBC88\uC785\uB2C8\uB2E4\n"
+  m_text: "\uC2A4\uD14C\uC774\uC9C0\uC5D0 \uB300\uD55C \uC124\uBA85\uC73C\uB85C\n\uAC00\uB4DD
+    \uCC28\uC788\uB294 \uC5C4\uCCAD\uB09C \uB0B4\uC6A9\uC758 \uAE00"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ccd58e53ab49b5f41a2cbf807440c726, type: 2}
   m_sharedMaterial: {fileID: -2251066448972568068, guid: ccd58e53ab49b5f41a2cbf807440c726, type: 2}
@@ -842,7 +841,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -1340.3777, w: -316.3679}
+  m_margin: {x: -7.5904846, y: 34.437073, z: -1340.3777, w: -287.4179}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

@@ -545,7 +545,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC8C\uC784\uC744 \uC885\uB8CC\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAC00?"
+  m_text: "\uAC8C\uC784\uC744 \uC885\uB8CC\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa201b7c5070660458025fb1af7a35b2, type: 2}
   m_sharedMaterial: {fileID: -705147990838516386, guid: aa201b7c5070660458025fb1af7a35b2, type: 2}
@@ -1198,7 +1198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6210050931600195263, guid: 77cec0aa34823cf44b5630e06aa5e4dd, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6210050931600195263, guid: 77cec0aa34823cf44b5630e06aa5e4dd, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4395,7 +4395,7 @@ RectTransform:
   - {fileID: 968383028}
   - {fileID: 695871406}
   m_Father: {fileID: 1832899248}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -4440,8 +4440,8 @@ RectTransform:
   m_Children:
   - {fileID: 1568511265}
   - {fileID: 346979203}
-  - {fileID: 1814460712}
   - {fileID: 669816881}
+  - {fileID: 1814460712}
   m_Father: {fileID: 1384984742}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

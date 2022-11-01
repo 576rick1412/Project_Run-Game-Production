@@ -7,8 +7,9 @@ public class Player_CS : MonoBehaviour
 {
     public static Player_CS PL;
 
-        public static bool Player_alive;
-    float jumpHeight;
+     public bool Player_alive;
+
+     float jumpHeight;
      bool Jumping;
      bool DoubleJumping;
      bool Sliding;
@@ -26,7 +27,7 @@ public class Player_CS : MonoBehaviour
 
 
     bool HIT_check = false; // 코루틴 반복 방지용
-    public static bool On_HIT = false; // 피격 확인용
+    public bool On_HIT = false; // 피격 확인용
 
     private IObjectPool<Attack_CS> AttackPool;
     void Awake()

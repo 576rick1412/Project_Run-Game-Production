@@ -77,8 +77,9 @@ public class Result_CS : MonoBehaviour
     }
     public void GoRetry()
     {
-        GameManager.GM.Data.Floor_SpeedValue = 10f;
-        GameManager.GM.Data.BGI_SpeedValue = 3f;
+        GameManager.GM.Data.Floor_SpeedValue = GameManager.GM.Data.Set_Floor_SpeedValue;
+        GameManager.GM.Data.BGI_SpeedValue = GameManager.GM.Data.Set_BGI_SpeedValue;
+
         GameManager.GM.Data.CoinScore = 0;
         Time.timeScale = 1;
         switch (GameManager.GM.Data.GM_branch)
