@@ -149,7 +149,7 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_1()
     {
-        if (Player_CS.Onalive == false)
+        if (Player_CS.Player_alive == false)
         {
             isMaker = true;
 
@@ -222,7 +222,7 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_2()
     {
-        if (Player_CS.Onalive == false)
+        if (Player_CS.Player_alive == false)
         {
             isMaker = true;
 
@@ -297,7 +297,7 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_3()
     {
-        if (Player_CS.Onalive == false)
+        if (Player_CS.Player_alive == false)
         {
             isMaker = true;
 
@@ -307,7 +307,7 @@ public class Object_Instantiate : MonoBehaviour
                 case "coin_1": Instan_Coin = Coin_Object[0]; break; // 코인 1
                 case "coin_2": Instan_Coin = Coin_Object[1]; break; // 코인 2
                 case "coin_3": Instan_Coin = Coin_Object[2]; break; // 코인 3
-                case "HP": Instan_Coin = Coin_Object[3]; break;    // HP 회복
+                case "HP":     Instan_Coin = Coin_Object[3]; break;    // HP 회복
                 case "Double": Instan_Coin = Coin_Object[4]; break;    // 더블코인 
 
             }
