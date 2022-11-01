@@ -7,6 +7,7 @@ using TMPro;
 public class Stage_Info : MonoBehaviour
 {
     public TextMeshProUGUI Stage_Name;
+    public TextMeshProUGUI Stage_MaxScore;
     public TextMeshProUGUI Stage_Information;
 
     [Header("≈ÿΩ∫∆Æ")]

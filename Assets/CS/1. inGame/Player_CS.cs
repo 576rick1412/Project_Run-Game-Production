@@ -7,29 +7,31 @@ public class Player_CS : MonoBehaviour
 {
     public static Player_CS PL;
 
-    bool HIT_check = false;
-    [SerializeField] bool Foor_check = false; // 바닥 확인
-    [SerializeField] bool Platform_check = false; // 플랫폼 확인
-    [SerializeField] bool isJump = false;
-    [SerializeField] bool isDoubleJump = false;
-    [SerializeField] bool isSlide = false; // 슬라이드 콜라이더 조정
-
-    bool OnSlide = false;   // 바닥에 붙어있는지 확인
-    public static bool On_HIT = false;
+        public static bool Player_alive;
     float jumpHeight;
-    public static bool Onalive;
-    [SerializeField] GameObject AttackObject;
+     bool Jumping;
+     bool DoubleJumping;
+     bool Sliding;
+     bool OnSlide; // 공중에서 슬라이드 버튼 눌렀을 때
 
+     bool IsFloor = false; // 바닥 확인
+     bool IsPlatform = false; // 플랫폼 확인
+
+    [SerializeField] GameObject AttackObject;
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     [SerializeField] private BoxCollider2D[] colliders;
     Animator anime;
 
+
+    bool HIT_check = false; // 코루틴 반복 방지용
+    public static bool On_HIT = false; // 피격 확인용
+
     private IObjectPool<Attack_CS> AttackPool;
     void Awake()
     {
-        PL = this; Onalive = false;
+        PL = this; Player_alive = false;
         AttackPool = new ObjectPool<Attack_CS>(Attack_Creat, Attack_Get, Attack_Releas, Attack_Destroy, maxSize: 20);
     }
 
@@ -55,6 +57,10 @@ public class Player_CS : MonoBehaviour
 
     void Start()
     {
+        Jumping = false;
+        DoubleJumping = false;
+        Sliding = false;
+
         rigid = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         this.colliders = GetComponents<BoxCollider2D>();
@@ -64,32 +70,28 @@ public class Player_CS : MonoBehaviour
 
     void Update()
     {
-        SetCollider();
+        AnimeControl();
         if (Input.GetKeyDown(KeyCode.Space)) Jump();
-        if (Input.GetKeyDown(KeyCode.A)) Attack();
+        if(Input.GetKeyDown(KeyCode.A)) Attack();
         if (Input.GetKeyDown(KeyCode.LeftShift)) Slide_DAWN();
         if (Input.GetKeyUp(KeyCode.LeftShift)) Slide_UP();
 
-        if (GameManager.GM.Data.LifeScore <= 0 && Onalive == false)
+        if (GameManager.GM.Data.LifeScore <= 0 && Player_alive == false)
         {
-            anime.SetInteger("Player_Value", 4);
             GameManager.GM.Data.Floor_SpeedValue = 0;
             GameManager.GM.Data.BGI_SpeedValue = 0;
-            Onalive = true;
+            Player_alive = true;
         }
-
-        if (GameManager.GM.Data.Boss_DIE == false && Onalive == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
-
-
+        if(GameManager.GM.Data.Boss_DIE == false && Player_alive == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
     }
 
     public void OnCoroutine() { if (HIT_check == false && On_HIT == true) { HIT_check = true; StartCoroutine("HIT_Coroutine"); } }
 
     void SetCollider()
     {
-        if (Onalive == false)
+        if (Player_alive == false)
         {
-            switch (isSlide)
+            switch (Sliding)
             {
                 case true: // 슬라이드 중
                     colliders[0].enabled = false;
@@ -102,50 +104,50 @@ public class Player_CS : MonoBehaviour
             }
         }
     }
+    void AnimeControl()
+    {
+        if ((IsFloor && !Sliding) || (IsPlatform && !Sliding))
+            anime.SetInteger                  ("Player_Value", 0);
+        if (Sliding) anime.SetInteger         ("Player_Value", 1); SetCollider();
+        if (Jumping) anime.SetInteger         ("Player_Value", 2);
+        if (DoubleJumping) anime.SetInteger   ("Player_Value", 3);
+        if (Player_alive) anime.SetInteger    ("Player_Value", 4);
+    }
     public void Jump()
     {
-        if (Onalive == false)
+        if (Player_alive == false)
         {
-            OnSlide = false;
-            if (isJump == true)
-            {
-                rigid.velocity = Vector2.up * jumpHeight;
-                isJump = false;
-                anime.SetInteger("Player_Value", 2);
-                return;
-            }
-
-            if (isJump == false && isDoubleJump == true)
-            {
-                rigid.velocity = Vector2.up * jumpHeight;
-                isDoubleJump = false;
-                anime.SetInteger("Player_Value", 3);
-                return;
-            }
+            IsFloor = false; IsPlatform = false;
+            if (Jumping == false && DoubleJumping == false) { rigid.velocity = Vector2.up * jumpHeight; Jumping = true; return; }
+            if (Jumping == true && DoubleJumping == false) { rigid.velocity = Vector2.up * jumpHeight; DoubleJumping = true; return; }
         }
     }
-
-    public void Slide_DAWN()
+    public void Slide_DAWN() 
     {
-        if (Onalive == false)
+        if (Player_alive == false)
         {
-            if (OnSlide == false) { isSlide = true; return; }
-            isSlide = true;
-            anime.SetInteger("Player_Value", 1);
+            // 바닥이나 발판에 붙을 째로 슬라이드 버튼을 누를 시 슬라이니 애니메이션이 나오도록
+            if ((Sliding == false && IsFloor) || (Sliding == false && IsPlatform)) Sliding = true;
+
+            // 점프상태일 때 버튼이 눌리면 바닥에 닿자마자 슬라이드 하도록
+            if ((Sliding == false && !IsFloor) || (Sliding == false && IsPlatform)) OnSlide = true;
         }
     }
     public void Slide_UP()
     {
-        if (Onalive == false)
+        if (Player_alive == false)
         {
-            if (OnSlide == false) { isSlide = false; return; }
-            isSlide = false;
-            anime.SetInteger("Player_Value", 0);
+            IsFloor = true; IsPlatform = true;
+
+            // 슬라이드 중 해제 // 공중에서 슬라이드 버튼 누름 해제
+            Sliding = false; OnSlide = false;
+            
         }
     }
+
     public void Attack()
     {
-        if (Onalive == false)
+        if (Player_alive == false)
         {
             var Attack = AttackPool.Get();
             Attack.transform.position = this.gameObject.transform.position;
@@ -153,53 +155,25 @@ public class Player_CS : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Onalive == false)
+        if (Player_alive == false)
         {
             if (collision.gameObject.CompareTag("Floor"))
             {
-                Foor_check = true;
-                if (Foor_check == true)
-                {
-                    if (isSlide == false) { anime.SetInteger("Player_Value", 0); }
-                    if (isSlide == true) { anime.SetInteger("Player_Value", 1); }
-                }
-                Platform_check = false;
-                isJump = true;
-                isDoubleJump = true;
-                OnSlide = true;
-            }
+                if (OnSlide) { Sliding = true; OnSlide = false; }
+                else { IsFloor = true; IsPlatform = true; }
 
-            if (collision.gameObject.CompareTag("Platform"))
-            {
-                if (Platform_check == true)
-                {
-                    if (isSlide == false) { anime.SetInteger("Player_Value", 0); }
-                    if (isSlide == true) { anime.SetInteger("Player_Value", 1); }
-                }
-                Platform_check = false;
-                isJump = true;
-                isDoubleJump = true;
-                OnSlide = true;
+                Jumping = false;
+                DoubleJumping = false;
             }
         }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Floor")) OnSlide = true;
-        if (collision.gameObject.CompareTag("Platform")) OnSlide = true;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (Onalive == false)
-        {
-            if (collision.gameObject.CompareTag("Floor")) { Foor_check = false; OnSlide = false; }
 
-            if (collision.gameObject.CompareTag("Platform")) { Platform_check = true; Foor_check = true; OnSlide = false; Debug.Log("탈출"); }
-        }
     }
     IEnumerator HIT_Coroutine()
     {
-        if (Onalive == false)
+        if (Player_alive == false)
         {
             for (int i = 0; i < GameManager.GM.Data.Invincibility_Time * 10; i++)
             {

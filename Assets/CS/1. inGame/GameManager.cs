@@ -74,10 +74,11 @@ public class GameManager : MonoBehaviour
         // 스테이지 정보
         Data.Game_Fail = false;
         for (int i = 0; i < Data.stage_Max_Score.Length; i++) Data.stage_Max_Score[i] = 0;
-        Data.Floor_SpeedValue = 6f;
+        Data.Floor_SpeedValue = 10f;
         Data.BGI_SpeedValue = 3f;
 
         Data.Set_LifeScore = 100;
+        Data.LifeScore = 100;
         Data.CoinScore = 0;
 
         // 플레이어 설정

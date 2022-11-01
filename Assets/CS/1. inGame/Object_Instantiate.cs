@@ -301,7 +301,7 @@ public class Object_Instantiate : MonoBehaviour
         {
             isMaker = true;
 
-            switch (Chapter_EX.Stage_2[Index].CoinType) // 코인 지정
+            switch (Chapter_EX.Stage_3[Index].CoinType) // 코인 지정
             {
                 case "None": CoinSkip = true; break;                // 코인 생성 없음
                 case "coin_1": Instan_Coin = Coin_Object[0]; break; // 코인 1
@@ -312,14 +312,14 @@ public class Object_Instantiate : MonoBehaviour
 
             }
 
-            switch (Chapter_EX.Stage_2[Index].Obstacle) // 장애물 지정
+            switch (Chapter_EX.Stage_3[Index].Obstacle) // 장애물 지정
             {
                 case "Obstacle_1": Instan_Obstacle = Obstacle_Object[0]; break; // 점프 장애물
                 case "Obstacle_2": Instan_Obstacle = Obstacle_Object[1]; break; // 더블점프 장애물
                 case "Obstacle_3": Instan_Obstacle = Obstacle_Object[2]; break; // 슬라이드 장애물
             }
 
-            switch (Chapter_EX.Stage_2[Index].Platform) // 발판 지정
+            switch (Chapter_EX.Stage_3[Index].Platform) // 발판 지정
             {
                 case "Platform_1": Instan_Platform = Platform_Object[0]; break; // 발판
                 case "Platform_2": Instan_Platform = Platform_Object[1]; break; // 발판
@@ -330,13 +330,13 @@ public class Object_Instantiate : MonoBehaviour
             /*if (Chapter_EX.Stage_1[Index].Platform != "None")
                 Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_1[Index].PlatformPos].position, Quaternion.identity);*/
 
-            PosNum = Chapter_EX.Stage_2[Index].CoinPos; // 코인 높이값 지정
-            Amount = Chapter_EX.Stage_2[Index].CoinAmount;
+            PosNum = Chapter_EX.Stage_3[Index].CoinPos; // 코인 높이값 지정
+            Amount = Chapter_EX.Stage_3[Index].CoinAmount;
             for (int i = 0; i < Amount; i++) // 코인 개수만큼 반복
             {
                 if (CoinSkip == false) // { yield return new WaitForSeconds(Late_Time); continue; }
                 {
-                    switch (Chapter_EX.Stage_2[Index].CoinType)
+                    switch (Chapter_EX.Stage_3[Index].CoinType)
                     {
                         case "None": break;
                         // ====================================================================
@@ -358,8 +358,8 @@ public class Object_Instantiate : MonoBehaviour
                             // ====================================================================
                     }  // 코인 생성
                 }
-                if (Chapter_EX.Stage_2[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
-                if (Chapter_EX.Stage_2[Index].Platform != "None") Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_2[Index].PlatformPos].position, Quaternion.identity);
+                if (Chapter_EX.Stage_3[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
+                if (Chapter_EX.Stage_3[Index].Platform != "None") Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_3[Index].PlatformPos].position, Quaternion.identity);
 
                 yield return new WaitForSeconds(Late_Time);
             }
