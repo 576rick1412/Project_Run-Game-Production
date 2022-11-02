@@ -132,7 +132,7 @@ public class Game_Control : MonoBehaviour
     }
 
     public void Result_Spawn() { Invoke("Game_Result", 3f); }
-    public void Game_Result() { Instantiate(Result); }
+    void Game_Result() { Instantiate(Result); }
     public void Game_ClearUI() 
     {
         GameObject Over = Instantiate(ClearUI, BossEntryPos.position, Quaternion.identity);

@@ -126,25 +126,38 @@ public class Object_Instantiate : MonoBehaviour
     {
         BossOn = false;
     }
-
+    void GameEnd()
+    {
+        Game_Control.GC.BossAttack = false; Game_Control.GC.Game_ClearUI(); Game_Control.GC.Game_End = true; GameManager.GM.SavaData();
+        GameManager.GM.Data.Game_Fail = true; Game_Control.GC.Result_Spawn();
+    }
     // Update is called once per frame
     void Update()
     {
         switch (GameManager.GM.Data.GM_branch)
         {
-            case 1: if (Chapter_EX.Stage_1[Index].END == true && BossOn == false) { Game_Control.GC.Boss_On = true; BossOn = true; } break;
-            case 2: if (Chapter_EX.Stage_2[Index].END == true && BossOn == false) { Game_Control.GC.Boss_On = true; BossOn = true; } break;
-            case 3: if (Chapter_EX.Stage_3[Index].END == true && BossOn == false) { Game_Control.GC.Boss_On = true; BossOn = true; } break;
-            case 4: if (Chapter_EX.Stage_4[Index].END == true && BossOn == false) { Game_Control.GC.Boss_On = true; BossOn = true; } break;
+            case 1: if (Chapter_EX.Stage_1[Index].END == true && BossOn == false) { Invoke("GameEnd",4f); BossOn = true;} break;
+            case 2: if (Chapter_EX.Stage_2[Index].END == true && BossOn == false) { Invoke("GameEnd",4f); BossOn = true;} break;
+            case 3: if (Chapter_EX.Stage_3[Index].END == true && BossOn == false) { Invoke("GameEnd",4f); BossOn = true;} break;
+            case 4: if (Chapter_EX.Stage_4[Index].END == true && BossOn == false) { Invoke("GameEnd",4f); BossOn = true;} break;
+            case 5: if (Chapter_EX.Stage_5[Index].END == true && BossOn == false) { Invoke("GameEnd",4f); BossOn = true;} break;
+            case 6: if (Chapter_EX.Stage_6[Index].END == true && BossOn == false) { Invoke("GameEnd",4f); BossOn = true;} break;
+            case 7: if (Chapter_EX.Stage_7[Index].END == true && BossOn == false) { Invoke("GameEnd",4f); BossOn = true;} break;
+            case 8: if (Chapter_EX.Stage_8[Index].END == true && BossOn == false) { Invoke("GameEnd",4f); BossOn = true;} break;
+            case 9: if (Chapter_EX.Stage_9[Index].END == true && BossOn == false) { Invoke("GameEnd",4f); BossOn = true;} break;
+            case 10:if (Chapter_EX.Stage_10[Index].END == true && BossOn == false) 
+                { Game_Control.GC.Boss_On = true; BossOn = true; } break;
         }
       
-    
         switch (GameManager.GM.Data.GM_branch)
         {
-            case 1: if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_1"); break;
-            case 2: if (Chapter_EX.Stage_2[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_2"); break;
-            case 3: if (Chapter_EX.Stage_3[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_3"); break;
-            case 4: if (Chapter_EX.Stage_4[Index].END == false) if (isMaker == false) StartCoroutine("Coin_Maker_4"); break;
+            case 1: if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) {Debug.Log(Index); StartCoroutine("Coin_Maker_1"); } break;
+            case 2: if (Chapter_EX.Stage_2[Index].END == false) if (isMaker == false) {Debug.Log(Index); StartCoroutine("Coin_Maker_2"); } break;
+            case 3: if (Chapter_EX.Stage_3[Index].END == false) if (isMaker == false) {Debug.Log(Index); StartCoroutine("Coin_Maker_3"); } break;
+            case 4: if (Chapter_EX.Stage_4[Index].END == false) if (isMaker == false) {Debug.Log(Index); StartCoroutine("Coin_Maker_4"); } break;
+            case 5: if (Chapter_EX.Stage_5[Index].END == false) if (isMaker == false) {Debug.Log(Index); StartCoroutine("Coin_Maker_5"); } break;
+            case 6: if (Chapter_EX.Stage_6[Index].END == false) if (isMaker == false) {Debug.Log(Index); StartCoroutine("Coin_Maker_6"); } break;
+            case 7: if (Chapter_EX.Stage_7[Index].END == false) if (isMaker == false) {Debug.Log(Index); StartCoroutine("Coin_Maker_7"); } break;
         }
     }
     IEnumerator Coin_Maker_1()
@@ -376,7 +389,7 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_4()
     {
-        if (Player_CS.Player_alive == false)
+        if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
 
@@ -452,7 +465,7 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_5()
     {
-        if (Player_CS.Player_alive == false)
+        if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
 
@@ -528,7 +541,7 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_6()
     {
-        if (Player_CS.Player_alive == false)
+        if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
 
@@ -604,7 +617,7 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_7()
     {
-        if (Player_CS.Player_alive == false)
+        if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
 
@@ -680,7 +693,7 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_8()
     {
-        if (Player_CS.Player_alive == false)
+        if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
 
@@ -756,7 +769,7 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_9()
     {
-        if (Player_CS.Player_alive == false)
+        if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
 
@@ -832,7 +845,7 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_10()
     {
-        if (Player_CS.Player_alive == false)
+        if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
 

@@ -40,15 +40,10 @@ public class Stage_Info : MonoBehaviour
 
     public void GameStart()
     {
-        GameManager.GM.Data.Floor_SpeedValue = 8f;
-        GameManager.GM.Data.BGM_Value = 4f;
-        switch (Stage_Num)
-        {
-            case 1: GameManager.GM.Data.GM_branch = 1; break;
-            case 2: GameManager.GM.Data.GM_branch = 2; break;
-            case 3: GameManager.GM.Data.GM_branch = 3; break;
-            case 4: GameManager.GM.Data.GM_branch = 4; break;
-        }
+        GameManager.GM.Data.Floor_SpeedValue = GameManager.GM.Data.Set_Floor_SpeedValue;
+        GameManager.GM.Data.BGM_Value = GameManager.GM.Data.Set_BGI_SpeedValue;
+
+        GameManager.GM.Data.GM_branch = Stage_Num;
         Loading_Manager.LoadScene("Proto_InGame_Scene", Name, Information);
     }
 }

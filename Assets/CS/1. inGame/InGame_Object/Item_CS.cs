@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Item_CS : MonoBehaviour
 {
+    [SerializeField] bool Prefab_HP;
     void Start()
     {
 
     }
 
     void Update()
-    {
-        transform.Translate(-1 * GameManager.GM.Data.Floor_SpeedValue * Time.deltaTime, 0, 0);
-    }
+    { if (Prefab_HP) return; transform.Translate(-1 * GameManager.GM.Data.Floor_SpeedValue * Time.deltaTime, 0, 0); }
 
     void OnTriggerEnter2D(Collider2D collision)
     {

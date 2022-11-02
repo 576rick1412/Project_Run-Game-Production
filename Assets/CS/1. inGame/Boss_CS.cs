@@ -35,6 +35,5 @@ public class Boss_CS : MonoBehaviour
             GameManager.GM.Data.Game_Fail = true; Game_Control.GC.Result_Spawn();
         }
     }
-    void DestroyBoss() { Destroy(Boss); }
     void InstanPattern() { Instantiate(BossPattern, BossPatternPos.position, Quaternion.identity); }
 }
