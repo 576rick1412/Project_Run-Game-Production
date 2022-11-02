@@ -161,6 +161,7 @@ public class Object_Instantiate : MonoBehaviour
                 case "coin_3": Instan_Coin = Coin_Object[2]; break; // 코인 3
                 case "HP": Instan_Coin = Coin_Object[3]; break;    // HP 회복
                 case "Double": Instan_Coin = Coin_Object[4]; break;    // 더블코인 
+                case "Double_HP": Instan_Coin = Coin_Object[5]; break;    // 더블코인 + HP
             }
 
             switch (Chapter_EX.Stage_1[Index].Obstacle) // 장애물 지정
@@ -207,6 +208,7 @@ public class Object_Instantiate : MonoBehaviour
                         // ====================================================================
                         case "Double": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
                         // ====================================================================
+                        case "Double_HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
                     }  // 코인 생성
                 }
                 if(Chapter_EX.Stage_1[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
@@ -282,6 +284,7 @@ public class Object_Instantiate : MonoBehaviour
                         // ====================================================================
                         case "Double": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
                         // ====================================================================
+                        case "Double_HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
                     }  // 코인 생성
                 }
                 if (Chapter_EX.Stage_2[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
@@ -309,6 +312,7 @@ public class Object_Instantiate : MonoBehaviour
                 case "coin_3": Instan_Coin = Coin_Object[2]; break; // 코인 3
                 case "HP":     Instan_Coin = Coin_Object[3]; break;    // HP 회복
                 case "Double": Instan_Coin = Coin_Object[4]; break;    // 더블코인 
+                case "Double_HP": Instan_Coin = Coin_Object[5]; break;    // 더블코인 + HP
 
             }
 
@@ -355,11 +359,544 @@ public class Object_Instantiate : MonoBehaviour
                         case "HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
                         // ====================================================================
                         case "Double": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
-                            // ====================================================================
+                        // ====================================================================
+                        case "Double_HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
                     }  // 코인 생성
                 }
                 if (Chapter_EX.Stage_3[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
                 if (Chapter_EX.Stage_3[Index].Platform != "None") Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_3[Index].PlatformPos].position, Quaternion.identity);
+
+                yield return new WaitForSeconds(Late_Time);
+            }
+            Index++;
+            CoinSkip = false;
+            isMaker = false;
+            yield return null;
+        }
+    }
+    IEnumerator Coin_Maker_4()
+    {
+        if (Player_CS.Player_alive == false)
+        {
+            isMaker = true;
+
+            switch (Chapter_EX.Stage_4[Index].CoinType) // 코인 지정
+            {
+                case "None": CoinSkip = true; break;                // 코인 생성 없음
+                case "coin_1": Instan_Coin = Coin_Object[0]; break; // 코인 1
+                case "coin_2": Instan_Coin = Coin_Object[1]; break; // 코인 2
+                case "coin_3": Instan_Coin = Coin_Object[2]; break; // 코인 3
+                case "HP": Instan_Coin = Coin_Object[3]; break;    // HP 회복
+                case "Double": Instan_Coin = Coin_Object[4]; break;    // 더블코인 
+                case "Double_HP": Instan_Coin = Coin_Object[5]; break;    // 더블코인 + HP
+
+            }
+
+            switch (Chapter_EX.Stage_4[Index].Obstacle) // 장애물 지정
+            {
+                case "Obstacle_1": Instan_Obstacle = Obstacle_Object[0]; break; // 점프 장애물
+                case "Obstacle_2": Instan_Obstacle = Obstacle_Object[1]; break; // 더블점프 장애물
+                case "Obstacle_3": Instan_Obstacle = Obstacle_Object[2]; break; // 슬라이드 장애물
+            }
+
+            switch (Chapter_EX.Stage_4[Index].Platform) // 발판 지정
+            {
+                case "Platform_1": Instan_Platform = Platform_Object[0]; break; // 발판
+                case "Platform_2": Instan_Platform = Platform_Object[1]; break; // 발판
+                case "Platform_3": Instan_Platform = Platform_Object[2]; break; // 발판
+                case "Platform_4": Instan_Platform = Platform_Object[3]; break; // 발판
+            }
+
+            /*if (Chapter_EX.Stage_1[Index].Platform != "None")
+                Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_1[Index].PlatformPos].position, Quaternion.identity);*/
+
+            PosNum = Chapter_EX.Stage_4[Index].CoinPos; // 코인 높이값 지정
+            Amount = Chapter_EX.Stage_4[Index].CoinAmount;
+            for (int i = 0; i < Amount; i++) // 코인 개수만큼 반복
+            {
+                if (CoinSkip == false) // { yield return new WaitForSeconds(Late_Time); continue; }
+                {
+                    switch (Chapter_EX.Stage_4[Index].CoinType)
+                    {
+                        case "None": break;
+                        // ====================================================================
+                        case "coin_1":
+                            var Coin_1 = CoinPool_1.Get();
+                            Coin_1.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "coin_2":
+                            var Coin_2 = CoinPool_2.Get();
+                            Coin_2.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "coin_3":
+                            var Coin_3 = CoinPool_3.Get();
+                            Coin_3.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
+                        case "Double": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
+                        case "Double_HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                    }  // 코인 생성
+                }
+                if (Chapter_EX.Stage_4[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
+                if (Chapter_EX.Stage_4[Index].Platform != "None") Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_4[Index].PlatformPos].position, Quaternion.identity);
+
+                yield return new WaitForSeconds(Late_Time);
+            }
+            Index++;
+            CoinSkip = false;
+            isMaker = false;
+            yield return null;
+        }
+    }
+    IEnumerator Coin_Maker_5()
+    {
+        if (Player_CS.Player_alive == false)
+        {
+            isMaker = true;
+
+            switch (Chapter_EX.Stage_5[Index].CoinType) // 코인 지정
+            {
+                case "None": CoinSkip = true; break;                // 코인 생성 없음
+                case "coin_1": Instan_Coin = Coin_Object[0]; break; // 코인 1
+                case "coin_2": Instan_Coin = Coin_Object[1]; break; // 코인 2
+                case "coin_3": Instan_Coin = Coin_Object[2]; break; // 코인 3
+                case "HP": Instan_Coin = Coin_Object[3]; break;    // HP 회복
+                case "Double": Instan_Coin = Coin_Object[4]; break;    // 더블코인 
+                case "Double_HP": Instan_Coin = Coin_Object[5]; break;    // 더블코인 + HP
+
+            }
+
+            switch (Chapter_EX.Stage_5[Index].Obstacle) // 장애물 지정
+            {
+                case "Obstacle_1": Instan_Obstacle = Obstacle_Object[0]; break; // 점프 장애물
+                case "Obstacle_2": Instan_Obstacle = Obstacle_Object[1]; break; // 더블점프 장애물
+                case "Obstacle_3": Instan_Obstacle = Obstacle_Object[2]; break; // 슬라이드 장애물
+            }
+
+            switch (Chapter_EX.Stage_5[Index].Platform) // 발판 지정
+            {
+                case "Platform_1": Instan_Platform = Platform_Object[0]; break; // 발판
+                case "Platform_2": Instan_Platform = Platform_Object[1]; break; // 발판
+                case "Platform_3": Instan_Platform = Platform_Object[2]; break; // 발판
+                case "Platform_4": Instan_Platform = Platform_Object[3]; break; // 발판
+            }
+
+            /*if (Chapter_EX.Stage_1[Index].Platform != "None")
+                Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_1[Index].PlatformPos].position, Quaternion.identity);*/
+
+            PosNum = Chapter_EX.Stage_5[Index].CoinPos; // 코인 높이값 지정
+            Amount = Chapter_EX.Stage_5[Index].CoinAmount;
+            for (int i = 0; i < Amount; i++) // 코인 개수만큼 반복
+            {
+                if (CoinSkip == false) // { yield return new WaitForSeconds(Late_Time); continue; }
+                {
+                    switch (Chapter_EX.Stage_5[Index].CoinType)
+                    {
+                        case "None": break;
+                        // ====================================================================
+                        case "coin_1":
+                            var Coin_1 = CoinPool_1.Get();
+                            Coin_1.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "coin_2":
+                            var Coin_2 = CoinPool_2.Get();
+                            Coin_2.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "coin_3":
+                            var Coin_3 = CoinPool_3.Get();
+                            Coin_3.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
+                        case "Double": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
+                        case "Double_HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                    }  // 코인 생성
+                }
+                if (Chapter_EX.Stage_5[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
+                if (Chapter_EX.Stage_5[Index].Platform != "None") Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_5[Index].PlatformPos].position, Quaternion.identity);
+
+                yield return new WaitForSeconds(Late_Time);
+            }
+            Index++;
+            CoinSkip = false;
+            isMaker = false;
+            yield return null;
+        }
+    }
+    IEnumerator Coin_Maker_6()
+    {
+        if (Player_CS.Player_alive == false)
+        {
+            isMaker = true;
+
+            switch (Chapter_EX.Stage_6[Index].CoinType) // 코인 지정
+            {
+                case "None": CoinSkip = true; break;                // 코인 생성 없음
+                case "coin_1": Instan_Coin = Coin_Object[0]; break; // 코인 1
+                case "coin_2": Instan_Coin = Coin_Object[1]; break; // 코인 2
+                case "coin_3": Instan_Coin = Coin_Object[2]; break; // 코인 3
+                case "HP": Instan_Coin = Coin_Object[3]; break;    // HP 회복
+                case "Double": Instan_Coin = Coin_Object[4]; break;    // 더블코인 
+                case "Double_HP": Instan_Coin = Coin_Object[5]; break;    // 더블코인 + HP
+
+            }
+
+            switch (Chapter_EX.Stage_6[Index].Obstacle) // 장애물 지정
+            {
+                case "Obstacle_1": Instan_Obstacle = Obstacle_Object[0]; break; // 점프 장애물
+                case "Obstacle_2": Instan_Obstacle = Obstacle_Object[1]; break; // 더블점프 장애물
+                case "Obstacle_3": Instan_Obstacle = Obstacle_Object[2]; break; // 슬라이드 장애물
+            }
+
+            switch (Chapter_EX.Stage_6[Index].Platform) // 발판 지정
+            {
+                case "Platform_1": Instan_Platform = Platform_Object[0]; break; // 발판
+                case "Platform_2": Instan_Platform = Platform_Object[1]; break; // 발판
+                case "Platform_3": Instan_Platform = Platform_Object[2]; break; // 발판
+                case "Platform_4": Instan_Platform = Platform_Object[3]; break; // 발판
+            }
+
+            /*if (Chapter_EX.Stage_1[Index].Platform != "None")
+                Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_1[Index].PlatformPos].position, Quaternion.identity);*/
+
+            PosNum = Chapter_EX.Stage_6[Index].CoinPos; // 코인 높이값 지정
+            Amount = Chapter_EX.Stage_6[Index].CoinAmount;
+            for (int i = 0; i < Amount; i++) // 코인 개수만큼 반복
+            {
+                if (CoinSkip == false) // { yield return new WaitForSeconds(Late_Time); continue; }
+                {
+                    switch (Chapter_EX.Stage_6[Index].CoinType)
+                    {
+                        case "None": break;
+                        // ====================================================================
+                        case "coin_1":
+                            var Coin_1 = CoinPool_1.Get();
+                            Coin_1.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "coin_2":
+                            var Coin_2 = CoinPool_2.Get();
+                            Coin_2.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "coin_3":
+                            var Coin_3 = CoinPool_3.Get();
+                            Coin_3.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
+                        case "Double": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
+                        case "Double_HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                    }  // 코인 생성
+                }
+                if (Chapter_EX.Stage_6[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
+                if (Chapter_EX.Stage_6[Index].Platform != "None") Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_6[Index].PlatformPos].position, Quaternion.identity);
+
+                yield return new WaitForSeconds(Late_Time);
+            }
+            Index++;
+            CoinSkip = false;
+            isMaker = false;
+            yield return null;
+        }
+    }
+    IEnumerator Coin_Maker_7()
+    {
+        if (Player_CS.Player_alive == false)
+        {
+            isMaker = true;
+
+            switch (Chapter_EX.Stage_7[Index].CoinType) // 코인 지정
+            {
+                case "None": CoinSkip = true; break;                // 코인 생성 없음
+                case "coin_1": Instan_Coin = Coin_Object[0]; break; // 코인 1
+                case "coin_2": Instan_Coin = Coin_Object[1]; break; // 코인 2
+                case "coin_3": Instan_Coin = Coin_Object[2]; break; // 코인 3
+                case "HP": Instan_Coin = Coin_Object[3]; break;    // HP 회복
+                case "Double": Instan_Coin = Coin_Object[4]; break;    // 더블코인 
+                case "Double_HP": Instan_Coin = Coin_Object[5]; break;    // 더블코인 + HP
+
+            }
+
+            switch (Chapter_EX.Stage_7[Index].Obstacle) // 장애물 지정
+            {
+                case "Obstacle_1": Instan_Obstacle = Obstacle_Object[0]; break; // 점프 장애물
+                case "Obstacle_2": Instan_Obstacle = Obstacle_Object[1]; break; // 더블점프 장애물
+                case "Obstacle_3": Instan_Obstacle = Obstacle_Object[2]; break; // 슬라이드 장애물
+            }
+
+            switch (Chapter_EX.Stage_7[Index].Platform) // 발판 지정
+            {
+                case "Platform_1": Instan_Platform = Platform_Object[0]; break; // 발판
+                case "Platform_2": Instan_Platform = Platform_Object[1]; break; // 발판
+                case "Platform_3": Instan_Platform = Platform_Object[2]; break; // 발판
+                case "Platform_4": Instan_Platform = Platform_Object[3]; break; // 발판
+            }
+
+            /*if (Chapter_EX.Stage_1[Index].Platform != "None")
+                Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_1[Index].PlatformPos].position, Quaternion.identity);*/
+
+            PosNum = Chapter_EX.Stage_7[Index].CoinPos; // 코인 높이값 지정
+            Amount = Chapter_EX.Stage_7[Index].CoinAmount;
+            for (int i = 0; i < Amount; i++) // 코인 개수만큼 반복
+            {
+                if (CoinSkip == false) // { yield return new WaitForSeconds(Late_Time); continue; }
+                {
+                    switch (Chapter_EX.Stage_7[Index].CoinType)
+                    {
+                        case "None": break;
+                        // ====================================================================
+                        case "coin_1":
+                            var Coin_1 = CoinPool_1.Get();
+                            Coin_1.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "coin_2":
+                            var Coin_2 = CoinPool_2.Get();
+                            Coin_2.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "coin_3":
+                            var Coin_3 = CoinPool_3.Get();
+                            Coin_3.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
+                        case "Double": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
+                        case "Double_HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                    }  // 코인 생성
+                }
+                if (Chapter_EX.Stage_7[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
+                if (Chapter_EX.Stage_7[Index].Platform != "None") Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_7[Index].PlatformPos].position, Quaternion.identity);
+
+                yield return new WaitForSeconds(Late_Time);
+            }
+            Index++;
+            CoinSkip = false;
+            isMaker = false;
+            yield return null;
+        }
+    }
+    IEnumerator Coin_Maker_8()
+    {
+        if (Player_CS.Player_alive == false)
+        {
+            isMaker = true;
+
+            switch (Chapter_EX.Stage_8[Index].CoinType) // 코인 지정
+            {
+                case "None": CoinSkip = true; break;                // 코인 생성 없음
+                case "coin_1": Instan_Coin = Coin_Object[0]; break; // 코인 1
+                case "coin_2": Instan_Coin = Coin_Object[1]; break; // 코인 2
+                case "coin_3": Instan_Coin = Coin_Object[2]; break; // 코인 3
+                case "HP": Instan_Coin = Coin_Object[3]; break;    // HP 회복
+                case "Double": Instan_Coin = Coin_Object[4]; break;    // 더블코인 
+                case "Double_HP": Instan_Coin = Coin_Object[5]; break;    // 더블코인 + HP
+
+            }
+
+            switch (Chapter_EX.Stage_8[Index].Obstacle) // 장애물 지정
+            {
+                case "Obstacle_1": Instan_Obstacle = Obstacle_Object[0]; break; // 점프 장애물
+                case "Obstacle_2": Instan_Obstacle = Obstacle_Object[1]; break; // 더블점프 장애물
+                case "Obstacle_3": Instan_Obstacle = Obstacle_Object[2]; break; // 슬라이드 장애물
+            }
+
+            switch (Chapter_EX.Stage_8[Index].Platform) // 발판 지정
+            {
+                case "Platform_1": Instan_Platform = Platform_Object[0]; break; // 발판
+                case "Platform_2": Instan_Platform = Platform_Object[1]; break; // 발판
+                case "Platform_3": Instan_Platform = Platform_Object[2]; break; // 발판
+                case "Platform_4": Instan_Platform = Platform_Object[3]; break; // 발판
+            }
+
+            /*if (Chapter_EX.Stage_1[Index].Platform != "None")
+                Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_1[Index].PlatformPos].position, Quaternion.identity);*/
+
+            PosNum = Chapter_EX.Stage_8[Index].CoinPos; // 코인 높이값 지정
+            Amount = Chapter_EX.Stage_8[Index].CoinAmount;
+            for (int i = 0; i < Amount; i++) // 코인 개수만큼 반복
+            {
+                if (CoinSkip == false) // { yield return new WaitForSeconds(Late_Time); continue; }
+                {
+                    switch (Chapter_EX.Stage_8[Index].CoinType)
+                    {
+                        case "None": break;
+                        // ====================================================================
+                        case "coin_1":
+                            var Coin_1 = CoinPool_1.Get();
+                            Coin_1.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "coin_2":
+                            var Coin_2 = CoinPool_2.Get();
+                            Coin_2.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "coin_3":
+                            var Coin_3 = CoinPool_3.Get();
+                            Coin_3.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
+                        case "Double": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
+                        case "Double_HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                    }  // 코인 생성
+                }
+                if (Chapter_EX.Stage_8[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
+                if (Chapter_EX.Stage_8[Index].Platform != "None") Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_8[Index].PlatformPos].position, Quaternion.identity);
+
+                yield return new WaitForSeconds(Late_Time);
+            }
+            Index++;
+            CoinSkip = false;
+            isMaker = false;
+            yield return null;
+        }
+    }
+    IEnumerator Coin_Maker_9()
+    {
+        if (Player_CS.Player_alive == false)
+        {
+            isMaker = true;
+
+            switch (Chapter_EX.Stage_9[Index].CoinType) // 코인 지정
+            {
+                case "None": CoinSkip = true; break;                // 코인 생성 없음
+                case "coin_1": Instan_Coin = Coin_Object[0]; break; // 코인 1
+                case "coin_2": Instan_Coin = Coin_Object[1]; break; // 코인 2
+                case "coin_3": Instan_Coin = Coin_Object[2]; break; // 코인 3
+                case "HP": Instan_Coin = Coin_Object[3]; break;    // HP 회복
+                case "Double": Instan_Coin = Coin_Object[4]; break;    // 더블코인 
+                case "Double_HP": Instan_Coin = Coin_Object[5]; break;    // 더블코인 + HP
+
+            }
+
+            switch (Chapter_EX.Stage_9[Index].Obstacle) // 장애물 지정
+            {
+                case "Obstacle_1": Instan_Obstacle = Obstacle_Object[0]; break; // 점프 장애물
+                case "Obstacle_2": Instan_Obstacle = Obstacle_Object[1]; break; // 더블점프 장애물
+                case "Obstacle_3": Instan_Obstacle = Obstacle_Object[2]; break; // 슬라이드 장애물
+            }
+
+            switch (Chapter_EX.Stage_9[Index].Platform) // 발판 지정
+            {
+                case "Platform_1": Instan_Platform = Platform_Object[0]; break; // 발판
+                case "Platform_2": Instan_Platform = Platform_Object[1]; break; // 발판
+                case "Platform_3": Instan_Platform = Platform_Object[2]; break; // 발판
+                case "Platform_4": Instan_Platform = Platform_Object[3]; break; // 발판
+            }
+
+            /*if (Chapter_EX.Stage_1[Index].Platform != "None")
+                Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_1[Index].PlatformPos].position, Quaternion.identity);*/
+
+            PosNum = Chapter_EX.Stage_9[Index].CoinPos; // 코인 높이값 지정
+            Amount = Chapter_EX.Stage_9[Index].CoinAmount;
+            for (int i = 0; i < Amount; i++) // 코인 개수만큼 반복
+            {
+                if (CoinSkip == false) // { yield return new WaitForSeconds(Late_Time); continue; }
+                {
+                    switch (Chapter_EX.Stage_9[Index].CoinType)
+                    {
+                        case "None": break;
+                        // ====================================================================
+                        case "coin_1":
+                            var Coin_1 = CoinPool_1.Get();
+                            Coin_1.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "coin_2":
+                            var Coin_2 = CoinPool_2.Get();
+                            Coin_2.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "coin_3":
+                            var Coin_3 = CoinPool_3.Get();
+                            Coin_3.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
+                        case "Double": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
+                        case "Double_HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                    }  // 코인 생성
+                }
+                if (Chapter_EX.Stage_9[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
+                if (Chapter_EX.Stage_9[Index].Platform != "None") Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_9[Index].PlatformPos].position, Quaternion.identity);
+
+                yield return new WaitForSeconds(Late_Time);
+            }
+            Index++;
+            CoinSkip = false;
+            isMaker = false;
+            yield return null;
+        }
+    }
+    IEnumerator Coin_Maker_10()
+    {
+        if (Player_CS.Player_alive == false)
+        {
+            isMaker = true;
+
+            switch (Chapter_EX.Stage_10[Index].CoinType) // 코인 지정
+            {
+                case "None": CoinSkip = true; break;                // 코인 생성 없음
+                case "coin_1": Instan_Coin = Coin_Object[0]; break; // 코인 1
+                case "coin_2": Instan_Coin = Coin_Object[1]; break; // 코인 2
+                case "coin_3": Instan_Coin = Coin_Object[2]; break; // 코인 3
+                case "HP": Instan_Coin = Coin_Object[3]; break;    // HP 회복
+                case "Double": Instan_Coin = Coin_Object[4]; break;    // 더블코인 
+                case "Double_HP": Instan_Coin = Coin_Object[5]; break;    // 더블코인 + HP
+
+            }
+
+            switch (Chapter_EX.Stage_10[Index].Obstacle) // 장애물 지정
+            {
+                case "Obstacle_1": Instan_Obstacle = Obstacle_Object[0]; break; // 점프 장애물
+                case "Obstacle_2": Instan_Obstacle = Obstacle_Object[1]; break; // 더블점프 장애물
+                case "Obstacle_3": Instan_Obstacle = Obstacle_Object[2]; break; // 슬라이드 장애물
+            }
+
+            switch (Chapter_EX.Stage_10[Index].Platform) // 발판 지정
+            {
+                case "Platform_1": Instan_Platform = Platform_Object[0]; break; // 발판
+                case "Platform_2": Instan_Platform = Platform_Object[1]; break; // 발판
+                case "Platform_3": Instan_Platform = Platform_Object[2]; break; // 발판
+                case "Platform_4": Instan_Platform = Platform_Object[3]; break; // 발판
+            }
+
+            /*if (Chapter_EX.Stage_1[Index].Platform != "None")
+                Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_1[Index].PlatformPos].position, Quaternion.identity);*/
+
+            PosNum = Chapter_EX.Stage_10[Index].CoinPos; // 코인 높이값 지정
+            Amount = Chapter_EX.Stage_10[Index].CoinAmount;
+            for (int i = 0; i < Amount; i++) // 코인 개수만큼 반복
+            {
+                if (CoinSkip == false) // { yield return new WaitForSeconds(Late_Time); continue; }
+                {
+                    switch (Chapter_EX.Stage_10[Index].CoinType)
+                    {
+                        case "None": break;
+                        // ====================================================================
+                        case "coin_1":
+                            var Coin_1 = CoinPool_1.Get();
+                            Coin_1.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "coin_2":
+                            var Coin_2 = CoinPool_2.Get();
+                            Coin_2.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "coin_3":
+                            var Coin_3 = CoinPool_3.Get();
+                            Coin_3.transform.position = Instan_Pos[PosNum].position; break;
+                        // ====================================================================
+                        case "HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
+                        case "Double": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                        // ====================================================================
+                        case "Double_HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                    }  // 코인 생성
+                }
+                if (Chapter_EX.Stage_10[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
+                if (Chapter_EX.Stage_10[Index].Platform != "None") Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_3[Index].PlatformPos].position, Quaternion.identity);
 
                 yield return new WaitForSeconds(Late_Time);
             }
