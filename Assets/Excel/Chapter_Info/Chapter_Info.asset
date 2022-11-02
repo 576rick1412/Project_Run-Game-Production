@@ -1,0 +1,195 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5105d3a7bcdf44b9ac2c81904135a8, type: 3}
+  m_Name: Chapter_Info
+  m_EditorClassIdentifier: 
+  Info:
+  - Branch: 1
+    Stage_Num: 1 - 1
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 1\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 2
+    Stage_Num: 1 - 2
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 2\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 3
+    Stage_Num: 1 - 3
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 3\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 4
+    Stage_Num: 1 - 4
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 4\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 5
+    Stage_Num: 1 - 5
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 5\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 6
+    Stage_Num: 1 - 6
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 6\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 7
+    Stage_Num: 1 - 7
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 7\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 8
+    Stage_Num: 1 - 8
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 8\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 9
+    Stage_Num: 1 - 9
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 9\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 10
+    Stage_Num: 1 - 10
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 10\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 11
+    Stage_Num: 2 - 1
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 11\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 12
+    Stage_Num: 2 - 2
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 12\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 13
+    Stage_Num: 2 - 3
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 13\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 14
+    Stage_Num: 2 - 4
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 14\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 15
+    Stage_Num: 2 - 5
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 15\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 16
+    Stage_Num: 2 - 6
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 16\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 17
+    Stage_Num: 2 - 7
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 17\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 18
+    Stage_Num: 2 - 8
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 18\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 19
+    Stage_Num: 2 - 9
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 19\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 20
+    Stage_Num: 2 - 10
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 20\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 21
+    Stage_Num: 3 - 1
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 21\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 22
+    Stage_Num: 3 - 2
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 22\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 23
+    Stage_Num: 3 - 3
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 23\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 24
+    Stage_Num: 3 - 4
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 24\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 25
+    Stage_Num: 3 - 5
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 25\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 26
+    Stage_Num: 3 - 6
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 26\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 27
+    Stage_Num: 3 - 7
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 27\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 28
+    Stage_Num: 3 - 8
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 28\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 29
+    Stage_Num: 3 - 9
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 29\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 30
+    Stage_Num: 3 - 10
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 30\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 31
+    Stage_Num: 4 - 1
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 31\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 32
+    Stage_Num: 4 - 2
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 32\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 33
+    Stage_Num: 4 - 3
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 33\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 34
+    Stage_Num: 4 - 4
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 34\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 35
+    Stage_Num: 4 - 5
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 35\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 36
+    Stage_Num: 4 - 6
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 36\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 37
+    Stage_Num: 4 - 7
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 37\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 38
+    Stage_Num: 4 - 8
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 38\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 39
+    Stage_Num: 4 - 9
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 39\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 40
+    Stage_Num: 4 - 10
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 40\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 41
+    Stage_Num: 5 - 1
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 41\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 42
+    Stage_Num: 5 - 2
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 42\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 43
+    Stage_Num: 5 - 3
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 43\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 44
+    Stage_Num: 5 - 4
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 44\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 45
+    Stage_Num: 5 - 5
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 45\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 46
+    Stage_Num: 5 - 6
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 46\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 47
+    Stage_Num: 5 - 7
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 47\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 48
+    Stage_Num: 5 - 8
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 48\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 49
+    Stage_Num: 5 - 9
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 49\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 50
+    Stage_Num: 5 - 10
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 50\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 51
+    Stage_Num: 6 - 1
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 51\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 52
+    Stage_Num: 6 - 2
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 52\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 53
+    Stage_Num: 6 - 3
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 53\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 54
+    Stage_Num: 6 - 4
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 54\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 55
+    Stage_Num: 6 - 5
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 55\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 56
+    Stage_Num: 6 - 6
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 56\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 57
+    Stage_Num: 6 - 7
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 57\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 58
+    Stage_Num: 6 - 8
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 58\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 59
+    Stage_Num: 6 - 9
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 59\uBC88 \uC785\uB2C8\uB2E4"
+  - Branch: 60
+    Stage_Num: 6 - 10
+    Stage_Description: "\uC2A4\uD14C\uC774\uC9C0 60\uBC88 \uC785\uB2C8\uB2E4"

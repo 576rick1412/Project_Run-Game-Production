@@ -1,6 +1,3 @@
-using UnityEngine;
-using TMPro;
-
 [System.Serializable]
 public class Chapter_1_Entity
 {
