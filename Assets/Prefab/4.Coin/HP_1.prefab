@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetPoint: 4
-  OnRelease: 0
+  SetObject: Hub
+  SetPrefabs: 0
 --- !u!1 &4496541273729689242
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,8 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetPoint: 5
-  OnRelease: 0
+  SetObject: Prefab_Coin
+  SetPrefabs: 1
 --- !u!50 &6174053592532207578
 Rigidbody2D:
   serializedVersion: 4
@@ -344,8 +344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetPoint: 5
-  OnRelease: 0
+  SetObject: Prefab_Coin
+  SetPrefabs: 1
 --- !u!50 &6712998023661699850
 Rigidbody2D:
   serializedVersion: 4
@@ -482,8 +482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetPoint: 5
-  OnRelease: 0
+  SetObject: Prefab_Coin
+  SetPrefabs: 1
 --- !u!50 &6712998023796173820
 Rigidbody2D:
   serializedVersion: 4
@@ -620,8 +620,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetPoint: 5
-  OnRelease: 0
+  SetObject: Prefab_Coin
+  SetPrefabs: 1
 --- !u!50 &6712998024074300524
 Rigidbody2D:
   serializedVersion: 4
@@ -758,8 +758,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetPoint: 5
-  OnRelease: 0
+  SetObject: Prefab_Coin
+  SetPrefabs: 1
 --- !u!50 &6712998024126742756
 Rigidbody2D:
   serializedVersion: 4
@@ -896,8 +896,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetPoint: 5
-  OnRelease: 0
+  SetObject: Prefab_Coin
+  SetPrefabs: 1
 --- !u!50 &6712998024254809690
 Rigidbody2D:
   serializedVersion: 4
@@ -1034,8 +1034,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetPoint: 5
-  OnRelease: 0
+  SetObject: Prefab_Coin
+  SetPrefabs: 1
 --- !u!50 &6712998024539377603
 Rigidbody2D:
   serializedVersion: 4
@@ -1172,8 +1172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetPoint: 5
-  OnRelease: 0
+  SetObject: Prefab_Coin
+  SetPrefabs: 1
 --- !u!50 &6712998024693594381
 Rigidbody2D:
   serializedVersion: 4

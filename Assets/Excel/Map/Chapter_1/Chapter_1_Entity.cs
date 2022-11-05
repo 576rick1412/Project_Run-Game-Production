@@ -1,5 +1,5 @@
 [System.Serializable]
-public class Chapter_1_Entity
+public class Stage_1_Entity
 {
     public string CoinType;
     public int CoinPos;
@@ -11,7 +11,7 @@ public class Chapter_1_Entity
 }
 // =======================================1111
 [System.Serializable]
-public class Chapter_2_Entity
+public class Stage_2_Entity
 {
     public string CoinType;
     public int CoinPos;
@@ -23,7 +23,7 @@ public class Chapter_2_Entity
 }
 // =======================================2222
 [System.Serializable]
-public class Chapter_3_Entity
+public class Stage_3_Entity
 {
     public string CoinType;
     public int CoinPos;
@@ -35,7 +35,7 @@ public class Chapter_3_Entity
 }
 // =======================================3333
 [System.Serializable]
-public class Chapter_4_Entity
+public class Stage_4_Entity
 {
     public string CoinType;
     public int CoinPos;
@@ -47,7 +47,7 @@ public class Chapter_4_Entity
 }
 // =======================================4444
 [System.Serializable]
-public class Chapter_5_Entity
+public class Stage_5_Entity
 {
     public string CoinType;
     public int CoinPos;
@@ -59,7 +59,7 @@ public class Chapter_5_Entity
 }
 // =======================================5555
 [System.Serializable]
-public class Chapter_6_Entity
+public class Stage_6_Entity
 {
     public string CoinType;
     public int CoinPos;
@@ -71,7 +71,7 @@ public class Chapter_6_Entity
 }
 // =======================================6666
 [System.Serializable]
-public class Chapter_7_Entity
+public class Stage_7_Entity
 {
     public string CoinType;
     public int CoinPos;
@@ -83,7 +83,7 @@ public class Chapter_7_Entity
 }
 // =======================================7777
 [System.Serializable]
-public class Chapter_8_Entity
+public class Stage_8_Entity
 {
     public string CoinType;
     public int CoinPos;
@@ -95,7 +95,7 @@ public class Chapter_8_Entity
 }
 // =======================================8888
 [System.Serializable]
-public class Chapter_9_Entity
+public class Stage_9_Entity
 {
     public string CoinType;
     public int CoinPos;
@@ -107,7 +107,7 @@ public class Chapter_9_Entity
 }
 // =======================================9999
 [System.Serializable]
-public class Chapter_10_Entity
+public class Stage_10_Entity
 {
     public string CoinType;
     public int CoinPos;

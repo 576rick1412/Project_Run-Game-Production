@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetPoint: 4
-  OnRelease: 0
+  SetObject: Hub
+  SetPrefabs: 0
 --- !u!1 &1095735709092447731
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,8 +113,8 @@ GameObject:
   - component: {fileID: 5451359063297797705}
   - component: {fileID: 4932028008867451864}
   - component: {fileID: 7276863323725604019}
-  - component: {fileID: 3433032342297448188}
   - component: {fileID: 4457946955393523934}
+  - component: {fileID: 6956105415193949373}
   m_Layer: 0
   m_Name: HP+
   m_TagString: Untagged
@@ -210,19 +210,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3433032342297448188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095735709092447731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c24a739f9482f93479b154b81a80dafb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Prefab_HP: 1
 --- !u!58 &4457946955393523934
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -239,6 +226,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.6
+--- !u!114 &6956105415193949373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095735709092447731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SetObject: HP
+  SetPrefabs: 1
 --- !u!1001 &5855372926786022207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -249,6 +250,14 @@ PrefabInstance:
     - target: {fileID: -4333545222144138846, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: SetPoint
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4333545222144138846, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
+      propertyPath: SetObject
+      value: Prefab_Coin
+      objectReference: {fileID: 0}
+    - target: {fileID: -4333545222144138846, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
+      propertyPath: SetPrefabs
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 372431934391721140, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: m_Name
@@ -315,6 +324,14 @@ PrefabInstance:
     - target: {fileID: -4333545222144138846, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: SetPoint
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4333545222144138846, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
+      propertyPath: SetObject
+      value: Prefab_Coin
+      objectReference: {fileID: 0}
+    - target: {fileID: -4333545222144138846, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
+      propertyPath: SetPrefabs
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 372431934391721140, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: m_Name

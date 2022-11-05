@@ -146,27 +146,32 @@ public class Game_Control : MonoBehaviour
     public void ReStage()
     {
         Time.timeScale = 1;
-        switch (GameManager.GM.Data.GM_branch)
+        switch (GameManager.GM.nowStage)
         {
-            case <= 10: Time.timeScale = 1; Loading_Manager.LoadScene("Stage1_Hub", Stage_Des); break;
-            case <= 20: Time.timeScale = 1; Loading_Manager.LoadScene("Stage2_Hub", Stage_Des); break;
-            case <= 30: Time.timeScale = 1; Loading_Manager.LoadScene("Stage3_Hub", Stage_Des); break;
-            case <= 40: Time.timeScale = 1; Loading_Manager.LoadScene("Stage4_Hub", Stage_Des); break;
-            case <= 50: Time.timeScale = 1; Loading_Manager.LoadScene("Stage5_Hub", Stage_Des); break;
-            case <= 60: Time.timeScale = 1; Loading_Manager.LoadScene("Stage6_Hub", Stage_Des); break;
+            case 1: Loading_Manager.LoadScene("Stage1_Hub", Stage_Des); break;
+            case 2: Loading_Manager.LoadScene("Stage2_Hub", Stage_Des); break;
+            case 3: Loading_Manager.LoadScene("Stage3_Hub", Stage_Des); break;
+            case 4: Loading_Manager.LoadScene("Stage4_Hub", Stage_Des); break;
+            case 5: Loading_Manager.LoadScene("Stage5_Hub", Stage_Des); break;
+            case 6: Loading_Manager.LoadScene("Stage6_Hub", Stage_Des); break;
         }
     }
     public void GoRetry()
     {
+        GameManager.GM.Data.Floor_SpeedValue = GameManager.GM.Data.Set_Floor_SpeedValue;
+        GameManager.GM.Data.BGI_SpeedValue = GameManager.GM.Data.Set_BGI_SpeedValue;
+
+        GameManager.GM.Data.CoinScore = 0;
         Time.timeScale = 1;
-        switch (GameManager.GM.Data.GM_branch)
+
+        switch (GameManager.GM.nowStage)
         {
-            case <= 10: Loading_Manager.LoadScene("Proto_InGame_Scene", Stage_Des); break;
-            case <= 20: Loading_Manager.LoadScene("Stage2_Hub", Stage_Des); break;
-            case <= 30: Loading_Manager.LoadScene("Stage3_Hub", Stage_Des); break;
-            case <= 40: Loading_Manager.LoadScene("Stage4_Hub", Stage_Des); break;
-            case <= 50: Loading_Manager.LoadScene("Stage5_Hub", Stage_Des); break;
-            case <= 60: Loading_Manager.LoadScene("Stage6_Hub", Stage_Des); break;
+            case 1: Loading_Manager.LoadScene("Stage1_Scene", Stage_Des); break;
+            case 2: Loading_Manager.LoadScene("Stage2_Scene", Stage_Des); break;
+            case 3: Loading_Manager.LoadScene("Stage3_Scene", Stage_Des); break;
+            case 4: Loading_Manager.LoadScene("Stage4_Scene", Stage_Des); break;
+            case 5: Loading_Manager.LoadScene("Stage5_Scene", Stage_Des); break;
+            case 6: Loading_Manager.LoadScene("Stage6_Scene", Stage_Des); break;
         }
     }
     void STG_Excel()

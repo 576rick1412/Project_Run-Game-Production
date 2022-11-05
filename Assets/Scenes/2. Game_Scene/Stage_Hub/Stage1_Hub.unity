@@ -198,6 +198,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1942770995550512099, guid: 60e6c93fb4b43594a967b09135fae729, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadChapter
+      objectReference: {fileID: 0}
     - target: {fileID: 3407927444732532669, guid: 60e6c93fb4b43594a967b09135fae729, type: 3}
       propertyPath: m_Name
       value: Stage1_HubCanvas

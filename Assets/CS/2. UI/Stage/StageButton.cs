@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class StageButton : MonoBehaviour
@@ -30,8 +30,10 @@ public class StageButton : MonoBehaviour
                 SI.Stage_Information.text = Info.Info[i].Stage_Description;
                 SI.Stage_Num = Stage_Num;
 
-                SI.Stage_MaxScore.text = "최대 점수 : " + (GameManager.GM.Data.stage_Max_Score[i + 1] == 0 ? 0 :
+                SI.Stage_MaxScore.text = "최대 점수 : " + (GameManager.GM.Data.stage_Max_Score[i + 1] == 0 ? "기록 없음" :
                     CommaText(GameManager.GM.Data.stage_Max_Score[i + 1]).ToString());
+
+                SI.Target_Sprite.sprite = SI.Info_Sprite[Stage_Num % 10];
 
                 SI.OnStage_Info();
             }

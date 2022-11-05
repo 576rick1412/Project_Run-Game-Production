@@ -23,7 +23,7 @@ public class Player_CS : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     [SerializeField] private BoxCollider2D[] colliders;
-    Animator anime;
+    [HideInInspector] public Animator anime;
 
 
     bool HIT_check = false; // 코루틴 반복 방지용

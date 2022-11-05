@@ -32,13 +32,14 @@ public class Coin_CS : MonoBehaviour
     {
         switch (SetObject)
         {
-            case "Coin_1"   : DestroyCoin_1(); break;               // 코인 1
-            case "Coin_2"   : DestroyCoin_2(); break;               // 코인 2
-            case "Coin_3"   : DestroyCoin_3(); break;               // 코인 3
-            case "HP"       : Destroy(this.gameObject); break;      // HP 
-            case "Hub"      : Destroy(this.gameObject); break;      // 허브
-            case "Obstacle" : Destroy(this.gameObject); break;      // 프리팹 / 속도 적용 안 되도록
-            case "Platform" : Destroy(this.gameObject); break;      // 발판
+            case "Coin_1"       : DestroyCoin_1(); break;               // 코인 1
+            case "Coin_2"       : DestroyCoin_2(); break;               // 코인 2
+            case "Coin_3"       : DestroyCoin_3(); break;               // 코인 3
+            case "HP"           : Destroy(this.gameObject); break;      // HP 
+            case "Hub"          : Destroy(this.gameObject); break;      // 허브
+            case "Obstacle"     : Destroy(this.gameObject); break;      // 프리팹 / 속도 적용 안 되도록
+            case "Prefab_Coin"  : Destroy(this.gameObject); break;      // 오브젝트 풀링 적용 안 되도록 따로 격리
+            case "Platform"     : Destroy(this.gameObject); break;      // 발판
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -50,13 +51,18 @@ public class Coin_CS : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && SetObject == "Coin_1") { GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
         if (collision.gameObject.CompareTag("Player") && SetObject == "Coin_2") { GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
         if (collision.gameObject.CompareTag("Player") && SetObject == "Coin_3") { GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
+        if (collision.gameObject.CompareTag("Player") && SetObject == "Prefab_Coin") { GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
         if (collision.gameObject.CompareTag("Player") && SetObject == "HP") { GameManager.GM.Data.LifeScore += 50; if (GameManager.GM.Data.LifeScore >= 100) GameManager.GM.Data.LifeScore = 100; Destroy(); }
         if (collision.gameObject.CompareTag("Player") && SetObject == "Hub") { Destroy(); }
-        if (collision.gameObject.CompareTag("Player") && SetObject == "Platform") { Destroy(); }
 
-        if (collision.gameObject.CompareTag("Player") && SetObject == "Obstacle" && Player_CS.PL.On_HIT == false) { 
-            GameManager.GM.Data.LifeScore -= GameManager.GM.Data.Obstacle_Damage; Player_CS.PL.On_HIT = true; 
-            Player_CS.PL.OnCoroutine(); Invoke("HIT_off", GameManager.GM.Data.Invincibility_Time); }
+        if (collision.gameObject.CompareTag("Player") && SetObject == "Obstacle" && Player_CS.PL.On_HIT == false) 
+        { 
+            GameManager.GM.Data.LifeScore -= GameManager.GM.Data.Obstacle_Damage;
+            Player_CS.PL.On_HIT = true; 
+            Player_CS.PL.OnCoroutine();
+            Player_CS.PL.anime.SetInteger("Player_Value", 5);
+            Invoke("HIT_off", GameManager.GM.Data.Invincibility_Time); 
+        }
     }
     void HIT_off()
     {

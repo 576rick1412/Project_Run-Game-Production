@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 public class Stage_Info : MonoBehaviour
@@ -11,8 +10,9 @@ public class Stage_Info : MonoBehaviour
     public TextMeshProUGUI Stage_Information;
 
     [HideInInspector] public int Stage_Num;
-
-    public GameObject Stage_Window;
+    public Image Target_Sprite;
+    public Sprite[] Info_Sprite;
+    [SerializeField] GameObject Stage_Window;
     void Start()
     {
         Stage_Name.text = "";
@@ -22,7 +22,7 @@ public class Stage_Info : MonoBehaviour
 
     void Update()
     {
-
+        
     }
     public void OnStage_Info()
     {
@@ -39,6 +39,14 @@ public class Stage_Info : MonoBehaviour
         GameManager.GM.Data.BGM_Value = GameManager.GM.Data.Set_BGI_SpeedValue;
         GameManager.GM.Data.GM_branch = Stage_Num;
 
-        Loading_Manager.LoadScene("Proto_InGame_Scene", Stage_Name, Stage_Information);
+        switch (GameManager.GM.nowStage)
+        {
+            case 1: Loading_Manager.LoadScene("Stage1_Scene", Stage_Name, Stage_Information); break;
+            case 2: Loading_Manager.LoadScene("Stage2_Scene", Stage_Name, Stage_Information); break;
+            case 3: Loading_Manager.LoadScene("Stage3_Scene", Stage_Name, Stage_Information); break;
+            case 4: Loading_Manager.LoadScene("Stage4_Scene", Stage_Name, Stage_Information); break;
+            case 5: Loading_Manager.LoadScene("Stage5_Scene", Stage_Name, Stage_Information); break;
+            case 6: Loading_Manager.LoadScene("Stage6_Scene", Stage_Name, Stage_Information); break;
+        }
     }
 }

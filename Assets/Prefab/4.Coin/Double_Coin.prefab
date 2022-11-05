@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetPoint: 4
-  OnRelease: 0
+  SetObject: Hub
+  SetPrefabs: 0
 --- !u!1001 &584262854080491773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111,6 +111,14 @@ PrefabInstance:
     - target: {fileID: -4333545222144138846, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: SetPoint
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4333545222144138846, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
+      propertyPath: SetObject
+      value: Prefab_Coin
+      objectReference: {fileID: 0}
+    - target: {fileID: -4333545222144138846, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
+      propertyPath: SetPrefabs
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 372431934391721140, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: m_Name
@@ -177,6 +185,14 @@ PrefabInstance:
     - target: {fileID: -4333545222144138846, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: SetPoint
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4333545222144138846, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
+      propertyPath: SetObject
+      value: Prefab_Coin
+      objectReference: {fileID: 0}
+    - target: {fileID: -4333545222144138846, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
+      propertyPath: SetPrefabs
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 372431934391721140, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: m_Name

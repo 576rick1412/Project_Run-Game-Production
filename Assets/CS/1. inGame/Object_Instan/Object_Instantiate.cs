@@ -6,9 +6,16 @@ using UnityEngine.Pool;
 
 public class Object_Instantiate : MonoBehaviour
 {
+    [Header("챕터 종류")][SerializeField][Range(1, 6)] int Excel_Num;
+
     [SerializeField] float Late_Time;
 
-    [SerializeField] Chapter_1 Chapter_EX;
+    [SerializeField] Chapter_1 Chapter_EX_1;
+    [SerializeField] Chapter_2 Chapter_EX_2;
+    [SerializeField] Chapter_3 Chapter_EX_3;
+    [SerializeField] Chapter_4 Chapter_EX_4;
+    [SerializeField] Chapter_5 Chapter_EX_5;
+    [SerializeField] Chapter_6 Chapter_EX_6;
 
     [SerializeField] GameObject[] Coin_Object;
     [SerializeField] GameObject[] Obstacle_Object;
@@ -16,17 +23,17 @@ public class Object_Instantiate : MonoBehaviour
 
     [SerializeField] Transform[] Instan_Pos;
 
-    [SerializeField] GameObject Instan_Coin;
-    [SerializeField] GameObject Instan_Obstacle;
-    [SerializeField] GameObject Instan_Platform;
+    GameObject Instan_Coin;
+    GameObject Instan_Obstacle;
+    GameObject Instan_Platform;
 
-    [SerializeField] int Index = 0;
-    [SerializeField] int PosNum = 0;
-    [SerializeField] int Amount = 0;
+    int Index = 0;
+    int PosNum = 0;
+    int Amount = 0;
     bool BossOn;
 
     bool CoinSkip = false; // 코인 스킵 \ true -> 스킵
-    [SerializeField] bool isMaker = false; // 코루틴 돌아가고 있는지 확인
+    bool isMaker = false; // 코루틴 돌아가고 있는지 확인
 
     private IObjectPool<Coin_CS> CoinPool_1;
     private IObjectPool<Coin_CS> CoinPool_2;
@@ -108,9 +115,21 @@ public class Object_Instantiate : MonoBehaviour
         GameManager.GM.Data.Game_Fail = true; Game_Control.GC.Result_Spawn();
     }
     // Update is called once per frame
+
     void Update()
     {
-        switch (GameManager.GM.Data.GM_branch)
+        var Chapter_EX = Chapter_EX_1;
+        switch (Excel_Num)
+        {
+            case 1:Chapter_EX = Chapter_EX_1; break;
+            case 2:Chapter_EX = Chapter_EX_2; break;
+            case 3:Chapter_EX = Chapter_EX_3; break;
+            case 4:Chapter_EX = Chapter_EX_4; break;
+            case 5:Chapter_EX = Chapter_EX_5; break;
+            case 6:Chapter_EX = Chapter_EX_6; break;
+        }
+
+        switch (GameManager.GM.Data.GM_branch % 10)
         {
             case 1: if (Chapter_EX.Stage_1[Index].END == true && BossOn == false) { Invoke("GameEnd",4f); BossOn = true;} break;
             case 2: if (Chapter_EX.Stage_2[Index].END == true && BossOn == false) { Invoke("GameEnd",4f); BossOn = true;} break;
@@ -121,11 +140,11 @@ public class Object_Instantiate : MonoBehaviour
             case 7: if (Chapter_EX.Stage_7[Index].END == true && BossOn == false) { Invoke("GameEnd",4f); BossOn = true;} break;
             case 8: if (Chapter_EX.Stage_8[Index].END == true && BossOn == false) { Invoke("GameEnd",4f); BossOn = true;} break;
             case 9: if (Chapter_EX.Stage_9[Index].END == true && BossOn == false) { Invoke("GameEnd",4f); BossOn = true;} break;
-            case 10:if (Chapter_EX.Stage_10[Index].END == true && BossOn == false) 
+            case 0:if (Chapter_EX.Stage_10[Index].END == true && BossOn == false)
                 { Game_Control.GC.Boss_On = true; BossOn = true; } break;
         }
       
-        switch (GameManager.GM.Data.GM_branch)
+        switch (GameManager.GM.Data.GM_branch % 10)
         {
             case 1: if (Chapter_EX.Stage_1[Index].END == false) if (isMaker == false) {Debug.Log(Index); StartCoroutine("Coin_Maker_1"); } break;
             case 2: if (Chapter_EX.Stage_2[Index].END == false) if (isMaker == false) {Debug.Log(Index); StartCoroutine("Coin_Maker_2"); } break;
@@ -134,10 +153,24 @@ public class Object_Instantiate : MonoBehaviour
             case 5: if (Chapter_EX.Stage_5[Index].END == false) if (isMaker == false) {Debug.Log(Index); StartCoroutine("Coin_Maker_5"); } break;
             case 6: if (Chapter_EX.Stage_6[Index].END == false) if (isMaker == false) {Debug.Log(Index); StartCoroutine("Coin_Maker_6"); } break;
             case 7: if (Chapter_EX.Stage_7[Index].END == false) if (isMaker == false) {Debug.Log(Index); StartCoroutine("Coin_Maker_7"); } break;
+            case 8: if (Chapter_EX.Stage_7[Index].END == false) if (isMaker == false) {Debug.Log(Index); StartCoroutine("Coin_Maker_8"); } break;
+            case 9: if (Chapter_EX.Stage_7[Index].END == false) if (isMaker == false) {Debug.Log(Index); StartCoroutine("Coin_Maker_9"); } break;
+            case 0: if (Chapter_EX.Stage_7[Index].END == false) if (isMaker == false) {Debug.Log(Index); StartCoroutine("Coin_Maker_10"); }break;
         }
     }
     IEnumerator Coin_Maker_1()
     {
+        var Chapter_EX = Chapter_EX_1;
+        switch (Excel_Num)
+        {
+            case 1: Chapter_EX = Chapter_EX_1; break;
+            case 2: Chapter_EX = Chapter_EX_2; break;
+            case 3: Chapter_EX = Chapter_EX_3; break;
+            case 4: Chapter_EX = Chapter_EX_4; break;
+            case 5: Chapter_EX = Chapter_EX_5; break;
+            case 6: Chapter_EX = Chapter_EX_6; break;
+        }
+
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
@@ -168,14 +201,11 @@ public class Object_Instantiate : MonoBehaviour
                 case "Platform_4": Instan_Platform = Platform_Object[3]; break; // 발판
             }
 
-            /*if (Chapter_EX.Stage_1[Index].Platform != "None")
-                Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_1[Index].PlatformPos].position, Quaternion.identity);*/
-
             PosNum = Chapter_EX.Stage_1[Index].CoinPos; // 코인 높이값 지정
             Amount = Chapter_EX.Stage_1[Index].CoinAmount;
             for (int i = 0; i < Amount; i++) // 코인 개수만큼 반복
             {
-                if (CoinSkip == false) // { yield return new WaitForSeconds(Late_Time); continue; }
+                if (CoinSkip == false) 
                 {
                     switch (Chapter_EX.Stage_1[Index].CoinType)
                     {
@@ -213,6 +243,17 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_2()
     {
+        var Chapter_EX = Chapter_EX_1;
+        switch (Excel_Num)
+        {
+            case 1: Chapter_EX = Chapter_EX_1; break;
+            case 2: Chapter_EX = Chapter_EX_2; break;
+            case 3: Chapter_EX = Chapter_EX_3; break;
+            case 4: Chapter_EX = Chapter_EX_4; break;
+            case 5: Chapter_EX = Chapter_EX_5; break;
+            case 6: Chapter_EX = Chapter_EX_6; break;
+        }
+
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
@@ -289,6 +330,17 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_3()
     {
+        var Chapter_EX = Chapter_EX_1;
+        switch (Excel_Num)
+        {
+            case 1: Chapter_EX = Chapter_EX_1; break;
+            case 2: Chapter_EX = Chapter_EX_2; break;
+            case 3: Chapter_EX = Chapter_EX_3; break;
+            case 4: Chapter_EX = Chapter_EX_4; break;
+            case 5: Chapter_EX = Chapter_EX_5; break;
+            case 6: Chapter_EX = Chapter_EX_6; break;
+        }
+
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
@@ -365,6 +417,17 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_4()
     {
+        var Chapter_EX = Chapter_EX_1;
+        switch (Excel_Num)
+        {
+            case 1: Chapter_EX = Chapter_EX_1; break;
+            case 2: Chapter_EX = Chapter_EX_2; break;
+            case 3: Chapter_EX = Chapter_EX_3; break;
+            case 4: Chapter_EX = Chapter_EX_4; break;
+            case 5: Chapter_EX = Chapter_EX_5; break;
+            case 6: Chapter_EX = Chapter_EX_6; break;
+        }
+
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
@@ -441,6 +504,17 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_5()
     {
+        var Chapter_EX = Chapter_EX_1;
+        switch (Excel_Num)
+        {
+            case 1: Chapter_EX = Chapter_EX_1; break;
+            case 2: Chapter_EX = Chapter_EX_2; break;
+            case 3: Chapter_EX = Chapter_EX_3; break;
+            case 4: Chapter_EX = Chapter_EX_4; break;
+            case 5: Chapter_EX = Chapter_EX_5; break;
+            case 6: Chapter_EX = Chapter_EX_6; break;
+        }
+
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
@@ -517,6 +591,17 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_6()
     {
+        var Chapter_EX = Chapter_EX_1;
+        switch (Excel_Num)
+        {
+            case 1: Chapter_EX = Chapter_EX_1; break;
+            case 2: Chapter_EX = Chapter_EX_2; break;
+            case 3: Chapter_EX = Chapter_EX_3; break;
+            case 4: Chapter_EX = Chapter_EX_4; break;
+            case 5: Chapter_EX = Chapter_EX_5; break;
+            case 6: Chapter_EX = Chapter_EX_6; break;
+        }
+
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
@@ -593,6 +678,17 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_7()
     {
+        var Chapter_EX = Chapter_EX_1;
+        switch (Excel_Num)
+        {
+            case 1: Chapter_EX = Chapter_EX_1; break;
+            case 2: Chapter_EX = Chapter_EX_2; break;
+            case 3: Chapter_EX = Chapter_EX_3; break;
+            case 4: Chapter_EX = Chapter_EX_4; break;
+            case 5: Chapter_EX = Chapter_EX_5; break;
+            case 6: Chapter_EX = Chapter_EX_6; break;
+        }
+
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
@@ -669,6 +765,17 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_8()
     {
+        var Chapter_EX = Chapter_EX_1;
+        switch (Excel_Num)
+        {
+            case 1: Chapter_EX = Chapter_EX_1; break;
+            case 2: Chapter_EX = Chapter_EX_2; break;
+            case 3: Chapter_EX = Chapter_EX_3; break;
+            case 4: Chapter_EX = Chapter_EX_4; break;
+            case 5: Chapter_EX = Chapter_EX_5; break;
+            case 6: Chapter_EX = Chapter_EX_6; break;
+        }
+
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
@@ -745,6 +852,17 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_9()
     {
+        var Chapter_EX = Chapter_EX_1;
+        switch (Excel_Num)
+        {
+            case 1: Chapter_EX = Chapter_EX_1; break;
+            case 2: Chapter_EX = Chapter_EX_2; break;
+            case 3: Chapter_EX = Chapter_EX_3; break;
+            case 4: Chapter_EX = Chapter_EX_4; break;
+            case 5: Chapter_EX = Chapter_EX_5; break;
+            case 6: Chapter_EX = Chapter_EX_6; break;
+        }
+
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
@@ -821,6 +939,17 @@ public class Object_Instantiate : MonoBehaviour
     }
     IEnumerator Coin_Maker_10()
     {
+        var Chapter_EX = Chapter_EX_1;
+        switch (Excel_Num)
+        {
+            case 1: Chapter_EX = Chapter_EX_1; break;
+            case 2: Chapter_EX = Chapter_EX_2; break;
+            case 3: Chapter_EX = Chapter_EX_3; break;
+            case 4: Chapter_EX = Chapter_EX_4; break;
+            case 5: Chapter_EX = Chapter_EX_5; break;
+            case 6: Chapter_EX = Chapter_EX_6; break;
+        }
+
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
@@ -885,7 +1014,7 @@ public class Object_Instantiate : MonoBehaviour
                     }  // 코인 생성
                 }
                 if (Chapter_EX.Stage_10[Index].Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
-                if (Chapter_EX.Stage_10[Index].Platform != "None") Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_3[Index].PlatformPos].position, Quaternion.identity);
+                if (Chapter_EX.Stage_10[Index].Platform != "None") Instantiate(Instan_Platform, Instan_Pos[Chapter_EX.Stage_10[Index].PlatformPos].position, Quaternion.identity);
 
                 yield return new WaitForSeconds(Late_Time);
             }
@@ -896,5 +1025,3 @@ public class Object_Instantiate : MonoBehaviour
         }
     }
 }
-
-

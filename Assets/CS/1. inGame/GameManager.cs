@@ -13,16 +13,18 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager GM;
 
+    [Range(1,6)] public int nowStage;
     //페이드 인 아웃
     [Header("페이드 인 아웃")]
     public Image Panel;
     public float F_time = 0.2f;
     [HideInInspector] public float FM_time = 0f;
 
+   
+
     string FilePath;
     void Awake(){GM = this; FilePath = Application.persistentDataPath + "/MainDB.txt"; }
     public MainDB Data;
-
 
     void Start()
     {
@@ -73,6 +75,7 @@ public class GameManager : MonoBehaviour
 
         // 스테이지 정보
         Data.Game_Fail = false;
+        Data.stage_clear_Num = 0;
         for (int i = 0; i < Data.stage_Max_Score.Length; i++) Data.stage_Max_Score[i] = 0;
 
         Data.Set_Floor_SpeedValue = 10f;
@@ -241,7 +244,9 @@ public class MainDB
     // 스테이지 정보
     [Header("스테이지 정보")]
     public bool Game_Fail;
+    public int stage_clear_Num;
     public int[] stage_Max_Score = new int[60 + 1];
+
 
     // 인게임 설정
     [Header("인게임 설정")]

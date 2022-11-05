@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetPoint: 1
-  OnRelease: 0
+  SetObject: Coin_1
+  SetPrefabs: 0
 --- !u!50 &-1233021278374380044
 Rigidbody2D:
   serializedVersion: 4

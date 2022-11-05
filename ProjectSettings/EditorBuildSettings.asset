@@ -33,9 +33,42 @@ EditorBuildSettings:
     path: Assets/Scenes/2. Game_Scene/Chapter_Hub.unity
     guid: ad41e2cf3576da14183c3c7d7b26857a
   - enabled: 1
+    path: Assets/Scenes/1. Loby_Scene/Shop_Scene.unity
+    guid: 6c4bb7760e4d2fd45ae5cd3ba78f44b5
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Stage1_Scene.unity
+    guid: b03fbe5f59fdb5147bac518d68da4be9
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Stage2_Scene.unity
+    guid: 1002d2ba3309734429d5027ec48771cb
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Stage3_Scene.unity
+    guid: fdfd2c75737f37a4e9b91d59a99ce350
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Stage4_Scene.unity
+    guid: a72fc695d4f4d314a8414857377454c1
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Stage5_Scene.unity
+    guid: 21afdbb4c044a99439044e38a50857f7
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Stage6_Scene.unity
+    guid: e5a997c67c9d65e44b05abbd92c12024
+  - enabled: 1
     path: Assets/Scenes/2. Game_Scene/Stage_Hub/Stage1_Hub.unity
     guid: e38d5394e32bfc54d806fe9b74592920
   - enabled: 1
-    path: Assets/Scenes/1. Loby_Scene/Shop_Scene.unity
-    guid: 6c4bb7760e4d2fd45ae5cd3ba78f44b5
+    path: Assets/Scenes/2. Game_Scene/Stage_Hub/Stage2_Hub.unity
+    guid: da53e53253e1ee941abc6c960fe55b71
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Stage_Hub/Stage3_Hub.unity
+    guid: 93acfd417132bfe42bc2f58185b44ff8
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Stage_Hub/Stage4_Hub.unity
+    guid: f2d68be4fb23dcd4886ff1c05c5279ae
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Stage_Hub/Stage5_Hub.unity
+    guid: 1d73b32093b258b41b315885930dcb8c
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Stage_Hub/Stage6_Hub.unity
+    guid: f844a0a76e5302344bc041abefe0b5a2
   m_configObjects: {}
