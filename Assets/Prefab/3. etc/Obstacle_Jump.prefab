@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 988328085588476241}
   - component: {fileID: 988328085588476270}
-  - component: {fileID: 5294917475207049018}
+  - component: {fileID: 114506887561753588}
   - component: {fileID: 988328085588476243}
   - component: {fileID: 8181863387669044009}
   m_Layer: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5294917475207049018
+--- !u!114 &114506887561753588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,9 +96,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 988328085588476271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82cbef73591d21341889adf0dc57144d, type: 3}
+  m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SetObject: Obstacle
+  OnRelease: 0
 --- !u!50 &988328085588476243
 Rigidbody2D:
   serializedVersion: 4

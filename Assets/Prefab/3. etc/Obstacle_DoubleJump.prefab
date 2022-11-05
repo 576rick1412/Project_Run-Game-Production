@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2804359953391061466}
   - component: {fileID: 2804359953391061477}
-  - component: {fileID: 7072756771089475505}
+  - component: {fileID: 3203822859273774134}
   - component: {fileID: 2804359953391061464}
   - component: {fileID: 2879808051149813388}
   m_Layer: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7072756771089475505
+--- !u!114 &3203822859273774134
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,9 +96,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2804359953391061476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82cbef73591d21341889adf0dc57144d, type: 3}
+  m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SetObject: Obstacle
+  SetPrefabs: 1
 --- !u!50 &2804359953391061464
 Rigidbody2D:
   serializedVersion: 4
@@ -145,6 +147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2921605665004880832}
+  - component: {fileID: 4480923762554992878}
   m_Layer: 0
   m_Name: Obstacle_DoubleJump
   m_TagString: Untagged
@@ -168,3 +171,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4480923762554992878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2921605665004880833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SetObject: Hub
+  SetPrefabs: 0
