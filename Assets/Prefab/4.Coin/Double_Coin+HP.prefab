@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SetObject: Hub
-  SetPrefabs: 0
+  SetPrefabs: 1
 --- !u!1 &1095735709092447731
 GameObject:
   m_ObjectHideFlags: 0

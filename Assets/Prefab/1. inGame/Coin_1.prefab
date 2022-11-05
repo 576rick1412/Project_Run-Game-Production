@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SetObject: Coin_1
-  SetPrefabs: 0
+  SetPrefabs: 1
 --- !u!50 &-1233021278374380044
 Rigidbody2D:
   serializedVersion: 4
