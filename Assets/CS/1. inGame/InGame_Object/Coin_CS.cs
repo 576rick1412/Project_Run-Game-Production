@@ -37,7 +37,7 @@ public class Coin_CS : MonoBehaviour
             case "Coin_3"       : DestroyCoin_3(); break;               // 코인 3
             case "HP"           : Destroy(this.gameObject); break;      // HP 
             case "Hub"          : Destroy(this.gameObject); break;      // 허브
-            case "Obstacle"     : Destroy(this.gameObject); break;      // 프리팹 / 속도 적용 안 되도록
+            case "Obstacle"     : Destroy(this.gameObject); break;      // 장애물
             case "Prefab_Coin"  : Destroy(this.gameObject); break;      // 오브젝트 풀링 적용 안 되도록 따로 격리
             case "Platform"     : Destroy(this.gameObject); break;      // 발판
         }
@@ -53,7 +53,6 @@ public class Coin_CS : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && SetObject == "Coin_3") { GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
         if (collision.gameObject.CompareTag("Player") && SetObject == "Prefab_Coin") { GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
         if (collision.gameObject.CompareTag("Player") && SetObject == "HP") { GameManager.GM.Data.LifeScore += 50; if (GameManager.GM.Data.LifeScore >= 100) GameManager.GM.Data.LifeScore = 100; Destroy(); }
-        if (collision.gameObject.CompareTag("Player") && SetObject == "Hub") { Destroy(); }
 
         if (collision.gameObject.CompareTag("Player") && SetObject == "Obstacle" && Player_CS.PL.On_HIT == false) 
         { 

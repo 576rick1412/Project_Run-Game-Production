@@ -10,6 +10,7 @@ TagManager:
   - Platform
   - Boss
   - Bullet
+  - Scene_Border
   layers:
   - Default
   - TransparentFX

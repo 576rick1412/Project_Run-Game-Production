@@ -191,6 +191,7 @@ public class Object_Instantiate : MonoBehaviour
                 case "Obstacle_1": Instan_Obstacle = Obstacle_Object[0]; break; // 점프 장애물
                 case "Obstacle_2": Instan_Obstacle = Obstacle_Object[1]; break; // 더블점프 장애물
                 case "Obstacle_3": Instan_Obstacle = Obstacle_Object[2]; break; // 슬라이드 장애물
+                case "Eagle"     : Instan_Obstacle = Obstacle_Object[3]; break; // (슬라이드)독수리 장애물
             }
 
             switch (Chapter_EX.Stage_1[Index].Platform) // 발판 지정

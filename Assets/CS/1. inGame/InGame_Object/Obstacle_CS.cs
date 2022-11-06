@@ -5,35 +5,19 @@ using UnityEngine.Pool;
 
 public class Obstacle_CS : MonoBehaviour
 {
-    private int ObstacleDamage;
-
-    private IObjectPool<Obstacle_CS> _ObstaclePool;
-    public void Set_ObstaclePool(IObjectPool<Obstacle_CS> pool) {_ObstaclePool = pool;}
-    public void DestroyObstacle() { _ObstaclePool.Release(this); }
-
-    void Start() {  ObstacleDamage = GameManager.GM.Data.Obstacle_Damage; }
-
-    // Update is called once per frame
-    void Update() { transform.Translate(-1 * GameManager.GM.Data.Floor_SpeedValue * Time.deltaTime, 0, 0); }
-
+    // 모든 애니메이션 실행 파라미터는 OnObstacle 로 통일
+    [SerializeField] string Obstacle_Type;
+    Animator anim;
+    void Start() { anim = GetComponent<Animator>(); }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("End_Border"))
+        if(collision.gameObject.CompareTag("Scene_Border"))
         {
-            Destroy(gameObject);
+            switch(Obstacle_Type)
+            {
+                case "Cactus"   : anim.SetBool("OnObstacle", true); break;
+                case "Eagle"    : anim.SetBool("OnObstacle", true); break;
+            }
         }
-        if (collision.gameObject.CompareTag("Player") && Player_CS.PL.On_HIT == false)
-        {
-            Debug.Log("충돌");
-            GameManager.GM.Data.LifeScore -= ObstacleDamage;
-            Player_CS.PL.On_HIT = true;
-            Player_CS.PL.OnCoroutine();
-            Invoke("HIT_off", GameManager.GM.Data.Invincibility_Time);
-        }
-    }
-    void HIT_off()
-    {
-        Player_CS.PL.On_HIT = false;
-        Debug.Log("무적 종료");
     }
 }

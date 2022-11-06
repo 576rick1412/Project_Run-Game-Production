@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 988328085588476243}
   - component: {fileID: 8181863387669044009}
   m_Layer: 0
-  m_Name: Obstacle_Jump
+  m_Name: Cactus_Jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SetObject: Obstacle
-  OnRelease: 0
+  SetPrefabs: 0
 --- !u!50 &988328085588476243
 Rigidbody2D:
   serializedVersion: 4
