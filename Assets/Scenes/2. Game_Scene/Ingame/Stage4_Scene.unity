@@ -4378,7 +4378,7 @@ MonoBehaviour:
   Obstacle_Object:
   - {fileID: 988328085588476271, guid: 48b45c7ec1823364aac22ef4fc83e088, type: 3}
   - {fileID: 2921605665004880833, guid: aae42f0ef9acd5e4c946eaa94343d23d, type: 3}
-  - {fileID: 3365883309979113990, guid: 6a281741db645a748bc989f00b0aa84e, type: 3}
+  - {fileID: 5988263937741521609, guid: 6a281741db645a748bc989f00b0aa84e, type: 3}
   Platform_Object:
   - {fileID: 5554904589068736962, guid: b57881004a415454fb47649d4e25f414, type: 3}
   - {fileID: 5554904589068736962, guid: b57881004a415454fb47649d4e25f414, type: 3}
