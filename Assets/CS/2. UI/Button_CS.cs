@@ -7,6 +7,8 @@ public class Button_CS : MonoBehaviour
     [SerializeField] RunGame_EX RunGame_EX;
 
     [SerializeField] string Stage_Des;
+    [SerializeField] Animator BG;
+
 
     void Start()
     {
@@ -15,9 +17,10 @@ public class Button_CS : MonoBehaviour
     }
     public void GoMain()
     {
-        Loading_Manager.LoadScene("Mian_Loby_Scene", Stage_Des);
+        BG.SetBool("Start", true);
+        Invoke("RoadLoby", 3f);
     }
-
+    void RoadLoby() { Loading_Manager.LoadScene("Mian_Loby_Scene", Stage_Des); }
     void STG_Excel()
     {
         for (int i = 0; i < RunGame_EX.StartSheet.Count; ++i)

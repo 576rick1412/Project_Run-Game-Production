@@ -89,8 +89,8 @@ public class Player_CS : MonoBehaviour
     public void OnCoroutine() { if (HIT_check == false && On_HIT == true) 
         { 
             inhit = true;
-            GameManager.GM.Data.Floor_SpeedValue *= 0.8f;
-            GameManager.GM.Data.BGI_SpeedValue *= 0.8f;
+            GameManager.GM.Data.Floor_SpeedValue *= 0.9f;
+            GameManager.GM.Data.BGI_SpeedValue *= 0.9f;
             HIT_check = true; 
             StartCoroutine("HIT_Coroutine"); 
         } 
@@ -121,13 +121,16 @@ public class Player_CS : MonoBehaviour
         if (Jumping) anime.SetInteger         ("Player_Value", 2);
         if (DoubleJumping) anime.SetInteger   ("Player_Value", 3);
         if (Player_alive) anime.SetInteger    ("Player_Value", 4);
-        if (inhit) { anime.SetInteger         ("Player_Value", 5); Invoke("Hit_Speed", 0.2f); }
+        if (inhit) { anime.SetInteger         ("Player_Value", 5); Invoke("Hit_Speed", 0.1f); }
     }
     void Hit_Speed()
     {
         inhit = false;
-        GameManager.GM.Data.Floor_SpeedValue = GameManager.GM.Data.Set_Floor_SpeedValue;
-        GameManager.GM.Data.BGI_SpeedValue = GameManager.GM.Data.Set_BGI_SpeedValue;
+        if (!Player_alive)
+        {
+            GameManager.GM.Data.Floor_SpeedValue = GameManager.GM.Data.Set_Floor_SpeedValue;
+            GameManager.GM.Data.BGI_SpeedValue = GameManager.GM.Data.Set_BGI_SpeedValue;
+        }
     }
     public void Jump()
     {
