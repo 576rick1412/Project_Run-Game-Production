@@ -8,6 +8,7 @@ public class Player_CS : MonoBehaviour
     public static Player_CS PL;
 
      public bool Player_alive;
+     [HideInInspector]public bool Clear_Check;
 
      float jumpHeight;
      bool Jumping;
@@ -83,7 +84,8 @@ public class Player_CS : MonoBehaviour
             GameManager.GM.Data.BGI_SpeedValue = 0;
             Player_alive = true;
         }
-        if(GameManager.GM.Data.Boss_DIE == false || Player_alive == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
+
+        if(GameManager.GM.Data.Boss_DIE == false || Clear_Check == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
     }
 
     public void OnCoroutine() { if (HIT_check == false && On_HIT == true) 

@@ -76,7 +76,7 @@ public class Dialog2_CS : MonoBehaviour
             if(Input.anyKey)
             {
                 Debug.Log("²ý");
-                GameManager.GM.Fade(Dialog);
+                GameManager.GM.Fade(Dialog,false);
                 Game_Control.GC.Result_Spawn();
                 EndCheck = true;
             }
@@ -270,5 +270,5 @@ public class Dialog2_CS : MonoBehaviour
 
     public void OnQuitWindow() { QuitWindow.SetActive(true);  }
     public void OffQuitWindow() { QuitWindow.SetActive(false); }
-    public void DeletDialog() { GameManager.GM.Fade(Dialog); Game_Control.GC.Result_Spawn(); }
+    public void DeletDialog() { GameManager.GM.Fade(Dialog,false); Game_Control.GC.Result_Spawn(); }
 }

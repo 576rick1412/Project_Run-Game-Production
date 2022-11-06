@@ -133,9 +133,9 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(FadeEffect(op));
     }
-    public void Fade(GameObject CurObj)
+    public void Fade(GameObject CurObj,bool OnOff)
     {
-        StartCoroutine(FadeEffect(CurObj));
+        StartCoroutine(FadeEffect(CurObj, OnOff));
     }
     // ===========================================================================
 
@@ -228,7 +228,7 @@ public class GameManager : MonoBehaviour
         Panel.gameObject.SetActive(false);
         yield return null;
     }
-    IEnumerator FadeEffect(GameObject CurObj) 
+    IEnumerator FadeEffect(GameObject CurObj, bool OnOff) 
     {
         Panel.gameObject.SetActive(true);
         FM_time = 0f;
@@ -244,7 +244,10 @@ public class GameManager : MonoBehaviour
         }
 
         FM_time = 0f;
-        Destroy(CurObj);
+
+        if (OnOff) Instantiate(CurObj);
+        if(!OnOff) Destroy(CurObj);
+
         yield return null;  //yield return new WaitForSeconds(L_time);
 
 

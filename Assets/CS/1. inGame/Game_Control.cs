@@ -132,16 +132,15 @@ public class Game_Control : MonoBehaviour
         Entry.transform.SetParent(BossEntryPos.transform);
     }
 
-    public void Result_Spawn() { Invoke("Game_Result", 3f); }
+    public void Result_Spawn() { Invoke("Game_Result", 1f); }
     void Game_Result() { Instantiate(Result); }
     public void Game_ClearUI() 
     {
-        Invoke("InstanDialog", 2.5f);
         GameObject clear = Instantiate(ClearUI, BossEntryPos.position, Quaternion.identity);
         clear.transform.SetParent(BossEntryPos);
     }
-    public void InstanDialog() { Instantiate(DialogUI); Player_CS.PL.Player_alive = true; }
-    public void Game_OverUI() 
+    public void InstanDialog() { GameManager.GM.Fade(DialogUI, true); Player_CS.PL.Clear_Check = true; }
+    public void Game_OverUI()
     {
         GameObject Over = Instantiate(OverUI, BossEntryPos.position, Quaternion.identity);
         Over.transform.SetParent(BossEntryPos);

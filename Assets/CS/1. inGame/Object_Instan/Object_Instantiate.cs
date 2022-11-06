@@ -112,9 +112,9 @@ public class Object_Instantiate : MonoBehaviour
     void GameEnd()
     {
         Game_Control.GC.BossAttack = false; Game_Control.GC.Game_ClearUI(); Game_Control.GC.Game_End = true; GameManager.GM.SavaData();
-        GameManager.GM.Data.Game_Fail = true; Game_Control.GC.InstanDialog();
+        GameManager.GM.Data.Game_Fail = true; Invoke("IstanDia", 3.5f);
     }
-    // Update is called once per frame
+    void IstanDia() { Game_Control.GC.InstanDialog(); }
 
     void Update()
     {
