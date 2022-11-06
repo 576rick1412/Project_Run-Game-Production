@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SetObject: Hub
-  SetPrefabs: 1
+  SetPrefabs: 0
 --- !u!1 &1095735709092447731
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,9 +112,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5451359063297797705}
   - component: {fileID: 4932028008867451864}
+  - component: {fileID: 6956105415193949373}
   - component: {fileID: 7276863323725604019}
   - component: {fileID: 4457946955393523934}
-  - component: {fileID: 6956105415193949373}
   m_Layer: 0
   m_Name: HP+
   m_TagString: Untagged
@@ -189,6 +189,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6956105415193949373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095735709092447731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SetObject: HP
+  SetPrefabs: 1
 --- !u!50 &7276863323725604019
 Rigidbody2D:
   serializedVersion: 4
@@ -226,20 +240,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.6
---- !u!114 &6956105415193949373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095735709092447731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SetObject: HP
-  SetPrefabs: 1
 --- !u!1001 &5855372926786022207
 PrefabInstance:
   m_ObjectHideFlags: 0
