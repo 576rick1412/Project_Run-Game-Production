@@ -305,8 +305,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: --------------
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3860e294e550f454a80e9ae71db01826, type: 2}
-  m_sharedMaterial: {fileID: -705147990838516386, guid: 3860e294e550f454a80e9ae71db01826, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3026e674a2e03a04fb8eb8fc7f742d5f, type: 2}
+  m_sharedMaterial: {fileID: 2607197950904173734, guid: 3026e674a2e03a04fb8eb8fc7f742d5f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -698,8 +698,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uAC8C\uC784 \uB098\uAC00\uAE30"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3860e294e550f454a80e9ae71db01826, type: 2}
-  m_sharedMaterial: {fileID: -705147990838516386, guid: 3860e294e550f454a80e9ae71db01826, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1921fba65abfb434b962a2484db946f2, type: 2}
+  m_sharedMaterial: {fileID: 2607197950904173734, guid: 1921fba65abfb434b962a2484db946f2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1604,10 +1604,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC810\uC218 \uD14D\uC2A4\uD2B8"
+  m_text: "\uC810\uC218 \uD14D\uC2A4\uD2B8 : 10,000,000,000"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1d46988d4ee03a14eb28736ac920de27, type: 2}
-  m_sharedMaterial: {fileID: -705147990838516386, guid: 1d46988d4ee03a14eb28736ac920de27, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: eb51541ed7fda1f449ae120e1888a280, type: 2}
+  m_sharedMaterial: {fileID: -7772998894453047327, guid: eb51541ed7fda1f449ae120e1888a280, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1667,7 +1667,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 127.89725, y: -5.588135, z: -822.024, w: 0.062737495}
+  m_margin: {x: 127.89725, y: 0.15618852, z: -822.024, w: 0.062737495}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2187,8 +2187,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uB2E4\uC2DC\uC2DC\uC791"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3860e294e550f454a80e9ae71db01826, type: 2}
-  m_sharedMaterial: {fileID: -705147990838516386, guid: 3860e294e550f454a80e9ae71db01826, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1921fba65abfb434b962a2484db946f2, type: 2}
+  m_sharedMaterial: {fileID: 2607197950904173734, guid: 1921fba65abfb434b962a2484db946f2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3392,8 +3392,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC77C\uC2DC\uC815\uC9C0"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3860e294e550f454a80e9ae71db01826, type: 2}
-  m_sharedMaterial: {fileID: -705147990838516386, guid: 3860e294e550f454a80e9ae71db01826, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3026e674a2e03a04fb8eb8fc7f742d5f, type: 2}
+  m_sharedMaterial: {fileID: 2607197950904173734, guid: 3026e674a2e03a04fb8eb8fc7f742d5f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4359,8 +4359,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565329ba5181f6146beb583e380ae7d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Excel_Num: 0
   Late_Time: 0.2
-  Chapter_EX: {fileID: 11400000, guid: 6cdb117763ce6b5489e79a5374c442de, type: 2}
+  Chapter_EX_1: {fileID: 0}
+  Chapter_EX_2: {fileID: 0}
+  Chapter_EX_3: {fileID: 0}
+  Chapter_EX_4: {fileID: 0}
+  Chapter_EX_5: {fileID: 0}
+  Chapter_EX_6: {fileID: 0}
   Coin_Object:
   - {fileID: 372431934391721140, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
   - {fileID: 372431934391721140, guid: 00ffb5518a8db5440934191f639fe545, type: 3}
@@ -4384,13 +4390,6 @@ MonoBehaviour:
   - {fileID: 1531689104}
   - {fileID: 397583071}
   - {fileID: 2072551634}
-  Instan_Coin: {fileID: 0}
-  Instan_Obstacle: {fileID: 0}
-  Instan_Platform: {fileID: 0}
-  Index: 0
-  PosNum: 0
-  Amount: 0
-  isMaker: 0
 --- !u!224 &2116479744
 RectTransform:
   m_ObjectHideFlags: 0
