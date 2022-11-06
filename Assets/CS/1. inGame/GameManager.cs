@@ -133,7 +133,10 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(FadeEffect(op));
     }
-
+    public void Fade(GameObject CurObj)
+    {
+        StartCoroutine(FadeEffect(CurObj));
+    }
     // ===========================================================================
 
     IEnumerator FadeEffect()
@@ -214,6 +217,36 @@ public class GameManager : MonoBehaviour
         FM_time = 0f;
         op.allowSceneActivation = true;
         yield return null;   //yield return new WaitForSeconds(L_time);
+
+        while (alpha.a > 0f)
+        {
+            FM_time += Time.deltaTime / F_time;
+            alpha.a = Mathf.Lerp(1, 0, FM_time);
+            Panel.color = alpha;
+            yield return null;
+        }
+        Panel.gameObject.SetActive(false);
+        yield return null;
+    }
+    IEnumerator FadeEffect(GameObject CurObj) 
+    {
+        Panel.gameObject.SetActive(true);
+        FM_time = 0f;
+        Color alpha = Panel.color;
+
+        while (alpha.a < 1f)
+        {
+            FM_time += Time.deltaTime / F_time;
+            alpha.a = Mathf.Lerp(0, 1, FM_time);
+            Panel.color = alpha;
+
+            yield return null;
+        }
+
+        FM_time = 0f;
+        Destroy(CurObj);
+        yield return null;  //yield return new WaitForSeconds(L_time);
+
 
         while (alpha.a > 0f)
         {

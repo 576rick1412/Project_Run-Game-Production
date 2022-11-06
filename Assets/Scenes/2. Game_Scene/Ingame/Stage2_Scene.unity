@@ -2739,6 +2739,7 @@ MonoBehaviour:
   Result: {fileID: 8925110402508120400, guid: 80dc76936ed1a2640953ce588597c7cb, type: 3}
   ClearUI: {fileID: 4360651679565576799, guid: d0c0a15b579d9294384ff520624c78da, type: 3}
   OverUI: {fileID: 4360651679565576799, guid: e8f63dbb0112c544fa7444429da75992, type: 3}
+  DialogUI: {fileID: 6125659358565050268, guid: 52cd277856688364dacf963eef9e60fa, type: 3}
   RunGame_EX: {fileID: 11400000, guid: e6fe9ecea16e54746a9efd13223f79f3, type: 2}
 --- !u!1 &1499655538
 GameObject:

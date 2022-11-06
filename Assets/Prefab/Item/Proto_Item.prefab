@@ -66,10 +66,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC22B\uC790"
+  m_text: 15
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1d46988d4ee03a14eb28736ac920de27, type: 2}
-  m_sharedMaterial: {fileID: -705147990838516386, guid: 1d46988d4ee03a14eb28736ac920de27, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1921fba65abfb434b962a2484db946f2, type: 2}
+  m_sharedMaterial: {fileID: 2607197950904173734, guid: 1921fba65abfb434b962a2484db946f2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

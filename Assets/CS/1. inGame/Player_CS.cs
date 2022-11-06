@@ -28,6 +28,7 @@ public class Player_CS : MonoBehaviour
 
     bool HIT_check = false; // 코루틴 반복 방지용
     public bool On_HIT = false; // 피격 확인용
+    bool inhit; // 내부 피격
 
     private IObjectPool<Attack_CS> AttackPool;
     void Awake()
@@ -54,7 +55,6 @@ public class Player_CS : MonoBehaviour
     {
         Destroy(Attack.gameObject);
     }       // (풀링) 장애물 삭제
-
 
     void Start()
     {
@@ -83,10 +83,18 @@ public class Player_CS : MonoBehaviour
             GameManager.GM.Data.BGI_SpeedValue = 0;
             Player_alive = true;
         }
-        if(GameManager.GM.Data.Boss_DIE == false && Player_alive == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
+        if(GameManager.GM.Data.Boss_DIE == false || Player_alive == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
     }
 
-    public void OnCoroutine() { if (HIT_check == false && On_HIT == true) { HIT_check = true; StartCoroutine("HIT_Coroutine"); } }
+    public void OnCoroutine() { if (HIT_check == false && On_HIT == true) 
+        { 
+            inhit = true;
+            GameManager.GM.Data.Floor_SpeedValue *= 0.8f;
+            GameManager.GM.Data.BGI_SpeedValue *= 0.8f;
+            HIT_check = true; 
+            StartCoroutine("HIT_Coroutine"); 
+        } 
+    }
 
     void SetCollider()
     {
@@ -113,6 +121,13 @@ public class Player_CS : MonoBehaviour
         if (Jumping) anime.SetInteger         ("Player_Value", 2);
         if (DoubleJumping) anime.SetInteger   ("Player_Value", 3);
         if (Player_alive) anime.SetInteger    ("Player_Value", 4);
+        if (inhit) { anime.SetInteger         ("Player_Value", 5); Invoke("Hit_Speed", 0.2f); }
+    }
+    void Hit_Speed()
+    {
+        inhit = false;
+        GameManager.GM.Data.Floor_SpeedValue = GameManager.GM.Data.Set_Floor_SpeedValue;
+        GameManager.GM.Data.BGI_SpeedValue = GameManager.GM.Data.Set_BGI_SpeedValue;
     }
     public void Jump()
     {

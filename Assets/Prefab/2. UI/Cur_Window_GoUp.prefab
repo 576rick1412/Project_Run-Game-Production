@@ -69,8 +69,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD604\uC7AC \uC810\uC218 : 2,035,000,000"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: df8215759ab217c4f99dea58ae1048cc, type: 2}
-  m_sharedMaterial: {fileID: -705147990838516386, guid: df8215759ab217c4f99dea58ae1048cc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ccd58e53ab49b5f41a2cbf807440c726, type: 2}
+  m_sharedMaterial: {fileID: -2251066448972568068, guid: ccd58e53ab49b5f41a2cbf807440c726, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

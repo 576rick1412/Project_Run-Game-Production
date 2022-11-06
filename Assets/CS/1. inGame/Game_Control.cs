@@ -33,6 +33,7 @@ public class Game_Control : MonoBehaviour
     [SerializeField] GameObject Result;
     public GameObject ClearUI;
     [SerializeField] GameObject OverUI;
+    [SerializeField] GameObject DialogUI;
 
     // ¿¢¼¿¿ë
     int branch;
@@ -135,9 +136,11 @@ public class Game_Control : MonoBehaviour
     void Game_Result() { Instantiate(Result); }
     public void Game_ClearUI() 
     {
-        GameObject Over = Instantiate(ClearUI, BossEntryPos.position, Quaternion.identity);
-        Over.transform.SetParent(BossEntryPos);
+        Invoke("InstanDialog", 2.5f);
+        GameObject clear = Instantiate(ClearUI, BossEntryPos.position, Quaternion.identity);
+        clear.transform.SetParent(BossEntryPos);
     }
+    public void InstanDialog() { Instantiate(DialogUI); Player_CS.PL.Player_alive = true; }
     public void Game_OverUI() 
     {
         GameObject Over = Instantiate(OverUI, BossEntryPos.position, Quaternion.identity);

@@ -6,6 +6,10 @@ using System;
 using TMPro;
 public class Dialog2_CS : MonoBehaviour
 {
+    [Header("다이얼로그 관리")]
+    [SerializeField]GameObject Dialog;
+    [SerializeField]GameObject QuitWindow;
+
     [SerializeField] RunGame_EX RunGame_EX;
     [SerializeField] DialogData[] dialogue;
     int branch;
@@ -21,18 +25,25 @@ public class Dialog2_CS : MonoBehaviour
     public GameObject[] eventScene;
 
     bool BGICheck;
-    public GameObject[] BGIScene;
-
     bool CharacterCheck;
-    public GameObject[] LeftCharacter;
-    public GameObject[] MidCharacter;
-    public GameObject[] RightCharacter;
+    bool EndCheck;
+
+    [Header("다이얼로그 이미지")]
+    [SerializeField] Image BGI;
+    [SerializeField] Image LeftCharacter;
+    [SerializeField] Image MidCharacter;
+    [SerializeField] Image RightCharacter;
+    [Header("다이얼로그 스프라이트 넣는곳")]
+    [SerializeField] Sprite[] BGIScene;
+    [SerializeField] Sprite[] Character_Sprite;
 
     [SerializeField] TextMeshProUGUI TMP_Name;
     [SerializeField] TextMeshProUGUI TMP_Dialog;
 
     void Start()
     {
+        EndCheck = false;
+        QuitWindow.SetActive(false);
         branch = GameManager.GM.Data.GM_branch;
         int index = 0;
         // 구조체에 대사 넣어주기
@@ -59,6 +70,17 @@ public class Dialog2_CS : MonoBehaviour
     void GameLoop()
     {
         typingSpeed = GameManager.GM.Data.GM_typingSpeed;
+
+        if (RunGame_EX.DialogSheet[DialogIndex + 1].DIA_End && isTypingEnd && !EndCheck)
+        { 
+            if(Input.anyKey)
+            {
+                Debug.Log("끗");
+                GameManager.GM.Fade(Dialog);
+                Game_Control.GC.Result_Spawn();
+                EndCheck = true;
+            }
+        }
 
         if (RunGame_EX.DialogSheet[DialogIndex].DIA_End == false)
         {
@@ -113,26 +135,18 @@ public class Dialog2_CS : MonoBehaviour
     }   // 컷씬 초기화
     void BGILoad()
     {
-        bool BGI = RunGame_EX.DialogSheet[DialogIndex].BGI_Blackout == true;
+        bool BGI_Check = RunGame_EX.DialogSheet[DialogIndex].BGI_Blackout == true;
         if (BGICheck == false)
         {
             switch (RunGame_EX.DialogSheet[DialogIndex].DIA_BGI)
             {
-                case "BGI_city":    Blackout(BGIScene[0], BGI); break;
-                case "BGI_ground":  Blackout(BGIScene[1], BGI); break;
+                case "BGI_city"  :  Blackout(BGI,BGIScene[0], BGI_Check); break;
+                case "BGI_ground":  Blackout(BGI,BGIScene[1], BGI_Check); break;
             }
             BGICheck = true;
         }
     }   // 배경화면 로딩
-    void BGIDestroy()
-    {
-        for (int i = 0; i < BGIScene.Length; i++)
-        {
-            BGIScene[i].SetActive(false);
-            BGIScene[i].GetComponent<Image>().color 
-                = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
-        }
-    }   // 배경화면 초기화
+    void BGIDestroy() { BGI.sprite = null; }   // 배경화면 초기화
     void CharacterLoad()
     {
         bool Left = RunGame_EX.DialogSheet[DialogIndex].Left_Blackout;
@@ -142,31 +156,30 @@ public class Dialog2_CS : MonoBehaviour
         {
             switch (RunGame_EX.DialogSheet[DialogIndex].Left_Character)
             {
-                case "W": Blackout(LeftCharacter[0], Left); break;
-                case "F": Blackout(LeftCharacter[1], Left); break;
-                case "P": Blackout(LeftCharacter[2], Left); break;
-            }
+                case "W": Blackout(LeftCharacter, Character_Sprite[1], Left); break;
+                case "F": Blackout(LeftCharacter, Character_Sprite[2], Left); break;
+                case "P": Blackout(LeftCharacter, Character_Sprite[3], Left); break;
+                    ;            }
             switch (RunGame_EX.DialogSheet[DialogIndex].Mid_Character)
             {
-                case "W": Blackout(MidCharacter[0], Mid); break;
-                case "F": Blackout(MidCharacter[1], Mid); break;
-                case "P": Blackout(MidCharacter[2], Mid); break;
+                case "W": Blackout(MidCharacter, Character_Sprite[1], Mid); break;
+                case "F": Blackout(MidCharacter, Character_Sprite[2] ,Mid); break;
+                case "P": Blackout(MidCharacter, Character_Sprite[3] ,Mid); break;
             }
             switch (RunGame_EX.DialogSheet[DialogIndex].Right_Character)
             {
-                case "W": Blackout(RightCharacter[0], Right); break;
-                case "F": Blackout(RightCharacter[1], Right); break;
-                case "P": Blackout(RightCharacter[2], Right); break;
+                case "W": Blackout(RightCharacter, Character_Sprite[1], Right); break;
+                case "F": Blackout(RightCharacter, Character_Sprite[2], Right); break;
+                case "P": Blackout(RightCharacter, Character_Sprite[3], Right); break;
             }
             CharacterCheck = true;
         }
     }   // 캐릭터 로딩
     void CharacterDestroy()
     {
-        CharacterDestroyLoop(LeftCharacter);
-        CharacterDestroyLoop(MidCharacter);
-        CharacterDestroyLoop(RightCharacter);
-
+        LeftCharacter.sprite =  Character_Sprite[0];
+        MidCharacter.sprite =   Character_Sprite[0];
+        RightCharacter.sprite = Character_Sprite[0];
     }   // 캐릭터 초기화
     private IEnumerator OnSkipText()
     {
@@ -244,24 +257,18 @@ public class Dialog2_CS : MonoBehaviour
         }
     }   // 오토 타이핑
     public void GamaInput() { ButtonInput = true; } // 버튼 누름
-    void CharacterDestroyLoop(GameObject[] Character)
+    void Blackout(Image img,Sprite spri, bool oc) // 이미지 종류(좌우) / 바꿀 이미지 / 암전 여부
     {
-        for (int i = 0; i < Character.Length; i++)
-        {
-            Character[i].SetActive(false);
-            Character[i].GetComponent<Image>().color
-                = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
-        }
-    }   // 캐릭터 초기화 보조
-    void Blackout(GameObject Blackout, bool oc)
-    {
-        Blackout.SetActive(true);
-        if (oc == true) Blackout.GetComponent<Image>().color
-                = new Color32(80, 80, 80, byte.MaxValue);
+        img.sprite = spri;
+        if (oc == true) img.color = new Color32(80, 80, 80, byte.MaxValue);
     }   //  활성화 + 암전효과
     [System.Serializable] public struct DialogData
     {
         public string name;                         // 캐릭터 이름
         [TextArea(3, 5)] public string dialog;      // 대사
     }
+
+    public void OnQuitWindow() { QuitWindow.SetActive(true);  }
+    public void OffQuitWindow() { QuitWindow.SetActive(false); }
+    public void DeletDialog() { GameManager.GM.Fade(Dialog); Game_Control.GC.Result_Spawn(); }
 }
