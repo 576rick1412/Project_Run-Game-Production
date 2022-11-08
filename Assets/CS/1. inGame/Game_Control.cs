@@ -18,13 +18,9 @@ public class Game_Control : MonoBehaviour
     [SerializeField] GameObject Pause_Image;
     public TextMeshProUGUI Score;
 
-    public GameObject BossEntry;
     public Transform BossEntryPos;
-    public GameObject Boss;
 
-    public bool BossAttack;
-    [SerializeField] GameObject A_button;
-    [SerializeField] GameObject S_button;
+    [Header("일시정지 버튼")]
     public GameObject start_Icon;
     public GameObject pause_Icon;
 
@@ -49,7 +45,6 @@ public class Game_Control : MonoBehaviour
         start_Icon.SetActive(false); pause_Icon.SetActive(true);
         branch = Random.Range(1, RunGame_EX.StartSheet.Count + 1); STG_Excel();
 
-        A_button.SetActive(false);
         Pause_Image.SetActive(false);
         IsPause = false;
         GameManager.GM.Data.LifeScore = GameManager.GM.Data.Set_LifeScore;
@@ -58,7 +53,6 @@ public class Game_Control : MonoBehaviour
 
         Game_End = false;
         Boss_On = false;
-        BossAttack = false;
     }
 
     void PlayerType()
@@ -73,15 +67,6 @@ public class Game_Control : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) { BossHub(); }
-        if (Boss_On == true) { Invoke("BossHub", 5f); Boss_On = false; }
-
-        switch (BossAttack)
-        {
-            case true: A_button.SetActive(true); S_button.SetActive(false); break;
-            case false: A_button.SetActive(false); S_button.SetActive(true); break;
-        }
-
         HP_Bar.fillAmount = (GameManager.GM.Data.LifeScore / GameManager.GM.Data.Set_LifeScore);
         Score.text = "점수 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
 
@@ -111,27 +96,7 @@ public class Game_Control : MonoBehaviour
         }
     }
 
-    public void BossHub() { StartCoroutine(BossEnyryCoroutine()); }
-    IEnumerator BossEnyryCoroutine()
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            BossEnyryF();
-            yield return new WaitForSeconds(0.05f);
-        }
-        yield return new WaitForSeconds(3f);
-        Instantiate(Boss);
-        BossAttack = true;
-        Player_CS.PL.Slide_UP();
-        yield return null;
-    }
-    void BossEnyryF()
-    {
-        GameObject Entry = Instantiate(BossEntry, BossEntryPos.position, Quaternion.identity);
-        Entry.transform.SetParent(BossEntryPos.transform);
-    }
-
-    public void Result_Spawn() { Invoke("Game_Result", 1f); }
+    public void Result_Spawn() { Invoke("Game_Result", 3f); }
     void Game_Result() { Instantiate(Result); }
     public void Game_ClearUI() 
     {

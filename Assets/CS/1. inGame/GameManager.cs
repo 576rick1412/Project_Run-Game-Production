@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         Data.BGI_SpeedValue = Data.Set_BGI_SpeedValue;
 
         Data.Set_LifeScore = 8;
-        Data.LifeScore = 0;
+        Data.LifeScore = 8;
         Data.CoinScore = 0;
 
         // 플레이어 설정
