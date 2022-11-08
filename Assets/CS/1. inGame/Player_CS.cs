@@ -19,8 +19,6 @@ public class Player_CS : MonoBehaviour
      bool IsFloor = false; // 바닥 확인
      bool IsPlatform = false; // 플랫폼 확인
 
-    [SerializeField] GameObject AttackObject;
-
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     [SerializeField] private BoxCollider2D[] colliders;
@@ -30,32 +28,6 @@ public class Player_CS : MonoBehaviour
     bool HIT_check = false; // 코루틴 반복 방지용
     public bool On_HIT = false; // 피격 확인용
     bool inhit; // 내부 피격
-
-    private IObjectPool<Attack_CS> AttackPool;
-    void Awake()
-    {
-        PL = this; Player_alive = false;
-        AttackPool = new ObjectPool<Attack_CS>(Attack_Creat, Attack_Get, Attack_Releas, Attack_Destroy, maxSize: 20);
-    }
-
-    private Attack_CS Attack_Creat()
-    {
-        Attack_CS Attack = Instantiate(AttackObject).GetComponent<Attack_CS>();
-        Attack.Set_AttackPool(AttackPool);
-        return Attack;
-    }                    // (풀링) 장애물 생성
-    private void Attack_Get(Attack_CS Attack)
-    {
-        Attack.gameObject.SetActive(true);
-    }           // (풀링) 장애물 활성화
-    private void Attack_Releas(Attack_CS Attack)
-    {
-        Attack.gameObject.SetActive(false);
-    }        // (풀링) 장애물 비활성화
-    private void Attack_Destroy(Attack_CS Attack)
-    {
-        Destroy(Attack.gameObject);
-    }       // (풀링) 장애물 삭제
 
     void Start()
     {
@@ -161,15 +133,6 @@ public class Player_CS : MonoBehaviour
             // 슬라이드 중 해제 // 공중에서 슬라이드 버튼 누름 해제
             Sliding = false; OnSlide = false;
             
-        }
-    }
-
-    public void Attack()
-    {
-        if (Player_alive == false)
-        {
-            var Attack = AttackPool.Get();
-            Attack.transform.position = this.gameObject.transform.position;
         }
     }
     void OnTriggerEnter2D(Collider2D collision)

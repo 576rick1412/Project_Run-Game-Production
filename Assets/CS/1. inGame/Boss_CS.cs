@@ -30,8 +30,8 @@ public class Boss_CS : MonoBehaviour
         Boss_HP_Bar.fillAmount = (GameManager.GM.Data.Boss_HP / GameManager.GM.Data.Set_Boss_HP);
         if (GameManager.GM.Data.Boss_HP <= 0 && Game_Control.GC.Game_End == false) 
         { 
-            GameManager.GM.Data.Boss_DIE = true; anime.SetInteger("BossControl", 1); Destroy(Boss);
-            Game_Control.GC.BossAttack = false; Game_Control.GC.Game_ClearUI(); Game_Control.GC.Game_End = true;  GameManager.GM.SavaData();
+            GameManager.GM.Data.Boss_DIE = true; Destroy(Boss);
+            Game_Control.GC.Game_ClearUI(); Game_Control.GC.Game_End = true;  GameManager.GM.SavaData();
             GameManager.GM.Data.Game_Fail = true; Game_Control.GC.Result_Spawn();
         }
     }
