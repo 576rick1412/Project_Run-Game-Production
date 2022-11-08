@@ -49,7 +49,6 @@ public class Game_Control : MonoBehaviour
         IsPause = false;
         GameManager.GM.Data.LifeScore = GameManager.GM.Data.Set_LifeScore;
         GameManager.GM.Data.CoinScore = 0;
-        GameManager.GM.Data.Boss_HP = 0;
 
         Game_End = false;
         Boss_On = false;

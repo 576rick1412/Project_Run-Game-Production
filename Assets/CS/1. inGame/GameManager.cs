@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
     public float F_time = 0.2f;
     [HideInInspector] public float FM_time = 0f;
 
-   
+    [Header("플레이 설정")]
+    public bool Player_alive;
 
     string FilePath;
     void Awake(){GM = this; FilePath = Application.persistentDataPath + "/MainDB.txt"; }
@@ -98,15 +99,6 @@ public class GameManager : MonoBehaviour
 
         // 장애물 데미지 설정
         Data.Obstacle_Damage = 3;
-
-        // 보스 설정
-        Data.Set_Boss_HP = 3000;
-        Data.Boss_Damage = 30;
-        Data.Boss_DIE = false;
-
-        // 공격 데미지 설정
-        Data.Player_Damage = 30;
-        Data.Attack_Speed = 1;
 
         // 텍스트 설정
         Data.GM_branch = 1;
@@ -309,18 +301,6 @@ public class MainDB
     // 장애물 데미지 설정
     [Header("장애물 데미지 설정")]
     public int Obstacle_Damage;
-
-    // 보스 설정
-    [Header("보스 설정")]
-    public float Set_Boss_HP;
-    public float Boss_HP;
-    public int Boss_Damage;
-    public bool Boss_DIE;
-
-    // 공격 데미지 설정
-    [Header("공격 데미지 설정")]
-    public int Player_Damage;
-    public float Attack_Speed;
 
     // 텍스트 설정
     [Header("텍스트 설정")]

@@ -236,25 +236,25 @@ public class Object_Instantiate : MonoBehaviour
             case 6: Chapter_EX = Chapter_EX_6; break;
         }
 
-        if (Player_CS.PL.Player_alive == false)
+        isMaker = true;
+
+        CoinType(Chapter_EX.Stage_1[Index].CoinType);
+        ObstacleType(Chapter_EX.Stage_1[Index].Obstacle);
+        PlatformType(Chapter_EX.Stage_1[Index].Platform);
+        if (GameManager.GM.Player_alive == false)
         {
-            isMaker = true;
-
-            CoinType(Chapter_EX.Stage_1[Index].CoinType);
-            ObstacleType(Chapter_EX.Stage_1[Index].Obstacle);
-            PlatformType(Chapter_EX.Stage_1[Index].Platform);
-
             PosNum = Chapter_EX.Stage_1[Index].CoinPos; // 코인 높이값 지정
             for (int i = 0; i < Chapter_EX.Stage_1[Index].CoinAmount; i++) // 코인 개수만큼 반복
             {
                 CoinAmount(Chapter_EX.Stage_1[Index].CoinType, Chapter_EX.Stage_1[Index].Obstacle, Chapter_EX.Stage_1[Index].Platform, Chapter_EX.Stage_1[Index].PlatformPos);
                 yield return new WaitForSeconds(Late_Time);
             }
-            Index++;
-            CoinSkip = false;
-            isMaker = false;
-            yield return null;
         }
+        Index++;
+        CoinSkip = false;
+        isMaker = false;
+        yield return null;
+
     }
     IEnumerator Coin_Maker_2()
     {
@@ -269,7 +269,7 @@ public class Object_Instantiate : MonoBehaviour
             case 6: Chapter_EX = Chapter_EX_6; break;
         }
 
-        if (Player_CS.PL.Player_alive == false)
+        if (GameManager.GM.Player_alive == false)
         {
             isMaker = true;
 
@@ -302,7 +302,7 @@ public class Object_Instantiate : MonoBehaviour
             case 6: Chapter_EX = Chapter_EX_6; break;
         }
 
-        if (Player_CS.PL.Player_alive == false)
+        if (GameManager.GM.Player_alive == false)
         {
             isMaker = true;
 
@@ -335,7 +335,7 @@ public class Object_Instantiate : MonoBehaviour
             case 6: Chapter_EX = Chapter_EX_6; break;
         }
 
-        if (Player_CS.PL.Player_alive == false)
+        if (GameManager.GM.Player_alive == false)
         {
             isMaker = true;
 
@@ -371,7 +371,7 @@ public class Object_Instantiate : MonoBehaviour
             case 6: Chapter_EX = Chapter_EX_6; break;
         }
 
-        if (Player_CS.PL.Player_alive == false)
+        if (GameManager.GM.Player_alive == false)
         {
             isMaker = true;
 
@@ -404,7 +404,7 @@ public class Object_Instantiate : MonoBehaviour
             case 6: Chapter_EX = Chapter_EX_6; break;
         }
 
-        if (Player_CS.PL.Player_alive == false)
+        if (GameManager.GM.Player_alive == false)
         {
             isMaker = true;
 
@@ -437,7 +437,7 @@ public class Object_Instantiate : MonoBehaviour
             case 6: Chapter_EX = Chapter_EX_6; break;
         }
 
-        if (Player_CS.PL.Player_alive == false)
+        if (GameManager.GM.Player_alive == false)
         {
             isMaker = true;
 
@@ -470,7 +470,7 @@ public class Object_Instantiate : MonoBehaviour
             case 6: Chapter_EX = Chapter_EX_6; break;
         }
 
-        if (Player_CS.PL.Player_alive == false)
+        if (GameManager.GM.Player_alive == false)
         {
             isMaker = true;
 
@@ -503,7 +503,7 @@ public class Object_Instantiate : MonoBehaviour
             case 6: Chapter_EX = Chapter_EX_6; break;
         }
 
-        if (Player_CS.PL.Player_alive == false)
+        if (GameManager.GM.Player_alive == false)
         {
             isMaker = true;
 
@@ -536,7 +536,7 @@ public class Object_Instantiate : MonoBehaviour
             case 6: Chapter_EX = Chapter_EX_6; break;
         }
 
-        if (Player_CS.PL.Player_alive == false)
+        if (GameManager.GM.Player_alive == false)
         {
             isMaker = true;
 

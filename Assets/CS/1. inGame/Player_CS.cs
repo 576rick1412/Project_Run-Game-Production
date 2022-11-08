@@ -7,7 +7,6 @@ public class Player_CS : MonoBehaviour
 {
     public static Player_CS PL;
 
-     public bool Player_alive;
      [HideInInspector]public bool Clear_Check;
 
      float jumpHeight;
@@ -46,11 +45,11 @@ public class Player_CS : MonoBehaviour
     {
         AnimeControl();
 
-        if (GameManager.GM.Data.LifeScore <= 0 && Player_alive == false)
+        if (GameManager.GM.Data.LifeScore <= 0 && GameManager.GM.Player_alive == false)
         {
             GameManager.GM.Data.Floor_SpeedValue = 0;
             GameManager.GM.Data.BGI_SpeedValue = 0;
-            Player_alive = true;
+            GameManager.GM.Player_alive = true;
         }
 
         //if(GameManager.GM.Data.Boss_DIE == false || Clear_Check == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
@@ -70,7 +69,7 @@ public class Player_CS : MonoBehaviour
 
     void SetCollider()
     {
-        if (Player_alive == false)
+        if (GameManager.GM.Player_alive == false)
         {
             switch (Sliding)
             {
@@ -92,13 +91,13 @@ public class Player_CS : MonoBehaviour
         if (Sliding) anime.SetInteger         ("Player_Value", 1); SetCollider();
         if (Jumping) anime.SetInteger         ("Player_Value", 2);
         if (DoubleJumping) anime.SetInteger   ("Player_Value", 3);
-        if (Player_alive) anime.SetInteger    ("Player_Value", 4);
+        if (GameManager.GM.Player_alive) anime.SetInteger    ("Player_Value", 4);
         if (inhit) { anime.SetInteger         ("Player_Value", 5); Invoke("Hit_Speed", 0.1f); }
     }
     void Hit_Speed()
     {
         inhit = false;
-        if (!Player_alive)
+        if (!GameManager.GM.Player_alive)
         {
             GameManager.GM.Data.Floor_SpeedValue = GameManager.GM.Data.Set_Floor_SpeedValue;
             GameManager.GM.Data.BGI_SpeedValue = GameManager.GM.Data.Set_BGI_SpeedValue;
@@ -106,7 +105,7 @@ public class Player_CS : MonoBehaviour
     }
     public void Jump()
     {
-        if (Player_alive == false)
+        if (GameManager.GM.Player_alive == false)
         {
             IsFloor = false; IsPlatform = false;
             if (Jumping == false && DoubleJumping == false) { rigid.velocity = Vector2.up * jumpHeight; Jumping = true; return; }
@@ -115,7 +114,7 @@ public class Player_CS : MonoBehaviour
     }
     public void Slide_DAWN() 
     {
-        if (Player_alive == false)
+        if (GameManager.GM.Player_alive == false)
         {
             // 바닥이나 발판에 붙을 째로 슬라이드 버튼을 누를 시 슬라이니 애니메이션이 나오도록
             if ((Sliding == false && IsFloor) || (Sliding == false && IsPlatform)) Sliding = true;
@@ -126,7 +125,7 @@ public class Player_CS : MonoBehaviour
     }
     public void Slide_UP()
     {
-        if (Player_alive == false)
+        if (GameManager.GM.Player_alive == false)
         {
             IsFloor = true; IsPlatform = true;
 
@@ -137,7 +136,7 @@ public class Player_CS : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Player_alive == false)
+        if (GameManager.GM.Player_alive == false)
         {
             if (collision.gameObject.CompareTag("Floor"))
             {
@@ -155,7 +154,7 @@ public class Player_CS : MonoBehaviour
     }
     IEnumerator HIT_Coroutine()
     {
-        if (Player_alive == false)
+        if (GameManager.GM.Player_alive == false)
         {
             for (int i = 0; i < GameManager.GM.Data.Invincibility_Time * 10; i++)
             {
