@@ -29,6 +29,7 @@ public class Object_Instantiate : MonoBehaviour
 
     int Index = 0;
     int PosNum = 0;
+    int Amount = 0;
     bool BossOn;
 
     bool CoinSkip = false; // 코인 스킵 \ true -> 스킵
@@ -104,23 +105,17 @@ public class Object_Instantiate : MonoBehaviour
         Destroy(Coin_3.gameObject);
     }       // (풀링) 코인 삭제
 
-    void GameEnd()
-    {
-        Game_Control.GC.Game_ClearUI(); Game_Control.GC.Game_End = true; GameManager.GM.SavaData();
-        GameManager.GM.Data.Game_Fail = true; Game_Control.GC.Result_Spawn(); Player_CS.PL.Clear_Check = true;
-    }
-
     void Update()
     {
         var Chapter_EX = Chapter_EX_1;
         switch (Excel_Num)
         {
-            case 1:Chapter_EX = Chapter_EX_1; break;
-            case 2:Chapter_EX = Chapter_EX_2; break;
-            case 3:Chapter_EX = Chapter_EX_3; break;
-            case 4:Chapter_EX = Chapter_EX_4; break;
-            case 5:Chapter_EX = Chapter_EX_5; break;
-            case 6:Chapter_EX = Chapter_EX_6; break;
+            case 1: Chapter_EX = Chapter_EX_1; break;
+            case 2: Chapter_EX = Chapter_EX_2; break;
+            case 3: Chapter_EX = Chapter_EX_3; break;
+            case 4: Chapter_EX = Chapter_EX_4; break;
+            case 5: Chapter_EX = Chapter_EX_5; break;
+            case 6: Chapter_EX = Chapter_EX_6; break;
         }
 
         switch (GameManager.GM.Data.GM_branch % 10)
@@ -134,29 +129,37 @@ public class Object_Instantiate : MonoBehaviour
             case 7: GameEndControl(Chapter_EX.Stage_7[Index].END); break;
             case 8: GameEndControl(Chapter_EX.Stage_8[Index].END); break;
             case 9: GameEndControl(Chapter_EX.Stage_9[Index].END); break;
-            case 0: GameEndControl(Chapter_EX.Stage_10[Index].END);break;
+            case 0: GameEndControl(Chapter_EX.Stage_10[Index].END); break;
         }
     }
-
-    void GameEndControl(bool end) 
+    void GameEndControl(bool end)
     {
-        if (end && !BossOn) GameEnd(); BossOn = true; 
-        if(!end && !isMaker)
+        if (end && !BossOn) GameEnd(); BossOn = true;
+        if (!end && !isMaker)
         {
             int branch = GameManager.GM.Data.GM_branch;
             Debug.Log(Index);
 
             switch (branch)
             {
-                case 1: StartCoroutine("Coin_Maker_1"); break; case 2: StartCoroutine("Coin_Maker_2"); break;
-                case 3: StartCoroutine("Coin_Maker_3"); break; case 4: StartCoroutine("Coin_Maker_4"); break;
-                case 5: StartCoroutine("Coin_Maker_5"); break; case 6: StartCoroutine("Coin_Maker_6"); break;
-                case 7: StartCoroutine("Coin_Maker_7"); break; case 8: StartCoroutine("Coin_Maker_8"); break;
-                case 9: StartCoroutine("Coin_Maker_9"); break; case 0: StartCoroutine("Coin_Maker_10"); break;
+                case 1: StartCoroutine("Coin_Maker_1"); break;
+                case 2: StartCoroutine("Coin_Maker_2"); break;
+                case 3: StartCoroutine("Coin_Maker_3"); break;
+                case 4: StartCoroutine("Coin_Maker_4"); break;
+                case 5: StartCoroutine("Coin_Maker_5"); break;
+                case 6: StartCoroutine("Coin_Maker_6"); break;
+                case 7: StartCoroutine("Coin_Maker_7"); break;
+                case 8: StartCoroutine("Coin_Maker_8"); break;
+                case 9: StartCoroutine("Coin_Maker_9"); break;
+                case 0: StartCoroutine("Coin_Maker_10"); break;
             }
         }
     }
-
+    void GameEnd()
+    {
+        Game_Control.GC.Game_ClearUI(); GameManager.GM.SavaData();
+        GameManager.GM.Data.Game_Fail = true; Game_Control.GC.Result_Spawn(); Player_CS.PL.Clear_Check = true;
+    }
     void CoinType(string Type)
     {
         switch (Type) // 코인 지정
@@ -190,7 +193,7 @@ public class Object_Instantiate : MonoBehaviour
             case "Platform_4": Instan_Platform = Platform_Object[3]; break; // 발판
         }
     }
-    void CoinAmount(string Type,string Obstacle, string Platform,int PlatformPos)
+    void CoinAmount(string Type, string Obstacle, string Platform, int PlatformPos)
     {
         if (CoinSkip == false)
         {
@@ -217,10 +220,9 @@ public class Object_Instantiate : MonoBehaviour
                 case "type_2": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
             }  // 코인 생성
         }
-        if (Obstacle != "") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
-        if (Platform != "") Instantiate(Instan_Platform, Instan_Pos[PlatformPos].position, Quaternion.identity);
+        if (Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
+        if (Platform != "None") Instantiate(Instan_Platform, Instan_Pos[PlatformPos].position, Quaternion.identity);
     }
-
     IEnumerator Coin_Maker_1()
     {
         var Chapter_EX = Chapter_EX_1;
@@ -237,12 +239,12 @@ public class Object_Instantiate : MonoBehaviour
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
-            PosNum = Chapter_EX.Stage_1[Index].CoinPos; // 코인 높이값 지정
 
             CoinType(Chapter_EX.Stage_1[Index].CoinType);
             ObstacleType(Chapter_EX.Stage_1[Index].Obstacle);
             PlatformType(Chapter_EX.Stage_1[Index].Platform);
 
+            PosNum = Chapter_EX.Stage_1[Index].CoinPos; // 코인 높이값 지정
             for (int i = 0; i < Chapter_EX.Stage_1[Index].CoinAmount; i++) // 코인 개수만큼 반복
             {
                 CoinAmount(Chapter_EX.Stage_1[Index].CoinType, Chapter_EX.Stage_1[Index].Obstacle, Chapter_EX.Stage_1[Index].Platform, Chapter_EX.Stage_1[Index].PlatformPos);
@@ -270,12 +272,12 @@ public class Object_Instantiate : MonoBehaviour
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
-            PosNum = Chapter_EX.Stage_2[Index].CoinPos; // 코인 높이값 지정
 
             CoinType(Chapter_EX.Stage_2[Index].CoinType);
             ObstacleType(Chapter_EX.Stage_2[Index].Obstacle);
             PlatformType(Chapter_EX.Stage_2[Index].Platform);
 
+            PosNum = Chapter_EX.Stage_2[Index].CoinPos; // 코인 높이값 지정
             for (int i = 0; i < Chapter_EX.Stage_2[Index].CoinAmount; i++) // 코인 개수만큼 반복
             {
                 CoinAmount(Chapter_EX.Stage_2[Index].CoinType, Chapter_EX.Stage_2[Index].Obstacle, Chapter_EX.Stage_2[Index].Platform, Chapter_EX.Stage_2[Index].PlatformPos);
@@ -303,12 +305,12 @@ public class Object_Instantiate : MonoBehaviour
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
-            PosNum = Chapter_EX.Stage_3[Index].CoinPos; // 코인 높이값 지정
 
             CoinType(Chapter_EX.Stage_3[Index].CoinType);
             ObstacleType(Chapter_EX.Stage_3[Index].Obstacle);
             PlatformType(Chapter_EX.Stage_3[Index].Platform);
 
+            PosNum = Chapter_EX.Stage_3[Index].CoinPos; // 코인 높이값 지정
             for (int i = 0; i < Chapter_EX.Stage_3[Index].CoinAmount; i++) // 코인 개수만큼 반복
             {
                 CoinAmount(Chapter_EX.Stage_3[Index].CoinType, Chapter_EX.Stage_3[Index].Obstacle, Chapter_EX.Stage_3[Index].Platform, Chapter_EX.Stage_3[Index].PlatformPos);
@@ -336,21 +338,24 @@ public class Object_Instantiate : MonoBehaviour
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
-            PosNum = Chapter_EX.Stage_4[Index].CoinPos; // 코인 높이값 지정
 
             CoinType(Chapter_EX.Stage_4[Index].CoinType);
             ObstacleType(Chapter_EX.Stage_4[Index].Obstacle);
             PlatformType(Chapter_EX.Stage_4[Index].Platform);
 
+            PosNum = Chapter_EX.Stage_4[Index].CoinPos; // 코인 높이값 지정
             for (int i = 0; i < Chapter_EX.Stage_4[Index].CoinAmount; i++) // 코인 개수만큼 반복
             {
-                CoinAmount(Chapter_EX.Stage_4[Index].CoinType, Chapter_EX.Stage_4[Index].Obstacle, Chapter_EX.Stage_4[Index].Platform, Chapter_EX.Stage_4[Index].PlatformPos);
-                yield return new WaitForSeconds(Late_Time);
+                if (CoinSkip == false) // { yield return new WaitForSeconds(Late_Time); continue; }
+                {
+                    CoinAmount(Chapter_EX.Stage_4[Index].CoinType, Chapter_EX.Stage_4[Index].Obstacle, Chapter_EX.Stage_4[Index].Platform, Chapter_EX.Stage_4[Index].PlatformPos);
+                    yield return new WaitForSeconds(Late_Time);
+                }
+                Index++;
+                CoinSkip = false;
+                isMaker = false;
+                yield return null;
             }
-            Index++;
-            CoinSkip = false;
-            isMaker = false;
-            yield return null;
         }
     }
     IEnumerator Coin_Maker_5()
@@ -369,12 +374,12 @@ public class Object_Instantiate : MonoBehaviour
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
-            PosNum = Chapter_EX.Stage_5[Index].CoinPos; // 코인 높이값 지정
 
             CoinType(Chapter_EX.Stage_5[Index].CoinType);
             ObstacleType(Chapter_EX.Stage_5[Index].Obstacle);
             PlatformType(Chapter_EX.Stage_5[Index].Platform);
 
+            PosNum = Chapter_EX.Stage_5[Index].CoinPos; // 코인 높이값 지정
             for (int i = 0; i < Chapter_EX.Stage_5[Index].CoinAmount; i++) // 코인 개수만큼 반복
             {
                 CoinAmount(Chapter_EX.Stage_5[Index].CoinType, Chapter_EX.Stage_5[Index].Obstacle, Chapter_EX.Stage_5[Index].Platform, Chapter_EX.Stage_5[Index].PlatformPos);
@@ -402,13 +407,13 @@ public class Object_Instantiate : MonoBehaviour
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
-            PosNum = Chapter_EX.Stage_6[Index].CoinPos; // 코인 높이값 지정
 
             CoinType(Chapter_EX.Stage_6[Index].CoinType);
             ObstacleType(Chapter_EX.Stage_6[Index].Obstacle);
             PlatformType(Chapter_EX.Stage_6[Index].Platform);
 
-            for (int i = 0; i < Chapter_EX.Stage_5[Index].CoinAmount; i++) // 코인 개수만큼 반복
+            PosNum = Chapter_EX.Stage_6[Index].CoinPos; // 코인 높이값 지정
+            for (int i = 0; i < Chapter_EX.Stage_6[Index].CoinAmount; i++) // 코인 개수만큼 반복
             {
                 CoinAmount(Chapter_EX.Stage_6[Index].CoinType, Chapter_EX.Stage_6[Index].Obstacle, Chapter_EX.Stage_6[Index].Platform, Chapter_EX.Stage_6[Index].PlatformPos);
                 yield return new WaitForSeconds(Late_Time);
@@ -435,12 +440,12 @@ public class Object_Instantiate : MonoBehaviour
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
-            PosNum = Chapter_EX.Stage_7[Index].CoinPos; // 코인 높이값 지정
 
             CoinType(Chapter_EX.Stage_7[Index].CoinType);
             ObstacleType(Chapter_EX.Stage_7[Index].Obstacle);
             PlatformType(Chapter_EX.Stage_7[Index].Platform);
 
+            PosNum = Chapter_EX.Stage_7[Index].CoinPos; // 코인 높이값 지정
             for (int i = 0; i < Chapter_EX.Stage_7[Index].CoinAmount; i++) // 코인 개수만큼 반복
             {
                 CoinAmount(Chapter_EX.Stage_7[Index].CoinType, Chapter_EX.Stage_7[Index].Obstacle, Chapter_EX.Stage_7[Index].Platform, Chapter_EX.Stage_7[Index].PlatformPos);
@@ -468,12 +473,12 @@ public class Object_Instantiate : MonoBehaviour
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
-            PosNum = Chapter_EX.Stage_8[Index].CoinPos; // 코인 높이값 지정
 
             CoinType(Chapter_EX.Stage_8[Index].CoinType);
             ObstacleType(Chapter_EX.Stage_8[Index].Obstacle);
             PlatformType(Chapter_EX.Stage_8[Index].Platform);
 
+            PosNum = Chapter_EX.Stage_8[Index].CoinPos; // 코인 높이값 지정
             for (int i = 0; i < Chapter_EX.Stage_8[Index].CoinAmount; i++) // 코인 개수만큼 반복
             {
                 CoinAmount(Chapter_EX.Stage_8[Index].CoinType, Chapter_EX.Stage_8[Index].Obstacle, Chapter_EX.Stage_8[Index].Platform, Chapter_EX.Stage_8[Index].PlatformPos);
@@ -501,12 +506,12 @@ public class Object_Instantiate : MonoBehaviour
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
-            PosNum = Chapter_EX.Stage_9[Index].CoinPos; // 코인 높이값 지정
 
             CoinType(Chapter_EX.Stage_9[Index].CoinType);
             ObstacleType(Chapter_EX.Stage_9[Index].Obstacle);
             PlatformType(Chapter_EX.Stage_9[Index].Platform);
 
+            PosNum = Chapter_EX.Stage_9[Index].CoinPos; // 코인 높이값 지정
             for (int i = 0; i < Chapter_EX.Stage_9[Index].CoinAmount; i++) // 코인 개수만큼 반복
             {
                 CoinAmount(Chapter_EX.Stage_9[Index].CoinType, Chapter_EX.Stage_9[Index].Obstacle, Chapter_EX.Stage_9[Index].Platform, Chapter_EX.Stage_9[Index].PlatformPos);
@@ -534,12 +539,12 @@ public class Object_Instantiate : MonoBehaviour
         if (Player_CS.PL.Player_alive == false)
         {
             isMaker = true;
-            PosNum = Chapter_EX.Stage_10[Index].CoinPos; // 코인 높이값 지정
 
             CoinType(Chapter_EX.Stage_10[Index].CoinType);
             ObstacleType(Chapter_EX.Stage_10[Index].Obstacle);
             PlatformType(Chapter_EX.Stage_10[Index].Platform);
 
+            PosNum = Chapter_EX.Stage_10[Index].CoinPos; // 코인 높이값 지정
             for (int i = 0; i < Chapter_EX.Stage_10[Index].CoinAmount; i++) // 코인 개수만큼 반복
             {
                 CoinAmount(Chapter_EX.Stage_10[Index].CoinType, Chapter_EX.Stage_10[Index].Obstacle, Chapter_EX.Stage_10[Index].Platform, Chapter_EX.Stage_10[Index].PlatformPos);

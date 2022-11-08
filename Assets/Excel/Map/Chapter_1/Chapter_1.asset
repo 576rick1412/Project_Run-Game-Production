@@ -16,106 +16,92 @@ MonoBehaviour:
   - CoinType: coin_1
     CoinPos: 1
     CoinAmount: 10
-    Obstacle: 
-    Platform: 
+    Obstacle: None
+    Platform: None
     PlatformPos: 0
     END: 0
   - CoinType: coin_1
     CoinPos: 2
     CoinAmount: 1
-    Obstacle: 
-    Platform: 
+    Obstacle: None
+    Platform: None
     PlatformPos: 0
     END: 0
   - CoinType: coin_1
     CoinPos: 3
     CoinAmount: 3
-    Obstacle: 
-    Platform: 
+    Obstacle: None
+    Platform: None
     PlatformPos: 0
     END: 0
   - CoinType: coin_1
     CoinPos: 2
     CoinAmount: 1
-    Obstacle: 
-    Platform: 
+    Obstacle: None
+    Platform: None
     PlatformPos: 0
     END: 0
   - CoinType: coin_1
     CoinPos: 1
-    CoinAmount: 3
-    Obstacle: 
-    Platform: 
-    PlatformPos: 0
-    END: 0
-  - CoinType: None
-    CoinPos: 1
     CoinAmount: 5
-    Obstacle: 
-    Platform: 
-    PlatformPos: 0
-    END: 0
-  - CoinType: type_1
-    CoinPos: 1
-    CoinAmount: 1
-    Obstacle: 
-    Platform: 
-    PlatformPos: 0
-    END: 0
-  - CoinType: None
-    CoinPos: 1
-    CoinAmount: 5
-    Obstacle: 
-    Platform: 
-    PlatformPos: 0
-    END: 0
-  - CoinType: type_1
-    CoinPos: 1
-    CoinAmount: 1
-    Obstacle: 
-    Platform: 
-    PlatformPos: 0
-    END: 0
-  - CoinType: None
-    CoinPos: 1
-    CoinAmount: 5
-    Obstacle: 
-    Platform: 
-    PlatformPos: 0
-    END: 0
-  - CoinType: coin_1
-    CoinPos: 1
-    CoinAmount: 4
-    Obstacle: 
-    Platform: 
+    Obstacle: None
+    Platform: None
     PlatformPos: 0
     END: 0
   - CoinType: coin_1
     CoinPos: 2
     CoinAmount: 1
-    Obstacle: 
-    Platform: 
+    Obstacle: None
+    Platform: None
     PlatformPos: 0
     END: 0
   - CoinType: coin_1
     CoinPos: 3
     CoinAmount: 3
-    Obstacle: 
-    Platform: 
+    Obstacle: None
+    Platform: None
     PlatformPos: 0
     END: 0
   - CoinType: coin_1
     CoinPos: 2
     CoinAmount: 1
-    Obstacle: 
-    Platform: 
+    Obstacle: None
+    Platform: None
     PlatformPos: 0
     END: 0
   - CoinType: coin_1
     CoinPos: 1
-    CoinAmount: 4
-    Obstacle: 
-    Platform: 
+    CoinAmount: 5
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: type_1
+    CoinPos: 0
+    CoinAmount: 1
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: None
+    CoinPos: 0
+    CoinAmount: 6
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: type_1
+    CoinPos: 0
+    CoinAmount: 1
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+  - CoinType: coin_1
+    CoinPos: 1
+    CoinAmount: 5
+    Obstacle: None
+    Platform: None
     PlatformPos: 0
     END: 0
   - CoinType: ======
