@@ -43,8 +43,8 @@ public class Player_CS : MonoBehaviour
 
     void Update()
     {
-        AnimeControl();
 
+        AnimeControl();
         if (GameManager.GM.Data.LifeScore <= 0 && GameManager.GM.Player_alive == false)
         {
             GameManager.GM.Data.Floor_SpeedValue = 0;

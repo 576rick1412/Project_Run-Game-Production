@@ -10,15 +10,11 @@ public class Button_Control : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     [SerializeField] bool Jump_Button;
     [SerializeField] bool Slide_Button;
 
-
     void Start()
     {
         button = GetComponent<Button>();
-
-        if (Jump_Button) button.onClick.AddListener(PlayerJump);
+        if (Jump_Button) button.onClick.AddListener(Player_CS.PL.Jump);
     }
-
-    void PlayerJump() { Player_CS.PL.Jump(); }
     public void OnPointerDown(PointerEventData eventData) { if (Slide_Button) Player_CS.PL.Slide_DAWN(); }
 
     public void OnPointerUp(PointerEventData eventData) { if (Slide_Button) Player_CS.PL.Slide_UP(); }
