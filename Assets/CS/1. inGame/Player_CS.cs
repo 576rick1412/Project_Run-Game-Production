@@ -81,7 +81,8 @@ public class Player_CS : MonoBehaviour
             Player_alive = true;
         }
 
-        if(GameManager.GM.Data.Boss_DIE == false || Clear_Check == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
+        //if(GameManager.GM.Data.Boss_DIE == false || Clear_Check == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
+        if(Clear_Check == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
     }
 
     public void OnCoroutine() { if (HIT_check == false && On_HIT == true) // 피격 코루틴 호출 함수

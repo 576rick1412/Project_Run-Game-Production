@@ -33,7 +33,6 @@ public class Game_Control : MonoBehaviour
     [SerializeField] GameObject Result;
     public GameObject ClearUI;
     [SerializeField] GameObject OverUI;
-    [SerializeField] GameObject DialogUI;
 
     // ¿¢¼¿¿ë
     int branch;
@@ -139,7 +138,6 @@ public class Game_Control : MonoBehaviour
         GameObject clear = Instantiate(ClearUI, BossEntryPos.position, Quaternion.identity);
         clear.transform.SetParent(BossEntryPos);
     }
-    public void InstanDialog() { GameManager.GM.Fade(DialogUI, true); Player_CS.PL.Clear_Check = true; }
     public void Game_OverUI()
     {
         GameObject Over = Instantiate(OverUI, BossEntryPos.position, Quaternion.identity);
