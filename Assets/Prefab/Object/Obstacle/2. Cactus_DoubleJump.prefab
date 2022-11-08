@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 2463399151874932504}
   - component: {fileID: 3371734477565466467}
   m_Layer: 0
-  m_Name: Cactus_DoubleJump
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

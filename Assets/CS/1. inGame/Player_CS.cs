@@ -73,10 +73,6 @@ public class Player_CS : MonoBehaviour
     void Update()
     {
         AnimeControl();
-        if (Input.GetKeyDown(KeyCode.Space)) Jump();
-        if(Input.GetKeyDown(KeyCode.A)) Attack();
-        if (Input.GetKeyDown(KeyCode.LeftShift)) Slide_DAWN();
-        if (Input.GetKeyUp(KeyCode.LeftShift)) Slide_UP();
 
         if (GameManager.GM.Data.LifeScore <= 0 && Player_alive == false)
         {
@@ -88,12 +84,13 @@ public class Player_CS : MonoBehaviour
         if(GameManager.GM.Data.Boss_DIE == false || Clear_Check == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
     }
 
-    public void OnCoroutine() { if (HIT_check == false && On_HIT == true) 
+    public void OnCoroutine() { if (HIT_check == false && On_HIT == true) // 피격 코루틴 호출 함수
         { 
             inhit = true;
             GameManager.GM.Data.Floor_SpeedValue *= 0.9f;
             GameManager.GM.Data.BGI_SpeedValue *= 0.9f;
-            HIT_check = true; 
+            HIT_check = true;
+            Invoke("HIT_off", GameManager.GM.Data.Invincibility_Time);
             StartCoroutine("HIT_Coroutine"); 
         } 
     }
@@ -208,4 +205,5 @@ public class Player_CS : MonoBehaviour
             yield return null;
         }
     }
+    void HIT_off() { On_HIT = false; }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 988328085588476243}
   - component: {fileID: 8181863387669044009}
   m_Layer: 0
-  m_Name: Cactus_Jump
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

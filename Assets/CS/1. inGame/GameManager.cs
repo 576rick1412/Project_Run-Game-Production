@@ -78,26 +78,26 @@ public class GameManager : MonoBehaviour
         Data.stage_clear_Num = 0;
         for (int i = 0; i < Data.stage_Max_Score.Length; i++) Data.stage_Max_Score[i] = 0;
 
-        Data.Set_Floor_SpeedValue = 10f;
+        Data.Set_Floor_SpeedValue = 8f;
         Data.Set_BGI_SpeedValue = 3f;
 
         Data.Floor_SpeedValue = Data.Set_Floor_SpeedValue;
         Data.BGI_SpeedValue = Data.Set_BGI_SpeedValue;
 
-        Data.Set_LifeScore = 100;
-        Data.LifeScore = 100;
+        Data.Set_LifeScore = 8;
+        Data.LifeScore = 0;
         Data.CoinScore = 0;
 
         // 플레이어 설정
         Data.PlayerType = "Player_1";
-        Data.PlayerJumpValue = 15f;
+        Data.PlayerJumpValue = 17f;
         Data.Invincibility_Time = 3f;
 
         // 코인 설정
         Data.Coin_Point = 100;
 
         // 장애물 데미지 설정
-        Data.Obstacle_Damage = 30;
+        Data.Obstacle_Damage = 3;
 
         // 보스 설정
         Data.Set_Boss_HP = 3000;
@@ -286,11 +286,11 @@ public class MainDB
 
     // 인게임 설정
     [Header("인게임 설정")]
-    public float Set_Floor_SpeedValue = 6;
-    public float Set_BGI_SpeedValue = 3;
+    public float Set_Floor_SpeedValue = 0;
+    public float Set_BGI_SpeedValue = 0;
 
-    public float Floor_SpeedValue = 6;
-    public float BGI_SpeedValue = 3;
+    public float Floor_SpeedValue = 0;
+    public float BGI_SpeedValue = 0;
 
     public float Set_LifeScore = 0;
     public float LifeScore = 0;
@@ -299,8 +299,8 @@ public class MainDB
     // 플레이어 설정
     [Header("플레이어 설정")]
     public string PlayerType = "Player_1";
-    public float PlayerJumpValue = 6;
-    public float Invincibility_Time = 3f;
+    public float PlayerJumpValue = 0;
+    public float Invincibility_Time = 0f;
 
     // 코인 설정
     [Header("코인 설정")]

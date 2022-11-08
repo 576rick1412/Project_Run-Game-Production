@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4709343058684562293}
   - component: {fileID: 3068394578748557872}
   m_Layer: 0
-  m_Name: DesertEagle
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

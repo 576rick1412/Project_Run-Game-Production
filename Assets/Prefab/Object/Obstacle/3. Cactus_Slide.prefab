@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 6732568396576922064}
   - component: {fileID: 6533637830646761918}
   m_Layer: 0
-  m_Name: Cactus_Slide
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

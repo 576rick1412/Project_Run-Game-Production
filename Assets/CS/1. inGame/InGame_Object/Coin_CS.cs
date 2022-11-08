@@ -42,17 +42,23 @@ public class Coin_CS : MonoBehaviour
             case "Platform"     : Destroy(this.gameObject); break;      // 발판
         }
     }
+    void LifeUp(int point)
+    {
+        GameManager.GM.Data.LifeScore += point;
+        if (GameManager.GM.Data.LifeScore >= GameManager.GM.Data.Set_LifeScore)
+        { GameManager.GM.Data.LifeScore = GameManager.GM.Data.Set_LifeScore; }
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Start_Border")) OnRelease = false;
 
         if (collision.gameObject.CompareTag("End_Border")) { Destroy(); }
 
-        if (collision.gameObject.CompareTag("Player") && SetObject == "Coin_1") { GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
-        if (collision.gameObject.CompareTag("Player") && SetObject == "Coin_2") { GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
-        if (collision.gameObject.CompareTag("Player") && SetObject == "Coin_3") { GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
-        if (collision.gameObject.CompareTag("Player") && SetObject == "Prefab_Coin") { GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
-        if (collision.gameObject.CompareTag("Player") && SetObject == "HP") { GameManager.GM.Data.LifeScore += 50; if (GameManager.GM.Data.LifeScore >= 100) GameManager.GM.Data.LifeScore = 100; Destroy(); }
+        if (collision.gameObject.CompareTag("Player") && SetObject == "Coin_1") { LifeUp(1); GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
+        if (collision.gameObject.CompareTag("Player") && SetObject == "Coin_2") { LifeUp(1); GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
+        if (collision.gameObject.CompareTag("Player") && SetObject == "Coin_3") { LifeUp(1); GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
+        if (collision.gameObject.CompareTag("Player") && SetObject == "Prefab_Coin") { LifeUp(1); GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
+        if (collision.gameObject.CompareTag("Player") && SetObject == "HP") { LifeUp(50); Destroy(); }
 
         if (collision.gameObject.CompareTag("Player") && SetObject == "Obstacle" && Player_CS.PL.On_HIT == false) 
         { 
@@ -60,12 +66,6 @@ public class Coin_CS : MonoBehaviour
             Player_CS.PL.On_HIT = true; 
             Player_CS.PL.OnCoroutine();
             Player_CS.PL.anime.SetInteger("Player_Value", 5);
-            Invoke("HIT_off", GameManager.GM.Data.Invincibility_Time); 
         }
-    }
-    void HIT_off()
-    {
-        Player_CS.PL.On_HIT = false;
-        Debug.Log("무적 종료");
     }
 }

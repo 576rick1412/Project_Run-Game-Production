@@ -102,10 +102,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player_alive: 0
+  Clear_Check: 0
   AttackObject: {fileID: 1062449043626448143, guid: c5f969c8b2e49c340bee3d6e297d6b4e, type: 3}
   colliders:
   - {fileID: 1794331761426619400}
   - {fileID: 1794331761426619401}
+  anime: {fileID: 0}
   On_HIT: 0
 --- !u!50 &1794331761426619406
 Rigidbody2D:
@@ -122,7 +124,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5.4
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
