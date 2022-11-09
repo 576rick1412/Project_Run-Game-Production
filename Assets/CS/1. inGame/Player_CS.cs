@@ -27,7 +27,7 @@ public class Player_CS : MonoBehaviour
     bool HIT_check = false; // 코루틴 반복 방지용
     public bool On_HIT = false; // 피격 확인용
     bool inhit; // 내부 피격
-
+    void Awake() { PL = this; }
     void Start()
     {
         Jumping = false;

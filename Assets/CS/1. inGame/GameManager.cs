@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         Data.Floor_SpeedValue = Data.Set_Floor_SpeedValue;
         Data.BGI_SpeedValue = Data.Set_BGI_SpeedValue;
 
-        Data.Set_LifeScore = 8;
+        Data.Set_LifeScore = 100;
         Data.LifeScore = 8;
         Data.CoinScore = 0;
 
