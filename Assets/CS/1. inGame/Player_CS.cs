@@ -91,7 +91,7 @@ public class Player_CS : MonoBehaviour
         if (Jumping) anime.SetInteger         ("Player_Value", 2);
         if (DoubleJumping) anime.SetInteger   ("Player_Value", 3);
         if (GameManager.GM.Player_alive) anime.SetInteger    ("Player_Value", 4);
-        if (inhit) { anime.SetInteger         ("Player_Value", 5); Invoke("Hit_Speed", 0.1f); }
+        if (inhit) { anime.SetInteger         ("Player_Value", 5); Invoke("Hit_Speed", 0.2f); }
     }
     void Hit_Speed()
     {

@@ -40,6 +40,7 @@ public class Coin_CS : MonoBehaviour
             case "Obstacle"     : Destroy(this.gameObject); break;      // 장애물
             case "Prefab_Coin"  : Destroy(this.gameObject); break;      // 오브젝트 풀링 적용 안 되도록 따로 격리
             case "Platform"     : Destroy(this.gameObject); break;      // 발판
+            case "LastPoint"     : Destroy(this.gameObject); break;      // 발판
         }
     }
     void LifeUp(int point)
@@ -58,7 +59,8 @@ public class Coin_CS : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && SetObject == "Coin_2") { LifeUp(1); GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
         if (collision.gameObject.CompareTag("Player") && SetObject == "Coin_3") { LifeUp(1); GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
         if (collision.gameObject.CompareTag("Player") && SetObject == "Prefab_Coin") { LifeUp(1); GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
-        if (collision.gameObject.CompareTag("Player") && SetObject == "HP") { LifeUp(50); Destroy(); }
+
+        if (collision.gameObject.CompareTag("Player") && SetObject == "LastPoint") { GameEnd(); }
 
         if (collision.gameObject.CompareTag("Player") && SetObject == "Obstacle" && Player_CS.PL.On_HIT == false) 
         { 
@@ -67,5 +69,10 @@ public class Coin_CS : MonoBehaviour
             Player_CS.PL.OnCoroutine();
             Player_CS.PL.anime.SetInteger("Player_Value", 5);
         }
+    }
+    void GameEnd()
+    {
+        Game_Control.GC.Result_Spawn(); GameManager.GM.SavaData(); Debug.Log("게임 클리어");
+        GameManager.GM.Data.Game_WIN = true; Game_Control.GC.Result_Spawn();
     }
 }

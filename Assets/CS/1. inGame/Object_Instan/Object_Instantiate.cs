@@ -29,8 +29,6 @@ public class Object_Instantiate : MonoBehaviour
 
     int Index = 0;
     int PosNum = 0;
-    int Amount = 0;
-    bool BossOn;
 
     bool CoinSkip = false; // 코인 스킵 \ true -> 스킵
     bool isMaker = false; // 코루틴 돌아가고 있는지 확인
@@ -134,8 +132,6 @@ public class Object_Instantiate : MonoBehaviour
     }
     void GameEndControl(bool end)
     {
-        if (end && !BossOn) { GameEnd(); BossOn = true; }
-
         if (!end && !isMaker)
         {
             int branch = GameManager.GM.Data.GM_branch;
@@ -156,11 +152,7 @@ public class Object_Instantiate : MonoBehaviour
             }
         }
     }
-    void GameEnd()
-    {
-        Game_Control.GC.Result_Spawn(); GameManager.GM.SavaData(); Debug.Log("게임 클리어");
-        GameManager.GM.Data.Game_WIN = true; Game_Control.GC.Result_Spawn();
-    }
+
     void CoinType(string Type)
     {
         switch (Type) // 코인 지정
@@ -169,7 +161,7 @@ public class Object_Instantiate : MonoBehaviour
             case "coin_1": Instan_Coin = Coin_Object[0]; break; // 코인 1
             case "coin_2": Instan_Coin = Coin_Object[1]; break; // 코인 2
             case "coin_3": Instan_Coin = Coin_Object[2]; break; // 코인 3
-            case "HP": Instan_Coin = Coin_Object[3]; break;     // HP 회복
+            case "LastPoint": Instan_Coin = Coin_Object[3]; break;     // 마지막 지점
             case "type_1": Instan_Coin = Coin_Object[4]; break;    // 1번 기믹
             case "type_2": Instan_Coin = Coin_Object[5]; break;    // 2번 기믹
         }
@@ -214,7 +206,7 @@ public class Object_Instantiate : MonoBehaviour
                     var Coin_3 = CoinPool_3.Get();
                     Coin_3.transform.position = Instan_Pos[PosNum].position; break;
                 // ====================================================================
-                case "HP": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                case "LastPoint": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
                 // ====================================================================
                 case "type_1": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
                 // ====================================================================

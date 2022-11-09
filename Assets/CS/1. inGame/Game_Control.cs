@@ -49,6 +49,8 @@ public class Game_Control : MonoBehaviour
         IsPause = false;
         GameManager.GM.Data.LifeScore = GameManager.GM.Data.Set_LifeScore;
         GameManager.GM.Data.CoinScore = 0;
+        GameManager.GM.Player_alive = false;
+
 
         Game_End = false;
         Boss_On = false;
@@ -95,7 +97,7 @@ public class Game_Control : MonoBehaviour
         }
     }
 
-    public void Result_Spawn() { Invoke("Game_Result", 3f); }
+    public void Result_Spawn() { Invoke("Game_Result", 1f); }
     void Game_Result() { GameManager.GM.Fade(Result,true); Player_CS.PL.Clear_Check = true; }
     public void Game_ClearUI() 
     {
