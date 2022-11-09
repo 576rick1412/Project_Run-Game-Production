@@ -23,7 +23,7 @@ public class Result_CS : MonoBehaviour
         Time.timeScale = 1;
         branch = Random.Range(1, RunGame_EX.StartSheet.Count + 1); STG_Excel();
 
-        if (GameManager.GM.Data.Game_Fail == false) Win.SetActive(false);
+        if (GameManager.GM.Data.Game_WIN == false) Win.SetActive(false);
         else { Lose.SetActive(false); }
 
         Max_Score.text = "최대 점수 : " + (GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch] == 0 ? 0 : 

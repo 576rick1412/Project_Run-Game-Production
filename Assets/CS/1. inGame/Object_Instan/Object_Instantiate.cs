@@ -129,12 +129,13 @@ public class Object_Instantiate : MonoBehaviour
             case 7: GameEndControl(Chapter_EX.Stage_7[Index].END); break;
             case 8: GameEndControl(Chapter_EX.Stage_8[Index].END); break;
             case 9: GameEndControl(Chapter_EX.Stage_9[Index].END); break;
-            case 0: GameEndControl(Chapter_EX.Stage_10[Index].END); break;
+            case 0: GameEndControl(Chapter_EX.Stage_10[Index].END);break;
         }
     }
     void GameEndControl(bool end)
     {
-        if (end && !BossOn) GameEnd(); BossOn = true;
+        if (end && !BossOn) { GameEnd(); BossOn = true; }
+
         if (!end && !isMaker)
         {
             int branch = GameManager.GM.Data.GM_branch;
@@ -157,8 +158,8 @@ public class Object_Instantiate : MonoBehaviour
     }
     void GameEnd()
     {
-        Game_Control.GC.Game_ClearUI(); GameManager.GM.SavaData();
-        GameManager.GM.Data.Game_Fail = true; Game_Control.GC.Result_Spawn(); Player_CS.PL.Clear_Check = true;
+        Game_Control.GC.Result_Spawn(); GameManager.GM.SavaData(); Debug.Log("게임 클리어");
+        GameManager.GM.Data.Game_WIN = true; Game_Control.GC.Result_Spawn();
     }
     void CoinType(string Type)
     {
@@ -223,6 +224,7 @@ public class Object_Instantiate : MonoBehaviour
         if (Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
         if (Platform != "None") Instantiate(Instan_Platform, Instan_Pos[PlatformPos].position, Quaternion.identity);
     }
+
     IEnumerator Coin_Maker_1()
     {
         var Chapter_EX = Chapter_EX_1;

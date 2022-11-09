@@ -70,7 +70,7 @@ public class Game_Control : MonoBehaviour
         Score.text = "Á¡¼ö : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
 
         if (GameManager.GM.Data.LifeScore <= 0 && GameOvercheck == false && Game_End == false) 
-        { GameManager.GM.Data.Game_Fail = false; Game_OverUI(); GameManager.GM.SavaData(); Invoke("Game_Result", 3f); Game_End = true; }
+        { GameManager.GM.Data.Game_WIN = false; Game_OverUI(); GameManager.GM.SavaData(); Invoke("Game_Result", 3f); Game_End = true; }
     }
     public string CommaText(long Sccore) { return string.Format("{0:#,###}", Sccore); }
 
@@ -96,7 +96,7 @@ public class Game_Control : MonoBehaviour
     }
 
     public void Result_Spawn() { Invoke("Game_Result", 3f); }
-    void Game_Result() { Instantiate(Result); }
+    void Game_Result() { GameManager.GM.Fade(Result,true); Player_CS.PL.Clear_Check = true; }
     public void Game_ClearUI() 
     {
         GameObject clear = Instantiate(ClearUI, BossEntryPos.position, Quaternion.identity);

@@ -9,16 +9,22 @@ public class Button_CS : MonoBehaviour
     [SerializeField] string Stage_Des;
     [SerializeField] Animator BG;
 
+    bool Click;
 
     void Start()
     {
+        Click = false;
         branch = Random.Range(1, RunGame_EX.StartSheet.Count + 1);
         STG_Excel();
     }
     public void GoMain()
     {
-        BG.SetBool("Start", true);
-        Invoke("RoadLoby", 3f);
+        if (!Click)
+        {
+            BG.SetBool("Start", true);
+            Invoke("RoadLoby", 3f);
+            Click = true;
+        }
     }
     void RoadLoby() { Loading_Manager.LoadScene("Mian_Loby_Scene", Stage_Des); }
     void STG_Excel()

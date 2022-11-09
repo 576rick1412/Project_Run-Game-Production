@@ -52,15 +52,14 @@ public class Player_CS : MonoBehaviour
             GameManager.GM.Player_alive = true;
         }
 
-        //if(GameManager.GM.Data.Boss_DIE == false || Clear_Check == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
         if(Clear_Check == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
     }
 
     public void OnCoroutine() { if (HIT_check == false && On_HIT == true) // 피격 코루틴 호출 함수
         { 
             inhit = true;
-            GameManager.GM.Data.Floor_SpeedValue *= 0.9f;
-            GameManager.GM.Data.BGI_SpeedValue *= 0.9f;
+            GameManager.GM.Data.Floor_SpeedValue *= 0.7f;
+            GameManager.GM.Data.BGI_SpeedValue *= 0.7f;
             HIT_check = true;
             Invoke("HIT_off", GameManager.GM.Data.Invincibility_Time);
             StartCoroutine("HIT_Coroutine"); 
