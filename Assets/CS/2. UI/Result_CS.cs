@@ -65,33 +65,20 @@ public class Result_CS : MonoBehaviour
     public void GoLoby() { Loading_Manager.LoadScene("Mian_Loby_Scene", Stage_Des); }
     public void GoStage() 
     {
-        switch (GameManager.GM.nowStage)
+        switch (GameManager.GM.Data.GM_branch / 10)
         {
-            case 1 : Loading_Manager.LoadScene("Stage1_Hub", Stage_Des); break;
-            case 2 : Loading_Manager.LoadScene("Stage2_Hub", Stage_Des); break;
-            case 3 : Loading_Manager.LoadScene("Stage3_Hub", Stage_Des); break;
-            case 4 : Loading_Manager.LoadScene("Stage4_Hub", Stage_Des); break;
-            case 5 : Loading_Manager.LoadScene("Stage5_Hub", Stage_Des); break;
-            case 6 : Loading_Manager.LoadScene("Stage6_Hub", Stage_Des); break;
+            case <= 10 : Loading_Manager.LoadScene("Stage1_Hub", Stage_Des); break;
+            case <= 20 : Loading_Manager.LoadScene("Stage2_Hub", Stage_Des); break;
+            case <= 30 : Loading_Manager.LoadScene("Stage3_Hub", Stage_Des); break;
+            case <= 40 : Loading_Manager.LoadScene("Stage4_Hub", Stage_Des); break;
+            case <= 50 : Loading_Manager.LoadScene("Stage5_Hub", Stage_Des); break;
+            case <= 60 : Loading_Manager.LoadScene("Stage6_Hub", Stage_Des); break;
         }
     }
     public void GoRetry()
     {
-        GameManager.GM.Data.Floor_SpeedValue = GameManager.GM.Data.Set_Floor_SpeedValue;
-        GameManager.GM.Data.BGI_SpeedValue = GameManager.GM.Data.Set_BGI_SpeedValue;
-
-        GameManager.GM.Data.CoinScore = 0;
         Time.timeScale = 1;
-
-        switch (GameManager.GM.nowStage)
-        {
-            case 1 : Loading_Manager.LoadScene("Stage1_Scene", Stage_Des); break;
-            case 2 : Loading_Manager.LoadScene("Stage2_Scene", Stage_Des); break;
-            case 3 : Loading_Manager.LoadScene("Stage3_Scene", Stage_Des); break;
-            case 4 : Loading_Manager.LoadScene("Stage4_Scene", Stage_Des); break;
-            case 5 : Loading_Manager.LoadScene("Stage5_Scene", Stage_Des); break;
-            case 6 : Loading_Manager.LoadScene("Stage6_Scene", Stage_Des); break;
-        }
+        GameManager.GM.Stage_Move();
     }
     void STG_Excel()
     {

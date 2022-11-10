@@ -83,11 +83,13 @@ public class Player_CS : MonoBehaviour
     }
     void AnimeControl()
     {
-        if ((IsFloor && !Sliding)) anime.SetInteger ("Player_Value", 0);
-        if (Sliding) anime.SetInteger               ("Player_Value", 1); SetCollider();
-        if (Jumping) anime.SetInteger               ("Player_Value", 2);
-        if (DoubleJumping) anime.SetInteger         ("Player_Value", 3);
-        if (inhit) { anime.SetInteger               ("Player_Value", 5); Invoke("Hit_Speed", 0.2f); }
+        // 애니메이션이 씹히는 현상이 발생해서 리턴 들어있는거
+        if (Sliding) { anime.SetInteger             ("Player_Value", 1); return; }
+        if (DoubleJumping) { anime.SetInteger       ("Player_Value", 3); return; }
+        if (Jumping) { anime.SetInteger             ("Player_Value", 2); return; }
+
+        if (IsFloor) anime.SetInteger("Player_Value", 0);
+        if (inhit) { anime.SetInteger("Player_Value", 5); Invoke("Hit_Speed", 0.2f); }
 
         if (GameManager.GM.Player_alive) anime.SetInteger("Player_Value", 4);
     }
@@ -109,8 +111,8 @@ public class Player_CS : MonoBehaviour
             if (Jumping == true && DoubleJumping == false) { rigid.velocity = Vector2.up * jumpHeight; DoubleJumping = true; return; }
         }
     }
-    public void Slide_DAWN() { if (GameManager.GM.Player_alive == false) { Sliding = true; Debug.Log("작동"); } }
-    public void Slide_UP() { if (GameManager.GM.Player_alive == false) { Sliding = false; } }
+    public void Slide_DAWN() { if (GameManager.GM.Player_alive == false) { Sliding = true; SetCollider(); } }
+    public void Slide_UP() { if (GameManager.GM.Player_alive == false) { Sliding = false; SetCollider(); } }
 
     void OnTriggerEnter2D(Collider2D collision)
     {

@@ -39,14 +39,9 @@ public class Stage_Info : MonoBehaviour
         GameManager.GM.Data.BGM_Value = GameManager.GM.Data.Set_BGI_SpeedValue;
         GameManager.GM.Data.GM_branch = Stage_Num;
 
-        switch (GameManager.GM.nowStage)
-        {
-            case 1: Loading_Manager.LoadScene("Stage1_Scene", Stage_Name, Stage_Information); break;
-            case 2: Loading_Manager.LoadScene("Stage2_Scene", Stage_Name, Stage_Information); break;
-            case 3: Loading_Manager.LoadScene("Stage3_Scene", Stage_Name, Stage_Information); break;
-            case 4: Loading_Manager.LoadScene("Stage4_Scene", Stage_Name, Stage_Information); break;
-            case 5: Loading_Manager.LoadScene("Stage5_Scene", Stage_Name, Stage_Information); break;
-            case 6: Loading_Manager.LoadScene("Stage6_Scene", Stage_Name, Stage_Information); break;
-        }
+        GameManager.GM.Stage_Name = Stage_Name.text;
+        GameManager.GM.Stage_Information = Stage_Information.text;
+
+        GameManager.GM.Stage_Move();
     }
 }

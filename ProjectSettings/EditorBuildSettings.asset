@@ -36,24 +36,6 @@ EditorBuildSettings:
     path: Assets/Scenes/1. Loby_Scene/Shop_Scene.unity
     guid: 6c4bb7760e4d2fd45ae5cd3ba78f44b5
   - enabled: 1
-    path: Assets/Scenes/2. Game_Scene/Ingame/Stage1_Scene.unity
-    guid: b03fbe5f59fdb5147bac518d68da4be9
-  - enabled: 1
-    path: Assets/Scenes/2. Game_Scene/Ingame/Stage2_Scene.unity
-    guid: 1002d2ba3309734429d5027ec48771cb
-  - enabled: 1
-    path: Assets/Scenes/2. Game_Scene/Ingame/Stage3_Scene.unity
-    guid: fdfd2c75737f37a4e9b91d59a99ce350
-  - enabled: 1
-    path: Assets/Scenes/2. Game_Scene/Ingame/Stage4_Scene.unity
-    guid: a72fc695d4f4d314a8414857377454c1
-  - enabled: 1
-    path: Assets/Scenes/2. Game_Scene/Ingame/Stage5_Scene.unity
-    guid: 21afdbb4c044a99439044e38a50857f7
-  - enabled: 1
-    path: Assets/Scenes/2. Game_Scene/Ingame/Stage6_Scene.unity
-    guid: e5a997c67c9d65e44b05abbd92c12024
-  - enabled: 1
     path: Assets/Scenes/2. Game_Scene/Stage_Hub/Stage1_Hub.unity
     guid: e38d5394e32bfc54d806fe9b74592920
   - enabled: 1
@@ -71,4 +53,34 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/2. Game_Scene/Stage_Hub/Stage6_Hub.unity
     guid: f844a0a76e5302344bc041abefe0b5a2
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Chaptet_1/Stage1-1_Scene.unity
+    guid: b03fbe5f59fdb5147bac518d68da4be9
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Chaptet_1/Stage1-2_Scene.unity
+    guid: 1002d2ba3309734429d5027ec48771cb
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Chaptet_1/Stage1-3_Scene.unity
+    guid: fdfd2c75737f37a4e9b91d59a99ce350
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Chaptet_1/Stage1-4_Scene.unity
+    guid: a72fc695d4f4d314a8414857377454c1
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Chaptet_1/Stage1-5_Scene.unity
+    guid: 21afdbb4c044a99439044e38a50857f7
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Chaptet_1/Stage1-6_Scene.unity
+    guid: e5a997c67c9d65e44b05abbd92c12024
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Chaptet_1/Stage1-7_Scene.unity
+    guid: aa2ba40e55bf8a046b9b969850392474
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Chaptet_1/Stage1-8_Scene.unity
+    guid: 13671819a396d2c4e89cbf0caa5231ad
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Chaptet_1/Stage1-9_Scene.unity
+    guid: 69f3aa57fc0e8cf40a171bb8f69ffdce
+  - enabled: 1
+    path: Assets/Scenes/2. Game_Scene/Ingame/Chaptet_1/Stage1-10_Scene.unity
+    guid: 69803a3c5979a4744b47780248d320ad
   m_configObjects: {}

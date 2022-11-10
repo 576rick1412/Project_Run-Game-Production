@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     [Header("플레이 설정")]
     public bool Player_alive;
 
+    public string Stage_Name;
+    public string Stage_Information;
+
     string FilePath;
     void Awake(){GM = this; FilePath = Application.persistentDataPath + "/MainDB.txt"; }
     public MainDB Data;
@@ -252,6 +255,24 @@ public class GameManager : MonoBehaviour
         }
         Panel.gameObject.SetActive(false);
         yield return null;
+    }
+
+    public void Stage_Move()
+    {
+        switch (Data.GM_branch)
+        {
+            case  1: Loading_Manager.LoadScene("Stage1-1_Scene", Stage_Name, Stage_Information); break;
+            case  2: Loading_Manager.LoadScene("Stage1-2_Scene", Stage_Name, Stage_Information); break;
+            case  3: Loading_Manager.LoadScene("Stage1-3_Scene", Stage_Name, Stage_Information); break;
+            case  4: Loading_Manager.LoadScene("Stage1-4_Scene", Stage_Name, Stage_Information); break;
+            case  5: Loading_Manager.LoadScene("Stage1-5_Scene", Stage_Name, Stage_Information); break;
+            case  6: Loading_Manager.LoadScene("Stage1-6_Scene", Stage_Name, Stage_Information); break;
+            case  7: Loading_Manager.LoadScene("Stage1-7_Scene", Stage_Name, Stage_Information); break;
+            case  8: Loading_Manager.LoadScene("Stage1-8_Scene", Stage_Name, Stage_Information); break;
+            case  9: Loading_Manager.LoadScene("Stage1-9_Scene", Stage_Name, Stage_Information); break;
+            case 10: Loading_Manager.LoadScene("Stage1-10_Scene", Stage_Name, Stage_Information); break; // 챕터 1 끝
+            case 11: Loading_Manager.LoadScene("Stage2-1_Scene", Stage_Name, Stage_Information); break;
+        }
     }
 }
 [Serializable]

@@ -15,14 +15,14 @@ public class Loading_Manager : MonoBehaviour
     public TextMeshProUGUI Name;
     public TextMeshProUGUI Description;
 
-    public static void LoadScene(string SceneName, TextMeshProUGUI ST_Name, TextMeshProUGUI ST_Description)
+    public static void LoadScene(string SceneName, string ST_Name, string ST_Description)
     {
         AsyncOperation op = SceneManager.LoadSceneAsync("Stage_LoadingScene");
 
         nextScene = SceneName;
-        Stage_Name = ST_Name.text;
+        Stage_Name = ST_Name;
 
-        Stage_Description = ST_Description.text;
+        Stage_Description = ST_Description;
 
         GameManager.GM.Fade(op);
     }

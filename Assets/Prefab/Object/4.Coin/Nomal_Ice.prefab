@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1233021278374380044}
   - component: {fileID: 3450758530383041444}
   m_Layer: 0
-  m_Name: Coin_1
+  m_Name: Nomal_Ice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetObject: Coin_1
+  SetObject: Nomal_Ice
   SetPrefabs: 0
 --- !u!50 &-1233021278374380044
 Rigidbody2D:

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -9,7 +8,7 @@ public class Game_Control : MonoBehaviour
 {
     public static Game_Control GC;
 
-    [HideInInspector] public bool Boss_On;
+    [HideInInspector] public bool fail_Check;
 
     [SerializeField] Transform Spawn_Pos;
     [SerializeField] GameObject[] Player;
@@ -61,7 +60,6 @@ public class Game_Control : MonoBehaviour
         GameManager.GM.Player_alive = false; // 플레이어 사망처리 초기화
        
         Game_End = false;
-        Boss_On = false;
     }
 
     void PlayerType()
@@ -76,13 +74,15 @@ public class Game_Control : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.GM.Player_alive && !fail_Check) {  Result_Spawn(); fail_Check = true; }
+
         HP_Bar.fillAmount = (GameManager.GM.Data.LifeScore / GameManager.GM.Data.Set_LifeScore);
         Score.text = "점수 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
 
         Run_Ratio.text = "달린거리 " + System.Math.Truncate(GameManager.GM.Data.Cur_Run_Ratio / GameManager.GM.Data.Run_Ratio * 100).ToString() + " %";
 
         if (GameManager.GM.Data.LifeScore <= 0 && GameOvercheck == false && Game_End == false) 
-        { GameManager.GM.Data.Game_WIN = false; Game_OverUI(); GameManager.GM.SavaData(); Invoke("Game_Result", 3f); Game_End = true; }
+        { GameManager.GM.Data.Game_WIN = false; Game_OverUI(); GameManager.GM.SavaData(); Game_End = true; }
     }
     public string CommaText(long Sccore) { return string.Format("{0:#,###}", Sccore); }
 
@@ -122,29 +122,21 @@ public class Game_Control : MonoBehaviour
     public void ReStage()
     {
         Time.timeScale = 1; //  타임 스케일 초기화, 게임 멈춤 방지
-        switch (GameManager.GM.nowStage)
+        switch (GameManager.GM.Data.GM_branch / 10)
         {
-            case 1: Loading_Manager.LoadScene("Stage1_Hub", Stage_Des); break;
-            case 2: Loading_Manager.LoadScene("Stage2_Hub", Stage_Des); break;
-            case 3: Loading_Manager.LoadScene("Stage3_Hub", Stage_Des); break;
-            case 4: Loading_Manager.LoadScene("Stage4_Hub", Stage_Des); break;
-            case 5: Loading_Manager.LoadScene("Stage5_Hub", Stage_Des); break;
-            case 6: Loading_Manager.LoadScene("Stage6_Hub", Stage_Des); break;
+            case <= 10: Loading_Manager.LoadScene("Stage1_Hub", Stage_Des); break;
+            case <= 20: Loading_Manager.LoadScene("Stage2_Hub", Stage_Des); break;
+            case <= 30: Loading_Manager.LoadScene("Stage3_Hub", Stage_Des); break;
+            case <= 40: Loading_Manager.LoadScene("Stage4_Hub", Stage_Des); break;
+            case <= 50: Loading_Manager.LoadScene("Stage5_Hub", Stage_Des); break;
+            case <= 60: Loading_Manager.LoadScene("Stage6_Hub", Stage_Des); break;
         }
     }
     public void GoRetry()
     {
         Time.timeScale = 1; //  타임 스케일 초기화, 게임 멈춤 방지
 
-        switch (GameManager.GM.nowStage)
-        {
-            case 1: Loading_Manager.LoadScene("Stage1_Scene", Stage_Des); break;
-            case 2: Loading_Manager.LoadScene("Stage2_Scene", Stage_Des); break;
-            case 3: Loading_Manager.LoadScene("Stage3_Scene", Stage_Des); break;
-            case 4: Loading_Manager.LoadScene("Stage4_Scene", Stage_Des); break;
-            case 5: Loading_Manager.LoadScene("Stage5_Scene", Stage_Des); break;
-            case 6: Loading_Manager.LoadScene("Stage6_Scene", Stage_Des); break;
-        }
+        GameManager.GM.Stage_Move();
     }
     void STG_Excel()
     {
