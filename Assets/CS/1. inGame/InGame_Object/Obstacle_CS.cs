@@ -15,7 +15,7 @@ public class Obstacle_CS : MonoBehaviour
         {
             switch(Obstacle_Type)
             {
-                case "Cactus"   : anim.SetBool("OnObstacle", true); break;
+                case "Slide": anim.SetBool("OnObstacle", true); break;
                 case "Eagle"    : anim.SetBool("OnObstacle", true); break;
             }
         }

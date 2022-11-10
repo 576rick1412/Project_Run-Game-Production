@@ -13,10 +13,8 @@ public class Player_CS : MonoBehaviour
      bool Jumping;
      bool DoubleJumping;
      bool Sliding;
-     bool OnSlide; // 공중에서 슬라이드 버튼 눌렀을 때
 
      bool IsFloor = false; // 바닥 확인
-     bool IsPlatform = false; // 플랫폼 확인
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
@@ -85,13 +83,13 @@ public class Player_CS : MonoBehaviour
     }
     void AnimeControl()
     {
-        if ((IsFloor && !Sliding) || (IsPlatform && !Sliding))
-            anime.SetInteger                  ("Player_Value", 0);
-        if (Sliding) anime.SetInteger         ("Player_Value", 1); SetCollider();
-        if (Jumping) anime.SetInteger         ("Player_Value", 2);
-        if (DoubleJumping) anime.SetInteger   ("Player_Value", 3);
-        if (GameManager.GM.Player_alive) anime.SetInteger    ("Player_Value", 4);
-        if (inhit) { anime.SetInteger         ("Player_Value", 5); Invoke("Hit_Speed", 0.2f); }
+        if ((IsFloor && !Sliding)) anime.SetInteger ("Player_Value", 0);
+        if (Sliding) anime.SetInteger               ("Player_Value", 1); SetCollider();
+        if (Jumping) anime.SetInteger               ("Player_Value", 2);
+        if (DoubleJumping) anime.SetInteger         ("Player_Value", 3);
+        if (inhit) { anime.SetInteger               ("Player_Value", 5); Invoke("Hit_Speed", 0.2f); }
+
+        if (GameManager.GM.Player_alive) anime.SetInteger("Player_Value", 4);
     }
     void Hit_Speed()
     {
@@ -106,50 +104,25 @@ public class Player_CS : MonoBehaviour
     {
         if (GameManager.GM.Player_alive == false)
         {
-            IsFloor = false; IsPlatform = false;
+            IsFloor = false;
             if (Jumping == false && DoubleJumping == false) { rigid.velocity = Vector2.up * jumpHeight; Jumping = true; return; }
             if (Jumping == true && DoubleJumping == false) { rigid.velocity = Vector2.up * jumpHeight; DoubleJumping = true; return; }
         }
     }
-    public void Slide_DAWN() 
-    {
-        if (GameManager.GM.Player_alive == false)
-        {
-            // 바닥이나 발판에 붙을 째로 슬라이드 버튼을 누를 시 슬라이니 애니메이션이 나오도록
-            if ((Sliding == false && IsFloor) || (Sliding == false && IsPlatform)) Sliding = true;
+    public void Slide_DAWN() { if (GameManager.GM.Player_alive == false) { Sliding = true; Debug.Log("작동"); } }
+    public void Slide_UP() { if (GameManager.GM.Player_alive == false) { Sliding = false; } }
 
-            // 점프상태일 때 버튼이 눌리면 바닥에 닿자마자 슬라이드 하도록
-            if ((Sliding == false && !IsFloor) || (Sliding == false && IsPlatform)) OnSlide = true;
-        }
-    }
-    public void Slide_UP()
-    {
-        if (GameManager.GM.Player_alive == false)
-        {
-            IsFloor = true; IsPlatform = true;
-
-            // 슬라이드 중 해제 // 공중에서 슬라이드 버튼 누름 해제
-            Sliding = false; OnSlide = false;
-            
-        }
-    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (GameManager.GM.Player_alive == false)
         {
             if (collision.gameObject.CompareTag("Floor"))
             {
-                if (OnSlide) { Sliding = true; OnSlide = false; }
-                else { IsFloor = true; IsPlatform = true; }
-
+                IsFloor = true;
                 Jumping = false;
                 DoubleJumping = false;
             }
         }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-
     }
     IEnumerator HIT_Coroutine()
     {

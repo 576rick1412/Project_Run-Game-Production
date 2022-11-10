@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
 
         // 플레이어 설정
         Data.PlayerType = "Player_1";
-        Data.PlayerJumpValue = 17f;
+        Data.PlayerJumpValue = 18f;
         Data.Invincibility_Time = 3f;
 
         // 코인 설정
@@ -287,6 +287,9 @@ public class MainDB
     public float Set_LifeScore = 0;
     public float LifeScore = 0;
     public int CoinScore = 0;
+
+    public float Run_Ratio = 0f;
+    public float Cur_Run_Ratio = 0f;
 
     // 플레이어 설정
     [Header("플레이어 설정")]

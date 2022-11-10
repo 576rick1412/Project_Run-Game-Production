@@ -20,7 +20,7 @@ MonoBehaviour:
     Platform: None
     PlatformPos: 0
     END: 0
-    Coin_Sum: 44
+    Coin_Sum: 62
   - CoinType: coin_1
     CoinPos: 2
     CoinAmount: 1
@@ -53,26 +53,42 @@ MonoBehaviour:
     PlatformPos: 0
     END: 0
     Coin_Sum: 0
-  - CoinType: coin_1
-    CoinPos: 2
-    CoinAmount: 1
-    Obstacle: None
+  - CoinType: None
+    CoinPos: 0
+    CoinAmount: 2
+    Obstacle: Obstacle_1
     Platform: None
     PlatformPos: 0
     END: 0
     Coin_Sum: 0
   - CoinType: coin_1
-    CoinPos: 3
-    CoinAmount: 3
+    CoinPos: 1
+    CoinAmount: 5
     Obstacle: None
     Platform: None
     PlatformPos: 0
     END: 0
     Coin_Sum: 0
-  - CoinType: coin_1
-    CoinPos: 2
+  - CoinType: None
+    CoinPos: 0
     CoinAmount: 1
+    Obstacle: Obstacle_2
+    Platform: None
+    PlatformPos: 0
+    END: 0
+    Coin_Sum: 0
+  - CoinType: coin_1
+    CoinPos: 1
+    CoinAmount: 5
     Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+    Coin_Sum: 0
+  - CoinType: None
+    CoinPos: 0
+    CoinAmount: 10
+    Obstacle: Obstacle_3
     Platform: None
     PlatformPos: 0
     END: 0

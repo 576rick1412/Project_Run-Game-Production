@@ -39,6 +39,8 @@ public class Object_Instantiate : MonoBehaviour
 
     void Awake()
     {
+        Run_ratio_reset(); // 게임 달린거리 전체 코인 수 구하는 함수
+
         CoinPool_1 = new ObjectPool<Coin_CS>(Coin_1_Creat, Coin_1_Get, Coin_1_Releas, Coin_1_Destroy, maxSize: 30);
         CoinPool_2 = new ObjectPool<Coin_CS>(Coin_2_Creat, Coin_2_Get, Coin_2_Releas, Coin_2_Destroy, maxSize: 30);
         CoinPool_3 = new ObjectPool<Coin_CS>(Coin_3_Creat, Coin_3_Get, Coin_3_Releas, Coin_3_Destroy, maxSize: 30);
@@ -103,6 +105,33 @@ public class Object_Instantiate : MonoBehaviour
         Destroy(Coin_3.gameObject);
     }       // (풀링) 코인 삭제
 
+    void Run_ratio_reset()
+    {
+        var Chapter_EX = Chapter_EX_1;
+        switch (Excel_Num)
+        {
+            case 1: Chapter_EX = Chapter_EX_1; break;
+            case 2: Chapter_EX = Chapter_EX_2; break;
+            case 3: Chapter_EX = Chapter_EX_3; break;
+            case 4: Chapter_EX = Chapter_EX_4; break;
+            case 5: Chapter_EX = Chapter_EX_5; break;
+            case 6: Chapter_EX = Chapter_EX_6; break;
+        }
+
+        switch (GameManager.GM.Data.GM_branch % 10)
+        {
+            case 1: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_1[0].Coin_Sum; break;
+            case 2: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_2[0].Coin_Sum; break;
+            case 3: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_3[0].Coin_Sum; break;
+            case 4: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_4[0].Coin_Sum; break;
+            case 5: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_5[0].Coin_Sum; break;
+            case 6: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_6[0].Coin_Sum; break;
+            case 7: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_7[0].Coin_Sum; break;
+            case 8: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_8[0].Coin_Sum; break;
+            case 9: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_9[0].Coin_Sum; break;
+            case 0: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_10[0].Coin_Sum;break;
+        }
+    }
     void Update()
     {
         var Chapter_EX = Chapter_EX_1;
@@ -115,6 +144,8 @@ public class Object_Instantiate : MonoBehaviour
             case 5: Chapter_EX = Chapter_EX_5; break;
             case 6: Chapter_EX = Chapter_EX_6; break;
         }
+
+        
 
         switch (GameManager.GM.Data.GM_branch % 10)
         {
@@ -173,7 +204,6 @@ public class Object_Instantiate : MonoBehaviour
             case "Obstacle_1": Instan_Obstacle = Obstacle_Object[0]; break; // 점프 장애물
             case "Obstacle_2": Instan_Obstacle = Obstacle_Object[1]; break; // 더블점프 장애물
             case "Obstacle_3": Instan_Obstacle = Obstacle_Object[2]; break; // 슬라이드 장애물
-            case "Eagle": Instan_Obstacle = Obstacle_Object[3]; break; // (슬라이드)독수리 장애물
         }
     }
     void PlatformType(string Type)
@@ -215,6 +245,8 @@ public class Object_Instantiate : MonoBehaviour
         }
         if (Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
         if (Platform != "None") Instantiate(Instan_Platform, Instan_Pos[PlatformPos].position, Quaternion.identity);
+
+        GameManager.GM.Data.Cur_Run_Ratio += 1;
     }
 
     IEnumerator Coin_Maker_1()

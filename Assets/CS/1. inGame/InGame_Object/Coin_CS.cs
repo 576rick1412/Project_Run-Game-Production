@@ -60,7 +60,7 @@ public class Coin_CS : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && SetObject == "Coin_3") { LifeUp(1); GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
         if (collision.gameObject.CompareTag("Player") && SetObject == "Prefab_Coin") { LifeUp(1); GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
 
-        if (collision.gameObject.CompareTag("Player") && SetObject == "LastPoint") { GameEnd(); }
+        if (collision.gameObject.CompareTag("Player") && SetObject == "LastPoint") { Player_CS.PL.Clear_Check = true; GameEnd(); }
 
         if (collision.gameObject.CompareTag("Player") && SetObject == "Obstacle" && Player_CS.PL.On_HIT == false) 
         { 

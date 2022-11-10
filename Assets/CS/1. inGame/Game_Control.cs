@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+
 public class Game_Control : MonoBehaviour
 {
     public static Game_Control GC;
@@ -17,6 +18,7 @@ public class Game_Control : MonoBehaviour
     [SerializeField] Image HP_Bar;
     [SerializeField] GameObject Pause_Image;
     public TextMeshProUGUI Score;
+    public TextMeshProUGUI Run_Ratio;
 
     public Transform BossEntryPos;
 
@@ -47,11 +49,17 @@ public class Game_Control : MonoBehaviour
 
         Pause_Image.SetActive(false);
         IsPause = false;
-        GameManager.GM.Data.LifeScore = GameManager.GM.Data.Set_LifeScore;
-        GameManager.GM.Data.CoinScore = 0;
-        GameManager.GM.Player_alive = false;
 
+        GameManager.GM.Data.Cur_Run_Ratio = 0; // 현재 달린 거리 초기화
 
+        GameManager.GM.Data.Floor_SpeedValue = GameManager.GM.Data.Set_Floor_SpeedValue; // 발판 속도 지정된 초기값으로 초기화
+        GameManager.GM.Data.BGI_SpeedValue = GameManager.GM.Data.Set_BGI_SpeedValue;     // 배경 속도 지정된 초기값으로 초기화
+
+        GameManager.GM.Data.LifeScore = GameManager.GM.Data.Set_LifeScore;  // HP 지정된 초기값으로 초기화
+        GameManager.GM.Data.CoinScore = 0;  // 게임 내 점수 초기화
+
+        GameManager.GM.Player_alive = false; // 플레이어 사망처리 초기화
+       
         Game_End = false;
         Boss_On = false;
     }
@@ -70,6 +78,8 @@ public class Game_Control : MonoBehaviour
     {
         HP_Bar.fillAmount = (GameManager.GM.Data.LifeScore / GameManager.GM.Data.Set_LifeScore);
         Score.text = "점수 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
+
+        Run_Ratio.text = "달린거리 " + System.Math.Truncate(GameManager.GM.Data.Cur_Run_Ratio / GameManager.GM.Data.Run_Ratio * 100).ToString() + " %";
 
         if (GameManager.GM.Data.LifeScore <= 0 && GameOvercheck == false && Game_End == false) 
         { GameManager.GM.Data.Game_WIN = false; Game_OverUI(); GameManager.GM.SavaData(); Invoke("Game_Result", 3f); Game_End = true; }
@@ -111,7 +121,7 @@ public class Game_Control : MonoBehaviour
     }
     public void ReStage()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 1; //  타임 스케일 초기화, 게임 멈춤 방지
         switch (GameManager.GM.nowStage)
         {
             case 1: Loading_Manager.LoadScene("Stage1_Hub", Stage_Des); break;
@@ -124,11 +134,7 @@ public class Game_Control : MonoBehaviour
     }
     public void GoRetry()
     {
-        GameManager.GM.Data.Floor_SpeedValue = GameManager.GM.Data.Set_Floor_SpeedValue;
-        GameManager.GM.Data.BGI_SpeedValue = GameManager.GM.Data.Set_BGI_SpeedValue;
-
-        GameManager.GM.Data.CoinScore = 0;
-        Time.timeScale = 1;
+        Time.timeScale = 1; //  타임 스케일 초기화, 게임 멈춤 방지
 
         switch (GameManager.GM.nowStage)
         {
