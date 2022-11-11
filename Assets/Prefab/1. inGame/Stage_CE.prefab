@@ -1079,6 +1079,7 @@ GameObject:
   - component: {fileID: 714450739517526487}
   - component: {fileID: 714450739517526480}
   - component: {fileID: 714450739517526485}
+  - component: {fileID: 7639534660303246632}
   m_Layer: 5
   m_Name: Game_Canvas
   m_TagString: Untagged
@@ -1201,6 +1202,21 @@ MonoBehaviour:
   SetAlphaValue: 0.2
   SetEfeectTime: 0.2
   RunGame_EX: {fileID: 11400000, guid: e6fe9ecea16e54746a9efd13223f79f3, type: 2}
+--- !u!114 &7639534660303246632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714450739517526482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aefc41591fb22e40aaa87f2a013fbf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button_Sound: {fileID: 8349741948050216024, guid: 4094bdccdafb0cb4c87a87e853b3bcd6, type: 3}
+  Coin_Sound: {fileID: 59539635422222500, guid: 902a9fd89e0b713448e1e7acd24bf4c7, type: 3}
+  Wrong_Sound: {fileID: 8063687190329918994, guid: 1aa2a10f0b1a1d84881d1e1b78efae99, type: 3}
 --- !u!1 &714450739545119060
 GameObject:
   m_ObjectHideFlags: 0
