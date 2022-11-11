@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Pool;
 
 public class Player_CS : MonoBehaviour
 {
     public static Player_CS PL;
-
+     public Transform Player_Pos;
      [HideInInspector]public bool Clear_Check;
 
      float jumpHeight;
@@ -21,7 +22,6 @@ public class Player_CS : MonoBehaviour
     [SerializeField] private BoxCollider2D[] colliders;
     [HideInInspector] public Animator anime;
 
-
     bool HIT_check = false; // 코루틴 반복 방지용
     public bool On_HIT = false; // 피격 확인용
     bool inhit; // 내부 피격
@@ -32,6 +32,7 @@ public class Player_CS : MonoBehaviour
         DoubleJumping = false;
         Sliding = false;
 
+        Player_Pos = this.gameObject.transform;
         rigid = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         this.colliders = GetComponents<BoxCollider2D>();
@@ -126,10 +127,12 @@ public class Player_CS : MonoBehaviour
             }
         }
     }
+    
     IEnumerator HIT_Coroutine()
     {
         if (GameManager.GM.Player_alive == false)
         {
+            StartCoroutine(Game_Control.GC.ShowBloodScreen());
             for (int i = 0; i < GameManager.GM.Data.Invincibility_Time * 10; i++)
             {
                 if (i % 2 == 0) spriteRenderer.color = new Color32(255, 255, 255, 90);

@@ -6,8 +6,6 @@ using UnityEngine.Pool;
 
 public class Object_Instantiate : MonoBehaviour
 {
-    [Header("ц╘ем а╬╥Ы")][SerializeField][Range(1, 6)] int Excel_Num;
-
     [SerializeField] float Late_Time;
 
     [SerializeField] Chapter_1 Chapter_EX_1;
@@ -108,14 +106,14 @@ public class Object_Instantiate : MonoBehaviour
     void Run_ratio_reset()
     {
         var Chapter_EX = Chapter_EX_1;
-        switch (Excel_Num)
+        switch (GameManager.GM.Data.GM_branch)
         {
-            case 1: Chapter_EX = Chapter_EX_1; break;
-            case 2: Chapter_EX = Chapter_EX_2; break;
-            case 3: Chapter_EX = Chapter_EX_3; break;
-            case 4: Chapter_EX = Chapter_EX_4; break;
-            case 5: Chapter_EX = Chapter_EX_5; break;
-            case 6: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: Chapter_EX = Chapter_EX_1; break;
+            case <= 20: Chapter_EX = Chapter_EX_2; break;
+            case <= 30: Chapter_EX = Chapter_EX_3; break;
+            case <= 40: Chapter_EX = Chapter_EX_4; break;
+            case <= 50: Chapter_EX = Chapter_EX_5; break;
+            case <= 60: Chapter_EX = Chapter_EX_6; break;
         }
 
         switch (GameManager.GM.Data.GM_branch % 10)
@@ -132,20 +130,20 @@ public class Object_Instantiate : MonoBehaviour
             case 0: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_10[0].Coin_Sum;break;
         }
     }
+
     void Update()
     {
         var Chapter_EX = Chapter_EX_1;
-        switch (Excel_Num)
+        switch (GameManager.GM.Data.GM_branch)
         {
-            case 1: Chapter_EX = Chapter_EX_1; break;
-            case 2: Chapter_EX = Chapter_EX_2; break;
-            case 3: Chapter_EX = Chapter_EX_3; break;
-            case 4: Chapter_EX = Chapter_EX_4; break;
-            case 5: Chapter_EX = Chapter_EX_5; break;
-            case 6: Chapter_EX = Chapter_EX_6; break;
+            case <=10: Chapter_EX = Chapter_EX_1; break;
+            case <=20: Chapter_EX = Chapter_EX_2; break;
+            case <=30: Chapter_EX = Chapter_EX_3; break;
+            case <=40: Chapter_EX = Chapter_EX_4; break;
+            case <=50: Chapter_EX = Chapter_EX_5; break;
+            case <=60: Chapter_EX = Chapter_EX_6; break;
         }
 
-        
 
         switch (GameManager.GM.Data.GM_branch % 10)
         {
@@ -252,14 +250,14 @@ public class Object_Instantiate : MonoBehaviour
     IEnumerator Coin_Maker_1()
     {
         var Chapter_EX = Chapter_EX_1;
-        switch (Excel_Num)
+        switch (GameManager.GM.Data.GM_branch)
         {
-            case 1: Chapter_EX = Chapter_EX_1; break;
-            case 2: Chapter_EX = Chapter_EX_2; break;
-            case 3: Chapter_EX = Chapter_EX_3; break;
-            case 4: Chapter_EX = Chapter_EX_4; break;
-            case 5: Chapter_EX = Chapter_EX_5; break;
-            case 6: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: Chapter_EX = Chapter_EX_1; break;
+            case <= 20: Chapter_EX = Chapter_EX_2; break;
+            case <= 30: Chapter_EX = Chapter_EX_3; break;
+            case <= 40: Chapter_EX = Chapter_EX_4; break;
+            case <= 50: Chapter_EX = Chapter_EX_5; break;
+            case <= 60: Chapter_EX = Chapter_EX_6; break;
         }
 
         isMaker = true;
@@ -285,14 +283,14 @@ public class Object_Instantiate : MonoBehaviour
     IEnumerator Coin_Maker_2()
     {
         var Chapter_EX = Chapter_EX_1;
-        switch (Excel_Num)
+        switch (GameManager.GM.Data.GM_branch)
         {
-            case 1: Chapter_EX = Chapter_EX_1; break;
-            case 2: Chapter_EX = Chapter_EX_2; break;
-            case 3: Chapter_EX = Chapter_EX_3; break;
-            case 4: Chapter_EX = Chapter_EX_4; break;
-            case 5: Chapter_EX = Chapter_EX_5; break;
-            case 6: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: Chapter_EX = Chapter_EX_1; break;
+            case <= 20: Chapter_EX = Chapter_EX_2; break;
+            case <= 30: Chapter_EX = Chapter_EX_3; break;
+            case <= 40: Chapter_EX = Chapter_EX_4; break;
+            case <= 50: Chapter_EX = Chapter_EX_5; break;
+            case <= 60: Chapter_EX = Chapter_EX_6; break;
         }
 
         if (GameManager.GM.Player_alive == false)
@@ -318,14 +316,14 @@ public class Object_Instantiate : MonoBehaviour
     IEnumerator Coin_Maker_3()
     {
         var Chapter_EX = Chapter_EX_1;
-        switch (Excel_Num)
+        switch (GameManager.GM.Data.GM_branch)
         {
-            case 1: Chapter_EX = Chapter_EX_1; break;
-            case 2: Chapter_EX = Chapter_EX_2; break;
-            case 3: Chapter_EX = Chapter_EX_3; break;
-            case 4: Chapter_EX = Chapter_EX_4; break;
-            case 5: Chapter_EX = Chapter_EX_5; break;
-            case 6: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: Chapter_EX = Chapter_EX_1; break;
+            case <= 20: Chapter_EX = Chapter_EX_2; break;
+            case <= 30: Chapter_EX = Chapter_EX_3; break;
+            case <= 40: Chapter_EX = Chapter_EX_4; break;
+            case <= 50: Chapter_EX = Chapter_EX_5; break;
+            case <= 60: Chapter_EX = Chapter_EX_6; break;
         }
 
         if (GameManager.GM.Player_alive == false)
@@ -351,14 +349,14 @@ public class Object_Instantiate : MonoBehaviour
     IEnumerator Coin_Maker_4()
     {
         var Chapter_EX = Chapter_EX_1;
-        switch (Excel_Num)
+        switch (GameManager.GM.Data.GM_branch)
         {
-            case 1: Chapter_EX = Chapter_EX_1; break;
-            case 2: Chapter_EX = Chapter_EX_2; break;
-            case 3: Chapter_EX = Chapter_EX_3; break;
-            case 4: Chapter_EX = Chapter_EX_4; break;
-            case 5: Chapter_EX = Chapter_EX_5; break;
-            case 6: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: Chapter_EX = Chapter_EX_1; break;
+            case <= 20: Chapter_EX = Chapter_EX_2; break;
+            case <= 30: Chapter_EX = Chapter_EX_3; break;
+            case <= 40: Chapter_EX = Chapter_EX_4; break;
+            case <= 50: Chapter_EX = Chapter_EX_5; break;
+            case <= 60: Chapter_EX = Chapter_EX_6; break;
         }
 
         if (GameManager.GM.Player_alive == false)
@@ -387,14 +385,14 @@ public class Object_Instantiate : MonoBehaviour
     IEnumerator Coin_Maker_5()
     {
         var Chapter_EX = Chapter_EX_1;
-        switch (Excel_Num)
+        switch (GameManager.GM.Data.GM_branch)
         {
-            case 1: Chapter_EX = Chapter_EX_1; break;
-            case 2: Chapter_EX = Chapter_EX_2; break;
-            case 3: Chapter_EX = Chapter_EX_3; break;
-            case 4: Chapter_EX = Chapter_EX_4; break;
-            case 5: Chapter_EX = Chapter_EX_5; break;
-            case 6: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: Chapter_EX = Chapter_EX_1; break;
+            case <= 20: Chapter_EX = Chapter_EX_2; break;
+            case <= 30: Chapter_EX = Chapter_EX_3; break;
+            case <= 40: Chapter_EX = Chapter_EX_4; break;
+            case <= 50: Chapter_EX = Chapter_EX_5; break;
+            case <= 60: Chapter_EX = Chapter_EX_6; break;
         }
 
         if (GameManager.GM.Player_alive == false)
@@ -420,14 +418,14 @@ public class Object_Instantiate : MonoBehaviour
     IEnumerator Coin_Maker_6()
     {
         var Chapter_EX = Chapter_EX_1;
-        switch (Excel_Num)
+        switch (GameManager.GM.Data.GM_branch)
         {
-            case 1: Chapter_EX = Chapter_EX_1; break;
-            case 2: Chapter_EX = Chapter_EX_2; break;
-            case 3: Chapter_EX = Chapter_EX_3; break;
-            case 4: Chapter_EX = Chapter_EX_4; break;
-            case 5: Chapter_EX = Chapter_EX_5; break;
-            case 6: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: Chapter_EX = Chapter_EX_1; break;
+            case <= 20: Chapter_EX = Chapter_EX_2; break;
+            case <= 30: Chapter_EX = Chapter_EX_3; break;
+            case <= 40: Chapter_EX = Chapter_EX_4; break;
+            case <= 50: Chapter_EX = Chapter_EX_5; break;
+            case <= 60: Chapter_EX = Chapter_EX_6; break;
         }
 
         if (GameManager.GM.Player_alive == false)
@@ -453,14 +451,14 @@ public class Object_Instantiate : MonoBehaviour
     IEnumerator Coin_Maker_7()
     {
         var Chapter_EX = Chapter_EX_1;
-        switch (Excel_Num)
+        switch (GameManager.GM.Data.GM_branch)
         {
-            case 1: Chapter_EX = Chapter_EX_1; break;
-            case 2: Chapter_EX = Chapter_EX_2; break;
-            case 3: Chapter_EX = Chapter_EX_3; break;
-            case 4: Chapter_EX = Chapter_EX_4; break;
-            case 5: Chapter_EX = Chapter_EX_5; break;
-            case 6: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: Chapter_EX = Chapter_EX_1; break;
+            case <= 20: Chapter_EX = Chapter_EX_2; break;
+            case <= 30: Chapter_EX = Chapter_EX_3; break;
+            case <= 40: Chapter_EX = Chapter_EX_4; break;
+            case <= 50: Chapter_EX = Chapter_EX_5; break;
+            case <= 60: Chapter_EX = Chapter_EX_6; break;
         }
 
         if (GameManager.GM.Player_alive == false)
@@ -486,14 +484,14 @@ public class Object_Instantiate : MonoBehaviour
     IEnumerator Coin_Maker_8()
     {
         var Chapter_EX = Chapter_EX_1;
-        switch (Excel_Num)
+        switch (GameManager.GM.Data.GM_branch)
         {
-            case 1: Chapter_EX = Chapter_EX_1; break;
-            case 2: Chapter_EX = Chapter_EX_2; break;
-            case 3: Chapter_EX = Chapter_EX_3; break;
-            case 4: Chapter_EX = Chapter_EX_4; break;
-            case 5: Chapter_EX = Chapter_EX_5; break;
-            case 6: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: Chapter_EX = Chapter_EX_1; break;
+            case <= 20: Chapter_EX = Chapter_EX_2; break;
+            case <= 30: Chapter_EX = Chapter_EX_3; break;
+            case <= 40: Chapter_EX = Chapter_EX_4; break;
+            case <= 50: Chapter_EX = Chapter_EX_5; break;
+            case <= 60: Chapter_EX = Chapter_EX_6; break;
         }
 
         if (GameManager.GM.Player_alive == false)
@@ -519,14 +517,14 @@ public class Object_Instantiate : MonoBehaviour
     IEnumerator Coin_Maker_9()
     {
         var Chapter_EX = Chapter_EX_1;
-        switch (Excel_Num)
+        switch (GameManager.GM.Data.GM_branch)
         {
-            case 1: Chapter_EX = Chapter_EX_1; break;
-            case 2: Chapter_EX = Chapter_EX_2; break;
-            case 3: Chapter_EX = Chapter_EX_3; break;
-            case 4: Chapter_EX = Chapter_EX_4; break;
-            case 5: Chapter_EX = Chapter_EX_5; break;
-            case 6: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: Chapter_EX = Chapter_EX_1; break;
+            case <= 20: Chapter_EX = Chapter_EX_2; break;
+            case <= 30: Chapter_EX = Chapter_EX_3; break;
+            case <= 40: Chapter_EX = Chapter_EX_4; break;
+            case <= 50: Chapter_EX = Chapter_EX_5; break;
+            case <= 60: Chapter_EX = Chapter_EX_6; break;
         }
 
         if (GameManager.GM.Player_alive == false)
@@ -552,14 +550,14 @@ public class Object_Instantiate : MonoBehaviour
     IEnumerator Coin_Maker_10()
     {
         var Chapter_EX = Chapter_EX_1;
-        switch (Excel_Num)
+        switch (GameManager.GM.Data.GM_branch)
         {
-            case 1: Chapter_EX = Chapter_EX_1; break;
-            case 2: Chapter_EX = Chapter_EX_2; break;
-            case 3: Chapter_EX = Chapter_EX_3; break;
-            case 4: Chapter_EX = Chapter_EX_4; break;
-            case 5: Chapter_EX = Chapter_EX_5; break;
-            case 6: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: Chapter_EX = Chapter_EX_1; break;
+            case <= 20: Chapter_EX = Chapter_EX_2; break;
+            case <= 30: Chapter_EX = Chapter_EX_3; break;
+            case <= 40: Chapter_EX = Chapter_EX_4; break;
+            case <= 50: Chapter_EX = Chapter_EX_5; break;
+            case <= 60: Chapter_EX = Chapter_EX_6; break;
         }
 
         if (GameManager.GM.Player_alive == false)

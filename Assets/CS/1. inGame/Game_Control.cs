@@ -19,17 +19,22 @@ public class Game_Control : MonoBehaviour
     public TextMeshProUGUI Score;
     public TextMeshProUGUI Run_Ratio;
 
-    public Transform BossEntryPos;
+    [SerializeField] Transform BossEntryPos;
 
     [Header("일시정지 버튼")]
     public GameObject start_Icon;
     public GameObject pause_Icon;
 
     [Header("UI")]
-    public bool Game_End;
+    [HideInInspector] public bool Game_End;
+    [SerializeField] Image BloodScreen;
     [SerializeField] GameObject Result;
-    public GameObject ClearUI;
+    [SerializeField] GameObject ClearUI;
     [SerializeField] GameObject OverUI;
+
+    [Header("피격 효과")]
+    [SerializeField] float SetAlphaValue;
+    [SerializeField] float SetEfeectTime;
 
     // 엑셀용
     int branch;
@@ -147,5 +152,13 @@ public class Game_Control : MonoBehaviour
                 Stage_Des = RunGame_EX.StartSheet[i].STR_description;
             }
         }
+    }
+
+    public IEnumerator ShowBloodScreen()
+    {
+        BloodScreen.color = new Color(1, 0, 0, SetAlphaValue);
+        yield return new WaitForSeconds(SetEfeectTime);
+        BloodScreen.color = Color.clear;
+        yield return null;
     }
 }

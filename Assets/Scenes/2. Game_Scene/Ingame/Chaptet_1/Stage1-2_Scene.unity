@@ -123,79 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &63554538
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3466200082496918842, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: Coin_Object.Array.data[2]
-      value: 
-      objectReference: {fileID: 2787086276516234069, guid: b736121ff4495954b8e6d17cec482c72, type: 3}
-    - target: {fileID: 3466200082496918842, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: Obstacle_Object.Array.data[0]
-      value: 
-      objectReference: {fileID: 307532094625930033, guid: c03bc1fd3b5be744ab41e775b3b948ed, type: 3}
-    - target: {fileID: 3466200082496918842, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: Obstacle_Object.Array.data[1]
-      value: 
-      objectReference: {fileID: 2774242605359717410, guid: aafa94700d7a94f4fb31b16928e07694, type: 3}
-    - target: {fileID: 3466200082496918842, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: Obstacle_Object.Array.data[2]
-      value: 
-      objectReference: {fileID: 2226103314469438953, guid: b4449a9fc04072941aed52f7120f46fe, type: 3}
-    - target: {fileID: 3466200083520519473, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3466200083520519473, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3466200083520519473, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3466200083520519473, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3466200083520519473, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3466200083520519473, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3466200083520519473, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3466200083520519473, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3466200083520519473, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3466200083520519473, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3466200083520519473, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3466200083520519478, guid: 3203b282378c973408c180b15a02f802, type: 3}
-      propertyPath: m_Name
-      value: Stage_CE
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3203b282378c973408c180b15a02f802, type: 3}
 --- !u!1 &244793482
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +205,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &827897916
 GameObject:
@@ -346,5 +273,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
