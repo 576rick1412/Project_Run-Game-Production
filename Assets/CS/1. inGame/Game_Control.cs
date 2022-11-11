@@ -107,7 +107,7 @@ public class Game_Control : MonoBehaviour
         }
     }
 
-    public void Result_Spawn() { Invoke("Game_Result", 1f); }
+    public void Result_Spawn() { Invoke("Game_Result", 3f); }
     void Game_Result() { GameManager.GM.Fade(Result,true); Player_CS.PL.Clear_Check = true; }
     public void Game_ClearUI() 
     {

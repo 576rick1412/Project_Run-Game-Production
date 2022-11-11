@@ -68,7 +68,7 @@ public class Coin_CS : MonoBehaviour
     void GameEnd()
     {
         Game_Control.GC.Result_Spawn(); GameManager.GM.SavaData(); Debug.Log("게임 클리어");
-        GameManager.GM.Data.Game_WIN = true;
+        GameManager.GM.Data.Game_WIN = true; Game_Control.GC.Game_ClearUI();
         gameClear = true;
     }
 }

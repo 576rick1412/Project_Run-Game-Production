@@ -84,14 +84,14 @@ public class Player_CS : MonoBehaviour
     void AnimeControl()
     {
         // 애니메이션이 씹히는 현상이 발생해서 리턴 들어있는거
+        if (GameManager.GM.Player_alive) { anime.SetInteger("Player_Value", 4); return; }
+
         if (Sliding) { anime.SetInteger             ("Player_Value", 1); return; }
         if (DoubleJumping) { anime.SetInteger       ("Player_Value", 3); return; }
         if (Jumping) { anime.SetInteger             ("Player_Value", 2); return; }
 
         if (IsFloor) anime.SetInteger("Player_Value", 0);
         if (inhit) { anime.SetInteger("Player_Value", 5); Invoke("Hit_Speed", 0.2f); }
-
-        if (GameManager.GM.Player_alive) anime.SetInteger("Player_Value", 4);
     }
     void Hit_Speed()
     {
