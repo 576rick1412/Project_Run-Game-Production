@@ -8,7 +8,7 @@ public class Coin_CS : MonoBehaviour
     [SerializeField] bool SetPrefabs; // 프리팹 안에 있는 오브젝트라면 체크
     bool gameClear;
     [SerializeField] bool Magnet;
-    Vector2 speed = new Vector2(80f, 50f);
+    Vector2 speed = new Vector2(40f, 30f);
 
     private IObjectPool<Coin_CS> _CoinPool_1;
     private IObjectPool<Coin_CS> _CoinPool_2;
@@ -52,7 +52,7 @@ public class Coin_CS : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) { Magnet = false; speed = new Vector2(80f, 50f); }
+        if (collision.gameObject.CompareTag("Player")) { Magnet = false; speed = new Vector2(40f, 30f); }
 
         // 코인이 플레이어 뒤로 가서 안 지워지는 버그 땜빵 / 플레이어 뒤에 콜라이더를 만들어 해결함
         if (collision.gameObject.CompareTag("Coin_Base") && SetObject == "Nomal_Ice") { Magnet = false; speed = new Vector2(80f, 50f); LifeUp(1); GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Destroy(); }
