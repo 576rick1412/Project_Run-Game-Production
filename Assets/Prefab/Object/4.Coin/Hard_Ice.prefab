@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetObject: Hard_Ice
   SetPrefabs: 0
+  Magnet: 0
 --- !u!50 &136525268116365005
 Rigidbody2D:
   serializedVersion: 4
@@ -120,7 +121,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &4676401304269926557
 CircleCollider2D:

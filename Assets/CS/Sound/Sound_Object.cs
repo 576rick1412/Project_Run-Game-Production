@@ -18,5 +18,5 @@ public class Sound_Object : MonoBehaviour
         if (!Destroy_Check) { Invoke("DestroySound", 0.2f); Destroy_Check = true; }
     }
 
-    void DestroySound() { _SoundPool.Release(this); Destroy_Check = false; Debug.Log("º¹±Í!"); }
+    void DestroySound() { _SoundPool.Release(this); Destroy_Check = false; }
 }

@@ -45,45 +45,60 @@ public class Coin_CS : MonoBehaviour
             case "LastPoint"    : Destroy(this.gameObject); break;      // 발판
         }
     }
-    void LifeUp(int point)
+    void Get_Coin(int point, int multiply)
     {
+        // 코인 획득 시 내부 변수 활성화
+        Magnet = false; 
+        speed = new Vector2(80f, 50f);
+
+        // 코인 획득 시 생명력 증가
         GameManager.GM.Data.LifeScore += point;
         if (GameManager.GM.Data.LifeScore >= GameManager.GM.Data.Set_LifeScore)
         { GameManager.GM.Data.LifeScore = GameManager.GM.Data.Set_LifeScore; }
+
+        // 코인 획득 시 점수 증가
+        GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point * multiply; 
+        Sound_Manager.SM.Coin();
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) { Magnet = false; speed = new Vector2(40f, 30f); }
-
         // 코인이 플레이어 뒤로 가서 안 지워지는 버그 땜빵 / 플레이어 뒤에 콜라이더를 만들어 해결함
-        if (collision.gameObject.CompareTag("Coin_Base") && SetObject == "Nomal_Ice") { Magnet = false; speed = new Vector2(80f, 50f); LifeUp(1); GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Sound_Manager.SM.Coin(); Destroy(); }
-        if (collision.gameObject.CompareTag("Coin_Base") && SetObject == "Hard_Ice") { Magnet = false; speed = new Vector2(80f, 50f); LifeUp(2); GameManager.GM.Data.CoinScore += (GameManager.GM.Data.Coin_Point * 5); Sound_Manager.SM.Coin(); Destroy(); }
-        if (collision.gameObject.CompareTag("Coin_Base") && SetObject == "Special_Ice") { Magnet = false; speed = new Vector2(80f, 50f); LifeUp(1); GameManager.GM.Data.CoinScore += (GameManager.GM.Data.Coin_Point * 50); Sound_Manager.SM.Coin(); Destroy(); }
-        if (collision.gameObject.CompareTag("Coin_Base") && SetObject == "Prefab_Ice") { Magnet = false; speed = new Vector2(80f, 50f); LifeUp(1); GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Sound_Manager.SM.Coin(); Destroy(); }
+        if (collision.gameObject.CompareTag("Coin_Base"))
+        {
+            switch (SetObject)
+            {
+                case "Nomal_Ice": Get_Coin(1, 1); Destroy(); break;
+                case "Hard_Ice": Get_Coin(2, 5); Destroy(); break;
+                case "Special_Ice": Get_Coin(1, 50); Destroy(); break;
+                case "Prefab_Ice": Get_Coin(1, 1); Destroy(); break;
+            }
+        }
 
         if (collision.gameObject.CompareTag("End_Border")) { Destroy(); }
 
+        if (collision.gameObject.CompareTag("Start_Border")) { Magnet = false; }
+
         if (collision.gameObject.CompareTag("Magnet_Borber")) { if (SetObject == "LastPoint" || SetObject == "Obstacle" || SetObject == "Hub") return; Magnet = true; }
 
-        if (collision.gameObject.CompareTag("Player") && SetObject == "Nomal_Ice") { LifeUp(1); GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Sound_Manager.SM.Coin(); Destroy(); }
-        if (collision.gameObject.CompareTag("Player") && SetObject == "Hard_Ice") { LifeUp(2); GameManager.GM.Data.CoinScore += (GameManager.GM.Data.Coin_Point * 5); Sound_Manager.SM.Coin(); Destroy(); }
-        if (collision.gameObject.CompareTag("Player") && SetObject == "Special_Ice") { LifeUp(1); GameManager.GM.Data.CoinScore += (GameManager.GM.Data.Coin_Point * 50); Sound_Manager.SM.Coin(); Destroy(); }
-        if (collision.gameObject.CompareTag("Player") && SetObject == "Prefab_Ice") { LifeUp(1); GameManager.GM.Data.CoinScore += GameManager.GM.Data.Coin_Point; Sound_Manager.SM.Coin(); Destroy(); }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Magnet = false; speed = new Vector2(40f, 30f);
 
-        if (collision.gameObject.CompareTag("Player") && SetObject == "LastPoint") { Player_CS.PL.Clear_Check = true; if(!gameClear) GameEnd(); }
-
-        if (collision.gameObject.CompareTag("Player") && SetObject == "Obstacle" && Player_CS.PL.On_HIT == false) 
-        { 
-            GameManager.GM.Data.LifeScore -= GameManager.GM.Data.Obstacle_Damage;
-            Player_CS.PL.On_HIT = true; 
-            Player_CS.PL.OnCoroutine();
-            Player_CS.PL.anime.SetInteger("Player_Value", 5);
+            switch (SetObject)
+            {
+                case "Nomal_Ice": Get_Coin(1, 1); Destroy(); break;
+                case "Hard_Ice": Get_Coin(2, 5); Destroy(); break;
+                case "Special_Ice": Get_Coin(1, 50); Destroy(); break;
+                case "Prefab_Ice": Get_Coin(1, 1); Destroy(); break; 
+                case "LastPoint": Player_CS.PL.Clear_Check = true; if (!gameClear) StartCoroutine(Game_Control.GC.EndGame(true)); break;
+                case "Obstacle": if (!Player_CS.PL.On_HIT) _Obstacle(); break;
+            }
         }
     }
-    void GameEnd()
+    void _Obstacle()
     {
-        Game_Control.GC.Result_Spawn(); GameManager.GM.SavaData(); Debug.Log("게임 클리어");
-        GameManager.GM.Data.Game_WIN = true; Game_Control.GC.Game_ClearUI();
-        gameClear = true;
+        GameManager.GM.Data.LifeScore -= GameManager.GM.Data.Obstacle_Damage;
+        Player_CS.PL.On_HIT = true;
+        Player_CS.PL.OnCoroutine();
     }
 }

@@ -12,7 +12,6 @@ TagManager:
   - Bullet
   - Scene_Border
   - Magnet_Borber
-  - Magnet = true;
   - Coin_Base
   layers:
   - Default

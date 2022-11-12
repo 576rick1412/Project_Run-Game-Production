@@ -8,8 +8,6 @@ public class Game_Control : MonoBehaviour
 {
     public static Game_Control GC;
 
-    [HideInInspector] public bool fail_Check;
-
     [SerializeField] Transform Spawn_Pos;
     [SerializeField] GameObject[] Player;
     [SerializeField] GameObject SpanwPlayer;
@@ -40,8 +38,6 @@ public class Game_Control : MonoBehaviour
     int branch;
     [SerializeField] RunGame_EX RunGame_EX;
     string Stage_Des;
-
-    bool GameOvercheck = false;
     bool IsPause; // 일시정지
     void Awake()
     {
@@ -79,15 +75,13 @@ public class Game_Control : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.GM.Player_alive && !fail_Check) {  Result_Spawn(); fail_Check = true; }
 
         HP_Bar.fillAmount = (GameManager.GM.Data.LifeScore / GameManager.GM.Data.Set_LifeScore);
         Score.text = "점수 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
 
         Run_Ratio.text = "달린거리 " + System.Math.Truncate(GameManager.GM.Data.Cur_Run_Ratio / GameManager.GM.Data.Run_Ratio * 100).ToString() + " %";
 
-        if (GameManager.GM.Data.LifeScore <= 0 && GameOvercheck == false && Game_End == false) 
-        { GameManager.GM.Data.Game_WIN = false; Game_OverUI(); GameManager.GM.SavaData(); Game_End = true; }
+        if (GameManager.GM.Data.LifeScore <= 0 && Game_End == false) StartCoroutine(EndGame(false));
     }
     public string CommaText(long Sccore) { return string.Format("{0:#,###}", Sccore); }
 
@@ -112,18 +106,24 @@ public class Game_Control : MonoBehaviour
         }
     }
 
-    public void Result_Spawn() { Invoke("Game_Result", 3f); }
-    void Game_Result() { GameManager.GM.Fade(Result,true); Player_CS.PL.Clear_Check = true; }
-    public void Game_ClearUI() 
+    public IEnumerator EndGame(bool GameValue)
     {
-        GameObject clear = Instantiate(ClearUI, BossEntryPos.position, Quaternion.identity);
-        clear.transform.SetParent(BossEntryPos);
+        GameObject END_UI = GameValue == true ? ClearUI : OverUI; // 생성될 결과 UI 지정
+
+        // 결과 UI 생성
+        GameObject UI = Instantiate(END_UI, BossEntryPos.position, Quaternion.identity);
+        UI.transform.SetParent(BossEntryPos);
+
+        Game_End = true;
+        GameManager.GM.Data.Game_WIN = GameValue;
+        GameManager.GM.SavaData();
+       
+        yield return new WaitForSeconds(3f);
+        GameManager.GM.Fade(Result, true); Player_CS.PL.Clear_Check = true;
+        yield return null;
     }
-    public void Game_OverUI()
-    {
-        GameObject Over = Instantiate(OverUI, BossEntryPos.position, Quaternion.identity);
-        Over.transform.SetParent(BossEntryPos);
-    }
+
+
     public void ReStage()
     {
         Time.timeScale = 1; //  타임 스케일 초기화, 게임 멈춤 방지

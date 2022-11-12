@@ -7,15 +7,15 @@ using UnityEngine.Pool;
 public class Player_CS : MonoBehaviour
 {
     public static Player_CS PL;
-     public Transform Player_Pos;
-     [HideInInspector]public bool Clear_Check;
+    public Transform Player_Pos;
+    [HideInInspector] public bool Clear_Check;
 
-     float jumpHeight;
-     bool Jumping;
-     bool DoubleJumping;
-     bool Sliding;
+    float jumpHeight;
+    bool Jumping;
+    bool DoubleJumping;
+    bool Sliding;
 
-     bool IsFloor = false; // 바닥 확인
+    bool IsFloor = false; // 바닥 확인
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
@@ -51,18 +51,17 @@ public class Player_CS : MonoBehaviour
             GameManager.GM.Player_alive = true;
         }
 
-        if(Clear_Check == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
+        if (Clear_Check == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
     }
 
-    public void OnCoroutine() { if (HIT_check == false && On_HIT == true) // 피격 코루틴 호출 함수
-        { 
-            inhit = true;
-            GameManager.GM.Data.Floor_SpeedValue *= 0.7f;
-            GameManager.GM.Data.BGI_SpeedValue *= 0.7f;
-            HIT_check = true;
-            Invoke("HIT_off", GameManager.GM.Data.Invincibility_Time);
-            StartCoroutine("HIT_Coroutine"); 
-        } 
+    public void OnCoroutine()
+    {
+        inhit = true;
+        GameManager.GM.Data.Floor_SpeedValue *= 0.7f;
+        GameManager.GM.Data.BGI_SpeedValue *= 0.7f;
+        HIT_check = true;
+        Invoke("HIT_off", GameManager.GM.Data.Invincibility_Time);
+        StartCoroutine("HIT_Coroutine");
     }
 
     void SetCollider()
