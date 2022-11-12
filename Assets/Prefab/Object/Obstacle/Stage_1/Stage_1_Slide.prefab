@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087779343047741699}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.41, y: -3.4, z: 0}
+  m_LocalPosition: {x: 0, y: -3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetObject: Hub
   SetPrefabs: 0
+  Magnet: 0
 --- !u!50 &1336792129583893018
 Rigidbody2D:
   serializedVersion: 4
@@ -199,6 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetObject: Obstacle
   SetPrefabs: 1
+  Magnet: 0
 --- !u!114 &4633447646796655794
 MonoBehaviour:
   m_ObjectHideFlags: 0
