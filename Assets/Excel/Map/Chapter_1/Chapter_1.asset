@@ -141,14 +141,6 @@ MonoBehaviour:
     PlatformPos: 0
     END: 0
     Coin_Sum: 0
-  - CoinType: ======
-    CoinPos: 0
-    CoinAmount: 0
-    Obstacle: 
-    Platform: 
-    PlatformPos: 0
-    END: 1
-    Coin_Sum: 0
   Stage_2:
   - CoinType: coin_1
     CoinPos: 1

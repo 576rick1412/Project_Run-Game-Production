@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetObject: Hub
   SetPrefabs: 0
+  Magnet: 0
 --- !u!1 &5512682876004924148
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +123,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e5de712a2ab258644863ba59819db63b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -148,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetObject: LastPoint
   SetPrefabs: 1
+  Magnet: 0
 --- !u!61 &5512682876004924155
 BoxCollider2D:
   m_ObjectHideFlags: 0

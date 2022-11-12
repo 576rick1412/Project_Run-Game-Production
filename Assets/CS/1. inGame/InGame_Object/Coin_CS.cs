@@ -49,7 +49,7 @@ public class Coin_CS : MonoBehaviour
     {
         // 코인 획득 시 내부 변수 활성화
         Magnet = false; 
-        speed = new Vector2(80f, 50f);
+        speed = new Vector2(30f, 20f);
 
         // 코인 획득 시 생명력 증가
         GameManager.GM.Data.LifeScore += point;

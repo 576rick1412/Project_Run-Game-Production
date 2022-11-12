@@ -230,6 +230,10 @@ PrefabInstance:
       propertyPath: Obstacle_Object.Array.data[2]
       value: 
       objectReference: {fileID: 4397954736145961504, guid: 37fcaa03dbb1aae479382781e2c7e0d7, type: 3}
+    - target: {fileID: 714450740943525414, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.1
+      objectReference: {fileID: 0}
     - target: {fileID: 714450741049841976, guid: f72df9912974e664cac474b2afafb765, type: 3}
       propertyPath: m_Name
       value: Stage_CE
