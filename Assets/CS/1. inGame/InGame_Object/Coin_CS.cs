@@ -90,7 +90,7 @@ public class Coin_CS : MonoBehaviour
                 case "Hard_Ice": Get_Coin(2, 5); Destroy(); break;
                 case "Special_Ice": Get_Coin(1, 50); Destroy(); break;
                 case "Prefab_Ice": Get_Coin(1, 1); Destroy(); break; 
-                case "LastPoint": Player_CS.PL.Clear_Check = true; if (!gameClear) StartCoroutine(Game_Control.GC.EndGame(true)); break;
+                case "LastPoint": Player_CS.PL.Clear_Check = true; if (!gameClear) { StartCoroutine(Game_Control.GC.EndGame(true)); gameClear = true; } break;
                 case "Obstacle": if (!Player_CS.PL.On_HIT) _Obstacle(); break;
             }
         }

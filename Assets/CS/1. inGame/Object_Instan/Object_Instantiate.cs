@@ -25,7 +25,7 @@ public class Object_Instantiate : MonoBehaviour
     GameObject Instan_Obstacle;
     GameObject Instan_Platform;
 
-    int Index = 0;
+    [SerializeField] int Index = 0;
     int PosNum = 0;
 
     bool CoinSkip = false; // 코인 스킵 \ true -> 스킵
@@ -370,16 +370,13 @@ public class Object_Instantiate : MonoBehaviour
             PosNum = Chapter_EX.Stage_4[Index].CoinPos; // 코인 높이값 지정
             for (int i = 0; i < Chapter_EX.Stage_4[Index].CoinAmount; i++) // 코인 개수만큼 반복
             {
-                if (CoinSkip == false) // { yield return new WaitForSeconds(Late_Time); continue; }
-                {
-                    CoinAmount(Chapter_EX.Stage_4[Index].CoinType, Chapter_EX.Stage_4[Index].Obstacle, Chapter_EX.Stage_4[Index].Platform, Chapter_EX.Stage_4[Index].PlatformPos);
-                    yield return new WaitForSeconds(Late_Time);
-                }
-                Index++;
-                CoinSkip = false;
-                isMaker = false;
-                yield return null;
+                CoinAmount(Chapter_EX.Stage_4[Index].CoinType, Chapter_EX.Stage_4[Index].Obstacle, Chapter_EX.Stage_4[Index].Platform, Chapter_EX.Stage_4[Index].PlatformPos);
+                yield return new WaitForSeconds(Late_Time);
             }
+            Index++;
+            CoinSkip = false;
+            isMaker = false;
+            yield return null;
         }
     }
     IEnumerator Coin_Maker_5()
