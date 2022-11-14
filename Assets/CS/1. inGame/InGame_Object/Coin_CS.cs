@@ -7,7 +7,7 @@ public class Coin_CS : MonoBehaviour
     [SerializeField] string SetObject;
     [SerializeField] bool SetPrefabs; // 프리팹 안에 있는 오브젝트라면 체크
     bool gameClear;
-    [SerializeField] bool Magnet;
+    bool Magnet;
     Vector2 speed = new Vector2(40f, 30f);
 
     private IObjectPool<Coin_CS> _CoinPool_1;
@@ -33,17 +33,11 @@ public class Coin_CS : MonoBehaviour
 
     private void Destroy()
     {
-        switch (SetObject)
-        {
-            case "Nomal_Ice":   DestroyCoin_1(); break;               // 일반 얼음 * 1
-            case "Hard_Ice":    DestroyCoin_2(); break;               // 단단한 얼음 * 5
-            case "Special_Ice": DestroyCoin_3(); break;               // 테마 얼음 * 50
-            case "Hub"          : Destroy(this.gameObject); break;      // 허브
-            case "Obstacle"     : Destroy(this.gameObject); break;      // 장애물
-            case "Prefab_Ice"   : Destroy(this.gameObject); break;      // 오브젝트 풀링 적용 안 되도록 따로 격리
-            case "Platform"     : Destroy(this.gameObject); break;      // 발판
-            case "LastPoint"    : Destroy(this.gameObject); break;      // 발판
-        }
+        if (SetObject == "Nomal_Ice")   { DestroyCoin_1(); return; }
+        if (SetObject == "Hard_Ice")    { DestroyCoin_2(); return; }
+        if (SetObject == "Special_Ice") { DestroyCoin_3(); return; }
+
+        Destroy(this.gameObject);
     }
     void Get_Coin(int point, int multiply)
     {
@@ -69,8 +63,11 @@ public class Coin_CS : MonoBehaviour
             {
                 case "Nomal_Ice": Get_Coin(1, 1); Destroy(); break;
                 case "Hard_Ice": Get_Coin(2, 5); Destroy(); break;
-                case "Special_Ice": Get_Coin(1, 50); Destroy(); break;
-                case "Prefab_Ice": Get_Coin(1, 1); Destroy(); break;
+                case "Special_Ice": Get_Coin(2, 50); Destroy(); break;
+
+                case "Prefab_Nomal": Get_Coin(1, 1); Destroy(); break;
+                case "Prefab_Hard": Get_Coin(2, 5); Destroy(); break;
+                case "Prefab_Special": Get_Coin(2, 50); Destroy(); break;
             }
         }
 
@@ -89,7 +86,11 @@ public class Coin_CS : MonoBehaviour
                 case "Nomal_Ice": Get_Coin(1, 1); Destroy(); break;
                 case "Hard_Ice": Get_Coin(2, 5); Destroy(); break;
                 case "Special_Ice": Get_Coin(1, 50); Destroy(); break;
-                case "Prefab_Ice": Get_Coin(1, 1); Destroy(); break; 
+
+                case "Prefab_Nomal": Get_Coin(1, 1); Destroy(); break;
+                case "Prefab_Hard": Get_Coin(2, 5); Destroy(); break;
+                case "Prefab_Special": Get_Coin(2, 50); Destroy(); break;
+
                 case "LastPoint": Player_CS.PL.Clear_Check = true; if (!gameClear) { StartCoroutine(Game_Control.GC.EndGame(true)); gameClear = true; } break;
                 case "Obstacle": if (!Player_CS.PL.On_HIT) _Obstacle(); break;
             }
