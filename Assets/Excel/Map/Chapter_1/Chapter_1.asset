@@ -20,7 +20,7 @@ MonoBehaviour:
     Platform: None
     PlatformPos: 0
     END: 0
-    Coin_Sum: 119
+    Coin_Sum: 160
   - CoinType: None
     CoinPos: 1
     CoinAmount: 5
@@ -272,6 +272,22 @@ MonoBehaviour:
   - CoinType: coin_1
     CoinPos: 1
     CoinAmount: 8
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+    Coin_Sum: 0
+  - CoinType: type_2
+    CoinPos: 0
+    CoinAmount: 1
+    Obstacle: None
+    Platform: None
+    PlatformPos: 0
+    END: 0
+    Coin_Sum: 0
+  - CoinType: None
+    CoinPos: 0
+    CoinAmount: 40
     Obstacle: None
     Platform: None
     PlatformPos: 0

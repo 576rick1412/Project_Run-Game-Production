@@ -32,10 +32,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 60;
+
         Debug.Log(FilePath);
         LoadData();
 
-    StartCoroutine(AutoSave()); // 5초마다 자동저장
+    StartCoroutine(AutoSave()); // 10초마다 자동저장
         
         Panel.gameObject.SetActive(false);
         var obj = FindObjectsOfType<GameManager>();
@@ -44,8 +46,8 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator AutoSave()
     {   for (; ; ) { 
-            SavaData(); Debug.Log("자동저장!");
-            yield return new WaitForSeconds(5);
+            SavaData();
+            yield return new WaitForSeconds(10);
         }
     }
     public void SavaData()
@@ -88,20 +90,20 @@ public class GameManager : MonoBehaviour
         Data.Floor_SpeedValue = Data.Set_Floor_SpeedValue;
         Data.BGI_SpeedValue = Data.Set_BGI_SpeedValue;
 
-        Data.Set_LifeScore = 8;
+        Data.Set_LifeScore = 18;
         Data.LifeScore = 8;
         Data.CoinScore = 0;
 
         // 플레이어 설정
         Data.PlayerType = "Player_1";
-        Data.PlayerJumpValue = 18f;
-        Data.Invincibility_Time = 3f;
+        Data.PlayerJumpValue = 8f;
+        Data.Invincibility_Time = 2f;
 
         // 코인 설정
         Data.Coin_Point = 100;
 
         // 장애물 데미지 설정
-        Data.Obstacle_Damage = 3;
+        Data.Obstacle_Damage = 4;
 
         // 텍스트 설정
         Data.GM_branch = 1;

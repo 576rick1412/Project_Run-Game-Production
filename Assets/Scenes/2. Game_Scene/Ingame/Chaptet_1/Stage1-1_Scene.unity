@@ -282,6 +282,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: Coin_Object.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: Coin_Object.Array.data[5]
+      value: 
+      objectReference: {fileID: 2287866593650156250, guid: caff806de91316f479afecc771cba396, type: 3}
     - target: {fileID: 714450741049841976, guid: f72df9912974e664cac474b2afafb765, type: 3}
       propertyPath: m_Name
       value: Stage_CE
