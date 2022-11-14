@@ -90,13 +90,13 @@ public class GameManager : MonoBehaviour
         Data.Floor_SpeedValue = Data.Set_Floor_SpeedValue;
         Data.BGI_SpeedValue = Data.Set_BGI_SpeedValue;
 
-        Data.Set_LifeScore = 18;
+        Data.Set_LifeScore = 8;
         Data.LifeScore = 8;
         Data.CoinScore = 0;
 
         // 플레이어 설정
         Data.PlayerType = "Player_1";
-        Data.PlayerJumpValue = 8f;
+        Data.PlayerJumpValue = 18f;
         Data.Invincibility_Time = 2f;
 
         // 코인 설정

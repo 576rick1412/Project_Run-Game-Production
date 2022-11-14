@@ -177,7 +177,7 @@ public class Object_Instantiate : MonoBehaviour
                 case 7: StartCoroutine("Coin_Maker_7"); break;
                 case 8: StartCoroutine("Coin_Maker_8"); break;
                 case 9: StartCoroutine("Coin_Maker_9"); break;
-                case 0: StartCoroutine("Coin_Maker_10"); break;
+                case 0: StartCoroutine("Coin_Maker_10");break;
             }
         }
     }
