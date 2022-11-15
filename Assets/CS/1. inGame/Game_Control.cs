@@ -33,7 +33,7 @@ public class Game_Control : MonoBehaviour
     [Header("피격 효과")]
     [SerializeField] float SetAlphaValue;
     [SerializeField] float SetEfeectTime;
-
+    Vector3 CamPos;
     // 엑셀용
     int branch;
     [SerializeField] RunGame_EX RunGame_EX;
@@ -61,6 +61,8 @@ public class Game_Control : MonoBehaviour
         GameManager.GM.Player_alive = false; // 플레이어 사망처리 초기화
        
         Game_End = false;
+
+        CamPos = Camera.main.transform.position; // 메인 카메라 위치값 넣어 초기화
     }
 
     void PlayerType()
@@ -152,6 +154,16 @@ public class Game_Control : MonoBehaviour
                 Stage_Des = RunGame_EX.StartSheet[i].STR_description;
             }
         }
+    }
+    public IEnumerator CameraShake(float magnitude)
+    {
+        for (int i = 0;i < 10;i++)
+        {
+            Camera.main.transform.localPosition = Random.insideUnitSphere * magnitude + CamPos;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        Camera.main.transform.localPosition = CamPos; // 메인 카메라 위치 복귀
+        yield return null;
     }
 
     public IEnumerator ShowBloodScreen()

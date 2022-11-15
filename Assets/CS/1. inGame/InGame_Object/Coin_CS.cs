@@ -8,6 +8,7 @@ public class Coin_CS : MonoBehaviour
     [SerializeField] bool SetPrefabs; // 프리팹 안에 있는 오브젝트라면 체크
     bool gameClear;
     bool Magnet;
+    bool OnRelease;
     Vector2 speed = new Vector2(40f, 30f);
 
     private IObjectPool<Coin_CS> _CoinPool_1;
@@ -17,7 +18,7 @@ public class Coin_CS : MonoBehaviour
     public void Set_CoinPool_2(IObjectPool<Coin_CS> pool_2) { _CoinPool_2 = pool_2; }
     public void Set_CoinPool_3(IObjectPool<Coin_CS> pool_3) { _CoinPool_3 = pool_3; }
 
-    private void Awake() { Magnet = false; }
+    private void Awake() { Magnet = false; OnRelease = true; }
     void Update() 
     {
         Vector2 Player_Pos = Player_CS.PL.Player_Pos.position;
@@ -56,43 +57,51 @@ public class Coin_CS : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // 코인이 플레이어 뒤로 가서 안 지워지는 버그 땜빵 / 플레이어 뒤에 콜라이더를 만들어 해결함
-        if (collision.gameObject.CompareTag("Coin_Base"))
-        {
-            switch (SetObject)
-            {
-                case "Nomal_Ice":       Get_Coin(1, 1); Destroy(); break;
-                case "Hard_Ice":        Get_Coin(2, 5); Destroy(); break;
-                case "Special_Ice":     Get_Coin(2, 50); Destroy();break;
-
-                case "Prefab_Nomal":    Get_Coin(1, 1); Destroy(); break;
-                case "Prefab_Hard":     Get_Coin(2, 5); Destroy(); break;
-                case "Prefab_Special":  Get_Coin(2, 50); Destroy();break;
-            }
-        }
-
         if (collision.gameObject.CompareTag("End_Border")) { Destroy(); }
 
         if (collision.gameObject.CompareTag("Start_Border")) { Magnet = false; }
 
-        if (collision.gameObject.CompareTag("Magnet_Borber")) { if (SetObject == "LastPoint" || SetObject == "Obstacle" || SetObject == "Hub") return; Magnet = true; }
+        if (collision.gameObject.CompareTag("Magnet_Borber")) { if (SetObject == "LastPoint" || SetObject == "Obstacle" || SetObject == "Hub") return; Magnet = true; OnRelease = true; }
+
+        // 코인이 플레이어 뒤로 가서 안 지워지는 버그 땜빵 / 플레이어 뒤에 콜라이더를 만들어 해결함
+        if (collision.gameObject.CompareTag("Coin_Base"))
+        {
+            if (OnRelease)
+            {
+                switch (SetObject)
+                {
+                    case "Nomal_Ice": Get_Coin(1, 1); Destroy(); break;
+                    case "Hard_Ice": Get_Coin(2, 5); Destroy(); break;
+                    case "Special_Ice": Get_Coin(2, 50); Destroy(); break;
+
+                    case "Prefab_Nomal": Get_Coin(1, 1); Destroy(); break;
+                    case "Prefab_Hard": Get_Coin(2, 5); Destroy(); break;
+                    case "Prefab_Special": Get_Coin(2, 50); Destroy(); break;
+                }
+                OnRelease = false;
+            }
+        }
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            Magnet = false; speed = new Vector2(40f, 30f);
-
-            switch (SetObject)
+            if (OnRelease)
             {
-                case "Nomal_Ice":       Get_Coin(1, 1); Destroy(); break;
-                case "Hard_Ice":        Get_Coin(2, 5); Destroy(); break;
-                case "Special_Ice":     Get_Coin(1, 50); Destroy(); break;
+                Magnet = false; speed = new Vector2(40f, 30f);
 
-                case "Prefab_Nomal":    Get_Coin(1, 1); Destroy(); break;
-                case "Prefab_Hard":     Get_Coin(2, 5); Destroy(); break;
-                case "Prefab_Special":  Get_Coin(2, 50); Destroy(); break;
+                switch (SetObject)
+                {
+                    case "Nomal_Ice": Get_Coin(1, 1); Destroy(); break;
+                    case "Hard_Ice": Get_Coin(2, 5); Destroy(); break;
+                    case "Special_Ice": Get_Coin(1, 50); Destroy(); break;
 
-                case "LastPoint": Player_CS.PL.Clear_Check = true; if (!gameClear) { StartCoroutine(Game_Control.GC.EndGame(true)); gameClear = true; } break;
-                case "Obstacle": if (!Player_CS.PL.On_HIT) _Obstacle(); break;
+                    case "Prefab_Nomal": Get_Coin(1, 1); Destroy(); break;
+                    case "Prefab_Hard": Get_Coin(2, 5); Destroy(); break;
+                    case "Prefab_Special": Get_Coin(2, 50); Destroy(); break;
+
+                    case "LastPoint": Player_CS.PL.Clear_Check = true; if (!gameClear) { StartCoroutine(Game_Control.GC.EndGame(true)); gameClear = true; } break;
+                    case "Obstacle": if (!Player_CS.PL.On_HIT) _Obstacle(); break;
+                }
+                OnRelease = false;
             }
         }
     }

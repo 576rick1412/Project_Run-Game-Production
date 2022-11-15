@@ -132,6 +132,9 @@ public class Player_CS : MonoBehaviour
         if (GameManager.GM.Player_alive == false)
         {
             StartCoroutine(Game_Control.GC.ShowBloodScreen());
+            StartCoroutine(Game_Control.GC.CameraShake(0.5f));
+            Handheld.Vibrate(); // 모바일 진동 기능
+
             for (int i = 0; i < GameManager.GM.Data.Invincibility_Time * 10; i++)
             {
                 if (i % 2 == 0) spriteRenderer.color = new Color32(255, 255, 255, 90);
