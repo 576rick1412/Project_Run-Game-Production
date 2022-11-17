@@ -59,9 +59,9 @@ public class Coin_CS : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("End_Border")) { Destroy(); }
 
-        if (collision.gameObject.CompareTag("Start_Border")) { Magnet = false; }
+        if (collision.gameObject.CompareTag("Start_Border")) { Magnet = false; OnRelease = true; }
 
-        if (collision.gameObject.CompareTag("Magnet_Borber")) { if (SetObject == "LastPoint" || SetObject == "Obstacle" || SetObject == "Hub") return; Magnet = true; OnRelease = true; }
+        if (collision.gameObject.CompareTag("Magnet_Borber")) { if (SetObject == "LastPoint" || SetObject == "Obstacle" || SetObject == "Hub") return; Magnet = true; }
 
         // 코인이 플레이어 뒤로 가서 안 지워지는 버그 땜빵 / 플레이어 뒤에 콜라이더를 만들어 해결함
         if (collision.gameObject.CompareTag("Coin_Base"))
@@ -86,8 +86,7 @@ public class Coin_CS : MonoBehaviour
         {
             if (OnRelease)
             {
-                Magnet = false; speed = new Vector2(40f, 30f);
-
+                Magnet = false;
                 switch (SetObject)
                 {
                     case "Nomal_Ice": Get_Coin(1, 1); Destroy(); break;

@@ -82,7 +82,9 @@ public class GameManager : MonoBehaviour
         // 스테이지 정보
         Data.Game_WIN = false;
         Data.stage_clear_Num = 0;
-        for (int i = 0; i < Data.stage_Max_Score.Length; i++) Data.stage_Max_Score[i] = 0;
+
+        for (int i = 0; i < Data.stage_Max_Score.Length;  i++) Data.stage_Max_Score[i]  = 0;
+        for (int i = 0; i < Data.stage_Clear_Star.Length; i++) Data.stage_Clear_Star[i] = 0;
 
         Data.Set_Floor_SpeedValue = 8f;
         Data.Set_BGI_SpeedValue = 3f;
@@ -112,7 +114,6 @@ public class GameManager : MonoBehaviour
         //소리 설정
         Data.BGM_Value = 1f;
         Data.SFX_Value = 1f;
-
 
         SavaData();
         LoadData();
@@ -272,7 +273,7 @@ public class GameManager : MonoBehaviour
             case  7: Loading_Manager.LoadScene("Stage1-7_Scene", Stage_Name, Stage_Information); break;
             case  8: Loading_Manager.LoadScene("Stage1-8_Scene", Stage_Name, Stage_Information); break;
             case  9: Loading_Manager.LoadScene("Stage1-9_Scene", Stage_Name, Stage_Information); break;
-            case 10: Loading_Manager.LoadScene("Stage1-10_Scene", Stage_Name, Stage_Information); break; // 챕터 1 끝
+            case 10: Loading_Manager.LoadScene("Stage1-10_Scene", Stage_Name, Stage_Information);break; // 챕터 1 끝
             case 11: Loading_Manager.LoadScene("Stage2-1_Scene", Stage_Name, Stage_Information); break;
         }
     }
@@ -297,7 +298,8 @@ public class MainDB
     public bool Game_WIN; // 패배확인 참일때 승리, 거짓일때 패배
     public int stage_clear_Num;
     public int[] stage_Max_Score = new int[60 + 1];
-
+    public int[] stage_Clear_Star = new int[60 + 1];
+    public int Now_Clear_Star = 0;
 
     // 인게임 설정
     [Header("인게임 설정")]

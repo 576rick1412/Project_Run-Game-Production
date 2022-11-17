@@ -130,6 +130,48 @@ public class Object_Instantiate : MonoBehaviour
             case 0: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_10[0].Coin_Sum;break;
         }
     }
+    public void UpPoint_Star()
+    {
+        var Chapter_EX = Chapter_EX_1;
+        switch (GameManager.GM.Data.GM_branch)
+        {
+            case <= 10: Chapter_EX = Chapter_EX_1; break;
+            case <= 20: Chapter_EX = Chapter_EX_2; break;
+            case <= 30: Chapter_EX = Chapter_EX_3; break;
+            case <= 40: Chapter_EX = Chapter_EX_4; break;
+            case <= 50: Chapter_EX = Chapter_EX_5; break;
+            case <= 60: Chapter_EX = Chapter_EX_6; break;
+        }
+
+        switch (GameManager.GM.Data.GM_branch % 10)
+        {
+            case 1: Star(Chapter_EX.Stage_1[1].Coin_Sum, Chapter_EX.Stage_1[2].Coin_Sum, Chapter_EX.Stage_1[3].Coin_Sum); break;
+            case 2: Star(Chapter_EX.Stage_2[1].Coin_Sum, Chapter_EX.Stage_2[2].Coin_Sum, Chapter_EX.Stage_2[3].Coin_Sum); break;
+            case 3: Star(Chapter_EX.Stage_3[1].Coin_Sum, Chapter_EX.Stage_3[2].Coin_Sum, Chapter_EX.Stage_3[3].Coin_Sum); break;
+            case 4: Star(Chapter_EX.Stage_4[1].Coin_Sum, Chapter_EX.Stage_4[2].Coin_Sum, Chapter_EX.Stage_4[3].Coin_Sum); break;
+            case 5: Star(Chapter_EX.Stage_5[1].Coin_Sum, Chapter_EX.Stage_5[2].Coin_Sum, Chapter_EX.Stage_5[3].Coin_Sum); break;
+            case 6: Star(Chapter_EX.Stage_6[1].Coin_Sum, Chapter_EX.Stage_6[2].Coin_Sum, Chapter_EX.Stage_6[3].Coin_Sum); break;
+            case 7: Star(Chapter_EX.Stage_7[1].Coin_Sum, Chapter_EX.Stage_7[2].Coin_Sum, Chapter_EX.Stage_7[3].Coin_Sum); break;
+            case 8: Star(Chapter_EX.Stage_8[1].Coin_Sum, Chapter_EX.Stage_8[2].Coin_Sum, Chapter_EX.Stage_8[3].Coin_Sum); break;
+            case 9: Star(Chapter_EX.Stage_9[1].Coin_Sum, Chapter_EX.Stage_9[2].Coin_Sum, Chapter_EX.Stage_9[3].Coin_Sum); break;
+            case 0: Star(Chapter_EX.Stage_10[1].Coin_Sum, Chapter_EX.Stage_10[2].Coin_Sum, Chapter_EX.Stage_10[3].Coin_Sum); break;
+        }
+    }
+    void Star(int Star_3, int Star_2, int Star_1)
+    {
+        int Score = GameManager.GM.Data.CoinScore;
+        int Clear_Star = GameManager.GM.Data.stage_Clear_Star[GameManager.GM.Data.GM_branch];
+        int Now_Star;
+
+        if (Score >= Star_3)    { if (Clear_Star < 3) Clear_Star = 3; Debug.Log("3己 努府绢"); Now_Star = 3; goto A; }
+        if (Score >= Star_2)    { if (Clear_Star < 2) Clear_Star = 2; Debug.Log("2己 努府绢"); Now_Star = 2; goto A; }
+        if (Score >= Star_1)    { if (Clear_Star < 1) Clear_Star = 1; Debug.Log("1己 努府绢"); Now_Star = 1; goto A; }
+        else Now_Star = 0;
+
+        A:
+        GameManager.GM.Data.stage_Clear_Star[GameManager.GM.Data.GM_branch] = Clear_Star;
+        GameManager.GM.Data.Now_Clear_Star = Now_Star;
+    }
 
     void Update()
     {

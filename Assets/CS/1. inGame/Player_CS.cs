@@ -51,7 +51,7 @@ public class Player_CS : MonoBehaviour
             GameManager.GM.Player_alive = true;
         }
 
-        if (Clear_Check == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2;
+        if (Clear_Check == false) GameManager.GM.Data.LifeScore -= Time.deltaTime * 2.8f;
     }
 
     public void OnCoroutine()

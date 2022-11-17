@@ -14,23 +14,33 @@ public class Result_CS : MonoBehaviour
     [SerializeField] GameObject Win;
     [SerializeField] GameObject Lose;
 
+    [SerializeField] GameObject[] Star = new GameObject[3];
+
     // 엑셀용
     int branch;
     [SerializeField] RunGame_EX RunGame_EX;
     string Stage_Des;
     void Awake()
     {
+        Debug.Log("게임결과창 " + GameManager.GM.Data.Now_Clear_Star);
+
         Time.timeScale = 1;
         branch = Random.Range(1, RunGame_EX.StartSheet.Count + 1); STG_Excel();
 
         if (GameManager.GM.Data.Game_WIN == false) Win.SetActive(false);
         else { Lose.SetActive(false); }
 
+        switch(GameManager.GM.Data.Now_Clear_Star)
+        {
+            case 1: Star[0].SetActive(true); break;
+            case 2: Star[0].SetActive(true); Star[1].SetActive(true); break;
+            case 3: Star[0].SetActive(true); Star[1].SetActive(true); Star[2].SetActive(true); break;
+        }
+
         Max_Score.text = "최대 점수 : " + (GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch] == 0 ? 0 : 
             CommaText(GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch]).ToString());
 
         Cur_Score.text = "현재 점수 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
-
         Change_Score();
     }
     void Update()
