@@ -14,10 +14,19 @@ public class StageButton : MonoBehaviour
 
 
     Stage_Info SI;
+    [SerializeField] GameObject[] Star = new GameObject[3];
     private void Awake()
     {
         SI = FindObjectOfType<Stage_Info>();
         Stage_Text.text = Info.Info[Stage_Num - 1].Stage_Num;
+
+        switch (GameManager.GM.Data.stage_Clear_Star[Stage_Num])
+        {
+            case 0: break;
+            case 1: Star[0].SetActive(true); break;
+            case 2: Star[0].SetActive(true); Star[1].SetActive(true); break;
+            case 3: Star[0].SetActive(true); Star[1].SetActive(true); Star[2].SetActive(true); break;
+        }
     }
 
     public void OnWindow()

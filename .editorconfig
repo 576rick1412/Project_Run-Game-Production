@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# IDE0059: 불필요한 값 할당
+dotnet_diagnostic.IDE0059.severity = none
