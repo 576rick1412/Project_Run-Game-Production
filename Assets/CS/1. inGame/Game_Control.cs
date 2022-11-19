@@ -51,7 +51,7 @@ public class Game_Control : MonoBehaviour
         Pause_Image.SetActive(false);
         IsPause = false;
 
-        GameManager.GM.Data.Now_Clear_Star = 0; // 결과창 현재 별 수 초기화
+        GameManager.GM.Now_Clear_Star = 0; // 결과창 현재 별 수 초기화
         GameManager.GM.Data.Cur_Run_Ratio = 0; // 현재 달린 거리 초기화
 
         GameManager.GM.Data.Floor_SpeedValue = GameManager.GM.Data.Set_Floor_SpeedValue; // 발판 속도 지정된 초기값으로 초기화
@@ -114,14 +114,12 @@ public class Game_Control : MonoBehaviour
     {
         GameObject END_UI = GameValue == true ? ClearUI : OverUI; // 생성될 결과 UI 지정
 
-        // 게임 클리어 시 다음 스테이지가 열리도록 하는 변수
-        if (GameValue)
-        {
-            if (GameManager.GM.Data.stage_clear_Num < GameManager.GM.Data.GM_branch)
-            { GameManager.GM.Data.stage_clear_Num = GameManager.GM.Data.GM_branch; }
+        // 클리어 시 다음 스테이지가 열리도록 함, 만약 이미 클리어한 스테이지를 다시 플레이한 경우 그냥 리턴
+        if (GameManager.GM.Data.stage_clear_Num < GameManager.GM.Data.GM_branch && GameValue)
+        { GameManager.GM.Data.stage_clear_Num = GameManager.GM.Data.GM_branch; }
 
-            IO.GetComponent<Object_Instantiate>().UpPoint_Star();
-        }
+        // 게임 결과에 따른 클리어 점수 판정 함수 호출
+        IO.GetComponent<Object_Instantiate>().UpPoint_Star(); 
 
         // 결과 UI 생성
         GameObject UI = Instantiate(END_UI, BossEntryPos.position, Quaternion.identity);
@@ -130,7 +128,7 @@ public class Game_Control : MonoBehaviour
         Game_End = true;
         GameManager.GM.Data.Game_WIN = GameValue;
         GameManager.GM.SavaData();
-       
+
         yield return new WaitForSeconds(3f);
         GameManager.GM.Fade(Result, true); Player_CS.PL.Clear_Check = true;
         yield return null;

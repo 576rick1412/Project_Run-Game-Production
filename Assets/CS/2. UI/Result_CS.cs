@@ -15,6 +15,9 @@ public class Result_CS : MonoBehaviour
     [SerializeField] GameObject Lose;
 
     [SerializeField] GameObject[] Star = new GameObject[3];
+    [SerializeField] GameObject[] Success_icon = new GameObject[3];
+    [SerializeField] GameObject[] Failed_icon = new GameObject[3];
+    [SerializeField] TextMeshProUGUI[] per_Point = new TextMeshProUGUI[3];
 
     // 엑셀용
     int branch;
@@ -22,15 +25,14 @@ public class Result_CS : MonoBehaviour
     string Stage_Des;
     void Awake()
     {
-        Debug.Log("게임결과창 " + GameManager.GM.Data.Now_Clear_Star);
+        Debug.Log("게임결과창 " + GameManager.GM.Now_Clear_Star);
 
         Time.timeScale = 1;
         branch = Random.Range(1, RunGame_EX.StartSheet.Count + 1); STG_Excel();
 
-        if (GameManager.GM.Data.Game_WIN == false) Win.SetActive(false);
-        else { Lose.SetActive(false); }
+        if (GameManager.GM.Data.Game_WIN == false) { Win.SetActive(false); } else { Lose.SetActive(false); }
 
-        StartCoroutine(OnStar(GameManager.GM.Data.Now_Clear_Star)); // 클리어 시 별이 뜨게하는 코루틴 호줄
+        StartCoroutine(OnStar(GameManager.GM.Now_Clear_Star)); // 클리어 시 별이 뜨게하는 코루틴 호줄
 
         Max_Score.text = "최대 점수 : " + (GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch] == 0 ? 0 : 
             CommaText(GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch]).ToString());
@@ -38,23 +40,40 @@ public class Result_CS : MonoBehaviour
         Cur_Score.text = "현재 점수 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
         Change_Score();
     }
-    IEnumerator OnStar(int Clear_Num)
+    IEnumerator OnStar(int Clear_Num) 
     {
-        for(int i = 0; i < Clear_Num; i++)
+        {
+            // 0 : 실패
+            // 1 : 1성 클리어
+            // 2 : 2성 클리어
+            // 3 : 3성 클리어
+
+        } // 사용 요약
+ 
+        // 서브 별 뜨우기
+        for (int i = 1; i < Success_icon.Length + 1; i++)
+        {
+            if (i <= Clear_Num) { Success_icon[i - 1].SetActive(true); continue; }
+            else { Failed_icon[i - 1].SetActive(true); }
+        }
+
+        // 별 획득 점수
+        for (int i = 0; i < per_Point.Length; i++) per_Point[i].text = CommaText(GameManager.GM.Percent_Star[i]).ToString();
+
+        // 메인 별 띄우기
+        for (int i = 0; i < Clear_Num; i++)
         {
             Star[i].SetActive(true);
             yield return new WaitForSeconds(0.3f);
         }
+
         yield return null;
     } // 클리어 시 별이 뜨도록 함
     void Update()
     {
 
     }
-    string CommaText(long Sccore)
-    {
-        return string.Format("{0:#,###}", Sccore);
-    }
+    string CommaText(long Score) { return string.Format("{0:#,###}", Score); }
 
     void Change_Score()
     {
@@ -72,7 +91,7 @@ public class Result_CS : MonoBehaviour
         Destroy(Max_Score);
         TextMeshProUGUI GoUp =  Instantiate(Cur_Window_GoUp, Cur_Score.transform.position,Quaternion.identity);
         GoUp.transform.SetParent(Score_Window.transform);
-        GoUp.text = "최대 점수 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
+        GoUp.text = "최대 기록 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
         GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch] = GameManager.GM.Data.CoinScore;
     } // 최고점 기록 시 최고점 갱신 + 갱신 애니메이션
 

@@ -101,6 +101,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetObject: Special_Ice
   SetPrefabs: 0
+  gameClear: 0
+  Magnet: 0
+  OnRelease: 0
+  speed: {x: 40, y: 30}
 --- !u!50 &5577128982350717461
 Rigidbody2D:
   serializedVersion: 4
@@ -120,7 +124,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &893140395214670917
 CircleCollider2D:

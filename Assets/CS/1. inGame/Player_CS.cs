@@ -22,7 +22,6 @@ public class Player_CS : MonoBehaviour
     [SerializeField] private BoxCollider2D[] colliders;
     [HideInInspector] public Animator anime;
 
-    bool HIT_check = false; // 코루틴 반복 방지용
     public bool On_HIT = false; // 피격 확인용
     bool inhit; // 내부 피격
     void Awake() { PL = this; }
@@ -59,7 +58,6 @@ public class Player_CS : MonoBehaviour
         inhit = true;
         GameManager.GM.Data.Floor_SpeedValue *= 0.7f;
         GameManager.GM.Data.BGI_SpeedValue *= 0.7f;
-        HIT_check = true;
         Invoke("HIT_off", GameManager.GM.Data.Invincibility_Time);
         StartCoroutine("HIT_Coroutine");
     }
@@ -143,7 +141,6 @@ public class Player_CS : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
             }
             spriteRenderer.color = new Color32(255, 255, 255, 255);
-            HIT_check = false;
             yield return null;
         }
     }

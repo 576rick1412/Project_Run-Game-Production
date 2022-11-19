@@ -9,7 +9,7 @@ public class Coin_CS : MonoBehaviour
     bool gameClear;
     bool Magnet;
     bool OnRelease;
-    Vector2 speed = new Vector2(40f, 30f);
+    Vector2 speed = new Vector2(30f, 20f);
 
     private IObjectPool<Coin_CS> _CoinPool_1;
     private IObjectPool<Coin_CS> _CoinPool_2;
@@ -34,6 +34,8 @@ public class Coin_CS : MonoBehaviour
 
     private void Destroy()
     {
+        transform.position = new Vector2(6f, 4f);
+
         if (SetObject == "Nomal_Ice")   { DestroyCoin_1(); return; }
         if (SetObject == "Hard_Ice")    { DestroyCoin_2(); return; }
         if (SetObject == "Special_Ice") { DestroyCoin_3(); return; }
@@ -44,7 +46,6 @@ public class Coin_CS : MonoBehaviour
     {
         // 코인 획득 시 내부 변수 활성화
         Magnet = false; 
-        speed = new Vector2(30f, 20f);
 
         // 코인 획득 시 생명력 증가
         GameManager.GM.Data.LifeScore += point;
@@ -59,7 +60,7 @@ public class Coin_CS : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("End_Border")) { Destroy(); }
 
-        if (collision.gameObject.CompareTag("Start_Border")) { Magnet = false; OnRelease = true; }
+        if (collision.gameObject.CompareTag("Start_Border")) { Magnet = false; OnRelease = true; speed = new Vector2(30f, 20f); }
 
         if (collision.gameObject.CompareTag("Magnet_Borber")) { if (SetObject == "LastPoint" || SetObject == "Obstacle" || SetObject == "Hub") return; Magnet = true; }
 
@@ -70,13 +71,13 @@ public class Coin_CS : MonoBehaviour
             {
                 switch (SetObject)
                 {
-                    case "Nomal_Ice": Get_Coin(1, 1); Destroy(); break;
-                    case "Hard_Ice": Get_Coin(2, 5); Destroy(); break;
-                    case "Special_Ice": Get_Coin(2, 50); Destroy(); break;
+                    case "Nomal_Ice":       Get_Coin(1, 1);     Destroy(); break;
+                    case "Hard_Ice":        Get_Coin(2, 5);     Destroy(); break;
+                    case "Special_Ice":     Get_Coin(2, 50);    Destroy(); break;
 
-                    case "Prefab_Nomal": Get_Coin(1, 1); Destroy(); break;
-                    case "Prefab_Hard": Get_Coin(2, 5); Destroy(); break;
-                    case "Prefab_Special": Get_Coin(2, 50); Destroy(); break;
+                    case "Prefab_Nomal":    Get_Coin(1, 1);     Destroy(); break;
+                    case "Prefab_Hard":     Get_Coin(2, 5);     Destroy(); break;
+                    case "Prefab_Special":  Get_Coin(2, 50);    Destroy(); break;
                 }
                 OnRelease = false;
             }
@@ -89,13 +90,13 @@ public class Coin_CS : MonoBehaviour
                 Magnet = false;
                 switch (SetObject)
                 {
-                    case "Nomal_Ice": Get_Coin(1, 1); Destroy(); break;
-                    case "Hard_Ice": Get_Coin(2, 5); Destroy(); break;
-                    case "Special_Ice": Get_Coin(1, 50); Destroy(); break;
+                    case "Nomal_Ice":       Get_Coin(1, 1);     Destroy(); break;
+                    case "Hard_Ice":        Get_Coin(2, 5);     Destroy(); break;
+                    case "Special_Ice":     Get_Coin(2, 50);    Destroy(); break;
 
-                    case "Prefab_Nomal": Get_Coin(1, 1); Destroy(); break;
-                    case "Prefab_Hard": Get_Coin(2, 5); Destroy(); break;
-                    case "Prefab_Special": Get_Coin(2, 50); Destroy(); break;
+                    case "Prefab_Nomal":    Get_Coin(1, 1);     Destroy(); break;
+                    case "Prefab_Hard":     Get_Coin(2, 5);     Destroy(); break;
+                    case "Prefab_Special":  Get_Coin(2, 50);    Destroy(); break;
 
                     case "LastPoint": Player_CS.PL.Clear_Check = true; if (!gameClear) { StartCoroutine(Game_Control.GC.EndGame(true)); gameClear = true; } break;
                     case "Obstacle": if (!Player_CS.PL.On_HIT) _Obstacle(); break;

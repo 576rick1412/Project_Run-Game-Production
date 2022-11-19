@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     [Header("플레이 설정")]
     public bool Player_alive;
 
+    [Header("스테이지 점수 정보")]
+    public int Now_Clear_Star = 0;
+    public int[] Percent_Star = new int[3];
+
     public string Stage_Name;
     public string Stage_Information;
 
@@ -299,7 +303,6 @@ public class MainDB
     public int stage_clear_Num;
     public int[] stage_Max_Score = new int[60 + 1];
     public int[] stage_Clear_Star = new int[60 + 1];
-    public int Now_Clear_Star = 0;
 
     // 인게임 설정
     [Header("인게임 설정")]

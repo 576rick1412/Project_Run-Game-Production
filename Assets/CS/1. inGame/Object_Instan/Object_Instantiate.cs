@@ -161,16 +161,22 @@ public class Object_Instantiate : MonoBehaviour
     {
         int Score = GameManager.GM.Data.CoinScore;
         int Clear_Star = GameManager.GM.Data.stage_Clear_Star[GameManager.GM.Data.GM_branch];
+
+        // 게임메니저 별 점수 포인트 수정
+        GameManager.GM.Percent_Star[0] = Star_3;
+        GameManager.GM.Percent_Star[1] = Star_2;
+        GameManager.GM.Percent_Star[2] = Star_1;
+
         int Now_Star;
 
-        if (Score >= Star_3)    { if (Clear_Star < 3) Clear_Star = 3; Debug.Log("3성 클리어"); Now_Star = 3; goto A; }
-        if (Score >= Star_2)    { if (Clear_Star < 2) Clear_Star = 2; Debug.Log("2성 클리어"); Now_Star = 2; goto A; }
-        if (Score >= Star_1)    { if (Clear_Star < 1) Clear_Star = 1; Debug.Log("1성 클리어"); Now_Star = 1; goto A; }
-        else Now_Star = 0;
+        if (Score >= Star_3) { if (Clear_Star < 3) Clear_Star = 3; Debug.Log("3성 클리어"); Now_Star = 3; goto A; }
+        if (Score >= Star_2) { if (Clear_Star < 2) Clear_Star = 2; Debug.Log("2성 클리어"); Now_Star = 2; goto A; }
+        if (Score >= Star_1) { if (Clear_Star < 1) Clear_Star = 1; Debug.Log("1성 클리어"); Now_Star = 1; goto A; }
+        else { Now_Star = 0; Debug.Log("0성 클리어"); }
 
         A:
         GameManager.GM.Data.stage_Clear_Star[GameManager.GM.Data.GM_branch] = Clear_Star;
-        GameManager.GM.Data.Now_Clear_Star = Now_Star;
+        GameManager.GM.Now_Clear_Star = Now_Star;
     }
 
     void Update()
