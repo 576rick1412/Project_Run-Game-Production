@@ -30,12 +30,7 @@ public class Result_CS : MonoBehaviour
         if (GameManager.GM.Data.Game_WIN == false) Win.SetActive(false);
         else { Lose.SetActive(false); }
 
-        switch(GameManager.GM.Data.Now_Clear_Star)
-        {
-            case 1: Star[0].SetActive(true); break;
-            case 2: Star[0].SetActive(true); Star[1].SetActive(true); break;
-            case 3: Star[0].SetActive(true); Star[1].SetActive(true); Star[2].SetActive(true); break;
-        }
+        StartCoroutine(OnStar(GameManager.GM.Data.Now_Clear_Star)); // 클리어 시 별이 뜨게하는 코루틴 호줄
 
         Max_Score.text = "최대 점수 : " + (GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch] == 0 ? 0 : 
             CommaText(GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch]).ToString());
@@ -43,6 +38,15 @@ public class Result_CS : MonoBehaviour
         Cur_Score.text = "현재 점수 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
         Change_Score();
     }
+    IEnumerator OnStar(int Clear_Num)
+    {
+        for(int i = 0; i < Clear_Num; i++)
+        {
+            Star[i].SetActive(true);
+            yield return new WaitForSeconds(0.3f);
+        }
+        yield return null;
+    } // 클리어 시 별이 뜨도록 함
     void Update()
     {
 
@@ -70,7 +74,7 @@ public class Result_CS : MonoBehaviour
         GoUp.transform.SetParent(Score_Window.transform);
         GoUp.text = "최대 점수 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
         GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch] = GameManager.GM.Data.CoinScore;
-    }
+    } // 최고점 기록 시 최고점 갱신 + 갱신 애니메이션
 
     public void GoLoby() { Loading_Manager.LoadScene("Mian_Loby_Scene", Stage_Des); }
     public void GoStage() 
