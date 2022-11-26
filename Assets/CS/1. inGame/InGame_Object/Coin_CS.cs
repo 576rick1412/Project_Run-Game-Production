@@ -107,7 +107,9 @@ public class Coin_CS : MonoBehaviour
     }
     void _Obstacle()
     {
+        // 피격 시 2의 피해를 입고, 전체 체력이 영구적으로 1 줄어듬
         GameManager.GM.Data.LifeScore -= GameManager.GM.Data.Obstacle_Damage;
+        GameManager.GM.Data.Set_LifeScore -= 1f;
         Player_CS.PL.On_HIT = true;
         Player_CS.PL.OnCoroutine();
     }

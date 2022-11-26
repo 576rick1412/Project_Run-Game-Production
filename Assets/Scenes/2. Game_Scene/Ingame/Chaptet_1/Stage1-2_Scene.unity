@@ -283,9 +283,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: Coin_Object.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
       propertyPath: Coin_Object.Array.data[2]
       value: 
       objectReference: {fileID: 2787086276516234069, guid: b736121ff4495954b8e6d17cec482c72, type: 3}
+    - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: Coin_Object.Array.data[4]
+      value: 
+      objectReference: {fileID: 4971076201672898212, guid: fff925d1b6d2a044f9f27fc60ed030d4, type: 3}
+    - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: Coin_Object.Array.data[5]
+      value: 
+      objectReference: {fileID: 5769942341326395313, guid: 1c04889f029565c4e89db9c534becb32, type: 3}
+    - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: Coin_Object.Array.data[6]
+      value: 
+      objectReference: {fileID: 7481810890618512429, guid: a3d8c53d0829c0147b6687d846dcfc4d, type: 3}
     - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
       propertyPath: Obstacle_Object.Array.data[0]
       value: 

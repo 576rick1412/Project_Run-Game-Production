@@ -57,7 +57,10 @@ public class Game_Control : MonoBehaviour
         GameManager.GM.Data.Floor_SpeedValue = GameManager.GM.Data.Set_Floor_SpeedValue; // 발판 속도 지정된 초기값으로 초기화
         GameManager.GM.Data.BGI_SpeedValue = GameManager.GM.Data.Set_BGI_SpeedValue;     // 배경 속도 지정된 초기값으로 초기화
 
-        GameManager.GM.Data.LifeScore = GameManager.GM.Data.Set_LifeScore;  // HP 지정된 초기값으로 초기화
+        // HP 지정된 초기값으로 초기화
+        GameManager.GM.Data.Set_LifeScore = GameManager.GM.Data.Const_LifeScore;
+        GameManager.GM.Data.LifeScore = GameManager.GM.Data.Set_LifeScore;  
+
         GameManager.GM.Data.CoinScore = 0;  // 게임 내 점수 초기화
 
         GameManager.GM.Player_alive = false; // 플레이어 사망처리 초기화
@@ -113,6 +116,9 @@ public class Game_Control : MonoBehaviour
     public IEnumerator EndGame(bool GameValue)
     {
         GameObject END_UI = GameValue == true ? ClearUI : OverUI; // 생성될 결과 UI 지정
+
+        // 게임 오버 시 점수는 0으로 고정 / 클리어가 아니기 때문에 별을 줄 수 없음
+        if (!GameValue) GameManager.GM.Data.CoinScore = 0;
 
         // 클리어 시 다음 스테이지가 열리도록 함, 만약 이미 클리어한 스테이지를 다시 플레이한 경우 그냥 리턴
         if (GameManager.GM.Data.stage_clear_Num < GameManager.GM.Data.GM_branch && GameValue)

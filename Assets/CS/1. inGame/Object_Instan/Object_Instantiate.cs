@@ -241,6 +241,7 @@ public class Object_Instantiate : MonoBehaviour
             case "LastPoint": Instan_Coin = Coin_Object[3]; break;     // 마지막 지점
             case "type_1": Instan_Coin = Coin_Object[4]; break;    // 1번 기믹
             case "type_2": Instan_Coin = Coin_Object[5]; break;    // 2번 기믹
+            case "type_3": Instan_Coin = Coin_Object[6]; break;    // 3번 기믹
         }
     }
     void ObstacleType(string Type)
@@ -281,12 +282,8 @@ public class Object_Instantiate : MonoBehaviour
                 case "coin_3":
                     var Coin_3 = CoinPool_3.Get();
                     Coin_3.transform.position = Instan_Pos[PosNum].position; break;
-                // ====================================================================
-                case "LastPoint": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
-                // ====================================================================
-                case "type_1": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
-                // ====================================================================
-                case "type_2": Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+
+                default: Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
             }  // 코인 생성
         }
         if (Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);

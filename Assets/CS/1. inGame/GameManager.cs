@@ -96,8 +96,9 @@ public class GameManager : MonoBehaviour
         Data.Floor_SpeedValue = Data.Set_Floor_SpeedValue;
         Data.BGI_SpeedValue = Data.Set_BGI_SpeedValue;
 
-        Data.Set_LifeScore = 8;
-        Data.LifeScore = 8;
+        Data.Const_LifeScore = 7;
+        Data.Set_LifeScore = 7;
+        Data.LifeScore = 7;
         Data.CoinScore = 0;
 
         // 플레이어 설정
@@ -109,7 +110,7 @@ public class GameManager : MonoBehaviour
         Data.Coin_Point = 100;
 
         // 장애물 데미지 설정
-        Data.Obstacle_Damage = 4;
+        Data.Obstacle_Damage = 2;
 
         // 텍스트 설정
         Data.GM_branch = 1;
@@ -312,6 +313,7 @@ public class MainDB
     public float Floor_SpeedValue = 0;
     public float BGI_SpeedValue = 0;
 
+    public float Const_LifeScore = 0;
     public float Set_LifeScore = 0;
     public float LifeScore = 0;
     public int CoinScore = 0;
