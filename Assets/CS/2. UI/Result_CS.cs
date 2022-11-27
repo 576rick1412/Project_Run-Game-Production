@@ -32,6 +32,7 @@ public class Result_CS : MonoBehaviour
 
         if (GameManager.GM.Data.Game_WIN == false) { Win.SetActive(false); } else { Lose.SetActive(false); }
 
+        if (GameManager.GM.Now_Clear_Star == 0) GameManager.GM.Data.CoinScore = 0;
         StartCoroutine(OnStar(GameManager.GM.Now_Clear_Star)); // 클리어 시 별이 뜨게하는 코루틴 호줄
 
         Max_Score.text = "최대 점수 : " + (GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch] == 0 ? 0 : 

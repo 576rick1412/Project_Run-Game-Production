@@ -244,6 +244,7 @@ public class Object_Instantiate : MonoBehaviour
             case "type_3": Instan_Coin = Coin_Object[6]; break;    // 3번 기믹
         }
     }
+
     void ObstacleType(string Type)
     {
         switch (Type) // 장애물 지정
