@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
     {
         Data = new MainDB();
 
-        Data.GM_NickName = "지스타2022";
+        Data.GM_NickName = "소드리우스";
         Data.GM_Level = 1;
         Data.GM_Money = 0;
         Data.GM_Goods = 0;
