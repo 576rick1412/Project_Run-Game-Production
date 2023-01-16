@@ -8,40 +8,40 @@ using UnityEngine.SceneManagement;
 public class Loading_Manager : MonoBehaviour
 {
     static string nextScene;
-    static string Stage_Name;
-    static string Stage_Description;
-    [SerializeField] Image ProgressBar;
+    static string stageName;
+    static string stageDescription;
+    [SerializeField] Image progressBar;
 
-    public TextMeshProUGUI Name;
-    public TextMeshProUGUI Description;
+    public TextMeshProUGUI inName;
+    public TextMeshProUGUI description;
 
-    public static void LoadScene(string SceneName, string ST_Name, string ST_Description)
+    public static void LoadScene(string sceneName, string ST_Name, string ST_Description)
     {
         AsyncOperation op = SceneManager.LoadSceneAsync("Stage_LoadingScene");
 
-        nextScene = SceneName;
-        Stage_Name = ST_Name;
+        nextScene = sceneName;
+        stageName = ST_Name;
 
-        Stage_Description = ST_Description;
+        stageDescription = ST_Description;
 
         GameManager.GM.Fade(op);
     }
-    public static void LoadScene(string SceneName, string ST_Description)
+    public static void LoadScene(string sceneName, string ST_Description)
     {
         AsyncOperation op = SceneManager.LoadSceneAsync("Main_LoadingScene");
         op.allowSceneActivation = false;
 
-        nextScene = SceneName;
-        Stage_Name = "";
+        nextScene = sceneName;
+        stageName = "";
 
-        Stage_Description = ST_Description;
+        stageDescription = ST_Description;
 
         GameManager.GM.Fade(op);
     }
     void Start()
     {
-        Name.text = Stage_Name;
-        Description.text = Stage_Description;
+        inName.text = stageName;
+        description.text = stageDescription;
 
         StartCoroutine(LoadSceneProcess());
     }
@@ -58,13 +58,13 @@ public class Loading_Manager : MonoBehaviour
 
             if (op.progress < 0.9f)
             {
-                ProgressBar.fillAmount = op.progress;
+                progressBar.fillAmount = op.progress;
             }
             else
             {
                 timer += Time.unscaledDeltaTime;
-                ProgressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
-                if (ProgressBar.fillAmount >= 1f)
+                progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
+                if (progressBar.fillAmount >= 1f)
                 {
                     GameManager.GM.Fade(op);
                     yield break;

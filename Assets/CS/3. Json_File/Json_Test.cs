@@ -50,7 +50,7 @@ public class Data
 
     public void printData()
     {
-        Debug.Log("Level : " + m_nLevel);
+        Debug.Log("level : " + m_nLevel);
         Debug.Log("Position : " + m_vecPositon);
     }
     

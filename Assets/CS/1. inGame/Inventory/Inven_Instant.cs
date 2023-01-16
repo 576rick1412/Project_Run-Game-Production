@@ -5,22 +5,22 @@ using UnityEngine.UI;
 
 public class Inven_Instant : MonoBehaviour
 {
-    int Inven_Index;
+    int invenIndex;
     void Start()
     {
         RectTransform rectTransform = GetComponent<RectTransform>();
 
-        if (InventoryDB.IV.아이템.Length > 12 )
+        if (InventoryDB.IV.items.Length > 12 )
         {
             // 24를 빼면 UpSize가 0이 되길래 21을 빼서 계산하도록 수정함
-            int UpSize = Mathf.CeilToInt((InventoryDB.IV.아이템.Length - 12) / 3);
+            int upSize = Mathf.CeilToInt((InventoryDB.IV.items.Length - 12) / 3);
 
             RectTransform rectTran = gameObject.GetComponent<RectTransform>();
 
-            int newwidth = ((Screen.width - 1000) + (260 * UpSize + 400));
+            int reWidth = ((Screen.width - 1000) + (260 * upSize + 400));
 
-            rectTran.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newwidth);
-            rectTransform.position = new Vector2((newwidth) , (Screen.height / 2) - 50);
+            rectTran.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, reWidth);
+            rectTransform.position = new Vector2((reWidth) , (Screen.height / 2) - 50);
         }
         else
         {
@@ -28,16 +28,16 @@ public class Inven_Instant : MonoBehaviour
             rectTran.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Screen.width - 1000);
         }
 
-        Inven_Index = 0;
+        invenIndex = 0;
 
-        for (int i = 0; i < InventoryDB.IV.아이템.Length; i++)
+        for (int i = 0; i < InventoryDB.IV.items.Length; i++)
         {
-            if(InventoryDB.IV.아이템[Inven_Index].ItemAmount > 0)
+            if(InventoryDB.IV.items[invenIndex].itemAmount > 0)
             {
-                GameObject Item =  Instantiate(InventoryDB.IV.아이템[Inven_Index].ItemObject);
-                Item.transform.SetParent(this.transform);
+                GameObject item =  Instantiate(InventoryDB.IV.items[invenIndex].itemObject);
+                item.transform.SetParent(this.transform);
             }
-            Inven_Index++;
+            invenIndex++;
         }
     }
 

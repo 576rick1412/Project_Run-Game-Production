@@ -8,135 +8,135 @@ public class Game_Control : MonoBehaviour
 {
     public static Game_Control GC;
 
-    [SerializeField] GameObject IO;
-    [SerializeField] Transform Spawn_Pos;
-    [SerializeField] GameObject[] Player;
-    [SerializeField] GameObject SpanwPlayer;
+    [SerializeField] GameObject io;
+    [SerializeField] Transform spawnPos;
+    [SerializeField] GameObject[] players;
+    [SerializeField] GameObject spanwPlayer;
 
-    [SerializeField] Image HP_Bar;
-    [SerializeField] GameObject Pause_Image;
-    public TextMeshProUGUI Score;
-    public TextMeshProUGUI Run_Ratio;
+    [SerializeField] Image hPBar;
+    [SerializeField] GameObject pauseImage;
+    public TextMeshProUGUI score;
+    public TextMeshProUGUI runRatio;
 
-    [SerializeField] Transform BossEntryPos;
+    [SerializeField] Transform bossEntryPos;
 
     [Header("일시정지 버튼")]
-    public GameObject start_Icon;
-    public GameObject pause_Icon;
+    public GameObject startIcon;
+    public GameObject pauseIcon;
 
     [Header("UI")]
-    [HideInInspector] public bool Game_End;
-    [SerializeField] Image BloodScreen;
-    [SerializeField] GameObject Result;
-    [SerializeField] GameObject ClearUI;
-    [SerializeField] GameObject OverUI;
+    [HideInInspector] public bool gameEnd;
+    [SerializeField] Image bloodScreen;
+    [SerializeField] GameObject result;
+    [SerializeField] GameObject clearUI;
+    [SerializeField] GameObject overUI;
 
     [Header("피격 효과")]
-    [SerializeField] float SetAlphaValue;
-    [SerializeField] float SetEfeectTime;
-    Vector3 CamPos;
+    [SerializeField] float setAlphaValue;
+    [SerializeField] float setEfeectTime;
+    Vector3 camPos;
     // 엑셀용
     int branch;
-    [SerializeField] RunGame_EX RunGame_EX;
-    string Stage_Des;
-    bool IsPause; // 일시정지
+    [SerializeField] RunGame_EX runGame_EX;
+    string stageDes;
+    bool isPause; // 일시정지
     void Awake()
     {
         GC = this;
         PlayerType();
 
-        start_Icon.SetActive(false); pause_Icon.SetActive(true);
-        branch = Random.Range(1, RunGame_EX.StartSheet.Count + 1); STG_Excel();
+        startIcon.SetActive(false); pauseIcon.SetActive(true);
+        branch = Random.Range(1, runGame_EX.StartSheet.Count + 1); STGExcel();
 
-        Pause_Image.SetActive(false);
-        IsPause = false;
+        pauseImage.SetActive(false);
+        isPause = false;
 
-        GameManager.GM.Now_Clear_Star = 0; // 결과창 현재 별 수 초기화
-        GameManager.GM.Data.Cur_Run_Ratio = 0; // 현재 달린 거리 초기화
+        GameManager.GM.nowClearStar = 0; // 결과창 현재 별 수 초기화
+        GameManager.GM.data.curRunRatio = 0; // 현재 달린 거리 초기화
 
-        GameManager.GM.Data.Floor_SpeedValue = GameManager.GM.Data.Set_Floor_SpeedValue; // 발판 속도 지정된 초기값으로 초기화
-        GameManager.GM.Data.BGI_SpeedValue = GameManager.GM.Data.Set_BGI_SpeedValue;     // 배경 속도 지정된 초기값으로 초기화
+        GameManager.GM.data.floorSpeedValue = GameManager.GM.data.setFloorSpeedValue; // 발판 속도 지정된 초기값으로 초기화
+        GameManager.GM.data.BGSpeedValue = GameManager.GM.data.setBGSpeedValue;     // 배경 속도 지정된 초기값으로 초기화
 
         // HP 지정된 초기값으로 초기화
-        GameManager.GM.Data.Set_LifeScore = GameManager.GM.Data.Const_LifeScore;
-        GameManager.GM.Data.LifeScore = GameManager.GM.Data.Set_LifeScore;  
+        GameManager.GM.data.setLifeScore = GameManager.GM.data.constLifeScore;
+        GameManager.GM.data.lifeScore = GameManager.GM.data.setLifeScore;  
 
-        GameManager.GM.Data.CoinScore = 0;  // 게임 내 점수 초기화
+        GameManager.GM.data.coinScore = 0;  // 게임 내 점수 초기화
 
-        GameManager.GM.Player_alive = false; // 플레이어 사망처리 초기화
+        GameManager.GM.playerAlive = false; // 플레이어 사망처리 초기화
        
-        Game_End = false;
+        gameEnd = false;
 
-        CamPos = Camera.main.transform.position; // 메인 카메라 위치값 넣어 초기화
+        camPos = Camera.main.transform.position; // 메인 카메라 위치값 넣어 초기화
     }
 
     void PlayerType()
     {
-        switch (GameManager.GM.Data.PlayerType)
+        switch (GameManager.GM.data.playerType)
         {
-            case "Player_1": SpanwPlayer = Player[0]; break;
+            case "Player_1": spanwPlayer = players[0]; break;
         }
 
-        Instantiate(SpanwPlayer, Spawn_Pos.position, Quaternion.identity);
+        Instantiate(spanwPlayer, spawnPos.position, Quaternion.identity);
     }
 
     void Update()
     {
 
-        HP_Bar.fillAmount = (GameManager.GM.Data.LifeScore / GameManager.GM.Data.Set_LifeScore);
-        Score.text = "점수 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
+        hPBar.fillAmount = (GameManager.GM.data.lifeScore / GameManager.GM.data.setLifeScore);
+        score.text = "점수 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString());
 
-        Run_Ratio.text = "달린거리 " + System.Math.Truncate(GameManager.GM.Data.Cur_Run_Ratio / GameManager.GM.Data.Run_Ratio * 100).ToString() + " %";
+        runRatio.text = "달린거리 " + System.Math.Truncate(GameManager.GM.data.curRunRatio / GameManager.GM.data.runRatio * 100).ToString() + " %";
 
-        if (GameManager.GM.Data.LifeScore <= 0 && Game_End == false) StartCoroutine(EndGame(false));
+        if (GameManager.GM.data.lifeScore <= 0 && gameEnd == false) StartCoroutine(EndGame(false));
     }
-    public string CommaText(long Sccore) { return string.Format("{0:#,###}", Sccore); }
+    public string CommaText(long score) { return string.Format("{0:#,###}", score); }
 
     public void Pause_B()
     {
         /*일시정지?비활성화*/
-        if (IsPause == false)
+        if (isPause == false)
         {
             Time.timeScale = 0;
-            Pause_Image.SetActive(true);
-            start_Icon.SetActive(true); pause_Icon.SetActive(false);
-            IsPause = true; return;
+            pauseImage.SetActive(true);
+            startIcon.SetActive(true); pauseIcon.SetActive(false);
+            isPause = true; return;
         }
 
         /*일시정지?활성화*/
-        if (IsPause == true)
+        if (isPause == true)
         {
             Time.timeScale = 1;
-            Pause_Image.SetActive(false);
-            start_Icon.SetActive(false); pause_Icon.SetActive(true);
-            IsPause = false; return;
+            pauseImage.SetActive(false);
+            startIcon.SetActive(false); pauseIcon.SetActive(true);
+            isPause = false; return;
         }
     }
 
-    public IEnumerator EndGame(bool GameValue)
+    public IEnumerator EndGame(bool gameValue)
     {
-        GameObject END_UI = GameValue == true ? ClearUI : OverUI; // 생성될 결과 UI 지정
+        GameObject endUI = gameValue == true ? clearUI : overUI; // 생성될 결과 UI 지정
 
         // 게임 오버 시 점수는 0으로 고정 / 클리어가 아니기 때문에 별을 줄 수 없음
-        if (!GameValue) GameManager.GM.Data.CoinScore = 0;
+        if (!gameValue) GameManager.GM.data.coinScore = 0;
 
         // 클리어 시 다음 스테이지가 열리도록 함, 만약 이미 클리어한 스테이지를 다시 플레이한 경우 그냥 리턴
-        if (GameManager.GM.Data.stage_clear_Num < GameManager.GM.Data.GM_branch && GameValue)
-        { GameManager.GM.Data.stage_clear_Num = GameManager.GM.Data.GM_branch; }
+        if (GameManager.GM.data.stageClearNum < GameManager.GM.data.branch_GM && gameValue)
+        { GameManager.GM.data.stageClearNum = GameManager.GM.data.branch_GM; }
 
         // 게임 결과에 따른 클리어 점수 판정 함수 호출
-        IO.GetComponent<Object_Instantiate>().UpPoint_Star(); 
+        io.GetComponent<Object_Instantiate>().UpPointStar(); 
 
         // 결과 UI 생성
-        GameObject UI = Instantiate(END_UI, BossEntryPos.position, Quaternion.identity);
-        UI.transform.SetParent(BossEntryPos);
+        GameObject UI = Instantiate(endUI, bossEntryPos.position, Quaternion.identity);
+        UI.transform.SetParent(bossEntryPos);
 
-        Game_End = true;
-        GameManager.GM.Data.Game_WIN = GameValue;
+        gameEnd = true;
+        GameManager.GM.data.gameWin = gameValue;
         GameManager.GM.SavaData();
 
         yield return new WaitForSeconds(3f);
-        GameManager.GM.Fade(Result, true); Player_CS.PL.Clear_Check = true;
+        GameManager.GM.Fade(result, true); Player.PL.clearCheck = true;
         yield return null;
     }
 
@@ -144,14 +144,14 @@ public class Game_Control : MonoBehaviour
     public void ReStage()
     {
         Time.timeScale = 1; //  타임 스케일 초기화, 게임 멈춤 방지
-        switch (GameManager.GM.Data.GM_branch / 10)
+        switch (GameManager.GM.data.branch_GM / 10)
         {
-            case <= 10: Loading_Manager.LoadScene("Stage1_Hub", Stage_Des); break;
-            case <= 20: Loading_Manager.LoadScene("Stage2_Hub", Stage_Des); break;
-            case <= 30: Loading_Manager.LoadScene("Stage3_Hub", Stage_Des); break;
-            case <= 40: Loading_Manager.LoadScene("Stage4_Hub", Stage_Des); break;
-            case <= 50: Loading_Manager.LoadScene("Stage5_Hub", Stage_Des); break;
-            case <= 60: Loading_Manager.LoadScene("Stage6_Hub", Stage_Des); break;
+            case <= 10: Loading_Manager.LoadScene("Stage1_Hub", stageDes); break;
+            case <= 20: Loading_Manager.LoadScene("Stage2_Hub", stageDes); break;
+            case <= 30: Loading_Manager.LoadScene("Stage3_Hub", stageDes); break;
+            case <= 40: Loading_Manager.LoadScene("Stage4_Hub", stageDes); break;
+            case <= 50: Loading_Manager.LoadScene("Stage5_Hub", stageDes); break;
+            case <= 60: Loading_Manager.LoadScene("Stage6_Hub", stageDes); break;
         }
     }
     public void GoRetry()
@@ -160,13 +160,13 @@ public class Game_Control : MonoBehaviour
 
         GameManager.GM.Stage_Move();
     }
-    void STG_Excel()
+    void STGExcel()
     {
-        for (int i = 0; i < RunGame_EX.StartSheet.Count; ++i)
+        for (int i = 0; i < runGame_EX.StartSheet.Count; ++i)
         {
-            if (RunGame_EX.StartSheet[i].STR_branch == branch)
+            if (runGame_EX.StartSheet[i].STR_branch == branch)
             {
-                Stage_Des = RunGame_EX.StartSheet[i].STR_description;
+                stageDes = runGame_EX.StartSheet[i].STR_description;
             }
         }
     }
@@ -174,18 +174,18 @@ public class Game_Control : MonoBehaviour
     {
         for (int i = 0;i < 10;i++)
         {
-            Camera.main.transform.localPosition = Random.insideUnitSphere * magnitude + CamPos;
+            Camera.main.transform.localPosition = Random.insideUnitSphere * magnitude + camPos;
             yield return new WaitForSeconds(Time.deltaTime);
         }
-        Camera.main.transform.localPosition = CamPos; // 메인 카메라 위치 복귀
+        Camera.main.transform.localPosition = camPos; // 메인 카메라 위치 복귀
         yield return null;
     }
 
     public IEnumerator ShowBloodScreen()
     {
-        BloodScreen.color = new Color(1, 0, 0, SetAlphaValue);
-        yield return new WaitForSeconds(SetEfeectTime);
-        BloodScreen.color = Color.clear;
+        bloodScreen.color = new Color(1, 0, 0, setAlphaValue);
+        yield return new WaitForSeconds(setEfeectTime);
+        bloodScreen.color = Color.clear;
         yield return null;
     }
 }

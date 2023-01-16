@@ -6,19 +6,18 @@ using TMPro;
 
 public class Inven_Information : MonoBehaviour
 {
-    public GameObject NoneInformation;
-    public TextMeshProUGUI Item_Name;
-    public TextMeshProUGUI Item_Amount;
-    public TextMeshProUGUI Item_Information;
-    public Image Icon;
+    public TextMeshProUGUI itemName;
+    public TextMeshProUGUI itemAmount;
+    public TextMeshProUGUI itemInformation;
+    public Image icon;
 
     //public static Inven_Information II;
     //void Awake() { II = this; }
     void Start()
     {
-        Item_Name.text = "";
-        Item_Amount.text = "";
-        Item_Information.text = "";
+        itemName.text = "";
+        itemAmount.text = "";
+        itemInformation.text = "";
     }
 
     void Update()

@@ -22,12 +22,12 @@ public class BossPattern_CS : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && Player_CS.PL.On_HIT == false)
+        if (collision.gameObject.CompareTag("players") && Player.PL.onHit == false)
         {
-            GameManager.GM.Data.LifeScore -= PatternDamage;
-            Player_CS.PL.On_HIT = true;
-            Player_CS.PL.OnCoroutine();
-            Invoke("HIT_off", GameManager.GM.Data.Invincibility_Time);
+            GameManager.GM.data.lifeScore -= PatternDamage;
+            Player.PL.onHit = true;
+            Player.PL.OnCoroutine();
+            Invoke("HIT_off", GameManager.GM.data.invincibilityTime);
             if (Type == "Bounce") Destroy(this.gameObject);
         }
 
@@ -46,7 +46,7 @@ public class BossPattern_CS : MonoBehaviour
 
     void HIT_off()
     {
-        Player_CS.PL.On_HIT = false;
+        Player.PL.onHit = false;
         Debug.Log("무적 종료");
     }
 }

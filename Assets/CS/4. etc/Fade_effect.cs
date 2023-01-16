@@ -5,25 +5,25 @@ using UnityEngine.UI;
 
 public class Fade_effect : MonoBehaviour
 {
-    public static Fade_effect Fade_;
+    public static Fade_effect fade;
 
-    public Image Panel;
-    [Header("페이드 시간 관리")]public float F_time = 0.5f;
+    public Image panel;
+    [Header("페이드 시간 관리")]public float fTime = 0.5f;
 
     float time = 0f;
 
 
     private void Start()
     {
-        Panel.gameObject.SetActive(false);
+        panel.gameObject.SetActive(false);
     }
     public void Fade()
     {
         StartCoroutine(FadeEffect());
     }
-    public void Fade(GameObject CurObj, GameObject NextObj)
+    public void Fade(GameObject curObj, GameObject nextObj)
     {
-        StartCoroutine(FadeEffect(CurObj, NextObj));
+        StartCoroutine(FadeEffect(curObj, nextObj));
     }
     public void Fade(AsyncOperation op)
     {
@@ -34,15 +34,15 @@ public class Fade_effect : MonoBehaviour
 
     IEnumerator FadeEffect()
     {
-        Panel.gameObject.SetActive(true);
+        panel.gameObject.SetActive(true);
         time = 0f;
-        Color alpha = Panel.color;
+        Color alpha = panel.color;
 
         while (alpha.a < 1f)
         {
-            time += Time.deltaTime / F_time;
+            time += Time.deltaTime / fTime;
             alpha.a = Mathf.Lerp(0, 1, time);
-            Panel.color = alpha;
+            panel.color = alpha;
 
             yield return null;
         }
@@ -53,57 +53,57 @@ public class Fade_effect : MonoBehaviour
 
         while (alpha.a > 0f)
         {
-            time += Time.deltaTime / F_time;
+            time += Time.deltaTime / fTime;
             alpha.a = Mathf.Lerp(1, 0, time);
-            Panel.color = alpha;
+            panel.color = alpha;
             yield return null;
         }
-        Panel.gameObject.SetActive(false);
+        panel.gameObject.SetActive(false);
         yield return null;
     }
 
-    IEnumerator FadeEffect(GameObject CurObj, GameObject NextObj)
+    IEnumerator FadeEffect(GameObject curObj, GameObject nextObj)
     {
-        Panel.gameObject.SetActive(true);
+        panel.gameObject.SetActive(true);
         time = 0f;
-        Color alpha = Panel.color;
+        Color alpha = panel.color;
 
         while (alpha.a < 1f)
         {
-            time += Time.deltaTime / F_time;
+            time += Time.deltaTime / fTime;
             alpha.a = Mathf.Lerp(0, 1, time);
-            Panel.color = alpha;
+            panel.color = alpha;
 
             yield return null;
         }
 
         time = 0f;
-        CurObj.SetActive(false);    
+        curObj.SetActive(false);    
         yield return null;  //yield return new WaitForSeconds(L_time);
-        NextObj.SetActive(true);
+        nextObj.SetActive(true);
 
 
         while (alpha.a > 0f)
         {
-            time += Time.deltaTime / F_time;
+            time += Time.deltaTime / fTime;
             alpha.a = Mathf.Lerp(1, 0, time);
-            Panel.color = alpha;
+            panel.color = alpha;
             yield return null;
         }
-        Panel.gameObject.SetActive(false);
+        panel.gameObject.SetActive(false);
         yield return null;
     }
     IEnumerator FadeEffect(AsyncOperation op)
     {
-        Panel.gameObject.SetActive(true);
+        panel.gameObject.SetActive(true);
         time = 0f;
-        Color alpha = Panel.color;
+        Color alpha = panel.color;
 
         while (alpha.a < 1f)
         {
-            time += Time.deltaTime / F_time;
+            time += Time.deltaTime / fTime;
             alpha.a = Mathf.Lerp(0, 1, time);
-            Panel.color = alpha;
+            panel.color = alpha;
 
             yield return null;
         }
@@ -114,12 +114,12 @@ public class Fade_effect : MonoBehaviour
 
         while (alpha.a > 0f)
         {
-            time += Time.deltaTime / F_time;
+            time += Time.deltaTime / fTime;
             alpha.a = Mathf.Lerp(1, 0, time);
-            Panel.color = alpha;
+            panel.color = alpha;
             yield return null;
         }
-        Panel.gameObject.SetActive(false);
+        panel.gameObject.SetActive(false);
         yield return null;
     }
 }

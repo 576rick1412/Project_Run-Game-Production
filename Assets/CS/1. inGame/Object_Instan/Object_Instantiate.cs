@@ -6,619 +6,620 @@ using UnityEngine.Pool;
 
 public class Object_Instantiate : MonoBehaviour
 {
-    [SerializeField] float Late_Time;
+    [SerializeField] float late_Time;
 
-    [SerializeField] Chapter_1 Chapter_EX_1;
-    [SerializeField] Chapter_2 Chapter_EX_2;
-    [SerializeField] Chapter_3 Chapter_EX_3;
-    [SerializeField] Chapter_4 Chapter_EX_4;
-    [SerializeField] Chapter_5 Chapter_EX_5;
-    [SerializeField] Chapter_6 Chapter_EX_6;
+    [SerializeField] Chapter_1 chapterEX_1;
+    [SerializeField] Chapter_2 chapterEX_2;
+    [SerializeField] Chapter_3 chapterEX_3;
+    [SerializeField] Chapter_4 chapterEX_4;
+    [SerializeField] Chapter_5 chapterEX_5;
+    [SerializeField] Chapter_6 chapterEX_6;
 
-    [SerializeField] GameObject[] Coin_Object;
-    [SerializeField] GameObject[] Obstacle_Object;
-    [SerializeField] GameObject[] Platform_Object;
+    [SerializeField] GameObject[] coinObjects;
+    [SerializeField] GameObject[] obstacleObjects;
+    [SerializeField] GameObject[] platformObjects;
 
-    [SerializeField] Transform[] Instan_Pos;
+    [SerializeField] Transform[] instanPoss;
 
-    GameObject Instan_Coin;
-    GameObject Instan_Obstacle;
-    GameObject Instan_Platform;
+    GameObject instanCoin;
+    GameObject instanObstacle;
+    GameObject instanPlatform;
 
-    [SerializeField] int Index = 0;
-    int PosNum = 0;
+    [SerializeField] int index = 0;
+    int posNum = 0;
 
-    bool CoinSkip = false; // 코인 스킵 \ true -> 스킵
+    bool coinSkip = false; // 코인 스킵 \ true -> 스킵
     bool isMaker = false; // 코루틴 돌아가고 있는지 확인
 
-    private IObjectPool<Coin_CS> CoinPool_1;
-    private IObjectPool<Coin_CS> CoinPool_2;
-    private IObjectPool<Coin_CS> CoinPool_3;
+    private IObjectPool<Coin> coinPool_1;
+    private IObjectPool<Coin> coinPool_2;
+    private IObjectPool<Coin> coinPool_3;
 
     void Awake()
     {
-        Run_ratio_reset(); // 게임 달린거리 전체 코인 수 구하는 함수
+        RunRatioReset(); // 게임 달린거리 전체 코인 수 구하는 함수
 
-        CoinPool_1 = new ObjectPool<Coin_CS>(Coin_1_Creat, Coin_1_Get, Coin_1_Releas, Coin_1_Destroy, maxSize: 30);
-        CoinPool_2 = new ObjectPool<Coin_CS>(Coin_2_Creat, Coin_2_Get, Coin_2_Releas, Coin_2_Destroy, maxSize: 30);
-        CoinPool_3 = new ObjectPool<Coin_CS>(Coin_3_Creat, Coin_3_Get, Coin_3_Releas, Coin_3_Destroy, maxSize: 30);
+        coinPool_1 = new ObjectPool<Coin>(Coin_1_Creat, Coin_1_Get, Coin_1_Releas, Coin_1_Destroy, maxSize: 30);
+        coinPool_2 = new ObjectPool<Coin>(Coin_2_Creat, Coin_2_Get, Coin_2_Releas, Coin_2_Destroy, maxSize: 30);
+        coinPool_3 = new ObjectPool<Coin>(Coin_3_Creat, Coin_3_Get, Coin_3_Releas, Coin_3_Destroy, maxSize: 30);
     }
 
-    private Coin_CS Coin_1_Creat()
+    private Coin Coin_1_Creat()
     {
-        Coin_CS Coin_1 = Instantiate(Instan_Coin).GetComponent<Coin_CS>();
-        Coin_1.Set_CoinPool_1(CoinPool_1);
-        return Coin_1;
+        Coin coin_1 = Instantiate(instanCoin).GetComponent<Coin>();
+        coin_1.SetCoinPool_1(coinPool_1);
+        return coin_1;
     }                    // (풀링) 코인 1 생성
-    private void Coin_1_Get(Coin_CS Coin_1)
+    private void Coin_1_Get(Coin coin_1)
     {
-        Coin_1.gameObject.SetActive(true);
+        coin_1.gameObject.SetActive(true);
     }           // (풀링) 코인 활성화
-    private void Coin_1_Releas(Coin_CS Coin_1)
+    private void Coin_1_Releas(Coin coin_1)
     {
-        Coin_1.gameObject.SetActive(false);
+        coin_1.gameObject.SetActive(false);
     }        // (풀링) 코인 비활성화
-    private void Coin_1_Destroy(Coin_CS Coin_1)
+    private void Coin_1_Destroy(Coin coin_1)
     {
-        Destroy(Coin_1.gameObject);
+        Destroy(coin_1.gameObject);
     }       // (풀링) 코인 삭제
 
 
-    private Coin_CS Coin_2_Creat()
+    private Coin Coin_2_Creat()
     {
-        Coin_CS Coin = Instantiate(Instan_Coin).GetComponent<Coin_CS>();
-        Coin.Set_CoinPool_2(CoinPool_2);
-        return Coin;
+        Coin coin_2 = Instantiate(instanCoin).GetComponent<Coin>();
+        coin_2.SetCoinPool_2(coinPool_2);
+        return coin_2;
     }                    // (풀링) 코인 2 생성
-    private void Coin_2_Get(Coin_CS Coin_2)
+    private void Coin_2_Get(Coin coin_2)
     {
-        Coin_2.gameObject.SetActive(true);
+        coin_2.gameObject.SetActive(true);
     }           // (풀링) 코인 활성화
-    private void Coin_2_Releas(Coin_CS Coin_2)
+    private void Coin_2_Releas(Coin coin_2)
     {
-        Coin_2.gameObject.SetActive(false);
+        coin_2.gameObject.SetActive(false);
     }        // (풀링) 코인 비활성화
-    private void Coin_2_Destroy(Coin_CS Coin_2)
+    private void Coin_2_Destroy(Coin coin_2)
     {
-        Destroy(Coin_2.gameObject);
+        Destroy(coin_2.gameObject);
     }       // (풀링) 코인 삭제
 
 
-    private Coin_CS Coin_3_Creat()
+    private Coin Coin_3_Creat()
     {
-        Coin_CS Coin_3 = Instantiate(Instan_Coin).GetComponent<Coin_CS>();
-        Coin_3.Set_CoinPool_3(CoinPool_3);
-        return Coin_3;
+        Coin coin_3 = Instantiate(instanCoin).GetComponent<Coin>();
+        coin_3.SetCoinPool_3(coinPool_3);
+        return coin_3;
     }                    // (풀링) 코인 3 생성
-    private void Coin_3_Get(Coin_CS Coin_3)
+    private void Coin_3_Get(Coin coin_3)
     {
-        Coin_3.gameObject.SetActive(true);
+        coin_3.gameObject.SetActive(true);
     }           // (풀링) 코인 활성화
-    private void Coin_3_Releas(Coin_CS Coin_3)
+    private void Coin_3_Releas(Coin coin_3)
     {
-        Coin_3.gameObject.SetActive(false);
+        coin_3.gameObject.SetActive(false);
     }        // (풀링) 코인 비활성화
-    private void Coin_3_Destroy(Coin_CS Coin_3)
+    private void Coin_3_Destroy(Coin coin_3)
     {
-        Destroy(Coin_3.gameObject);
+        Destroy(coin_3.gameObject);
     }       // (풀링) 코인 삭제
-
-    void Run_ratio_reset()
-    {
-        var Chapter_EX = Chapter_EX_1;
-        switch (GameManager.GM.Data.GM_branch)
-        {
-            case <= 10: Chapter_EX = Chapter_EX_1; break;
-            case <= 20: Chapter_EX = Chapter_EX_2; break;
-            case <= 30: Chapter_EX = Chapter_EX_3; break;
-            case <= 40: Chapter_EX = Chapter_EX_4; break;
-            case <= 50: Chapter_EX = Chapter_EX_5; break;
-            case <= 60: Chapter_EX = Chapter_EX_6; break;
-        }
-
-        switch (GameManager.GM.Data.GM_branch % 10)
-        {
-            case 1: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_1[0].Coin_Sum; break;
-            case 2: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_2[0].Coin_Sum; break;
-            case 3: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_3[0].Coin_Sum; break;
-            case 4: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_4[0].Coin_Sum; break;
-            case 5: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_5[0].Coin_Sum; break;
-            case 6: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_6[0].Coin_Sum; break;
-            case 7: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_7[0].Coin_Sum; break;
-            case 8: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_8[0].Coin_Sum; break;
-            case 9: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_9[0].Coin_Sum; break;
-            case 0: GameManager.GM.Data.Run_Ratio = Chapter_EX.Stage_10[0].Coin_Sum;break;
-        }
-    }
-    public void UpPoint_Star()
-    {
-        var Chapter_EX = Chapter_EX_1;
-        switch (GameManager.GM.Data.GM_branch)
-        {
-            case <= 10: Chapter_EX = Chapter_EX_1; break;
-            case <= 20: Chapter_EX = Chapter_EX_2; break;
-            case <= 30: Chapter_EX = Chapter_EX_3; break;
-            case <= 40: Chapter_EX = Chapter_EX_4; break;
-            case <= 50: Chapter_EX = Chapter_EX_5; break;
-            case <= 60: Chapter_EX = Chapter_EX_6; break;
-        }
-
-        switch (GameManager.GM.Data.GM_branch % 10)
-        {
-            case 1: Star(Chapter_EX.Stage_1[1].Coin_Sum, Chapter_EX.Stage_1[2].Coin_Sum, Chapter_EX.Stage_1[3].Coin_Sum); break;
-            case 2: Star(Chapter_EX.Stage_2[1].Coin_Sum, Chapter_EX.Stage_2[2].Coin_Sum, Chapter_EX.Stage_2[3].Coin_Sum); break;
-            case 3: Star(Chapter_EX.Stage_3[1].Coin_Sum, Chapter_EX.Stage_3[2].Coin_Sum, Chapter_EX.Stage_3[3].Coin_Sum); break;
-            case 4: Star(Chapter_EX.Stage_4[1].Coin_Sum, Chapter_EX.Stage_4[2].Coin_Sum, Chapter_EX.Stage_4[3].Coin_Sum); break;
-            case 5: Star(Chapter_EX.Stage_5[1].Coin_Sum, Chapter_EX.Stage_5[2].Coin_Sum, Chapter_EX.Stage_5[3].Coin_Sum); break;
-            case 6: Star(Chapter_EX.Stage_6[1].Coin_Sum, Chapter_EX.Stage_6[2].Coin_Sum, Chapter_EX.Stage_6[3].Coin_Sum); break;
-            case 7: Star(Chapter_EX.Stage_7[1].Coin_Sum, Chapter_EX.Stage_7[2].Coin_Sum, Chapter_EX.Stage_7[3].Coin_Sum); break;
-            case 8: Star(Chapter_EX.Stage_8[1].Coin_Sum, Chapter_EX.Stage_8[2].Coin_Sum, Chapter_EX.Stage_8[3].Coin_Sum); break;
-            case 9: Star(Chapter_EX.Stage_9[1].Coin_Sum, Chapter_EX.Stage_9[2].Coin_Sum, Chapter_EX.Stage_9[3].Coin_Sum); break;
-            case 0: Star(Chapter_EX.Stage_10[1].Coin_Sum, Chapter_EX.Stage_10[2].Coin_Sum, Chapter_EX.Stage_10[3].Coin_Sum); break;
-        }
-    }
-    void Star(int Star_3, int Star_2, int Star_1)
-    {
-        int Score = GameManager.GM.Data.CoinScore;
-        int Clear_Star = GameManager.GM.Data.stage_Clear_Star[GameManager.GM.Data.GM_branch];
-
-        // 게임메니저 별 점수 포인트 수정
-        GameManager.GM.Percent_Star[0] = Star_3;
-        GameManager.GM.Percent_Star[1] = Star_2;
-        GameManager.GM.Percent_Star[2] = Star_1;
-
-        int Now_Star;
-
-        if (Score >= Star_3) { if (Clear_Star < 3) Clear_Star = 3; Debug.Log("3성 클리어"); Now_Star = 3; goto A; }
-        if (Score >= Star_2) { if (Clear_Star < 2) Clear_Star = 2; Debug.Log("2성 클리어"); Now_Star = 2; goto A; }
-        if (Score >= Star_1) { if (Clear_Star < 1) Clear_Star = 1; Debug.Log("1성 클리어"); Now_Star = 1; goto A; }
-        else { Now_Star = 0; Debug.Log("0성 클리어"); }
-
-        A:
-        GameManager.GM.Data.stage_Clear_Star[GameManager.GM.Data.GM_branch] = Clear_Star;
-        GameManager.GM.Now_Clear_Star = Now_Star;
-    }
 
     void Update()
     {
-        var Chapter_EX = Chapter_EX_1;
-        switch (GameManager.GM.Data.GM_branch)
+        var Chapter_EX = chapterEX_1;
+        switch (GameManager.GM.data.branch_GM)
         {
-            case <=10: Chapter_EX = Chapter_EX_1; break;
-            case <=20: Chapter_EX = Chapter_EX_2; break;
-            case <=30: Chapter_EX = Chapter_EX_3; break;
-            case <=40: Chapter_EX = Chapter_EX_4; break;
-            case <=50: Chapter_EX = Chapter_EX_5; break;
-            case <=60: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: Chapter_EX = chapterEX_1; break;
+            case <= 20: Chapter_EX = chapterEX_2; break;
+            case <= 30: Chapter_EX = chapterEX_3; break;
+            case <= 40: Chapter_EX = chapterEX_4; break;
+            case <= 50: Chapter_EX = chapterEX_5; break;
+            case <= 60: Chapter_EX = chapterEX_6; break;
         }
 
 
-        switch (GameManager.GM.Data.GM_branch % 10)
+        switch (GameManager.GM.data.branch_GM % 10)
         {
-            case 1: GameEndControl(Chapter_EX.Stage_1[Index].END); break;
-            case 2: GameEndControl(Chapter_EX.Stage_2[Index].END); break;
-            case 3: GameEndControl(Chapter_EX.Stage_3[Index].END); break;
-            case 4: GameEndControl(Chapter_EX.Stage_4[Index].END); break;
-            case 5: GameEndControl(Chapter_EX.Stage_5[Index].END); break;
-            case 6: GameEndControl(Chapter_EX.Stage_6[Index].END); break;
-            case 7: GameEndControl(Chapter_EX.Stage_7[Index].END); break;
-            case 8: GameEndControl(Chapter_EX.Stage_8[Index].END); break;
-            case 9: GameEndControl(Chapter_EX.Stage_9[Index].END); break;
-            case 0: GameEndControl(Chapter_EX.Stage_10[Index].END);break;
+            case 1: GameEndControl(Chapter_EX.stage_1[index].END); break;
+            case 2: GameEndControl(Chapter_EX.stage_2[index].END); break;
+            case 3: GameEndControl(Chapter_EX.stage_3[index].END); break;
+            case 4: GameEndControl(Chapter_EX.stage_4[index].END); break;
+            case 5: GameEndControl(Chapter_EX.stage_5[index].END); break;
+            case 6: GameEndControl(Chapter_EX.stage_6[index].END); break;
+            case 7: GameEndControl(Chapter_EX.stage_7[index].END); break;
+            case 8: GameEndControl(Chapter_EX.stage_8[index].END); break;
+            case 9: GameEndControl(Chapter_EX.stage_9[index].END); break;
+            case 0: GameEndControl(Chapter_EX.stage_10[index].END); break;
         }
     }
+    void RunRatioReset()
+    {
+        var Chapter_EX = chapterEX_1;
+        switch (GameManager.GM.data.branch_GM)
+        {
+            case <= 10: Chapter_EX = chapterEX_1; break;
+            case <= 20: Chapter_EX = chapterEX_2; break;
+            case <= 30: Chapter_EX = chapterEX_3; break;
+            case <= 40: Chapter_EX = chapterEX_4; break;
+            case <= 50: Chapter_EX = chapterEX_5; break;
+            case <= 60: Chapter_EX = chapterEX_6; break;
+        }
+
+        switch (GameManager.GM.data.branch_GM % 10)
+        {
+            case 1: GameManager.GM.data.runRatio = Chapter_EX.stage_1[0].Coin_Sum; break;
+            case 2: GameManager.GM.data.runRatio = Chapter_EX.stage_2[0].Coin_Sum; break;
+            case 3: GameManager.GM.data.runRatio = Chapter_EX.stage_3[0].Coin_Sum; break;
+            case 4: GameManager.GM.data.runRatio = Chapter_EX.stage_4[0].Coin_Sum; break;
+            case 5: GameManager.GM.data.runRatio = Chapter_EX.stage_5[0].Coin_Sum; break;
+            case 6: GameManager.GM.data.runRatio = Chapter_EX.stage_6[0].Coin_Sum; break;
+            case 7: GameManager.GM.data.runRatio = Chapter_EX.stage_7[0].Coin_Sum; break;
+            case 8: GameManager.GM.data.runRatio = Chapter_EX.stage_8[0].Coin_Sum; break;
+            case 9: GameManager.GM.data.runRatio = Chapter_EX.stage_9[0].Coin_Sum; break;
+            case 0: GameManager.GM.data.runRatio = Chapter_EX.stage_10[0].Coin_Sum;break;
+        }
+    }
+    public void UpPointStar()
+    {
+        var Chapter_EX = chapterEX_1;
+        switch (GameManager.GM.data.branch_GM)
+        {
+            case <= 10: Chapter_EX = chapterEX_1; break;
+            case <= 20: Chapter_EX = chapterEX_2; break;
+            case <= 30: Chapter_EX = chapterEX_3; break;
+            case <= 40: Chapter_EX = chapterEX_4; break;
+            case <= 50: Chapter_EX = chapterEX_5; break;
+            case <= 60: Chapter_EX = chapterEX_6; break;
+        }
+
+        switch (GameManager.GM.data.branch_GM % 10)
+        {
+            case 1: Star(Chapter_EX.stage_1[1].Coin_Sum, Chapter_EX.stage_1[2].Coin_Sum, Chapter_EX.stage_1[3].Coin_Sum); break;
+            case 2: Star(Chapter_EX.stage_2[1].Coin_Sum, Chapter_EX.stage_2[2].Coin_Sum, Chapter_EX.stage_2[3].Coin_Sum); break;
+            case 3: Star(Chapter_EX.stage_3[1].Coin_Sum, Chapter_EX.stage_3[2].Coin_Sum, Chapter_EX.stage_3[3].Coin_Sum); break;
+            case 4: Star(Chapter_EX.stage_4[1].Coin_Sum, Chapter_EX.stage_4[2].Coin_Sum, Chapter_EX.stage_4[3].Coin_Sum); break;
+            case 5: Star(Chapter_EX.stage_5[1].Coin_Sum, Chapter_EX.stage_5[2].Coin_Sum, Chapter_EX.stage_5[3].Coin_Sum); break;
+            case 6: Star(Chapter_EX.stage_6[1].Coin_Sum, Chapter_EX.stage_6[2].Coin_Sum, Chapter_EX.stage_6[3].Coin_Sum); break;
+            case 7: Star(Chapter_EX.stage_7[1].Coin_Sum, Chapter_EX.stage_7[2].Coin_Sum, Chapter_EX.stage_7[3].Coin_Sum); break;
+            case 8: Star(Chapter_EX.stage_8[1].Coin_Sum, Chapter_EX.stage_8[2].Coin_Sum, Chapter_EX.stage_8[3].Coin_Sum); break;
+            case 9: Star(Chapter_EX.stage_9[1].Coin_Sum, Chapter_EX.stage_9[2].Coin_Sum, Chapter_EX.stage_9[3].Coin_Sum); break;
+            case 0: Star(Chapter_EX.stage_10[1].Coin_Sum, Chapter_EX.stage_10[2].Coin_Sum, Chapter_EX.stage_10[3].Coin_Sum); break;
+        }
+    }
+    void Star(int star_3, int star_2, int star_1)
+    {
+        int score = GameManager.GM.data.coinScore;
+        int clearStar = GameManager.GM.data.stageClearStars[GameManager.GM.data.branch_GM];
+
+        // 게임메니저 별 점수 포인트 수정
+        GameManager.GM.percentStars[0] = star_3;
+        GameManager.GM.percentStars[1] = star_2;
+        GameManager.GM.percentStars[2] = star_1;
+
+        int nowStar;
+
+        if (score >= star_3) { if (clearStar < 3) clearStar = 3; Debug.Log("3성 클리어"); nowStar = 3; goto A; }
+        if (score >= star_2) { if (clearStar < 2) clearStar = 2; Debug.Log("2성 클리어"); nowStar = 2; goto A; }
+        if (score >= star_1) { if (clearStar < 1) clearStar = 1; Debug.Log("1성 클리어"); nowStar = 1; goto A; }
+        else { nowStar = 0; Debug.Log("0성 클리어"); }
+
+        A:
+        GameManager.GM.data.stageClearStars[GameManager.GM.data.branch_GM] = clearStar;
+        GameManager.GM.nowClearStar = nowStar;
+    }
+
+
     void GameEndControl(bool end)
     {
         if (!end && !isMaker)
         {
-            int branch = GameManager.GM.Data.GM_branch;
-            Debug.Log(Index);
+            int branch = GameManager.GM.data.branch_GM;
+            Debug.Log(index);
 
             switch (branch)
             {
-                case 1: StartCoroutine("Coin_Maker_1"); break;
-                case 2: StartCoroutine("Coin_Maker_2"); break;
-                case 3: StartCoroutine("Coin_Maker_3"); break;
-                case 4: StartCoroutine("Coin_Maker_4"); break;
-                case 5: StartCoroutine("Coin_Maker_5"); break;
-                case 6: StartCoroutine("Coin_Maker_6"); break;
-                case 7: StartCoroutine("Coin_Maker_7"); break;
-                case 8: StartCoroutine("Coin_Maker_8"); break;
-                case 9: StartCoroutine("Coin_Maker_9"); break;
-                case 0: StartCoroutine("Coin_Maker_10");break;
+                case 1: StartCoroutine("CoinMaker_1"); break;
+                case 2: StartCoroutine("CoinMaker_2"); break;
+                case 3: StartCoroutine("CoinMaker_3"); break;
+                case 4: StartCoroutine("CoinMaker_4"); break;
+                case 5: StartCoroutine("CoinMaker_5"); break;
+                case 6: StartCoroutine("CoinMaker_6"); break;
+                case 7: StartCoroutine("CoinMaker_7"); break;
+                case 8: StartCoroutine("CoinMaker_8"); break;
+                case 9: StartCoroutine("CoinMaker_9"); break;
+                case 0: StartCoroutine("CoinMaker_10");break;
             }
         }
     }
 
-    void CoinType(string Type)
+    void CoinType(string type)
     {
-        switch (Type) // 코인 지정
+        switch (type) // 코인 지정
         {
-            case "None": CoinSkip = true; break;                // 코인 생성 없음
-            case "coin_1": Instan_Coin = Coin_Object[0]; break; // 코인 1
-            case "coin_2": Instan_Coin = Coin_Object[1]; break; // 코인 2
-            case "coin_3": Instan_Coin = Coin_Object[2]; break; // 코인 3
-            case "LastPoint": Instan_Coin = Coin_Object[3]; break;     // 마지막 지점
-            case "type_1": Instan_Coin = Coin_Object[4]; break;    // 1번 기믹
-            case "type_2": Instan_Coin = Coin_Object[5]; break;    // 2번 기믹
-            case "type_3": Instan_Coin = Coin_Object[6]; break;    // 3번 기믹
+            case "None": coinSkip = true; break;                // 코인 생성 없음
+            case "coin_1": instanCoin = coinObjects[0]; break; // 코인 1
+            case "coin_2": instanCoin = coinObjects[1]; break; // 코인 2
+            case "coin_3": instanCoin = coinObjects[2]; break; // 코인 3
+            case "LastPoint": instanCoin = coinObjects[3]; break;     // 마지막 지점
+            case "type_1": instanCoin = coinObjects[4]; break;    // 1번 기믹
+            case "type_2": instanCoin = coinObjects[5]; break;    // 2번 기믹
+            case "type_3": instanCoin = coinObjects[6]; break;    // 3번 기믹
         }
     }
 
-    void ObstacleType(string Type)
+    void ObstacleType(string type)
     {
-        switch (Type) // 장애물 지정
+        switch (type) // 장애물 지정
         {
-            case "Obstacle_1": Instan_Obstacle = Obstacle_Object[0]; break; // 점프 장애물
-            case "Obstacle_2": Instan_Obstacle = Obstacle_Object[1]; break; // 더블점프 장애물
-            case "Obstacle_3": Instan_Obstacle = Obstacle_Object[2]; break; // 슬라이드 장애물
+            case "Obstacle_1": instanObstacle = obstacleObjects[0]; break; // 점프 장애물
+            case "Obstacle_2": instanObstacle = obstacleObjects[1]; break; // 더블점프 장애물
+            case "Obstacle_3": instanObstacle = obstacleObjects[2]; break; // 슬라이드 장애물
         }
     }
-    void PlatformType(string Type)
+    void PlatformType(string type)
     {
-        switch (Type) // 발판 지정
+        switch (type) // 발판 지정
         {
-            case "Platform_1": Instan_Platform = Platform_Object[0]; break; // 발판
-            case "Platform_2": Instan_Platform = Platform_Object[1]; break; // 발판
-            case "Platform_3": Instan_Platform = Platform_Object[2]; break; // 발판
-            case "Platform_4": Instan_Platform = Platform_Object[3]; break; // 발판
+            case "Platform_1": instanPlatform = platformObjects[0]; break; // 발판
+            case "Platform_2": instanPlatform = platformObjects[1]; break; // 발판
+            case "Platform_3": instanPlatform = platformObjects[2]; break; // 발판
+            case "Platform_4": instanPlatform = platformObjects[3]; break; // 발판
         }
     }
-    void CoinAmount(string Type, string Obstacle, string Platform, int PlatformPos)
+    void CoinAmount(string type, string obstacle, string platform, int platformPos)
     {
-        if (CoinSkip == false)
+        if (coinSkip == false)
         {
-            switch (Type)
+            switch (type)
             {
                 case "None": break;
                 // ====================================================================
                 case "coin_1":
-                    var Coin_1 = CoinPool_1.Get();
-                    Coin_1.transform.position = Instan_Pos[PosNum].position; break;
+                    var Coin_1 = coinPool_1.Get();
+                    Coin_1.transform.position = instanPoss[posNum].position; break;
                 // ====================================================================
                 case "coin_2":
-                    var Coin_2 = CoinPool_2.Get();
-                    Coin_2.transform.position = Instan_Pos[PosNum].position; break;
+                    var Coin_2 = coinPool_2.Get();
+                    Coin_2.transform.position = instanPoss[posNum].position; break;
                 // ====================================================================
                 case "coin_3":
-                    var Coin_3 = CoinPool_3.Get();
-                    Coin_3.transform.position = Instan_Pos[PosNum].position; break;
+                    var Coin_3 = coinPool_3.Get();
+                    Coin_3.transform.position = instanPoss[posNum].position; break;
 
-                default: Instantiate(Instan_Coin, Instan_Pos[PosNum].position, Quaternion.identity); break;
+                default: Instantiate(instanCoin, instanPoss[posNum].position, Quaternion.identity); break;
             }  // 코인 생성
         }
-        if (Obstacle != "None") Instantiate(Instan_Obstacle, Instan_Pos[0].position, Quaternion.identity);
-        if (Platform != "None") Instantiate(Instan_Platform, Instan_Pos[PlatformPos].position, Quaternion.identity);
+        if (obstacle != "None") Instantiate(instanObstacle, instanPoss[0].position, Quaternion.identity);
+        if (platform != "None") Instantiate(instanPlatform, instanPoss[platformPos].position, Quaternion.identity);
 
-        GameManager.GM.Data.Cur_Run_Ratio += 1;
+        GameManager.GM.data.curRunRatio += 1;
     }
 
-    IEnumerator Coin_Maker_1()
+    IEnumerator CoinMaker_1()
     {
-        var Chapter_EX = Chapter_EX_1;
-        switch (GameManager.GM.Data.GM_branch)
+        var chapter_EX = chapterEX_1;
+        switch (GameManager.GM.data.branch_GM)
         {
-            case <= 10: Chapter_EX = Chapter_EX_1; break;
-            case <= 20: Chapter_EX = Chapter_EX_2; break;
-            case <= 30: Chapter_EX = Chapter_EX_3; break;
-            case <= 40: Chapter_EX = Chapter_EX_4; break;
-            case <= 50: Chapter_EX = Chapter_EX_5; break;
-            case <= 60: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: chapter_EX = chapterEX_1; break;
+            case <= 20: chapter_EX = chapterEX_2; break;
+            case <= 30: chapter_EX = chapterEX_3; break;
+            case <= 40: chapter_EX = chapterEX_4; break;
+            case <= 50: chapter_EX = chapterEX_5; break;
+            case <= 60: chapter_EX = chapterEX_6; break;
         }
 
         isMaker = true;
 
-        CoinType(Chapter_EX.Stage_1[Index].CoinType);
-        ObstacleType(Chapter_EX.Stage_1[Index].Obstacle);
-        PlatformType(Chapter_EX.Stage_1[Index].Platform);
-        if (GameManager.GM.Player_alive == false)
+        CoinType(chapter_EX.stage_1[index].coinType);
+        ObstacleType(chapter_EX.stage_1[index].obstacle);
+        PlatformType(chapter_EX.stage_1[index].Platform);
+        if (GameManager.GM.playerAlive == false)
         {
-            PosNum = Chapter_EX.Stage_1[Index].CoinPos; // 코인 높이값 지정
-            for (int i = 0; i < Chapter_EX.Stage_1[Index].CoinAmount; i++) // 코인 개수만큼 반복
+            posNum = chapter_EX.stage_1[index].coinPos; // 코인 높이값 지정
+            for (int i = 0; i < chapter_EX.stage_1[index].coinAmount; i++) // 코인 개수만큼 반복
             {
-                CoinAmount(Chapter_EX.Stage_1[Index].CoinType, Chapter_EX.Stage_1[Index].Obstacle, Chapter_EX.Stage_1[Index].Platform, Chapter_EX.Stage_1[Index].PlatformPos);
-                yield return new WaitForSeconds(Late_Time);
+                CoinAmount(chapter_EX.stage_1[index].coinType, chapter_EX.stage_1[index].obstacle, chapter_EX.stage_1[index].Platform, chapter_EX.stage_1[index].PlatformPos);
+                yield return new WaitForSeconds(late_Time);
             }
         }
-        Index++;
-        CoinSkip = false;
+        index++;
+        coinSkip = false;
         isMaker = false;
         yield return null;
 
     }
-    IEnumerator Coin_Maker_2()
+    IEnumerator CoinMaker_2()
     {
-        var Chapter_EX = Chapter_EX_1;
-        switch (GameManager.GM.Data.GM_branch)
+        var chapter_EX = chapterEX_1;
+        switch (GameManager.GM.data.branch_GM)
         {
-            case <= 10: Chapter_EX = Chapter_EX_1; break;
-            case <= 20: Chapter_EX = Chapter_EX_2; break;
-            case <= 30: Chapter_EX = Chapter_EX_3; break;
-            case <= 40: Chapter_EX = Chapter_EX_4; break;
-            case <= 50: Chapter_EX = Chapter_EX_5; break;
-            case <= 60: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: chapter_EX = chapterEX_1; break;
+            case <= 20: chapter_EX = chapterEX_2; break;
+            case <= 30: chapter_EX = chapterEX_3; break;
+            case <= 40: chapter_EX = chapterEX_4; break;
+            case <= 50: chapter_EX = chapterEX_5; break;
+            case <= 60: chapter_EX = chapterEX_6; break;
         }
 
-        if (GameManager.GM.Player_alive == false)
+        if (GameManager.GM.playerAlive == false)
         {
             isMaker = true;
 
-            CoinType(Chapter_EX.Stage_2[Index].CoinType);
-            ObstacleType(Chapter_EX.Stage_2[Index].Obstacle);
-            PlatformType(Chapter_EX.Stage_2[Index].Platform);
+            CoinType(chapter_EX.stage_2[index].CoinType);
+            ObstacleType(chapter_EX.stage_2[index].Obstacle);
+            PlatformType(chapter_EX.stage_2[index].Platform);
 
-            PosNum = Chapter_EX.Stage_2[Index].CoinPos; // 코인 높이값 지정
-            for (int i = 0; i < Chapter_EX.Stage_2[Index].CoinAmount; i++) // 코인 개수만큼 반복
+            posNum = chapter_EX.stage_2[index].CoinPos; // 코인 높이값 지정
+            for (int i = 0; i < chapter_EX.stage_2[index].CoinAmount; i++) // 코인 개수만큼 반복
             {
-                CoinAmount(Chapter_EX.Stage_2[Index].CoinType, Chapter_EX.Stage_2[Index].Obstacle, Chapter_EX.Stage_2[Index].Platform, Chapter_EX.Stage_2[Index].PlatformPos);
-                yield return new WaitForSeconds(Late_Time);
+                CoinAmount(chapter_EX.stage_2[index].CoinType, chapter_EX.stage_2[index].Obstacle, chapter_EX.stage_2[index].Platform, chapter_EX.stage_2[index].PlatformPos);
+                yield return new WaitForSeconds(late_Time);
             }
-            Index++;
-            CoinSkip = false;
+            index++;
+            coinSkip = false;
             isMaker = false;
             yield return null;
         }
     }
-    IEnumerator Coin_Maker_3()
+    IEnumerator CoinMaker_3()
     {
-        var Chapter_EX = Chapter_EX_1;
-        switch (GameManager.GM.Data.GM_branch)
+        var chapter_EX = chapterEX_1;
+        switch (GameManager.GM.data.branch_GM)
         {
-            case <= 10: Chapter_EX = Chapter_EX_1; break;
-            case <= 20: Chapter_EX = Chapter_EX_2; break;
-            case <= 30: Chapter_EX = Chapter_EX_3; break;
-            case <= 40: Chapter_EX = Chapter_EX_4; break;
-            case <= 50: Chapter_EX = Chapter_EX_5; break;
-            case <= 60: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: chapter_EX = chapterEX_1; break;
+            case <= 20: chapter_EX = chapterEX_2; break;
+            case <= 30: chapter_EX = chapterEX_3; break;
+            case <= 40: chapter_EX = chapterEX_4; break;
+            case <= 50: chapter_EX = chapterEX_5; break;
+            case <= 60: chapter_EX = chapterEX_6; break;
         }
 
-        if (GameManager.GM.Player_alive == false)
+        if (GameManager.GM.playerAlive == false)
         {
             isMaker = true;
 
-            CoinType(Chapter_EX.Stage_3[Index].CoinType);
-            ObstacleType(Chapter_EX.Stage_3[Index].Obstacle);
-            PlatformType(Chapter_EX.Stage_3[Index].Platform);
+            CoinType(chapter_EX.stage_3[index].CoinType);
+            ObstacleType(chapter_EX.stage_3[index].Obstacle);
+            PlatformType(chapter_EX.stage_3[index].Platform);
 
-            PosNum = Chapter_EX.Stage_3[Index].CoinPos; // 코인 높이값 지정
-            for (int i = 0; i < Chapter_EX.Stage_3[Index].CoinAmount; i++) // 코인 개수만큼 반복
+            posNum = chapter_EX.stage_3[index].CoinPos; // 코인 높이값 지정
+            for (int i = 0; i < chapter_EX.stage_3[index].CoinAmount; i++) // 코인 개수만큼 반복
             {
-                CoinAmount(Chapter_EX.Stage_3[Index].CoinType, Chapter_EX.Stage_3[Index].Obstacle, Chapter_EX.Stage_3[Index].Platform, Chapter_EX.Stage_3[Index].PlatformPos);
-                yield return new WaitForSeconds(Late_Time);
+                CoinAmount(chapter_EX.stage_3[index].CoinType, chapter_EX.stage_3[index].Obstacle, chapter_EX.stage_3[index].Platform, chapter_EX.stage_3[index].PlatformPos);
+                yield return new WaitForSeconds(late_Time);
             }
-            Index++;
-            CoinSkip = false;
+            index++;
+            coinSkip = false;
             isMaker = false;
             yield return null;
         }
     }
-    IEnumerator Coin_Maker_4()
+    IEnumerator CoinMaker_4()
     {
-        var Chapter_EX = Chapter_EX_1;
-        switch (GameManager.GM.Data.GM_branch)
+        var chapter_EX = chapterEX_1;
+        switch (GameManager.GM.data.branch_GM)
         {
-            case <= 10: Chapter_EX = Chapter_EX_1; break;
-            case <= 20: Chapter_EX = Chapter_EX_2; break;
-            case <= 30: Chapter_EX = Chapter_EX_3; break;
-            case <= 40: Chapter_EX = Chapter_EX_4; break;
-            case <= 50: Chapter_EX = Chapter_EX_5; break;
-            case <= 60: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: chapter_EX = chapterEX_1; break;
+            case <= 20: chapter_EX = chapterEX_2; break;
+            case <= 30: chapter_EX = chapterEX_3; break;
+            case <= 40: chapter_EX = chapterEX_4; break;
+            case <= 50: chapter_EX = chapterEX_5; break;
+            case <= 60: chapter_EX = chapterEX_6; break;
         }
 
-        if (GameManager.GM.Player_alive == false)
+        if (GameManager.GM.playerAlive == false)
         {
             isMaker = true;
 
-            CoinType(Chapter_EX.Stage_4[Index].CoinType);
-            ObstacleType(Chapter_EX.Stage_4[Index].Obstacle);
-            PlatformType(Chapter_EX.Stage_4[Index].Platform);
+            CoinType(chapter_EX.stage_4[index].CoinType);
+            ObstacleType(chapter_EX.stage_4[index].Obstacle);
+            PlatformType(chapter_EX.stage_4[index].Platform);
 
-            PosNum = Chapter_EX.Stage_4[Index].CoinPos; // 코인 높이값 지정
-            for (int i = 0; i < Chapter_EX.Stage_4[Index].CoinAmount; i++) // 코인 개수만큼 반복
+            posNum = chapter_EX.stage_4[index].CoinPos; // 코인 높이값 지정
+            for (int i = 0; i < chapter_EX.stage_4[index].CoinAmount; i++) // 코인 개수만큼 반복
             {
-                CoinAmount(Chapter_EX.Stage_4[Index].CoinType, Chapter_EX.Stage_4[Index].Obstacle, Chapter_EX.Stage_4[Index].Platform, Chapter_EX.Stage_4[Index].PlatformPos);
-                yield return new WaitForSeconds(Late_Time);
+                CoinAmount(chapter_EX.stage_4[index].CoinType, chapter_EX.stage_4[index].Obstacle, chapter_EX.stage_4[index].Platform, chapter_EX.stage_4[index].PlatformPos);
+                yield return new WaitForSeconds(late_Time);
             }
-            Index++;
-            CoinSkip = false;
+            index++;
+            coinSkip = false;
             isMaker = false;
             yield return null;
         }
     }
-    IEnumerator Coin_Maker_5()
+    IEnumerator CoinMaker_5()
     {
-        var Chapter_EX = Chapter_EX_1;
-        switch (GameManager.GM.Data.GM_branch)
+        var chapter_EX = chapterEX_1;
+        switch (GameManager.GM.data.branch_GM)
         {
-            case <= 10: Chapter_EX = Chapter_EX_1; break;
-            case <= 20: Chapter_EX = Chapter_EX_2; break;
-            case <= 30: Chapter_EX = Chapter_EX_3; break;
-            case <= 40: Chapter_EX = Chapter_EX_4; break;
-            case <= 50: Chapter_EX = Chapter_EX_5; break;
-            case <= 60: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: chapter_EX = chapterEX_1; break;
+            case <= 20: chapter_EX = chapterEX_2; break;
+            case <= 30: chapter_EX = chapterEX_3; break;
+            case <= 40: chapter_EX = chapterEX_4; break;
+            case <= 50: chapter_EX = chapterEX_5; break;
+            case <= 60: chapter_EX = chapterEX_6; break;
         }
 
-        if (GameManager.GM.Player_alive == false)
+        if (GameManager.GM.playerAlive == false)
         {
             isMaker = true;
 
-            CoinType(Chapter_EX.Stage_5[Index].CoinType);
-            ObstacleType(Chapter_EX.Stage_5[Index].Obstacle);
-            PlatformType(Chapter_EX.Stage_5[Index].Platform);
+            CoinType(chapter_EX.stage_5[index].CoinType);
+            ObstacleType(chapter_EX.stage_5[index].Obstacle);
+            PlatformType(chapter_EX.stage_5[index].Platform);
 
-            PosNum = Chapter_EX.Stage_5[Index].CoinPos; // 코인 높이값 지정
-            for (int i = 0; i < Chapter_EX.Stage_5[Index].CoinAmount; i++) // 코인 개수만큼 반복
+            posNum = chapter_EX.stage_5[index].CoinPos; // 코인 높이값 지정
+            for (int i = 0; i < chapter_EX.stage_5[index].CoinAmount; i++) // 코인 개수만큼 반복
             {
-                CoinAmount(Chapter_EX.Stage_5[Index].CoinType, Chapter_EX.Stage_5[Index].Obstacle, Chapter_EX.Stage_5[Index].Platform, Chapter_EX.Stage_5[Index].PlatformPos);
-                yield return new WaitForSeconds(Late_Time);
+                CoinAmount(chapter_EX.stage_5[index].CoinType, chapter_EX.stage_5[index].Obstacle, chapter_EX.stage_5[index].Platform, chapter_EX.stage_5[index].PlatformPos);
+                yield return new WaitForSeconds(late_Time);
             }
-            Index++;
-            CoinSkip = false;
+            index++;
+            coinSkip = false;
             isMaker = false;
             yield return null;
         }
     }
-    IEnumerator Coin_Maker_6()
+    IEnumerator CoinMaker_6()
     {
-        var Chapter_EX = Chapter_EX_1;
-        switch (GameManager.GM.Data.GM_branch)
+        var chapter_EX = chapterEX_1;
+        switch (GameManager.GM.data.branch_GM)
         {
-            case <= 10: Chapter_EX = Chapter_EX_1; break;
-            case <= 20: Chapter_EX = Chapter_EX_2; break;
-            case <= 30: Chapter_EX = Chapter_EX_3; break;
-            case <= 40: Chapter_EX = Chapter_EX_4; break;
-            case <= 50: Chapter_EX = Chapter_EX_5; break;
-            case <= 60: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: chapter_EX = chapterEX_1; break;
+            case <= 20: chapter_EX = chapterEX_2; break;
+            case <= 30: chapter_EX = chapterEX_3; break;
+            case <= 40: chapter_EX = chapterEX_4; break;
+            case <= 50: chapter_EX = chapterEX_5; break;
+            case <= 60: chapter_EX = chapterEX_6; break;
         }
 
-        if (GameManager.GM.Player_alive == false)
+        if (GameManager.GM.playerAlive == false)
         {
             isMaker = true;
 
-            CoinType(Chapter_EX.Stage_6[Index].CoinType);
-            ObstacleType(Chapter_EX.Stage_6[Index].Obstacle);
-            PlatformType(Chapter_EX.Stage_6[Index].Platform);
+            CoinType(chapter_EX.stage_6[index].CoinType);
+            ObstacleType(chapter_EX.stage_6[index].Obstacle);
+            PlatformType(chapter_EX.stage_6[index].Platform);
 
-            PosNum = Chapter_EX.Stage_6[Index].CoinPos; // 코인 높이값 지정
-            for (int i = 0; i < Chapter_EX.Stage_6[Index].CoinAmount; i++) // 코인 개수만큼 반복
+            posNum = chapter_EX.stage_6[index].CoinPos; // 코인 높이값 지정
+            for (int i = 0; i < chapter_EX.stage_6[index].CoinAmount; i++) // 코인 개수만큼 반복
             {
-                CoinAmount(Chapter_EX.Stage_6[Index].CoinType, Chapter_EX.Stage_6[Index].Obstacle, Chapter_EX.Stage_6[Index].Platform, Chapter_EX.Stage_6[Index].PlatformPos);
-                yield return new WaitForSeconds(Late_Time);
+                CoinAmount(chapter_EX.stage_6[index].CoinType, chapter_EX.stage_6[index].Obstacle, chapter_EX.stage_6[index].Platform, chapter_EX.stage_6[index].PlatformPos);
+                yield return new WaitForSeconds(late_Time);
             }
-            Index++;
-            CoinSkip = false;
+            index++;
+            coinSkip = false;
             isMaker = false;
             yield return null;
         }
     }
-    IEnumerator Coin_Maker_7()
+    IEnumerator CoinMaker_7()
     {
-        var Chapter_EX = Chapter_EX_1;
-        switch (GameManager.GM.Data.GM_branch)
+        var chapter_EX = chapterEX_1;
+        switch (GameManager.GM.data.branch_GM)
         {
-            case <= 10: Chapter_EX = Chapter_EX_1; break;
-            case <= 20: Chapter_EX = Chapter_EX_2; break;
-            case <= 30: Chapter_EX = Chapter_EX_3; break;
-            case <= 40: Chapter_EX = Chapter_EX_4; break;
-            case <= 50: Chapter_EX = Chapter_EX_5; break;
-            case <= 60: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: chapter_EX = chapterEX_1; break;
+            case <= 20: chapter_EX = chapterEX_2; break;
+            case <= 30: chapter_EX = chapterEX_3; break;
+            case <= 40: chapter_EX = chapterEX_4; break;
+            case <= 50: chapter_EX = chapterEX_5; break;
+            case <= 60: chapter_EX = chapterEX_6; break;
         }
 
-        if (GameManager.GM.Player_alive == false)
+        if (GameManager.GM.playerAlive == false)
         {
             isMaker = true;
 
-            CoinType(Chapter_EX.Stage_7[Index].CoinType);
-            ObstacleType(Chapter_EX.Stage_7[Index].Obstacle);
-            PlatformType(Chapter_EX.Stage_7[Index].Platform);
+            CoinType(chapter_EX.stage_7[index].CoinType);
+            ObstacleType(chapter_EX.stage_7[index].Obstacle);
+            PlatformType(chapter_EX.stage_7[index].Platform);
 
-            PosNum = Chapter_EX.Stage_7[Index].CoinPos; // 코인 높이값 지정
-            for (int i = 0; i < Chapter_EX.Stage_7[Index].CoinAmount; i++) // 코인 개수만큼 반복
+            posNum = chapter_EX.stage_7[index].CoinPos; // 코인 높이값 지정
+            for (int i = 0; i < chapter_EX.stage_7[index].CoinAmount; i++) // 코인 개수만큼 반복
             {
-                CoinAmount(Chapter_EX.Stage_7[Index].CoinType, Chapter_EX.Stage_7[Index].Obstacle, Chapter_EX.Stage_7[Index].Platform, Chapter_EX.Stage_7[Index].PlatformPos);
-                yield return new WaitForSeconds(Late_Time);
+                CoinAmount(chapter_EX.stage_7[index].CoinType, chapter_EX.stage_7[index].Obstacle, chapter_EX.stage_7[index].Platform, chapter_EX.stage_7[index].PlatformPos);
+                yield return new WaitForSeconds(late_Time);
             }
-            Index++;
-            CoinSkip = false;
+            index++;
+            coinSkip = false;
             isMaker = false;
             yield return null;
         }
     }
-    IEnumerator Coin_Maker_8()
+    IEnumerator CoinMaker_8()
     {
-        var Chapter_EX = Chapter_EX_1;
-        switch (GameManager.GM.Data.GM_branch)
+        var chapter_EX = chapterEX_1;
+        switch (GameManager.GM.data.branch_GM)
         {
-            case <= 10: Chapter_EX = Chapter_EX_1; break;
-            case <= 20: Chapter_EX = Chapter_EX_2; break;
-            case <= 30: Chapter_EX = Chapter_EX_3; break;
-            case <= 40: Chapter_EX = Chapter_EX_4; break;
-            case <= 50: Chapter_EX = Chapter_EX_5; break;
-            case <= 60: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: chapter_EX = chapterEX_1; break;
+            case <= 20: chapter_EX = chapterEX_2; break;
+            case <= 30: chapter_EX = chapterEX_3; break;
+            case <= 40: chapter_EX = chapterEX_4; break;
+            case <= 50: chapter_EX = chapterEX_5; break;
+            case <= 60: chapter_EX = chapterEX_6; break;
         }
 
-        if (GameManager.GM.Player_alive == false)
+        if (GameManager.GM.playerAlive == false)
         {
             isMaker = true;
 
-            CoinType(Chapter_EX.Stage_8[Index].CoinType);
-            ObstacleType(Chapter_EX.Stage_8[Index].Obstacle);
-            PlatformType(Chapter_EX.Stage_8[Index].Platform);
+            CoinType(chapter_EX.stage_8[index].CoinType);
+            ObstacleType(chapter_EX.stage_8[index].Obstacle);
+            PlatformType(chapter_EX.stage_8[index].Platform);
 
-            PosNum = Chapter_EX.Stage_8[Index].CoinPos; // 코인 높이값 지정
-            for (int i = 0; i < Chapter_EX.Stage_8[Index].CoinAmount; i++) // 코인 개수만큼 반복
+            posNum = chapter_EX.stage_8[index].CoinPos; // 코인 높이값 지정
+            for (int i = 0; i < chapter_EX.stage_8[index].CoinAmount; i++) // 코인 개수만큼 반복
             {
-                CoinAmount(Chapter_EX.Stage_8[Index].CoinType, Chapter_EX.Stage_8[Index].Obstacle, Chapter_EX.Stage_8[Index].Platform, Chapter_EX.Stage_8[Index].PlatformPos);
-                yield return new WaitForSeconds(Late_Time);
+                CoinAmount(chapter_EX.stage_8[index].CoinType, chapter_EX.stage_8[index].Obstacle, chapter_EX.stage_8[index].Platform, chapter_EX.stage_8[index].PlatformPos);
+                yield return new WaitForSeconds(late_Time);
             }
-            Index++;
-            CoinSkip = false;
+            index++;
+            coinSkip = false;
             isMaker = false;
             yield return null;
         }
     }
-    IEnumerator Coin_Maker_9()
+    IEnumerator CoinMaker_9()
     {
-        var Chapter_EX = Chapter_EX_1;
-        switch (GameManager.GM.Data.GM_branch)
+        var chapter_EX = chapterEX_1;
+        switch (GameManager.GM.data.branch_GM)
         {
-            case <= 10: Chapter_EX = Chapter_EX_1; break;
-            case <= 20: Chapter_EX = Chapter_EX_2; break;
-            case <= 30: Chapter_EX = Chapter_EX_3; break;
-            case <= 40: Chapter_EX = Chapter_EX_4; break;
-            case <= 50: Chapter_EX = Chapter_EX_5; break;
-            case <= 60: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: chapter_EX = chapterEX_1; break;
+            case <= 20: chapter_EX = chapterEX_2; break;
+            case <= 30: chapter_EX = chapterEX_3; break;
+            case <= 40: chapter_EX = chapterEX_4; break;
+            case <= 50: chapter_EX = chapterEX_5; break;
+            case <= 60: chapter_EX = chapterEX_6; break;
         }
 
-        if (GameManager.GM.Player_alive == false)
+        if (GameManager.GM.playerAlive == false)
         {
             isMaker = true;
 
-            CoinType(Chapter_EX.Stage_9[Index].CoinType);
-            ObstacleType(Chapter_EX.Stage_9[Index].Obstacle);
-            PlatformType(Chapter_EX.Stage_9[Index].Platform);
+            CoinType(chapter_EX.stage_9[index].CoinType);
+            ObstacleType(chapter_EX.stage_9[index].Obstacle);
+            PlatformType(chapter_EX.stage_9[index].Platform);
 
-            PosNum = Chapter_EX.Stage_9[Index].CoinPos; // 코인 높이값 지정
-            for (int i = 0; i < Chapter_EX.Stage_9[Index].CoinAmount; i++) // 코인 개수만큼 반복
+            posNum = chapter_EX.stage_9[index].CoinPos; // 코인 높이값 지정
+            for (int i = 0; i < chapter_EX.stage_9[index].CoinAmount; i++) // 코인 개수만큼 반복
             {
-                CoinAmount(Chapter_EX.Stage_9[Index].CoinType, Chapter_EX.Stage_9[Index].Obstacle, Chapter_EX.Stage_9[Index].Platform, Chapter_EX.Stage_9[Index].PlatformPos);
-                yield return new WaitForSeconds(Late_Time);
+                CoinAmount(chapter_EX.stage_9[index].CoinType, chapter_EX.stage_9[index].Obstacle, chapter_EX.stage_9[index].Platform, chapter_EX.stage_9[index].PlatformPos);
+                yield return new WaitForSeconds(late_Time);
             }
-            Index++;
-            CoinSkip = false;
+            index++;
+            coinSkip = false;
             isMaker = false;
             yield return null;
         }
     }
-    IEnumerator Coin_Maker_10()
+    IEnumerator CoinMaker_10()
     {
-        var Chapter_EX = Chapter_EX_1;
-        switch (GameManager.GM.Data.GM_branch)
+        var chapter_EX = chapterEX_1;
+        switch (GameManager.GM.data.branch_GM)
         {
-            case <= 10: Chapter_EX = Chapter_EX_1; break;
-            case <= 20: Chapter_EX = Chapter_EX_2; break;
-            case <= 30: Chapter_EX = Chapter_EX_3; break;
-            case <= 40: Chapter_EX = Chapter_EX_4; break;
-            case <= 50: Chapter_EX = Chapter_EX_5; break;
-            case <= 60: Chapter_EX = Chapter_EX_6; break;
+            case <= 10: chapter_EX = chapterEX_1; break;
+            case <= 20: chapter_EX = chapterEX_2; break;
+            case <= 30: chapter_EX = chapterEX_3; break;
+            case <= 40: chapter_EX = chapterEX_4; break;
+            case <= 50: chapter_EX = chapterEX_5; break;
+            case <= 60: chapter_EX = chapterEX_6; break;
         }
 
-        if (GameManager.GM.Player_alive == false)
+        if (GameManager.GM.playerAlive == false)
         {
             isMaker = true;
 
-            CoinType(Chapter_EX.Stage_10[Index].CoinType);
-            ObstacleType(Chapter_EX.Stage_10[Index].Obstacle);
-            PlatformType(Chapter_EX.Stage_10[Index].Platform);
+            CoinType(chapter_EX.stage_10[index].CoinType);
+            ObstacleType(chapter_EX.stage_10[index].Obstacle);
+            PlatformType(chapter_EX.stage_10[index].Platform);
 
-            PosNum = Chapter_EX.Stage_10[Index].CoinPos; // 코인 높이값 지정
-            for (int i = 0; i < Chapter_EX.Stage_10[Index].CoinAmount; i++) // 코인 개수만큼 반복
+            posNum = chapter_EX.stage_10[index].CoinPos; // 코인 높이값 지정
+            for (int i = 0; i < chapter_EX.stage_10[index].CoinAmount; i++) // 코인 개수만큼 반복
             {
-                CoinAmount(Chapter_EX.Stage_10[Index].CoinType, Chapter_EX.Stage_10[Index].Obstacle, Chapter_EX.Stage_10[Index].Platform, Chapter_EX.Stage_10[Index].PlatformPos);
-                yield return new WaitForSeconds(Late_Time);
+                CoinAmount(chapter_EX.stage_10[index].CoinType, chapter_EX.stage_10[index].Obstacle, chapter_EX.stage_10[index].Platform, chapter_EX.stage_10[index].PlatformPos);
+                yield return new WaitForSeconds(late_Time);
             }
-            Index++;
-            CoinSkip = false;
+            index++;
+            coinSkip = false;
             isMaker = false;
             yield return null;
         }

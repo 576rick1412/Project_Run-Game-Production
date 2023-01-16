@@ -5,24 +5,24 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class Start_Move_CS : MonoBehaviour
+public class StartMove : MonoBehaviour
 {
-    public float Move_Time;
+    public float moveTime;
 
-    private float DTime = 0;
+    private float dTime = 0;
     private int BGI_Num = 0;
 
     AsyncOperation op;
-    public GameObject[] BGI;
+    public GameObject[] BGIs;
     void Start()
     {
 
         op = SceneManager.LoadSceneAsync("Title_Scene");
         op.allowSceneActivation = false;
 
-        for (int i = 0; i < BGI.Length; i++) BGI[i].SetActive(false);
+        for (int i = 0; i < BGIs.Length; i++) BGIs[i].SetActive(false);
 
-        BGI[0].SetActive(true);
+        BGIs[0].SetActive(true);
     }
     void FixedUpdate()
     {
@@ -30,19 +30,19 @@ public class Start_Move_CS : MonoBehaviour
     }
     void Time_BGI()
     {
-        DTime += Time.deltaTime;
+        dTime += Time.deltaTime;
 
-        if (DTime > Move_Time)
+        if (dTime > moveTime)
         {
             Active_BGI();
-            DTime = 0f;
+            dTime = 0f;
         }
     }
     void Active_BGI()
     {
-        if (BGI_Num < (BGI.Length -1)){
+        if (BGI_Num < (BGIs.Length -1)){
             ++BGI_Num;
-            GameManager.GM.Fade(BGI[BGI_Num - 1], BGI[BGI_Num]);
+            GameManager.GM.Fade(BGIs[BGI_Num - 1], BGIs[BGI_Num]);
         }
         else{ GameManager.GM.Fade(op); }
     }

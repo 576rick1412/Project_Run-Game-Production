@@ -22,7 +22,7 @@ public class Boss_CS : MonoBehaviour
 
         //GameManager.GM.Data.Boss_HP = GameManager.GM.Data.Set_Boss_HP;
         BossTMP.text = BossName; 
-        if(GameManager.GM.Player_alive == false) InvokeRepeating("InstanPattern", 3f, 3f);
+        if(GameManager.GM.playerAlive == false) InvokeRepeating("InstanPattern", 3f, 3f);
     }
 
     void Update()

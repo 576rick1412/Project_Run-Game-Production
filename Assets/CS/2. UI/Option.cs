@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Option_CS : MonoBehaviour
+public class Option : MonoBehaviour
 {
     [SerializeField] bool SettingCheck;
     Animator anime;
@@ -41,10 +41,10 @@ public class Option_CS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.GM.Data.BGM_Value <= 0) { BGM_On.SetActive(false); BGM_Off.SetActive(true); }
+        if (GameManager.GM.data.BGM_Value <= 0) { BGM_On.SetActive(false); BGM_Off.SetActive(true); }
         else { BGM_On.SetActive(true); BGM_Off.SetActive(false); }
 
-        if (GameManager.GM.Data.SFX_Value <= 0) { SFX_On.SetActive(false); SFX_Off.SetActive(true); }
+        if (GameManager.GM.data.SFX_Value <= 0) { SFX_On.SetActive(false); SFX_Off.SetActive(true); }
         else { SFX_On.SetActive(true); SFX_Off.SetActive(false); }
 
         ReSetValue();
@@ -65,15 +65,15 @@ public class Option_CS : MonoBehaviour
 
 
     //public void ALLSlider(float value) { GameManager.GM.All_Value = value; }
-    public void BGMSlider(float value) { GameManager.GM.Data.BGM_Value = value; }
-    public void SFXSlider(float value) { GameManager.GM.Data.SFX_Value = value; }
+    public void BGMSlider(float value) { GameManager.GM.data.BGM_Value = value; }
+    public void SFXSlider(float value) { GameManager.GM.data.SFX_Value = value; }
 
     //public void ALLbutton() { GameManager.GM.All_Value = 0; }
-    public void BGMbutton() { GameManager.GM.Data.BGM_Value = 0;  }
-    public void SFXbutton() { GameManager.GM.Data.SFX_Value = 0;  }
+    public void BGMbutton() { GameManager.GM.data.BGM_Value = 0;  }
+    public void SFXbutton() { GameManager.GM.data.SFX_Value = 0;  }
 
-    public void defaultSoundbutton() { GameManager.GM.Data.SFX_Value = 1;
-                                       GameManager.GM.Data.BGM_Value = 1;}
+    public void defaultSoundbutton() { GameManager.GM.data.SFX_Value = 1;
+                                       GameManager.GM.data.BGM_Value = 1;}
 
 
     public void FPS30() { Application.targetFrameRate = 30; }
@@ -98,8 +98,8 @@ public class Option_CS : MonoBehaviour
         }
     }
 
-    void ReSetValue() { BGM.value = GameManager.GM.Data.BGM_Value; 
-                        SFX.value = GameManager.GM.Data.SFX_Value; }
+    void ReSetValue() { BGM.value = GameManager.GM.data.BGM_Value; 
+                        SFX.value = GameManager.GM.data.SFX_Value; }
 
     /*
     void ReSetValue()

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class Result_CS : MonoBehaviour
+public class Result : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI Max_Score;
     [SerializeField] TextMeshProUGUI Cur_Score;
@@ -25,20 +25,20 @@ public class Result_CS : MonoBehaviour
     string Stage_Des;
     void Awake()
     {
-        Debug.Log("게임결과창 " + GameManager.GM.Now_Clear_Star);
+        Debug.Log("게임결과창 " + GameManager.GM.nowClearStar);
 
         Time.timeScale = 1;
         branch = Random.Range(1, RunGame_EX.StartSheet.Count + 1); STG_Excel();
 
-        if (GameManager.GM.Data.Game_WIN == false) { Win.SetActive(false); } else { Lose.SetActive(false); }
+        if (GameManager.GM.data.gameWin == false) { Win.SetActive(false); } else { Lose.SetActive(false); }
 
-        if (GameManager.GM.Now_Clear_Star == 0) GameManager.GM.Data.CoinScore = 0;
-        StartCoroutine(OnStar(GameManager.GM.Now_Clear_Star)); // 클리어 시 별이 뜨게하는 코루틴 호줄
+        if (GameManager.GM.nowClearStar == 0) GameManager.GM.data.coinScore = 0;
+        StartCoroutine(OnStar(GameManager.GM.nowClearStar)); // 클리어 시 별이 뜨게하는 코루틴 호줄
 
-        Max_Score.text = "최대 점수 : " + (GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch] == 0 ? 0 : 
-            CommaText(GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch]).ToString());
+        Max_Score.text = "최대 점수 : " + (GameManager.GM.data.stageMaxScores[GameManager.GM.data.branch_GM] == 0 ? 0 : 
+            CommaText(GameManager.GM.data.stageMaxScores[GameManager.GM.data.branch_GM]).ToString());
 
-        Cur_Score.text = "현재 점수 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
+        Cur_Score.text = "현재 점수 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString());
         Change_Score();
     }
     IEnumerator OnStar(int Clear_Num) 
@@ -59,7 +59,7 @@ public class Result_CS : MonoBehaviour
         }
 
         // 별 획득 점수
-        for (int i = 0; i < per_Point.Length; i++) per_Point[i].text = CommaText(GameManager.GM.Percent_Star[i]).ToString();
+        for (int i = 0; i < per_Point.Length; i++) per_Point[i].text = CommaText(GameManager.GM.percentStars[i]).ToString();
 
         // 메인 별 띄우기
         for (int i = 0; i < Clear_Num; i++)
@@ -78,9 +78,9 @@ public class Result_CS : MonoBehaviour
 
     void Change_Score()
     {
-        if(GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch] < GameManager.GM.Data.CoinScore)
+        if(GameManager.GM.data.stageMaxScores[GameManager.GM.data.branch_GM] < GameManager.GM.data.coinScore)
         {
-            GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch] = GameManager.GM.Data.CoinScore;
+            GameManager.GM.data.stageMaxScores[GameManager.GM.data.branch_GM] = GameManager.GM.data.coinScore;
             GameManager.GM.SavaData(); Debug.Log("신속저장!");
 
             Debug.Log("신기록 달성!!!!");
@@ -92,14 +92,14 @@ public class Result_CS : MonoBehaviour
         Destroy(Max_Score);
         TextMeshProUGUI GoUp =  Instantiate(Cur_Window_GoUp, Cur_Score.transform.position,Quaternion.identity);
         GoUp.transform.SetParent(Score_Window.transform);
-        GoUp.text = "최대 기록 : " + (GameManager.GM.Data.CoinScore == 0 ? 0 : CommaText(GameManager.GM.Data.CoinScore).ToString());
-        GameManager.GM.Data.stage_Max_Score[GameManager.GM.Data.GM_branch] = GameManager.GM.Data.CoinScore;
+        GoUp.text = "최대 기록 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString());
+        GameManager.GM.data.stageMaxScores[GameManager.GM.data.branch_GM] = GameManager.GM.data.coinScore;
     } // 최고점 기록 시 최고점 갱신 + 갱신 애니메이션
 
     public void GoLoby() { Loading_Manager.LoadScene("Mian_Loby_Scene", Stage_Des); }
     public void GoStage() 
     {
-        switch (GameManager.GM.Data.GM_branch / 10)
+        switch (GameManager.GM.data.branch_GM / 10)
         {
             case <= 10 : Loading_Manager.LoadScene("Stage1_Hub", Stage_Des); break;
             case <= 20 : Loading_Manager.LoadScene("Stage2_Hub", Stage_Des); break;

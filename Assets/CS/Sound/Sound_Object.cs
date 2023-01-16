@@ -5,9 +5,9 @@ using UnityEngine.Pool;
 
 public class Sound_Object : MonoBehaviour
 {
-    bool Destroy_Check;
-    private IObjectPool<Sound_Object> _SoundPool;
-    public void Set_Sound_Pool(IObjectPool<Sound_Object> pool) { _SoundPool = pool; }
+    bool isDestroy;
+    private IObjectPool<Sound_Object> soundPool;
+    public void SetSoundPool(IObjectPool<Sound_Object> pool) { soundPool = pool; }
 
     void Start()
     {
@@ -15,8 +15,8 @@ public class Sound_Object : MonoBehaviour
     }
     void Update()
     {
-        if (!Destroy_Check) { Invoke("DestroySound", 0.2f); Destroy_Check = true; }
+        if (!isDestroy) { Invoke("DestroySound", 0.2f); isDestroy = true; }
     }
 
-    void DestroySound() { _SoundPool.Release(this); Destroy_Check = false; }
+    void DestroySound() { soundPool.Release(this); isDestroy = false; }
 }

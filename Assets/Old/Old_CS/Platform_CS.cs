@@ -14,7 +14,7 @@ public class Platform_CS : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("players"))
         {
             colliders[0].enabled = false;
             colliders[1].enabled = true;

@@ -1,10 +1,10 @@
 [System.Serializable]
 public class Stage_1_Entity
 {
-    public string CoinType;
-    public int CoinPos;
-    public int CoinAmount;
-    public string Obstacle;
+    public string coinType;
+    public int coinPos;
+    public int coinAmount;
+    public string obstacle;
     public string Platform;
     public int PlatformPos;
     public bool END;

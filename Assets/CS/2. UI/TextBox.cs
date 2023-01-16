@@ -4,18 +4,18 @@ using UnityEngine;
 using TMPro;
 public class TextBox : MonoBehaviour
 {
-    public TextMeshProUGUI Name;
-    public TextMeshProUGUI Description;
+    public TextMeshProUGUI name;
+    public TextMeshProUGUI description;
 
     [SerializeField] int branch;
-    [SerializeField] RunGame_EX RunGame_EX;
+    [SerializeField] RunGame_EX runGame_EX;
 
-    [SerializeField] public string Stage_Num;
-    [SerializeField] public string Stage_Des;
+    [SerializeField] public string stageNum;
+    [SerializeField] public string stageDes;
 
     void Start()
     {
-        STG_Excel();
+        STGExcel();
     }
 
     /*void Update()
@@ -25,14 +25,14 @@ public class TextBox : MonoBehaviour
             Loading_Manager.LoadScene("Scene_2", Stage_Num, Stage_Des);
         }
     }*/
-    void STG_Excel()
+    void STGExcel()
     {
-        for (int i = 0; i < RunGame_EX.STSheet.Count; ++i)
+        for (int i = 0; i < runGame_EX.STSheet.Count; ++i)
         {
-            if (RunGame_EX.STSheet[i].ST_branch == branch)
+            if (runGame_EX.STSheet[i].ST_branch == branch)
             {
-                Stage_Num = Name.text = RunGame_EX.STSheet[i].ST_name;
-                Stage_Des = Description.text = RunGame_EX.STSheet[i].ST_description;
+                stageNum = name.text = runGame_EX.STSheet[i].ST_name;
+                stageDes = description.text = runGame_EX.STSheet[i].ST_description;
             }
         }
     }
