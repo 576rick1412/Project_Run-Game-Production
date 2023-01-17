@@ -13,6 +13,8 @@ TagManager:
   - Scene_Border
   - Magnet_Borber
   - Coin_Base
+  - Hub
+  - obstacle
   layers:
   - Default
   - TransparentFX

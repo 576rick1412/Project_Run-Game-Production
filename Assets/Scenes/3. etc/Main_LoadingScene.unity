@@ -379,8 +379,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1837741247}
   - {fileID: 1882789210}
+  - {fileID: 1837741247}
   m_Father: {fileID: 1785122844}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -581,9 +581,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99df7e1c4dbb2f3468f836726b78a406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProgressBar: {fileID: 1950118712}
-  Name: {fileID: 1882789211}
-  Description: {fileID: 1837741248}
+  progressBar: {fileID: 1950118712}
+  inName: {fileID: 1882789211}
+  description: {fileID: 1837741248}
 --- !u!1 &1837741246
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +615,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1580710664}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -752,7 +752,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1580710664}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

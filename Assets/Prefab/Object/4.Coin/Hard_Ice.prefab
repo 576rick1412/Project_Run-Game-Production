@@ -99,12 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetObject: Hard_Ice
-  SetPrefabs: 0
-  gameClear: 0
-  Magnet: 0
-  OnRelease: 0
-  speed: {x: 40, y: 30}
+  setObject: Hard_Ice
+  setPrefabs: 0
 --- !u!50 &136525268116365005
 Rigidbody2D:
   serializedVersion: 4

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7273163296416350295}
   m_Layer: 0
   m_Name: Stage_1_DoubleJump
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetObject: Hub
-  SetPrefabs: 0
+  setObject: Hub
+  setPrefabs: 0
 --- !u!61 &7496938279488759852
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -195,8 +195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetObject: Obstacle
-  SetPrefabs: 1
+  setObject: obstacle
+  setPrefabs: 1
 --- !u!50 &7840396810639171308
 Rigidbody2D:
   serializedVersion: 4

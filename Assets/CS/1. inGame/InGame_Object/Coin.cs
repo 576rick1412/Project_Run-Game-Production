@@ -84,7 +84,7 @@ public class Coin : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.CompareTag("players"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (onRelease)
             {

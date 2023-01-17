@@ -8,6 +8,8 @@ using TMPro;
 
 public class MasicMainUI : MonoBehaviour
 {
+    [SerializeField] RunGame_EX runGame_EX;
+
     public TextMeshProUGUI nickname;
     public TextMeshProUGUI level;
     public TextMeshProUGUI money;
@@ -15,15 +17,11 @@ public class MasicMainUI : MonoBehaviour
     public Image exe;
 
     [Header("UI 띄우기")]
-    public GameObject inventoryPref;
-    public GameObject shopPref;
-    public GameObject gamestartPref;
-    public GameObject quitScenePref;
+    public GameObject shopUI;
+    public GameObject quitUI;
 
-    private void Awake()
-    {
-        quitScenePref.SetActive(false);
-    }
+    string stageDes;
+
     void Start()
     {
         StartCoroutine(UI_Update());
@@ -36,12 +34,12 @@ public class MasicMainUI : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape)) OnQuit();
         }
     }
-    public void OnInventory() { Instantiate(inventoryPref); }
-    public void OnShop() { Instantiate(shopPref); }
-    public void OnGamestart() { Instantiate(gamestartPref); }
+
+    public void OnShop() { Instantiate(shopUI); }
+    public void OnGameStart() { Loading_Manager.LoadScene("GameScene", "무한모드", stageDes); }
 
     // 게임 종료
-    public void OnQuit() { quitScenePref.SetActive(true); }
+    public void OnQuit() { quitUI.SetActive(true); }
     public void QuitGame() {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
@@ -50,7 +48,7 @@ public class MasicMainUI : MonoBehaviour
 #endif
         Debug.Log("게임 종료!"); 
     }
-    public void QuitBack() { quitScenePref.SetActive(false); }
+    public void QuitBack() { quitUI.SetActive(false); }
 
     IEnumerator UI_Update()
     {
@@ -63,7 +61,19 @@ public class MasicMainUI : MonoBehaviour
             exe.fillAmount = (GameManager.GM.data.exe_GM / (GameManager.GM.data.maxExe_GM + (GameManager.GM.data.level_GM * 200)));
             // 기본 최종치( 1000 ) + ( 현재 레벨 * 200 ) = 최종 경험치 요구량
             // 만약 레벨이 5 일 경우 -> [ 1000 + ( 5 * 200 ) ] => [ 1000 + 1000 ] = 2000
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
+        }
+    }
+    void STGExcel()
+    {
+        int branch = Random.Range(1, runGame_EX.StartSheet.Count + 1);
+
+        for (int i = 0; i < runGame_EX.StartSheet.Count; ++i)
+        {
+            if (runGame_EX.StartSheet[i].STR_branch == branch)
+            {
+                stageDes = runGame_EX.StartSheet[i].STR_description;
+            }
         }
     }
 }

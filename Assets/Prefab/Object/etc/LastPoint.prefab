@@ -45,12 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetObject: Hub
-  SetPrefabs: 0
-  gameClear: 0
-  Magnet: 0
-  OnRelease: 0
-  speed: {x: 30, y: 20}
+  setObject: Hub
+  setPrefabs: 0
 --- !u!1 &5512682876004924148
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,12 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetObject: LastPoint
-  SetPrefabs: 1
-  gameClear: 0
-  Magnet: 0
-  OnRelease: 0
-  speed: {x: 30, y: 20}
+  setObject: LastPoint
+  setPrefabs: 1
 --- !u!61 &5512682876004924155
 BoxCollider2D:
   m_ObjectHideFlags: 0
