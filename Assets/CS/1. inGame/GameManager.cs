@@ -268,20 +268,7 @@ public class GameManager : MonoBehaviour
 
     public void Stage_Move()
     {
-        switch (data.branch_GM)
-        {
-            case  1: Loading_Manager.LoadScene("Stage1-1_Scene", stageName, stageInformation); break;
-            case  2: Loading_Manager.LoadScene("Stage1-2_Scene", stageName, stageInformation); break;
-            case  3: Loading_Manager.LoadScene("Stage1-3_Scene", stageName, stageInformation); break;
-            case  4: Loading_Manager.LoadScene("Stage1-4_Scene", stageName, stageInformation); break;
-            case  5: Loading_Manager.LoadScene("Stage1-5_Scene", stageName, stageInformation); break;
-            case  6: Loading_Manager.LoadScene("Stage1-6_Scene", stageName, stageInformation); break;
-            case  7: Loading_Manager.LoadScene("Stage1-7_Scene", stageName, stageInformation); break;
-            case  8: Loading_Manager.LoadScene("Stage1-8_Scene", stageName, stageInformation); break;
-            case  9: Loading_Manager.LoadScene("Stage1-9_Scene", stageName, stageInformation); break;
-            case 10: Loading_Manager.LoadScene("Stage1-10_Scene", stageName, stageInformation);break; // √©≈Õ 1 ≥°
-            case 11: Loading_Manager.LoadScene("Stage2-1_Scene", stageName, stageInformation); break;
-        }
+        Loading_Manager.LoadScene("GameScene", stageName, stageInformation);
     }
 }
 [Serializable]

@@ -8,7 +8,6 @@ public class Game_Control : MonoBehaviour
 {
     public static Game_Control GC;
 
-    [SerializeField] GameObject io;         // 오브젝트 인스턴 스크립트
     [SerializeField] Transform spawnPos;    // 플레이어 스폰 위치
     [SerializeField] GameObject[] players;  // 플레이어 목록
     GameObject spanwPlayer;                 // 생성할 플레이어
@@ -16,7 +15,8 @@ public class Game_Control : MonoBehaviour
     [SerializeField] Image hPBar;           // 체력바
     [SerializeField] GameObject pauseImage; // 일시정지 프레임
     public TextMeshProUGUI score;           // 점수 UI
-    public TextMeshProUGUI runRatio;        // 달린거리 UI
+    public TextMeshProUGUI runTime;         // 달린시간 UI
+    float runTimeInt;                         // 달린시간 숫자
 
     [SerializeField] Transform midSpawnPos;// 임시
 
@@ -88,11 +88,12 @@ public class Game_Control : MonoBehaviour
 
     void Update()
     {
+        runTimeInt += Time.deltaTime;
 
         hPBar.fillAmount = (GameManager.GM.data.lifeScore / GameManager.GM.data.setLifeScore);
         score.text = "점수 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString());
 
-        runRatio.text = "달린거리 " + System.Math.Truncate(GameManager.GM.data.curRunRatio / GameManager.GM.data.runRatio * 100).ToString() + " %";
+        runTime.text = "달린시간 " + Mathf.RoundToInt(runTimeInt) + " 초";
 
         if (GameManager.GM.data.lifeScore <= 0 && isGameEnd == false) StartCoroutine(EndGame(false));
     }
@@ -119,26 +120,23 @@ public class Game_Control : MonoBehaviour
         }
     }
 
-    public IEnumerator EndGame(bool gameValue)
+    public IEnumerator EndGame(bool isClear)
     {
-        GameObject endUI = gameValue == true ? clearUI : overUI; // 생성될 결과 UI 지정
+        GameObject endUI = isClear == true ? clearUI : overUI; // 생성될 결과 UI 지정
 
         // 게임 오버 시 점수는 0으로 고정 / 클리어가 아니기 때문에 별을 줄 수 없음
-        if (!gameValue) GameManager.GM.data.coinScore = 0;
+        if (!isClear) GameManager.GM.data.coinScore = 0;
 
         // 클리어 시 다음 스테이지가 열리도록 함, 만약 이미 클리어한 스테이지를 다시 플레이한 경우 그냥 리턴
-        if (GameManager.GM.data.stageClearNum < GameManager.GM.data.branch_GM && gameValue)
+        if (GameManager.GM.data.stageClearNum < GameManager.GM.data.branch_GM && isClear)
         { GameManager.GM.data.stageClearNum = GameManager.GM.data.branch_GM; }
-
-        // 게임 결과에 따른 클리어 점수 판정 함수 호출
-        io.GetComponent<Object_Instantiate>().UpPointStar(); 
 
         // 결과 UI 생성
         GameObject UI = Instantiate(endUI, midSpawnPos.position, Quaternion.identity);
         UI.transform.SetParent(midSpawnPos);
 
         isGameEnd = true;
-        GameManager.GM.data.gameWin = gameValue;
+        GameManager.GM.data.gameWin = isClear;
         GameManager.GM.SavaData();
 
         yield return new WaitForSeconds(3f);

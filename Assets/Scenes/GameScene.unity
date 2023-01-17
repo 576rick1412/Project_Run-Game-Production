@@ -413,6 +413,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4360651679565576799, guid: d0c0a15b579d9294384ff520624c78da, type: 3}
     - target: {fileID: 714450739517526485, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: runTime
+      value: 
+      objectReference: {fileID: 714450740901272527}
+    - target: {fileID: 714450739517526485, guid: f72df9912974e664cac474b2afafb765, type: 3}
       propertyPath: runRatio
       value: 
       objectReference: {fileID: 714450740901272527}
@@ -446,7 +450,7 @@ PrefabInstance:
       objectReference: {fileID: 671802340}
     - target: {fileID: 714450739517526485, guid: f72df9912974e664cac474b2afafb765, type: 3}
       propertyPath: setAlphaValue
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 714450739517526485, guid: f72df9912974e664cac474b2afafb765, type: 3}
       propertyPath: setEfeectTime
@@ -505,6 +509,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 31feaadfe0a37a2448e56dee978b7b3f, type: 2}
     - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: spanwMaps.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
       propertyPath: instanPoss.Array.size
       value: 15
       objectReference: {fileID: 0}
@@ -516,6 +524,26 @@ PrefabInstance:
       propertyPath: coinObjects.Array.size
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: spanwMaps.Array.data[0]
+      value: 
+      objectReference: {fileID: 6956635101725027702, guid: a8ec38617a0b990419fcb6bf88e1b345, type: 3}
+    - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: spanwMaps.Array.data[1]
+      value: 
+      objectReference: {fileID: 6956635101725027702, guid: a8ec38617a0b990419fcb6bf88e1b345, type: 3}
+    - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: spanwMaps.Array.data[2]
+      value: 
+      objectReference: {fileID: 6956635101725027702, guid: a8ec38617a0b990419fcb6bf88e1b345, type: 3}
+    - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: spanwMaps.Array.data[3]
+      value: 
+      objectReference: {fileID: 6956635101725027702, guid: a8ec38617a0b990419fcb6bf88e1b345, type: 3}
+    - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: spanwMaps.Array.data[4]
+      value: 
+      objectReference: {fileID: 6956635101725027702, guid: a8ec38617a0b990419fcb6bf88e1b345, type: 3}
     - target: {fileID: 714450739925725492, guid: f72df9912974e664cac474b2afafb765, type: 3}
       propertyPath: instanPoss.Array.data[0]
       value: 
@@ -644,6 +672,14 @@ PrefabInstance:
       propertyPath: mapStr
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 714450740697278625, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: m_Name
+      value: Run_Time
+      objectReference: {fileID: 0}
+    - target: {fileID: 714450740697278631, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: m_text
+      value: "\uB2EC\uB9B0\uC2DC\uAC04 : 89\uCD08"
+      objectReference: {fileID: 0}
     - target: {fileID: 714450740871647494, guid: f72df9912974e664cac474b2afafb765, type: 3}
       propertyPath: mapStr
       value: Floor
@@ -663,6 +699,14 @@ PrefabInstance:
     - target: {fileID: 714450740998148348, guid: f72df9912974e664cac474b2afafb765, type: 3}
       propertyPath: mapStr
       value: BGI_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 714450741035545661, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 739
+      objectReference: {fileID: 0}
+    - target: {fileID: 714450741035545661, guid: f72df9912974e664cac474b2afafb765, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -184
       objectReference: {fileID: 0}
     - target: {fileID: 714450741049841976, guid: f72df9912974e664cac474b2afafb765, type: 3}
       propertyPath: m_Name
