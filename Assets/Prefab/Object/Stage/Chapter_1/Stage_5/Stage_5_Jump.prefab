@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7010441503204038046}
   m_Layer: 0
   m_Name: Stage_5_Jump
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1032669221
+  m_SortingLayer: 1
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 48b32611af5e9054a8d63e0d8c2a5094, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -99,9 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fc18603f95161449240158a656ad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetObject: Obstacle
-  SetPrefabs: 0
-  Magnet: 0
+  setObject: obstacle
 --- !u!50 &2123158232680845284
 Rigidbody2D:
   serializedVersion: 4
