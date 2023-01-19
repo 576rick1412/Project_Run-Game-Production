@@ -16,29 +16,4 @@ public class Chapter_1 : ScriptableObject
     public List<Stage_8_Entity> stage_8;
     public List<Stage_9_Entity> stage_9;
     public List<Stage_10_Entity> stage_10;
-
-    public static implicit operator Chapter_1(Chapter_2 v)
-    {
-        throw new NotImplementedException();
-    }
-
-    public static implicit operator Chapter_1(Chapter_3 v)
-    {
-        throw new NotImplementedException();
-    }
-
-    public static implicit operator Chapter_1(Chapter_4 v)
-    {
-        throw new NotImplementedException();
-    }
-
-    public static implicit operator Chapter_1(Chapter_5 v)
-    {
-        throw new NotImplementedException();
-    }
-
-    public static implicit operator Chapter_1(Chapter_6 v)
-    {
-        throw new NotImplementedException();
-    }
 }

@@ -25,7 +25,7 @@ public class Coin : MonoBehaviour
         if (collision.gameObject.CompareTag("Magnet_Borber")) { if (setObject == "obstacle") return; magnet = true; }
 
         // Coin_Base는 코인이 플레이어 뒤로 가서 안 지워지는 버그 땜빵 / 플레이어 뒤에 콜라이더를 만들어 해결함
-        if (collision.gameObject.CompareTag("Player") && collision.gameObject.CompareTag("Coin_Base"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Coin_Base"))
         {
             magnet = false;
             switch (setObject)
