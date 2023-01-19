@@ -23,8 +23,11 @@ public class Object_Instantiate : MonoBehaviour
     }
 
     public void InstanceMap()
-    {
-        Debug.Log("fsghui");
+    { 
+        GameManager.GM.data.floorSpeedValue *= 1.05f;
+        GameManager.GM.data.BGSpeedValue    *= 1.05f;
+
+        Debug.Log("¸Ê »ý¼º");
         Instantiate(spanwMaps[spanwIndex],new Vector3(28, 0,0),Quaternion.identity);
 
         spanwIndex = Random.Range(0, spanwMaps.Length);

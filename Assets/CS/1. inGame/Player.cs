@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Pool;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +9,7 @@ public class Player : MonoBehaviour
     public Transform playerPos;
     [HideInInspector] public bool clearCheck;
 
+    float SetGravity;
     float jumpHeight;
     bool isJump;
     bool isDoubleJump;
@@ -24,18 +24,24 @@ public class Player : MonoBehaviour
 
     public bool onHit = false; // 피격 확인용
     bool inHit; // 내부 피격
-    void Awake() { PL = this; }
+    void Awake() 
+    { 
+        PL = this;
+
+        rigid = gameObject.GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        this.colliders = GetComponents<BoxCollider2D>();
+        anime = GetComponent<Animator>();
+    }
+
     void Start()
     {
         isJump = false;
         isDoubleJump = false;
         isSlid = false;
 
+        SetGravity =  rigid.gravityScale;
         playerPos = this.gameObject.transform;
-        rigid = gameObject.GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        this.colliders = GetComponents<BoxCollider2D>();
-        anime = GetComponent<Animator>();
         jumpHeight = GameManager.GM.data.playerJumpValue;
     }
 
@@ -49,6 +55,12 @@ public class Player : MonoBehaviour
             GameManager.GM.data.BGSpeedValue = 0;
             GameManager.GM.playerAlive = true;
         }
+
+        //JumpHeightCheck(); 플레이어 높이 제한 - 사용 미정
+        // 개발용 키보드 조작법
+        if (Input.GetKeyDown(KeyCode.Space)) Jump();
+        if (Input.GetKey(KeyCode.LeftShift)) Slide_DAWN();
+        if (Input.GetKeyUp(KeyCode.LeftShift)) Slide_UP();
 
         if (clearCheck == false) GameManager.GM.data.lifeScore -= Time.deltaTime * 2.8f;
     }
@@ -71,14 +83,19 @@ public class Player : MonoBehaviour
                 case true: // 슬라이드 중
                     colliders[0].enabled = false;
                     colliders[1].enabled = true;
+
+                    rigid.gravityScale = 40f;
                     break;
                 case false: // 슬라이드 끝
                     colliders[0].enabled = true;
                     colliders[1].enabled = false;
+
+                    rigid.gravityScale = SetGravity;
                     break;
             }
         }
     }
+
     void AnimeControl()
     {
         // 애니메이션이 씹히는 현상이 발생해서 리턴 들어있는거
@@ -105,10 +122,31 @@ public class Player : MonoBehaviour
         if (GameManager.GM.playerAlive == false)
         {
             isFloor = false;
-            if (isJump == false && isDoubleJump == false) { rigid.velocity = Vector2.up * jumpHeight; isJump = true; return; }
-            if (isJump == true && isDoubleJump == false) { rigid.velocity = Vector2.up * jumpHeight; isDoubleJump = true; return; }
+            if (isJump == false && isDoubleJump == false) 
+            {
+                rigid.velocity = Vector2.up * jumpHeight;
+                isJump = true;
+                return; 
+            }
+            if (isJump == true && isDoubleJump == false) 
+            {
+                rigid.velocity = Vector2.up * jumpHeight; 
+                isDoubleJump = true; 
+                return; 
+            }
         }
     }
+
+    void JumpHeightCheck()
+    {
+        // 점프 높이 조정
+        if (transform.position.y >= 2.4f && isJump && isDoubleJump)
+            transform.position = new Vector3(transform.position.x, 2.4f, transform.position.z);
+
+        if (transform.position.y >= 0 && isJump && !isDoubleJump)
+            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+    }
+
     public void Slide_DAWN() { if (GameManager.GM.playerAlive == false) { isSlid = true; SetCollider(); } }
     public void Slide_UP() { if (GameManager.GM.playerAlive == false) { isSlid = false; SetCollider(); } }
 

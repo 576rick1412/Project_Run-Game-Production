@@ -42,6 +42,7 @@ public class Stage_Info : MonoBehaviour
         GameManager.GM.stageName = stageName.text;
         GameManager.GM.stageInformation = stageInformation.text;
 
-        GameManager.GM.Stage_Move();
+        string stageDes = GameManager.GM.STG_Excel();
+        GameManager.GM.Stage_Move("GameScene", "무한모드", stageDes);
     }
 }

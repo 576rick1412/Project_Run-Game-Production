@@ -36,9 +36,6 @@ public class Game_Control : MonoBehaviour
     [SerializeField] float setEfeectTime;
     Vector3 camPos;
 
-    // 엑셀용
-    [SerializeField] RunGame_EX runGame_EX;
-    string stageDes;
     bool isPause; // 일시정지
 
     void Awake()
@@ -47,7 +44,6 @@ public class Game_Control : MonoBehaviour
         PlayerType();
 
         startIcon.SetActive(false); pauseIcon.SetActive(true);
-        STGExcel();
 
         pauseImage.SetActive(false);
         isPause = false;
@@ -147,6 +143,8 @@ public class Game_Control : MonoBehaviour
 
     public void ReStage()
     {
+        string stageDes = GameManager.GM.STG_Excel();
+
         Time.timeScale = 1; //  타임 스케일 초기화, 게임 멈춤 방지
         switch (GameManager.GM.data.branch_GM / 10)
         {
@@ -161,21 +159,10 @@ public class Game_Control : MonoBehaviour
     public void GoRetry()
     {
         Time.timeScale = 1; //  타임 스케일 초기화, 게임 멈춤 방지
-
-        GameManager.GM.Stage_Move();
+        string stageDes = GameManager.GM.STG_Excel();
+        GameManager.GM.Stage_Move("GameScene", "무한모드", stageDes);
     }
-    void STGExcel()
-    {
-        int branch = Random.Range(1, runGame_EX.StartSheet.Count + 1);
 
-        for (int i = 0; i < runGame_EX.StartSheet.Count; ++i)
-        {
-            if (runGame_EX.StartSheet[i].STR_branch == branch)
-            {
-                stageDes = runGame_EX.StartSheet[i].STR_description;
-            }
-        }
-    }
     public IEnumerator CameraShake(float magnitude)
     {
         for (int i = 0;i < 10;i++)

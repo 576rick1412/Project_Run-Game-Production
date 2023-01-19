@@ -1875,7 +1875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4735797937802327822, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.6
+      value: -2.1
       objectReference: {fileID: 0}
     - target: {fileID: 4735797937802327822, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1937,7 +1937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4735797937802327822, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.6
+      value: -2.1
       objectReference: {fileID: 0}
     - target: {fileID: 4735797937802327822, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2185,7 +2185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4735797937802327822, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 4735797937802327822, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2305,7 +2305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368283013383443511, guid: 4238ad409faa3e64fb2fa099ed173949, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.1
+      value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: 3368283013383443511, guid: 4238ad409faa3e64fb2fa099ed173949, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2495,7 +2495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4735797937802327822, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 4735797937802327822, guid: f2acf4c9466ea15488bdf472d8dab7be, type: 3}
       propertyPath: m_LocalPosition.z

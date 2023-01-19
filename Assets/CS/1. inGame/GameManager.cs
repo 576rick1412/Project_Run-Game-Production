@@ -12,6 +12,7 @@ using AesEncryptionNS.Con;
 public class GameManager : MonoBehaviour
 {
     public static GameManager GM;
+    [SerializeField] RunGame_EX RunGame_EX;
 
     [Range(1,6)] public int nowStage;
     //페이드 인 아웃
@@ -266,11 +267,28 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 
-    public void Stage_Move()
+    public void Stage_Move(string SceneName, string stageName, string stageDes)
     {
-        Loading_Manager.LoadScene("GameScene", stageName, stageInformation);
+        Loading_Manager.LoadScene(SceneName, stageName, stageDes);
+    }
+
+    public string STG_Excel()
+    {
+        int branch = UnityEngine.Random.Range(1, RunGame_EX.StartSheet.Count + 1);
+
+        for (int i = 0; i < RunGame_EX.StartSheet.Count; ++i)
+        {
+            if (RunGame_EX.StartSheet[i].STR_branch == branch)
+            {
+                return RunGame_EX.StartSheet[i].STR_description;
+            }
+        }
+
+        Debug.Log("엑셀 스테이지 정보 반환값 없음!");
+        return "Null";
     }
 }
+
 [Serializable]
 public class MainDB
 {

@@ -19,16 +19,11 @@ public class Result : MonoBehaviour
     [SerializeField] GameObject[] Failed_icon = new GameObject[3];
     [SerializeField] TextMeshProUGUI[] per_Point = new TextMeshProUGUI[3];
 
-    // 엑셀용
-    int branch;
-    [SerializeField] RunGame_EX RunGame_EX;
-    string Stage_Des;
     void Awake()
     {
         Debug.Log("게임결과창 " + GameManager.GM.nowClearStar);
 
         Time.timeScale = 1;
-        branch = Random.Range(1, RunGame_EX.StartSheet.Count + 1); STG_Excel();
 
         if (GameManager.GM.data.gameWin == false) { Win.SetActive(false); } else { Lose.SetActive(false); }
 
@@ -96,32 +91,29 @@ public class Result : MonoBehaviour
         GameManager.GM.data.stageMaxScores[GameManager.GM.data.branch_GM] = GameManager.GM.data.coinScore;
     } // 최고점 기록 시 최고점 갱신 + 갱신 애니메이션
 
-    public void GoLoby() { Loading_Manager.LoadScene("Mian_Loby_Scene", Stage_Des); }
+    public void GoLoby() 
+    {
+        string stageDes = GameManager.GM.STG_Excel();
+        Loading_Manager.LoadScene("Mian_Loby_Scene", stageDes); 
+    }
     public void GoStage() 
     {
+        string stageDes = GameManager.GM.STG_Excel();
+
         switch (GameManager.GM.data.branch_GM / 10)
         {
-            case <= 10 : Loading_Manager.LoadScene("Stage1_Hub", Stage_Des); break;
-            case <= 20 : Loading_Manager.LoadScene("Stage2_Hub", Stage_Des); break;
-            case <= 30 : Loading_Manager.LoadScene("Stage3_Hub", Stage_Des); break;
-            case <= 40 : Loading_Manager.LoadScene("Stage4_Hub", Stage_Des); break;
-            case <= 50 : Loading_Manager.LoadScene("Stage5_Hub", Stage_Des); break;
-            case <= 60 : Loading_Manager.LoadScene("Stage6_Hub", Stage_Des); break;
+            case <= 10 : Loading_Manager.LoadScene("Stage1_Hub", stageDes); break;
+            case <= 20 : Loading_Manager.LoadScene("Stage2_Hub", stageDes); break;
+            case <= 30 : Loading_Manager.LoadScene("Stage3_Hub", stageDes); break;
+            case <= 40 : Loading_Manager.LoadScene("Stage4_Hub", stageDes); break;
+            case <= 50 : Loading_Manager.LoadScene("Stage5_Hub", stageDes); break;
+            case <= 60 : Loading_Manager.LoadScene("Stage6_Hub", stageDes); break;
         }
     }
     public void GoRetry()
     {
         Time.timeScale = 1;
-        GameManager.GM.Stage_Move();
-    }
-    void STG_Excel()
-    {
-        for (int i = 0; i < RunGame_EX.StartSheet.Count; ++i)
-        {
-            if (RunGame_EX.StartSheet[i].STR_branch == branch)
-            {
-                Stage_Des = RunGame_EX.StartSheet[i].STR_description;
-            }
-        }
+        string stageDes = GameManager.GM.STG_Excel();
+        GameManager.GM.Stage_Move("GameScene", "무한모드", stageDes);
     }
 }

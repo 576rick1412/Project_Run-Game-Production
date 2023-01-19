@@ -2790,7 +2790,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d72959fe5f8b949a10c9043bd9e374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runGame_EX: {fileID: 11400000, guid: e6fe9ecea16e54746a9efd13223f79f3, type: 2}
   nickname: {fileID: 2071547527}
   level: {fileID: 1671035325}
   money: {fileID: 1074946375}
@@ -3706,6 +3705,10 @@ PrefabInstance:
       propertyPath: nowStage
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
+      propertyPath: RunGame_EX
+      value: 
+      objectReference: {fileID: 11400000, guid: e6fe9ecea16e54746a9efd13223f79f3, type: 2}
     - target: {fileID: 1913493802388220347, guid: b0662ba66f8297f41bdb2e2adac30cc4, type: 3}
       propertyPath: Data.Boss_HP
       value: 0

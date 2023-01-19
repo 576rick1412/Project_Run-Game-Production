@@ -8,7 +8,6 @@ using TMPro;
 
 public class MasicMainUI : MonoBehaviour
 {
-    [SerializeField] RunGame_EX runGame_EX;
 
     public TextMeshProUGUI nickname;
     public TextMeshProUGUI level;
@@ -19,8 +18,6 @@ public class MasicMainUI : MonoBehaviour
     [Header("UI 띄우기")]
     public GameObject shopUI;
     public GameObject quitUI;
-
-    string stageDes;
 
     void Start()
     {
@@ -36,7 +33,11 @@ public class MasicMainUI : MonoBehaviour
     }
 
     public void OnShop() { Instantiate(shopUI); }
-    public void OnGameStart() { Loading_Manager.LoadScene("GameScene", "무한모드", stageDes); }
+    public void OnGameStart()
+    {
+        string stageDes = GameManager.GM.STG_Excel();
+        GameManager.GM.Stage_Move("GameScene", "무한모드", stageDes);
+    }
 
     // 게임 종료
     public void OnQuit() { quitUI.SetActive(true); }
@@ -62,18 +63,6 @@ public class MasicMainUI : MonoBehaviour
             // 기본 최종치( 1000 ) + ( 현재 레벨 * 200 ) = 최종 경험치 요구량
             // 만약 레벨이 5 일 경우 -> [ 1000 + ( 5 * 200 ) ] => [ 1000 + 1000 ] = 2000
             yield return new WaitForSeconds(2);
-        }
-    }
-    void STGExcel()
-    {
-        int branch = Random.Range(1, runGame_EX.StartSheet.Count + 1);
-
-        for (int i = 0; i < runGame_EX.StartSheet.Count; ++i)
-        {
-            if (runGame_EX.StartSheet[i].STR_branch == branch)
-            {
-                stageDes = runGame_EX.StartSheet[i].STR_description;
-            }
         }
     }
 }
