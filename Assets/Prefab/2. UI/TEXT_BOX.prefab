@@ -52,12 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b129f36fc903da4d8eb26e42e478326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: {fileID: 39681573491869776}
-  Description: {fileID: 39681572848479459}
+  name: {fileID: 0}
+  description: {fileID: 0}
   branch: 3
-  RunGame_EX: {fileID: 11400000, guid: e6fe9ecea16e54746a9efd13223f79f3, type: 2}
-  Stage_Num: 
-  Stage_Des: 
+  runGame_EX: {fileID: 0}
+  stageNum: 
+  stageDes: 
 --- !u!1 &39681572848479457
 GameObject:
   m_ObjectHideFlags: 0
