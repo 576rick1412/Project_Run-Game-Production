@@ -4854,6 +4854,7 @@ MonoBehaviour:
   overUI: {fileID: 4360651679565576799, guid: e8f63dbb0112c544fa7444429da75992, type: 3}
   setAlphaValue: 0.2
   setEfeectTime: 0.2
+  runGame_EX: {fileID: 11400000, guid: e6fe9ecea16e54746a9efd13223f79f3, type: 2}
 --- !u!1001 &1476194128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7394,17 +7395,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565329ba5181f6146beb583e380ae7d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maps:
-  - spanwMaps:
-    - {fileID: 569375224324970274, guid: 2d65fab8ee1b3c94584711b5a2edf3ec, type: 3}
-    - {fileID: 7206739198655307267, guid: 352f9f375ff9ad74382326f89b83d21c, type: 3}
-    - {fileID: 3865649451935863847, guid: b1397c2a168270349b6f089f72de7188, type: 3}
-    - {fileID: 143449530772705852, guid: da6b9cec9e224f8428c5acd2e41ed36b, type: 3}
-    - {fileID: 3566161031302427482, guid: ef5217b8d7ec07946aa9d616a94948a4, type: 3}
-  - spanwMaps:
-    - {fileID: 8724947814290867910, guid: f1e5085cbd04dae45a326afc456efbbb, type: 3}
-  - spanwMaps:
-    - {fileID: 1926103144376204580, guid: c21e1e1066b3f7947babfa8b14de90fe, type: 3}
+  spanwMaps:
+  - {fileID: 569375224324970274, guid: 2d65fab8ee1b3c94584711b5a2edf3ec, type: 3}
+  - {fileID: 8724947814290867910, guid: f1e5085cbd04dae45a326afc456efbbb, type: 3}
+  - {fileID: 1926103144376204580, guid: c21e1e1066b3f7947babfa8b14de90fe, type: 3}
 --- !u!224 &2116479744
 RectTransform:
   m_ObjectHideFlags: 0

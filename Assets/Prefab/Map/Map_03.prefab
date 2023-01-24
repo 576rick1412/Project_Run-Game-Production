@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 1926103144376204602}
   - component: {fileID: 1926103144376204603}
   m_Layer: 0
-  m_Name: Map_03_01
+  m_Name: Map_03
   m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1058,7 +1058,7 @@ GameObject:
   - component: {fileID: 8724947814290867928}
   - component: {fileID: 8724947814290867929}
   m_Layer: 0
-  m_Name: Map_02_01
+  m_Name: Map_02
   m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
