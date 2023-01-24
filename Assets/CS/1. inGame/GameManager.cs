@@ -78,12 +78,9 @@ public class GameManager : MonoBehaviour
     {
         data = new MainDB();
 
-        data.nickname_GM = "소드리우스";
-        data.level_GM = 1;
         data.money_GM = 0;
         data.goods_GM = 0;
-        data.exe_GM = 0;
-        data.maxExe_GM = 1000;
+   
 
         // 스테이지 정보
         data.gameWin = false;
@@ -297,12 +294,8 @@ public class MainDB
 
     // 메인UI
     [Header("메인 UI")]
-    public string nickname_GM = "소드리우스";
-    public int level_GM = 1;
     public int money_GM = 0;
     public int goods_GM = 0;
-    public float exe_GM = 0;
-    public float maxExe_GM = 1000;
 
     // 스테이지 정보
     [Header("스테이지 정보")]
