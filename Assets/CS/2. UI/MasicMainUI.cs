@@ -14,6 +14,7 @@ public class MasicMainUI : MonoBehaviour
     [Header("UI 띄우기")]
     public GameObject shopUI;
     public GameObject quitUI;
+    public GameObject stageUI;
 
     void Start()
     {
@@ -29,11 +30,7 @@ public class MasicMainUI : MonoBehaviour
     }
 
     public void OnShop() { Instantiate(shopUI); }
-    public void OnGameStart()
-    {
-        string stageDes = GameManager.GM.STG_Excel();
-        GameManager.GM.Stage_Move("GameScene", "무한모드", stageDes);
-    }
+    public void OnGameStart() { Instantiate(stageUI); }
 
     // 게임 종료
     public void OnQuit() { quitUI.SetActive(true); }

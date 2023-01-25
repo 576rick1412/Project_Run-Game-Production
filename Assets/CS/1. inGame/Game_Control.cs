@@ -83,7 +83,7 @@ public class Game_Control : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.GM.data.lifeScore > 0) { UIUpdate(); return; }
+        UIUpdate();
 
         if (GameManager.GM.data.lifeScore <= 0 && isGameEnd == false) StartCoroutine(EndGame());
     }
@@ -139,7 +139,8 @@ public class Game_Control : MonoBehaviour
 
     void UIUpdate()
     {
-        runTimeInt += Time.deltaTime;
+        if (GameManager.GM.data.lifeScore > 0) { runTimeInt += Time.deltaTime; }
+
         hPBar.fillAmount = (GameManager.GM.data.lifeScore / GameManager.GM.data.setLifeScore);
         score.text = "점수 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString());
         runTime.text = "달린시간 " + Mathf.RoundToInt(runTimeInt) + " 초";

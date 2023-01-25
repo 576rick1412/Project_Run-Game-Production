@@ -57,6 +57,9 @@ public class Coin : MonoBehaviour
     }
     void Obstacle()
     {
+        // 하드모드일 경우 장애물과 충돌한경우 즉사
+        if (!GameManager.GM.isNormal) { GameManager.GM.data.lifeScore = -100; Player.PL.OnCoroutine(); return; }
+
         // 피격 시 2의 피해를 입고, 전체 체력이 영구적으로 1 줄어듬
         GameManager.GM.data.lifeScore -= GameManager.GM.data.obstacleDamage;
         GameManager.GM.data.setLifeScore -= 1f;

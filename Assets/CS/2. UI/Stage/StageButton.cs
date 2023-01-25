@@ -6,6 +6,7 @@ using TMPro;
 
 public class StageButton : MonoBehaviour
 {
+    [SerializeField] GameObject hubObject;
     [Header("설명창")]
     [SerializeField] GameObject normalUI;
     [SerializeField] GameObject hardUI;
@@ -16,22 +17,43 @@ public class StageButton : MonoBehaviour
 
     void Start()
     {
+        OnNormal();
+
         if (GameManager.GM.data.nomalMaxScore == 0) { normalText.text = "최고점수 : 기록없음"; }
-        else { normalText.text = "최고점수 : " + CommaText(GameManager.GM.data.nomalMaxScore) + " 점"; }
+        else { normalText.text = "최고점수 : " + "<color=yellow>" + CommaText(GameManager.GM.data.nomalMaxScore) + "</color>" + " 점"; }
 
         if (GameManager.GM.data.hardMaxScore == 0) { hardText.text = "최고점수 : 기록없음"; }
-        else { hardText.text = "최고점수 : " + CommaText(GameManager.GM.data.hardMaxScore) + " 점"; }
+        else { hardText.text = "최고점수 : " + "<color=yellow>" + CommaText(GameManager.GM.data.hardMaxScore) + "</color>" + " 점"; }
     }
 
     public void OnNormal()
     {
         GameManager.GM.isNormal = true;
-    }
 
+        normalUI.SetActive(true);
+        hardUI.SetActive(false);
+    }
     public void OnHard()
     {
         GameManager.GM.isNormal = false;
+        
+        hardUI.SetActive(true);
+        normalUI.SetActive(false);
     }
+
+
+    public void PlayButton()
+    {
+        string stageDes = GameManager.GM.STG_Excel();
+
+        if(GameManager.GM.isNormal) GameManager.GM.Stage_Move("GameScene", "일반모드", stageDes);
+        else GameManager.GM.Stage_Move("GameScene", "하드모드", stageDes);
+    }
+    public void BackButton()
+    {
+        Destroy(hubObject);
+    }
+
     string CommaText(long score)
     {
         return string.Format("{0:#,###}", score);

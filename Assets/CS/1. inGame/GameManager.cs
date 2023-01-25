@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log(filePath);
         LoadData();
-        
+
         StartCoroutine(AutoSave()); // 10초마다 자동저장
         
         panel.gameObject.SetActive(false);

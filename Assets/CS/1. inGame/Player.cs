@@ -137,16 +137,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    void JumpHeightCheck()
-    {
-        // 점프 높이 조정
-        if (transform.position.y >= 2.4f && isJump && isDoubleJump)
-            transform.position = new Vector3(transform.position.x, 2.4f, transform.position.z);
-
-        if (transform.position.y >= 0 && isJump && !isDoubleJump)
-            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-    }
-
     public void Slide_DAWN() { if (GameManager.GM.playerAlive == false) { isSlid = true; SetCollider(); } }
     public void Slide_UP() { if (GameManager.GM.playerAlive == false) { isSlid = false; SetCollider(); } }
 

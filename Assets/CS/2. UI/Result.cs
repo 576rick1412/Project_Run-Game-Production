@@ -6,6 +6,12 @@ using TMPro;
 
 public class Result : MonoBehaviour
 {
+    [Header("게임모드 UI")]
+    [SerializeField] GameObject normalUI;
+    [SerializeField] GameObject hardUI;
+
+
+    [Header("최고점수 텍스트")]
     [SerializeField] TextMeshProUGUI Max_Score;
     [SerializeField] TextMeshProUGUI Cur_Score;
     [SerializeField] TextMeshProUGUI Cur_Window_GoUp;
@@ -17,10 +23,15 @@ public class Result : MonoBehaviour
     {
         Time.timeScale = 1;
 
-        Max_Score.text = "최대 점수 : " + (GameManager.GM.data.nomalMaxScore == 0 ? 0 : 
-            CommaText(GameManager.GM.data.nomalMaxScore).ToString());
+        // 게임모드 UI 띄우기
+        if (GameManager.GM.isNormal) normalUI.SetActive(true);
+        else hardUI.SetActive(true);
 
-        Cur_Score.text = "현재 점수 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString());
+        // 점수 UI 띄우기
+        int maxScore = GameManager.GM.isNormal ? GameManager.GM.data.nomalMaxScore : GameManager.GM.data.hardMaxScore;
+        Max_Score.text = "최고점수 : " + (maxScore == 0 ? 0 : CommaText(maxScore).ToString()) + " 점";
+
+        Cur_Score.text = "현재점수 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString()) + " 점";
         Change_Score();
     }
 
@@ -46,7 +57,8 @@ public class Result : MonoBehaviour
         Destroy(Max_Score);
         TextMeshProUGUI GoUp =  Instantiate(Cur_Window_GoUp, Cur_Score.transform.position,Quaternion.identity);
         GoUp.transform.SetParent(Score_Window.transform);
-        GoUp.text = "최대 기록 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString());
+
+        GoUp.text = "최고점수 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString()) + " 점";
     } // 최고점 기록 시 최고점 갱신 + 갱신 애니메이션
 
     public void GoLoby() 
@@ -58,6 +70,8 @@ public class Result : MonoBehaviour
     {
         Time.timeScale = 1;
         string stageDes = GameManager.GM.STG_Excel();
-        GameManager.GM.Stage_Move("GameScene", "무한모드", stageDes);
+
+        if (GameManager.GM.isNormal) GameManager.GM.Stage_Move("GameScene", "일반모드", stageDes);
+        else GameManager.GM.Stage_Move("GameScene", "하드모드", stageDes);
     }
 }
