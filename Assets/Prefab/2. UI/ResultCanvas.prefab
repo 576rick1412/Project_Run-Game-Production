@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD14C\uC774\uC9C0 \uC120\uD0DD"
+  m_text: "\uB85C\uBE44\uB85C \uB3CC\uC544\uAC00\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1921fba65abfb434b962a2484db946f2, type: 2}
   m_sharedMaterial: {fileID: 2607197950904173734, guid: 1921fba65abfb434b962a2484db946f2, type: 2}
@@ -1318,8 +1318,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8925110402508120411}
-        m_TargetAssemblyTypeName: Result_CS, Assembly-CSharp
-        m_MethodName: GoStage
+        m_TargetAssemblyTypeName: Result, Assembly-CSharp
+        m_MethodName: GoLoby
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2140,25 +2140,6 @@ MonoBehaviour:
   Cur_Score: {fileID: 8925110403387102664}
   Cur_Window_GoUp: {fileID: 5313980474530330980, guid: 2c6dd9b1fee259742b83a292dc95241f, type: 3}
   Score_Window: {fileID: 4997843743469352049}
-  Win: {fileID: 0}
-  Lose: {fileID: 8925110402616067505}
-  Star:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Success_icon:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Failed_icon:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  per_Point:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  RunGame_EX: {fileID: 11400000, guid: e6fe9ecea16e54746a9efd13223f79f3, type: 2}
 --- !u!1 &8925110402616067505
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,7 +2152,7 @@ GameObject:
   - component: {fileID: 8925110402616067510}
   - component: {fileID: 8925110402616067511}
   m_Layer: 5
-  m_Name: LOSE_Title_Hub
+  m_Name: ResultTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

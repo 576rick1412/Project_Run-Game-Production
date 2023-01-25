@@ -23,11 +23,9 @@ public class GameManager : MonoBehaviour
 
     [Header("플레이 설정")]
     public bool playerAlive;
+    public bool isNormal; // 하드모드 여부
 
-    [Header("스테이지 점수 정보")]
-    public int nowClearStar = 0;
-    public int[] percentStars = new int[3];
-
+    [Header("로딩 화면, 스테이지 정보")]
     public string stageName;
     public string stageInformation;
 
@@ -81,13 +79,10 @@ public class GameManager : MonoBehaviour
         data.money_GM = 0;
         data.goods_GM = 0;
    
-
         // 스테이지 정보
         data.gameWin = false;
-        data.stageClearNum = 0;
-
-        for (int i = 0; i < data.stageMaxScores.Length;  i++) data.stageMaxScores[i]  = 0;
-        for (int i = 0; i < data.stageClearStars.Length; i++) data.stageClearStars[i] = 0;
+        data.nomalMaxScore = 0;
+        data.hardMaxScore = 0;
 
         data.setFloorSpeedValue = 8f;
         data.setBGSpeedValue = 3f;
@@ -120,7 +115,6 @@ public class GameManager : MonoBehaviour
         data.SFX_Value = 1f;
 
         SavaData();
-        LoadData();
     }
 
     public void Fade()
@@ -300,9 +294,8 @@ public class MainDB
     // 스테이지 정보
     [Header("스테이지 정보")]
     public bool gameWin; // 패배확인 참일때 승리, 거짓일때 패배
-    public int stageClearNum;
-    public int[] stageMaxScores = new int[60 + 1];
-    public int[] stageClearStars = new int[60 + 1];
+    public int nomalMaxScore;
+    public int hardMaxScore;
 
     // 인게임 설정
     [Header("인게임 설정")]

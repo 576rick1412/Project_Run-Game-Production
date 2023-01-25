@@ -89,7 +89,6 @@ GameObject:
   - component: {fileID: 1913493802388220351}
   - component: {fileID: 1913493802388220350}
   - component: {fileID: 1913493802388220347}
-  - component: {fileID: 5804421593627872385}
   m_Layer: 5
   m_Name: Hephaestus_Canvas
   m_TagString: Untagged
@@ -191,49 +190,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c377de99a5bd54db67ac06610dd432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panel: {fileID: 1913493801980879620}
-  F_time: 0.2
-  FM_time: 0
-  Game_Fail: 0
-  stage_Max_Score: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-  Floor_SpeedValue: 8
-  BGI_SpeedValue: 4
-  Set_LifeScore: 100
-  LifeScore: 0
-  CoinScore: 0
-  PlayerType: Player_1
-  PlayerJumpValue: 15
-  Invincibility_Time: 3
-  Coin_Point: 100
-  Obstacle_Damage: 30
-  Set_Boss_HP: 1000
-  Boss_HP: 1000
-  Boss_Damage: 30
-  Boss_DIE: 0
-  Player_Damage: 50
-  Attack_Speed: 1
-  GM_branch: 1
-  GM_typingSpeed: 0.1
-  BGM_Value: 1
-  SFX_Value: 1
-  Data:
+  RunGame_EX: {fileID: 0}
+  nowStage: 0
+  panel: {fileID: 0}
+  fTime: 0.2
+  ftTime: 0
+  playerAlive: 0
+  isNormal: 0
+  stageName: 
+  stageInformation: 
+  data:
     key: g6hk83da6f2f183fkhj3p5b5n13gh
-    GM_NickName: 
-    GM_Level: 1
-    GM_Money: 0
-    GM_Goods: 0
-    GM_EXE: 0
-    GM_MAX_EXE: 0
---- !u!114 &5804421593627872385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1913493802388220337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa43a087fec06d44187a5cd3452e1cc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  "\uC544\uC774\uD15C": []
+    money_GM: 0
+    goods_GM: 0
+    gameWin: 0
+    nomalMaxScore: 0
+    hardMaxScore: 0
+    setFloorSpeedValue: 0
+    setBGSpeedValue: 0
+    floorSpeedValue: 0
+    BGSpeedValue: 0
+    constLifeScore: 0
+    setLifeScore: 0
+    lifeScore: 0
+    coinScore: 0
+    runRatio: 0
+    curRunRatio: 0
+    playerType: Player_1
+    playerJumpValue: 0
+    invincibilityTime: 0
+    coinPoint: 100
+    obstacleDamage: 0
+    branch_GM: 0
+    typingSpeed_GM: 0.1
+    BGM_Value: 1
+    SFX_Value: 1

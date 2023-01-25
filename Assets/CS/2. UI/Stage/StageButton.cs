@@ -6,46 +6,31 @@ using TMPro;
 
 public class StageButton : MonoBehaviour
 {
-    [SerializeField] int stageNum;
+    [Header("설명창")]
+    [SerializeField] GameObject normalUI;
+    [SerializeField] GameObject hardUI;
 
-    [Header("기타")]
-    [SerializeField] Chapter_Info info;
-    [SerializeField] TextMeshProUGUI stageText;
+    [Header("최고점수 텍스트")]
+    [SerializeField] TextMeshProUGUI normalText;
+    [SerializeField] TextMeshProUGUI hardText;
 
-    Stage_Info SI;
-    [SerializeField] GameObject[] StarS = new GameObject[3];
-    private void Awake()
+    void Start()
     {
-        SI = FindObjectOfType<Stage_Info>();
-        stageText.text = info.Info[stageNum - 1].Stage_Num;
+        if (GameManager.GM.data.nomalMaxScore == 0) { normalText.text = "최고점수 : 기록없음"; }
+        else { normalText.text = "최고점수 : " + CommaText(GameManager.GM.data.nomalMaxScore) + " 점"; }
 
-        switch (GameManager.GM.data.stageClearStars[stageNum])
-        {
-            case 0: break;
-            case 1: StarS[0].SetActive(true); break;
-            case 2: StarS[0].SetActive(true); StarS[1].SetActive(true); break;
-            case 3: StarS[0].SetActive(true); StarS[1].SetActive(true); StarS[2].SetActive(true); break;
-        }
+        if (GameManager.GM.data.hardMaxScore == 0) { hardText.text = "최고점수 : 기록없음"; }
+        else { hardText.text = "최고점수 : " + CommaText(GameManager.GM.data.hardMaxScore) + " 점"; }
     }
 
-    public void OnWindow()
+    public void OnNormal()
     {
-        for (int i = 0; i < info.Info.Count; ++i)
-        {
-            if (info.Info[i].Branch == stageNum)
-            {
-                SI.stageName.text = info.Info[i].Stage_Num;
-                SI.stageInformation.text = info.Info[i].Stage_Description;
-                SI.stageNum = stageNum;
+        GameManager.GM.isNormal = true;
+    }
 
-                SI.stageMaxScore.text = "최대 점수 : " + (GameManager.GM.data.stageMaxScores[i + 1] == 0 ? "기록 없음" :
-                    CommaText(GameManager.GM.data.stageMaxScores[i + 1]).ToString());
-
-                SI.targetSprite.sprite = SI.infoSprites[stageNum % 10];
-
-                SI.OnStage_Info();
-            }
-        }
+    public void OnHard()
+    {
+        GameManager.GM.isNormal = false;
     }
     string CommaText(long score)
     {

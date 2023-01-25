@@ -48,7 +48,6 @@ public class Game_Control : MonoBehaviour
         pauseImage.SetActive(false);
         isPause = false;
 
-        GameManager.GM.nowClearStar = 0; // 결과창 현재 별 수 초기화
         GameManager.GM.data.curRunRatio = 0; // 현재 달린 거리 초기화
 
         GameManager.GM.data.floorSpeedValue = GameManager.GM.data.setFloorSpeedValue; // 발판 속도 지정된 초기값으로 초기화
@@ -84,14 +83,9 @@ public class Game_Control : MonoBehaviour
 
     void Update()
     {
-        runTimeInt += Time.deltaTime;
+        if (GameManager.GM.data.lifeScore > 0) { UIUpdate(); return; }
 
-        hPBar.fillAmount = (GameManager.GM.data.lifeScore / GameManager.GM.data.setLifeScore);
-        score.text = "점수 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString());
-
-        runTime.text = "달린시간 " + Mathf.RoundToInt(runTimeInt) + " 초";
-
-        if (GameManager.GM.data.lifeScore <= 0 && isGameEnd == false) StartCoroutine(EndGame(false));
+        if (GameManager.GM.data.lifeScore <= 0 && isGameEnd == false) StartCoroutine(EndGame());
     }
     public string CommaText(long score) { return string.Format("{0:#,###}", score); }
 
@@ -116,23 +110,13 @@ public class Game_Control : MonoBehaviour
         }
     }
 
-    public IEnumerator EndGame(bool isClear)
+    public IEnumerator EndGame()
     {
-        GameObject endUI = isClear == true ? clearUI : overUI; // 생성될 결과 UI 지정
-
-        // 게임 오버 시 점수는 0으로 고정 / 클리어가 아니기 때문에 별을 줄 수 없음
-        if (!isClear) GameManager.GM.data.coinScore = 0;
-
-        // 클리어 시 다음 스테이지가 열리도록 함, 만약 이미 클리어한 스테이지를 다시 플레이한 경우 그냥 리턴
-        if (GameManager.GM.data.stageClearNum < GameManager.GM.data.branch_GM && isClear)
-        { GameManager.GM.data.stageClearNum = GameManager.GM.data.branch_GM; }
-
         // 결과 UI 생성
-        GameObject UI = Instantiate(endUI, midSpawnPos.position, Quaternion.identity);
+        GameObject UI = Instantiate(overUI, midSpawnPos.position, Quaternion.identity);
         UI.transform.SetParent(midSpawnPos);
 
         isGameEnd = true;
-        GameManager.GM.data.gameWin = isClear;
         GameManager.GM.SavaData();
 
         yield return new WaitForSeconds(3f);
@@ -141,26 +125,24 @@ public class Game_Control : MonoBehaviour
     }
 
 
-    public void ReStage()
+    public void GoLoby()
     {
         string stageDes = GameManager.GM.STG_Excel();
-
-        Time.timeScale = 1; //  타임 스케일 초기화, 게임 멈춤 방지
-        switch (GameManager.GM.data.branch_GM / 10)
-        {
-            case <= 10: Loading_Manager.LoadScene("Stage1_Hub", stageDes); break;
-            case <= 20: Loading_Manager.LoadScene("Stage2_Hub", stageDes); break;
-            case <= 30: Loading_Manager.LoadScene("Stage3_Hub", stageDes); break;
-            case <= 40: Loading_Manager.LoadScene("Stage4_Hub", stageDes); break;
-            case <= 50: Loading_Manager.LoadScene("Stage5_Hub", stageDes); break;
-            case <= 60: Loading_Manager.LoadScene("Stage6_Hub", stageDes); break;
-        }
+        Loading_Manager.LoadScene("Mian_Loby_Scene", stageDes);
     }
     public void GoRetry()
     {
         Time.timeScale = 1; //  타임 스케일 초기화, 게임 멈춤 방지
         string stageDes = GameManager.GM.STG_Excel();
         GameManager.GM.Stage_Move("GameScene", "무한모드", stageDes);
+    }
+
+    void UIUpdate()
+    {
+        runTimeInt += Time.deltaTime;
+        hPBar.fillAmount = (GameManager.GM.data.lifeScore / GameManager.GM.data.setLifeScore);
+        score.text = "점수 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString());
+        runTime.text = "달린시간 " + Mathf.RoundToInt(runTimeInt) + " 초";
     }
 
     public IEnumerator CameraShake(float magnitude)

@@ -11,60 +11,19 @@ public class Result : MonoBehaviour
     [SerializeField] TextMeshProUGUI Cur_Window_GoUp;
 
     [SerializeField] GameObject Score_Window;
-    [SerializeField] GameObject Win;
-    [SerializeField] GameObject Lose;
 
-    [SerializeField] GameObject[] Star = new GameObject[3];
-    [SerializeField] GameObject[] Success_icon = new GameObject[3];
-    [SerializeField] GameObject[] Failed_icon = new GameObject[3];
-    [SerializeField] TextMeshProUGUI[] per_Point = new TextMeshProUGUI[3];
 
     void Awake()
     {
-        Debug.Log("게임결과창 " + GameManager.GM.nowClearStar);
-
         Time.timeScale = 1;
 
-        if (GameManager.GM.data.gameWin == false) { Win.SetActive(false); } else { Lose.SetActive(false); }
-
-        if (GameManager.GM.nowClearStar == 0) GameManager.GM.data.coinScore = 0;
-        StartCoroutine(OnStar(GameManager.GM.nowClearStar)); // 클리어 시 별이 뜨게하는 코루틴 호줄
-
-        Max_Score.text = "최대 점수 : " + (GameManager.GM.data.stageMaxScores[GameManager.GM.data.branch_GM] == 0 ? 0 : 
-            CommaText(GameManager.GM.data.stageMaxScores[GameManager.GM.data.branch_GM]).ToString());
+        Max_Score.text = "최대 점수 : " + (GameManager.GM.data.nomalMaxScore == 0 ? 0 : 
+            CommaText(GameManager.GM.data.nomalMaxScore).ToString());
 
         Cur_Score.text = "현재 점수 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString());
         Change_Score();
     }
-    IEnumerator OnStar(int Clear_Num) 
-    {
-        {
-            // 0 : 실패
-            // 1 : 1성 클리어
-            // 2 : 2성 클리어
-            // 3 : 3성 클리어
 
-        } // 사용 요약
- 
-        // 서브 별 뜨우기
-        for (int i = 1; i < Success_icon.Length + 1; i++)
-        {
-            if (i <= Clear_Num) { Success_icon[i - 1].SetActive(true); continue; }
-            else { Failed_icon[i - 1].SetActive(true); }
-        }
-
-        // 별 획득 점수
-        for (int i = 0; i < per_Point.Length; i++) per_Point[i].text = CommaText(GameManager.GM.percentStars[i]).ToString();
-
-        // 메인 별 띄우기
-        for (int i = 0; i < Clear_Num; i++)
-        {
-            Star[i].SetActive(true);
-            yield return new WaitForSeconds(0.3f);
-        }
-
-        yield return null;
-    } // 클리어 시 별이 뜨도록 함
     void Update()
     {
 
@@ -73,14 +32,14 @@ public class Result : MonoBehaviour
 
     void Change_Score()
     {
-        if(GameManager.GM.data.stageMaxScores[GameManager.GM.data.branch_GM] < GameManager.GM.data.coinScore)
-        {
-            GameManager.GM.data.stageMaxScores[GameManager.GM.data.branch_GM] = GameManager.GM.data.coinScore;
-            GameManager.GM.SavaData(); Debug.Log("신속저장!");
+        if (GameManager.GM.data.coinScore <= GameManager.GM.data.nomalMaxScore ||
+            GameManager.GM.data.coinScore <= GameManager.GM.data.hardMaxScore) return;
 
-            Debug.Log("신기록 달성!!!!");
-            Invoke("NewRecord", 1f);
-        }
+        if (GameManager.GM.isNormal) GameManager.GM.data.nomalMaxScore = GameManager.GM.data.coinScore;
+        else GameManager.GM.data.hardMaxScore = GameManager.GM.data.coinScore;
+
+        GameManager.GM.SavaData();
+        Invoke("NewRecord", 1f);
     }
     void NewRecord()
     {
@@ -88,27 +47,12 @@ public class Result : MonoBehaviour
         TextMeshProUGUI GoUp =  Instantiate(Cur_Window_GoUp, Cur_Score.transform.position,Quaternion.identity);
         GoUp.transform.SetParent(Score_Window.transform);
         GoUp.text = "최대 기록 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString());
-        GameManager.GM.data.stageMaxScores[GameManager.GM.data.branch_GM] = GameManager.GM.data.coinScore;
     } // 최고점 기록 시 최고점 갱신 + 갱신 애니메이션
 
     public void GoLoby() 
     {
         string stageDes = GameManager.GM.STG_Excel();
         Loading_Manager.LoadScene("Mian_Loby_Scene", stageDes); 
-    }
-    public void GoStage() 
-    {
-        string stageDes = GameManager.GM.STG_Excel();
-
-        switch (GameManager.GM.data.branch_GM / 10)
-        {
-            case <= 10 : Loading_Manager.LoadScene("Stage1_Hub", stageDes); break;
-            case <= 20 : Loading_Manager.LoadScene("Stage2_Hub", stageDes); break;
-            case <= 30 : Loading_Manager.LoadScene("Stage3_Hub", stageDes); break;
-            case <= 40 : Loading_Manager.LoadScene("Stage4_Hub", stageDes); break;
-            case <= 50 : Loading_Manager.LoadScene("Stage5_Hub", stageDes); break;
-            case <= 60 : Loading_Manager.LoadScene("Stage6_Hub", stageDes); break;
-        }
     }
     public void GoRetry()
     {
