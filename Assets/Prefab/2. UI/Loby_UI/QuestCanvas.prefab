@@ -3748,7 +3748,7 @@ MonoBehaviour:
       questDesBack: "\uD68C \uB2EC\uC131"
     point:
       rewardText: {fileID: 7297463018101070552}
-      questPoint: 20
+      questPoint: 15
       reward: 250
       isFree: 1
     attain:
@@ -3802,10 +3802,6 @@ MonoBehaviour:
     panel:
       questClear: {fileID: 7297463018574964190}
       questEnd: {fileID: 7297463018498556844}
-  questDB:
-    key: sfaugb!@@Tgrts+d65ghsal
-    curPointQuestDB: []
-    checkQuestDB: []
 --- !u!1 &7297463018656034703
 GameObject:
   m_ObjectHideFlags: 0

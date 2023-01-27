@@ -18,7 +18,7 @@ public class StageButton : MonoBehaviour
     void Start()
     {
         OnNormal();
-
+        
         if (GameManager.GM.data.nomalMaxScore == 0) { normalText.text = "최고점수 : 기록없음"; }
         else { normalText.text = "최고점수 : " + "<color=yellow>" + CommaText(GameManager.GM.data.nomalMaxScore) + "</color>" + " 점"; }
 

@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     public static GameManager GM;
     [SerializeField] RunGame_EX RunGame_EX;
 
-    [Range(1,6)] public int nowStage;
     //페이드 인 아웃
     [Header("페이드 인 아웃")]
     public Image panel;
@@ -72,7 +71,7 @@ public class GameManager : MonoBehaviour
         load = Program.Decrypt(load, key);
         data = JsonUtility.FromJson<MainDB>(load);
     }   // Json 로딩
-    public void ResetMainDB()
+    void ResetMainDB()
     {
         data = new MainDB();
 

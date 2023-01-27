@@ -32,6 +32,7 @@ public class Result : MonoBehaviour
         Max_Score.text = "최고점수 : " + (maxScore == 0 ? 0 : CommaText(maxScore).ToString()) + " 점";
 
         Cur_Score.text = "현재점수 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString()) + " 점";
+
         Change_Score();
     }
 
@@ -46,11 +47,10 @@ public class Result : MonoBehaviour
         if (GameManager.GM.data.coinScore <= GameManager.GM.data.nomalMaxScore ||
             GameManager.GM.data.coinScore <= GameManager.GM.data.hardMaxScore) return;
 
+        Invoke("NewRecord", 1f);
         if (GameManager.GM.isNormal) GameManager.GM.data.nomalMaxScore = GameManager.GM.data.coinScore;
         else GameManager.GM.data.hardMaxScore = GameManager.GM.data.coinScore;
-
         GameManager.GM.SavaData();
-        Invoke("NewRecord", 1f);
     }
     void NewRecord()
     {

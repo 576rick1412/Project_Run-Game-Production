@@ -165,7 +165,7 @@ public class QuestManager : MonoBehaviour
         load = Program.Decrypt(load, key);
         questDB = JsonUtility.FromJson<QuestDB>(load);
     }   // Json ·Îµù
-    public void ResetMainDB()
+    void ResetMainDB()
     {
         questDB = new QuestDB();
 

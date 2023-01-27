@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     // 퀘스트 카운터
     bool nonHit = true;
-    int[] questCount = { 0, 0, 0, 0 };
+    public float[] questCount = { 0f, 0f, 0f, 0f };
     
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
@@ -51,24 +51,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(nonHit)
-        {
-            // 퀘스트가 이미 클리어 상태일 때 바로 반환
-            if (QuestManager.QM.questDB.checkQuestDB[0].isClear || QuestManager.QM.questDB.checkQuestDB[0].isRewardClear)
-                return;
-
-            // 현재 점수가 목표 점수보다 낮을 시 현재 점수 수정
-            if (GameManager.GM.data.coinScore < QuestManager.QM.quest[0].point.questPoint)
-            {
-                questCount[0] = GameManager.GM.data.coinScore;
-                return;
-            }
-            else // 목표점수 달성 시 클리어
-            {
-                QuestManager.QM.SavaData();
-                return;
-            }
-        } // 퀘스트 0번
+        QuestZero();
 
         AnimeControl();
         if (GameManager.GM.data.lifeScore <= 0 && GameManager.GM.playerAlive == false)
@@ -78,7 +61,6 @@ public class Player : MonoBehaviour
             GameManager.GM.playerAlive = true;
         }
 
-        //JumpHeightCheck(); 플레이어 높이 제한 - 사용 미정
         // 개발용 키보드 조작법
         if (Input.GetKeyDown(KeyCode.Space)) Jump();
         if (Input.GetKey(KeyCode.LeftShift)) Slide_DAWN();
@@ -87,15 +69,24 @@ public class Player : MonoBehaviour
         if (clearCheck == false) GameManager.GM.data.lifeScore -= Time.deltaTime * 2.8f;
 
         // 플레이어 사망 시 퀘스트 데이터 정리
-        if (GameManager.GM.playerAlive == false) return;
-        for (int i = 0; i < 4; i++)
+        if (GameManager.GM.playerAlive)
         {
-            // 퀘스트가 이미 클리어 상태일 때 바로 반환
-            if (QuestManager.QM.questDB.checkQuestDB[i].isClear || QuestManager.QM.questDB.checkQuestDB[i].isRewardClear)
-                continue;
+            for (int i = 0; i < 4; i++)
+            {
+                // 퀘스트가 이미 클리어 상태일 때 바로 반환
+                if (QuestManager.QM.questDB.checkQuestDB[i].isClear || QuestManager.QM.questDB.checkQuestDB[i].isRewardClear)
+                {
+                    Debug.Log("반환" + i);
+                    continue;
+                }
 
-            if (questCount[i] > QuestManager.QM.quest[i].point.questPoint)
-                QuestManager.QM.quest[i].point.questPoint = questCount[i];
+                if (questCount[i] > QuestManager.QM.questDB.curPointQuestDB[i])
+                {
+                    Debug.Log("변수 이동" + i);
+                    QuestManager.QM.questDB.curPointQuestDB[i] = questCount[i];
+                }
+            }
+            QuestManager.QM.SavaData();
         }
     }
 
@@ -229,5 +220,27 @@ public class Player : MonoBehaviour
             QuestManager.QM.SavaData();
             return;
         }
+    }
+
+    void QuestZero()
+    {
+        if (nonHit)
+        {
+            // 퀘스트가 이미 클리어 상태일 때 바로 반환
+            if (QuestManager.QM.questDB.checkQuestDB[0].isClear || QuestManager.QM.questDB.checkQuestDB[0].isRewardClear)
+                return;
+
+            // 현재 점수가 목표 점수보다 낮을 시 현재 점수 수정
+            if (GameManager.GM.data.coinScore < QuestManager.QM.quest[0].point.questPoint)
+            {
+                questCount[0] = GameManager.GM.data.coinScore;
+                return;
+            }
+            else // 목표점수 달성 시 클리어
+            {
+                QuestManager.QM.SavaData();
+                return;
+            }
+        } // 퀘스트 0번
     }
 }
