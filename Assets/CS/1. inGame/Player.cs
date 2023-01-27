@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public Transform playerPos;
     [HideInInspector] public bool clearCheck;
 
-    float SetGravity;
+    float setGravity;
     float jumpHeight;
     bool isJump;
     bool isDoubleJump;
@@ -17,6 +17,10 @@ public class Player : MonoBehaviour
 
     bool isFloor = false; // 바닥 확인
 
+    // 퀘스트 카운터
+    bool nonHit = true;
+    int[] questCount = { 0, 0, 0, 0 };
+    
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     [SerializeField] private BoxCollider2D[] colliders;
@@ -40,13 +44,31 @@ public class Player : MonoBehaviour
         isDoubleJump = false;
         isSlid = false;
 
-        SetGravity =  rigid.gravityScale;
+        setGravity =  rigid.gravityScale;
         playerPos = this.gameObject.transform;
         jumpHeight = GameManager.GM.data.playerJumpValue;
     }
 
     void Update()
     {
+        if(nonHit)
+        {
+            // 퀘스트가 이미 클리어 상태일 때 바로 반환
+            if (QuestManager.QM.questDB.checkQuestDB[0].isClear || QuestManager.QM.questDB.checkQuestDB[0].isRewardClear)
+                return;
+
+            // 현재 점수가 목표 점수보다 낮을 시 현재 점수 수정
+            if (GameManager.GM.data.coinScore < QuestManager.QM.quest[0].point.questPoint)
+            {
+                questCount[0] = GameManager.GM.data.coinScore;
+                return;
+            }
+            else // 목표점수 달성 시 클리어
+            {
+                QuestManager.QM.SavaData();
+                return;
+            }
+        } // 퀘스트 0번
 
         AnimeControl();
         if (GameManager.GM.data.lifeScore <= 0 && GameManager.GM.playerAlive == false)
@@ -63,6 +85,18 @@ public class Player : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift)) Slide_UP();
 
         if (clearCheck == false) GameManager.GM.data.lifeScore -= Time.deltaTime * 2.8f;
+
+        // 플레이어 사망 시 퀘스트 데이터 정리
+        if (GameManager.GM.playerAlive == false) return;
+        for (int i = 0; i < 4; i++)
+        {
+            // 퀘스트가 이미 클리어 상태일 때 바로 반환
+            if (QuestManager.QM.questDB.checkQuestDB[i].isClear || QuestManager.QM.questDB.checkQuestDB[i].isRewardClear)
+                continue;
+
+            if (questCount[i] > QuestManager.QM.quest[i].point.questPoint)
+                QuestManager.QM.quest[i].point.questPoint = questCount[i];
+        }
     }
 
     public void OnCoroutine()
@@ -85,12 +119,13 @@ public class Player : MonoBehaviour
                     colliders[1].enabled = true;
 
                     rigid.gravityScale = 40f;
+                    CountSum(3);
                     break;
                 case false: // 슬라이드 끝
                     colliders[0].enabled = true;
                     colliders[1].enabled = false;
 
-                    rigid.gravityScale = SetGravity;
+                    rigid.gravityScale = setGravity;
                     break;
             }
         }
@@ -126,12 +161,14 @@ public class Player : MonoBehaviour
             {
                 rigid.velocity = Vector2.up * jumpHeight;
                 isJump = true;
+                CountSum(1);
                 return; 
             }
             if (isJump == true && isDoubleJump == false) 
             {
                 rigid.velocity = Vector2.up * jumpHeight; 
-                isDoubleJump = true; 
+                isDoubleJump = true;
+                CountSum(2);
                 return; 
             }
         }
@@ -155,6 +192,8 @@ public class Player : MonoBehaviour
     
     IEnumerator HIT_Coroutine()
     {
+        nonHit = false;
+
         if (GameManager.GM.playerAlive == false)
         {
             StartCoroutine(Game_Control.GC.ShowBloodScreen());
@@ -173,4 +212,22 @@ public class Player : MonoBehaviour
         }
     }
     void HIT_off() { onHit = false; }
+
+    void CountSum(int i)
+    {
+        // 퀘스트가 이미 클리어 상태일 때 바로 반환
+        if (QuestManager.QM.questDB.checkQuestDB[i].isClear || QuestManager.QM.questDB.checkQuestDB[i].isRewardClear)
+            return;
+
+        // 퀘스트가 진행중일 떄 카운트 1 더해서 반환
+        if (questCount[i] < QuestManager.QM.quest[i].point.questPoint)
+            questCount[i]++;
+
+        // 퀘스트 클리어
+        else
+        {
+            QuestManager.QM.SavaData();
+            return;
+        }
+    }
 }

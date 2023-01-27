@@ -284,7 +284,8 @@ public class GameManager : MonoBehaviour
 public class MainDB
 {
     // AES 암호화 키
-    [HideInInspector] public string key = "g6hk83da6f2f183fkhj3p5b5n13gh";
+    [HideInInspector] public string 
+        key = "g6hk83da6f2f183fkhj3p5b5n13gh";
 
     // 메인UI
     [Header("메인 UI")]

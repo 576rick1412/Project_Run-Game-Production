@@ -15,6 +15,7 @@ public class MasicMainUI : MonoBehaviour
     public GameObject shopUI;
     public GameObject quitUI;
     public GameObject stageUI;
+    public GameObject questUI;
 
     void Start()
     {
@@ -31,6 +32,7 @@ public class MasicMainUI : MonoBehaviour
 
     public void OnShop() { Instantiate(shopUI); }
     public void OnGameStart() { Instantiate(stageUI); }
+    public void OnQuest() { Instantiate(questUI); }
 
     // 게임 종료
     public void OnQuit() { quitUI.SetActive(true); }
@@ -40,7 +42,9 @@ public class MasicMainUI : MonoBehaviour
 #else
         Application.Quit();
 #endif
-        Debug.Log("게임 종료!"); 
+        Debug.Log("게임 종료!");
+        GameManager.GM.SavaData();
+        QuestManager.QM.SavaData();
     }
     public void QuitBack() { quitUI.SetActive(false); }
 

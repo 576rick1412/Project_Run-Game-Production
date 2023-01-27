@@ -16,9 +16,9 @@ public class Game_Control : MonoBehaviour
     [SerializeField] GameObject pauseImage; // 일시정지 프레임
     public TextMeshProUGUI score;           // 점수 UI
     public TextMeshProUGUI runTime;         // 달린시간 UI
-    float runTimeInt;                         // 달린시간 숫자
+    float runTimeInt;                       // 달린시간 숫자
 
-    [SerializeField] Transform midSpawnPos;// 임시
+    [SerializeField] Transform midSpawnPos; // 임시
 
     [Header("일시정지 버튼")]
     public GameObject startIcon;            // 시작 아이콘
@@ -64,6 +64,15 @@ public class Game_Control : MonoBehaviour
         isGameEnd = false;
 
         camPos = Camera.main.transform.position; // 메인 카메라 위치값 넣어 초기화
+
+        // 점프, 더블점프, 슬라이드 카운터 초기화
+        for (int i = 0; i < 4; i++)
+        {
+            if (!QuestManager.QM.questDB.checkQuestDB[i].isClear
+                || !QuestManager.QM.questDB.checkQuestDB[i].isRewardClear)
+                QuestManager.QM.questDB.curPointQuestDB[i] = 0;
+        }
+        QuestManager.QM.SavaData();
     }
 
     void Start()
