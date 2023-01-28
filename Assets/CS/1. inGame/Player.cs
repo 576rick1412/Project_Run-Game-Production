@@ -75,16 +75,15 @@ public class Player : MonoBehaviour
             {
                 // 퀘스트가 이미 클리어 상태일 때 바로 반환
                 if (QuestManager.QM.questDB.checkQuestDB[i].isClear || QuestManager.QM.questDB.checkQuestDB[i].isRewardClear)
-                {
-                    Debug.Log("반환" + i);
                     continue;
-                }
 
+                // 현재 기록 점수보다 높은 점수를 달성 시 기록 점수 갱신
                 if (questCount[i] > QuestManager.QM.questDB.curPointQuestDB[i])
-                {
-                    Debug.Log("변수 이동" + i);
                     QuestManager.QM.questDB.curPointQuestDB[i] = questCount[i];
-                }
+
+                // 만약 달성률이 목표치를 초과했을 경우 달성률을 목표치의 최대에 맞게 조정
+                if (QuestManager.QM.questDB.curPointQuestDB[i] > QuestManager.QM.quest[i].point.questPoint)
+                    QuestManager.QM.questDB.curPointQuestDB[i] = QuestManager.QM.quest[i].point.questPoint;
             }
             QuestManager.QM.SavaData();
         }
@@ -211,15 +210,7 @@ public class Player : MonoBehaviour
             return;
 
         // 퀘스트가 진행중일 떄 카운트 1 더해서 반환
-        if (questCount[i] < QuestManager.QM.quest[i].point.questPoint)
-            questCount[i]++;
-
-        // 퀘스트 클리어
-        else
-        {
-            QuestManager.QM.SavaData();
-            return;
-        }
+        questCount[i]++;
     }
 
     void QuestZero()
@@ -231,16 +222,8 @@ public class Player : MonoBehaviour
                 return;
 
             // 현재 점수가 목표 점수보다 낮을 시 현재 점수 수정
-            if (GameManager.GM.data.coinScore < QuestManager.QM.quest[0].point.questPoint)
-            {
-                questCount[0] = GameManager.GM.data.coinScore;
-                return;
-            }
-            else // 목표점수 달성 시 클리어
-            {
-                QuestManager.QM.SavaData();
-                return;
-            }
+            questCount[0] = GameManager.GM.data.coinScore;
+
         } // 퀘스트 0번
     }
 }

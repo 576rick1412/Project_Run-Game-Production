@@ -44,8 +44,8 @@ public class Result : MonoBehaviour
 
     void Change_Score()
     {
-        if (GameManager.GM.data.coinScore <= GameManager.GM.data.nomalMaxScore ||
-            GameManager.GM.data.coinScore <= GameManager.GM.data.hardMaxScore) return;
+        if (GameManager.GM.data.coinScore <= GameManager.GM.data.nomalMaxScore) return;
+        if (GameManager.GM.data.coinScore <= GameManager.GM.data.hardMaxScore)  return;
 
         Invoke("NewRecord", 1f);
         if (GameManager.GM.isNormal) GameManager.GM.data.nomalMaxScore = GameManager.GM.data.coinScore;

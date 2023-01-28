@@ -64,15 +64,6 @@ public class Game_Control : MonoBehaviour
         isGameEnd = false;
 
         camPos = Camera.main.transform.position; // 메인 카메라 위치값 넣어 초기화
-
-        // 점프, 더블점프, 슬라이드 카운터 초기화
-        for (int i = 0; i < 4; i++)
-        {
-            if (!QuestManager.QM.questDB.checkQuestDB[i].isClear
-                || !QuestManager.QM.questDB.checkQuestDB[i].isRewardClear)
-                QuestManager.QM.questDB.curPointQuestDB[i] = 0;
-        }
-        QuestManager.QM.SavaData();
     }
 
     void Start()
@@ -136,8 +127,13 @@ public class Game_Control : MonoBehaviour
 
     public void GoLoby()
     {
+        Time.timeScale = 1; //  타임 스케일 초기화, 게임 멈춤 방지
         string stageDes = GameManager.GM.STG_Excel();
         Loading_Manager.LoadScene("Mian_Loby_Scene", stageDes);
+
+        // 게임 도중 나갈 경우 게임 플레이 카운트가 올라가지 않도록 함
+        if (!QuestManager.QM.questDB.checkQuestDB[4].isClear || !QuestManager.QM.questDB.checkQuestDB[4].isRewardClear)
+            QuestManager.QM.questDB.curPointQuestDB[4]--;
     }
     public void GoRetry()
     {

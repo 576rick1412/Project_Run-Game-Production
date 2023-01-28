@@ -19,11 +19,13 @@ public class MasicMainUI : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(UI_Update());
+
     }
 
     private void Update()
     {
+        UI_Update();
+
         if (Application.platform == RuntimePlatform.Android)
         {
             if (Input.GetKeyDown(KeyCode.Escape)) OnQuit();
@@ -48,13 +50,9 @@ public class MasicMainUI : MonoBehaviour
     }
     public void QuitBack() { quitUI.SetActive(false); }
 
-    IEnumerator UI_Update()
+    void UI_Update()
     {
-        while (true)
-        {
-            money.text = "" + GameManager.GM.data.money_GM;
-            goods.text = "" + GameManager.GM.data.goods_GM;
-            yield return new WaitForSeconds(2);
-        }
+        money.text = "" + GameManager.GM.data.money_GM;
+        goods.text = "" + GameManager.GM.data.goods_GM;
     }
 }

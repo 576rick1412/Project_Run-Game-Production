@@ -140,6 +140,9 @@ public class QuestManager : MonoBehaviour
 
     public void ClearButton(int i) 
     {
+        if (quest[i].point.isFree) GameManager.GM.data.money_GM += quest[i].point.reward;
+        else GameManager.GM.data.goods_GM += quest[i].point.reward;
+
         questDB.checkQuestDB[i].isClear = false;
         questDB.checkQuestDB[i].isRewardClear = true;
 
