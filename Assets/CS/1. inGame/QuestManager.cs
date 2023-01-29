@@ -69,8 +69,11 @@ public class QuestManager : MonoBehaviour
         [HideInInspector] public string 
             key = "sfaugb!@@Tgrts+d65ghsal";
 
-        public float[] curPointQuestDB;         // 현재 퀘스트 달성 점수
-        public Check[] checkQuestDB;            // 퀘스트 내부 작동 변수 (bool)
+        // 퀘스트 기록상의 날자 / 하루 넘어가면 퀘스트 초기화
+        public int recordedTime = DateTime.Today.Day;
+
+        public float[] curPointQuestDB = new float[6];  // 현재 퀘스트 달성 점수
+        public Check[] checkQuestDB = new Check[6];     // 퀘스트 내부 작동 변수 (bool)
     }
 
     public Quest[] quest;                       // 퀘스트 구조체 (메인)
@@ -92,6 +95,14 @@ public class QuestManager : MonoBehaviour
         filePath = Application.persistentDataPath + "/QuestDB.txt";
         
         LoadData();
+
+        // 날자가 넘어가면 퀘스트 초기화
+        if (questDB.recordedTime != DateTime.Today.Day)
+        {
+            questDB = new QuestDB();
+            questDB.recordedTime = DateTime.Today.Day;
+        }
+
         SavaData();
     }
 
@@ -102,6 +113,11 @@ public class QuestManager : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("개발용 / A키를 누를 시 기록상의 날짜가 1 줄어듬");
+        if (Input.GetKeyDown(KeyCode.A)) questDB.recordedTime--;
+        if (questDB.recordedTime != DateTime.Today.Day)
+            questDB = new QuestDB();
+
         for (int i = 0; i < quest.Length; i++)
         {
             // 퀘스트 전체 텍스트
@@ -123,15 +139,26 @@ public class QuestManager : MonoBehaviour
             if (questDB.curPointQuestDB[i] >= quest[i].point.questPoint && !questDB.checkQuestDB[i].isRewardClear)
                 questDB.checkQuestDB[i].isClear = true;
 
-            // 퀘스트 판넬
-            if (questDB.checkQuestDB[i].isClear) { quest[i].panel.questClear.SetActive(true); continue; }
-
-            if (questDB.checkQuestDB[i].isRewardClear)
+            // 퀘스트 판넬 - 클리어 활성화
+            if (questDB.checkQuestDB[i].isClear) 
+            { 
+                quest[i].panel.questClear.SetActive(true); 
+                quest[i].panel.questEnd.SetActive(false); 
+                continue; 
+            }
+            // // 퀘스트 판넬 - 보상받음 활성화
+            else if (questDB.checkQuestDB[i].isRewardClear)
             {
                 quest[i].panel.questClear.SetActive(false);
                 quest[i].panel.questEnd.SetActive(true);
 
                 SavaData(); // 값이 달라지므로 저장
+                continue;
+            }
+            else // 퀘스트 판넬 - 전부 비활성화
+            {
+                quest[i].panel.questClear.SetActive(false);
+                quest[i].panel.questEnd.SetActive(false);
             }
         }
     }
