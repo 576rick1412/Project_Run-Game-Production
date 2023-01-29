@@ -113,11 +113,6 @@ public class QuestManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("개발용 / A키를 누를 시 기록상의 날짜가 1 줄어듬");
-        if (Input.GetKeyDown(KeyCode.A)) questDB.recordedTime--;
-        if (questDB.recordedTime != DateTime.Today.Day)
-            questDB = new QuestDB();
-
         for (int i = 0; i < quest.Length; i++)
         {
             // 퀘스트 전체 텍스트

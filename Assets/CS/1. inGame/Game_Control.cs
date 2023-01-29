@@ -16,7 +16,6 @@ public class Game_Control : MonoBehaviour
     [SerializeField] GameObject pauseImage; // 일시정지 프레임
     public TextMeshProUGUI score;           // 점수 UI
     public TextMeshProUGUI runTime;         // 달린시간 UI
-    float runTimeInt;                       // 달린시간 숫자
 
     [SerializeField] Transform midSpawnPos; // 임시
 
@@ -48,7 +47,7 @@ public class Game_Control : MonoBehaviour
         pauseImage.SetActive(false);
         isPause = false;
 
-        GameManager.GM.data.curRunRatio = 0; // 현재 달린 거리 초기화
+        GameManager.GM.runTime = 0; // 현재 달린 거리 초기화
 
         GameManager.GM.data.floorSpeedValue = GameManager.GM.data.setFloorSpeedValue; // 발판 속도 지정된 초기값으로 초기화
         GameManager.GM.data.BGSpeedValue = GameManager.GM.data.setBGSpeedValue;     // 배경 속도 지정된 초기값으로 초기화
@@ -60,6 +59,12 @@ public class Game_Control : MonoBehaviour
         GameManager.GM.data.coinScore = 0;  // 게임 내 점수 초기화
 
         GameManager.GM.playerAlive = false; // 플레이어 사망처리 초기화
+
+        // 게임 결과창 점수 정보 초기화
+        GameManager.GM.normalCoinCount = 0;
+        GameManager.GM.hardCoinCount = 0;
+        GameManager.GM.specialCoinCount = 0;
+        GameManager.GM.obstacleCollisionCount = 0;
 
         isGameEnd = false;
 
@@ -144,11 +149,11 @@ public class Game_Control : MonoBehaviour
 
     void UIUpdate()
     {
-        if (GameManager.GM.data.lifeScore > 0) { runTimeInt += Time.deltaTime; }
+        if (GameManager.GM.data.lifeScore > 0) { GameManager.GM.runTime += Time.deltaTime; }
 
         hPBar.fillAmount = (GameManager.GM.data.lifeScore / GameManager.GM.data.setLifeScore);
         score.text = "점수 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString());
-        runTime.text = "달린시간 " + Mathf.RoundToInt(runTimeInt) + " 초";
+        runTime.text = "달린시간 " + Mathf.RoundToInt(GameManager.GM.runTime) + " 초";
     }
 
     public IEnumerator CameraShake(float magnitude)

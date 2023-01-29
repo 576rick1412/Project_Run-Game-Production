@@ -24,6 +24,13 @@ public class GameManager : MonoBehaviour
     public bool playerAlive;
     public bool isNormal; // 하드모드 여부
 
+    [Header("게임결과창 게임정보")]
+    public int normalCoinCount;         // 결과창 일반코인 획득 횟수 기록
+    public int hardCoinCount;           // 결과창 하드코인 획득 횟수 기록
+    public int specialCoinCount;        // 결과창 스페셜코인 획득 횟수 기록
+    public int obstacleCollisionCount;  // 결과창 장애물 충돌 횟수 기록
+    public float runTime;               // 결과창 달린시간 기록
+
     [Header("로딩 화면, 스테이지 정보")]
     public string stageName;
     public string stageInformation;
@@ -309,9 +316,6 @@ public class MainDB
     public float setLifeScore = 0;
     public float lifeScore = 0;
     public int coinScore = 0;
-
-    public float runRatio = 0f;
-    public float curRunRatio = 0f;
 
     // 플레이어 설정
     [Header("플레이어 설정")]

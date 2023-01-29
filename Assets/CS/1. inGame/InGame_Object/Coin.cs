@@ -54,15 +54,27 @@ public class Coin : MonoBehaviour
         // 코인 획득 시 점수 증가
         GameManager.GM.data.coinScore += GameManager.GM.data.coinPoint * multiply;
         Sound_Manager.SM.Coin();
+
+        // 게임결과창 개별 코인 획득 카운트 증가
+        switch (setObject)
+        {
+            case "Nomal_Ice": GameManager.GM.normalCoinCount++; break;
+            case "Hard_Ice": GameManager.GM.hardCoinCount++; break;
+            case "Special_Ice": GameManager.GM.specialCoinCount++; break;
+        }
     }
     void Obstacle()
     {
+        // 게임결과창 장애물 충돌 카운트 증가
+        GameManager.GM.obstacleCollisionCount++;
+
         // 하드모드일 경우 장애물과 충돌한경우 즉사
         if (!GameManager.GM.isNormal) { GameManager.GM.data.lifeScore = -100; Player.PL.OnCoroutine(); return; }
 
         // 피격 시 2의 피해를 입고, 전체 체력이 영구적으로 1 줄어듬
         GameManager.GM.data.lifeScore -= GameManager.GM.data.obstacleDamage;
         GameManager.GM.data.setLifeScore -= 1f;
+
         Player.PL.onHit = true;
         Player.PL.OnCoroutine();
     }

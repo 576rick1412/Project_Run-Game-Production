@@ -18,7 +18,16 @@ public class Result : MonoBehaviour
 
     [SerializeField] GameObject Score_Window;
 
+    [Header("게임 카운트 텍스트")]
+    public TextMeshProUGUI normalCoinCountText;
+    public TextMeshProUGUI hardCoinCountText;
+    public TextMeshProUGUI specialCoinCountText;
+    public TextMeshProUGUI obstacleCollisionCountText;
+    public TextMeshProUGUI RunRatioText;
 
+    [Header("게임 보상")]
+    public int rewardMult; // 보상 기준
+    public TextMeshProUGUI rewardText;
     void Awake()
     {
         Time.timeScale = 1;
@@ -32,6 +41,19 @@ public class Result : MonoBehaviour
         Max_Score.text = "최고점수 : " + (maxScore == 0 ? 0 : CommaText(maxScore).ToString()) + " 점";
 
         Cur_Score.text = "현재점수 : " + (GameManager.GM.data.coinScore == 0 ? 0 : CommaText(GameManager.GM.data.coinScore).ToString()) + " 점";
+
+        // 게임 획득 카운트
+        normalCoinCountText.text = "<color=yellow>" + GameManager.GM.normalCoinCount + "</color> 개";
+        hardCoinCountText.text = "<color=yellow>" + GameManager.GM.hardCoinCount + "</color> 개";
+        specialCoinCountText.text = "<color=yellow>" + GameManager.GM.specialCoinCount + "</color> 개";
+        obstacleCollisionCountText.text = "<color=yellow>" + GameManager.GM.obstacleCollisionCount + "</color> 회";
+        RunRatioText.text = "<color=yellow>" + Mathf.RoundToInt(GameManager.GM.runTime) + "</color> 초";
+
+        // 게임 보상 / 하드모드일 경우 보상 2배 
+        int reward = GameManager.GM.isNormal ? GameManager.GM.data.coinScore / rewardMult : GameManager.GM.data.coinScore / rewardMult * 2;
+
+        rewardText.text = "< 보상 : 코인" + "<color=yellow> " + reward + "</color> " + "개 >";
+        GameManager.GM.data.money_GM += reward;
 
         Change_Score();
     }
