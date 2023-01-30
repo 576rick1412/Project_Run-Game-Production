@@ -93,6 +93,10 @@ public class Result : MonoBehaviour
         Time.timeScale = 1;
         string stageDes = GameManager.GM.STG_Excel();
 
+        // 게임 플레이 횟수 카운터 + 저장
+        if (QuestManager.QM.questDB.curPointQuestDB[4] < QuestManager.QM.quest[4].point.questPoint)
+        { QuestManager.QM.questDB.curPointQuestDB[4]++; QuestManager.QM.SavaData(); }
+
         if (GameManager.GM.isNormal) GameManager.GM.Stage_Move("GameScene", "일반모드", stageDes);
         else GameManager.GM.Stage_Move("GameScene", "하드모드", stageDes);
     }

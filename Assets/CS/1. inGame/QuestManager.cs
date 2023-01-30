@@ -207,7 +207,7 @@ public class QuestManager : MonoBehaviour
             questDB.checkQuestDB[i].isRewardClear = false;
         }
     }
-    
+
     string CommaText(float Score) 
     {
         if (Score <= 0) return "0";
